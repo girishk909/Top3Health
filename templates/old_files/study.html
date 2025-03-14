@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}Goals{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+  .form-container { display:block; margin-top:5px; margin-bottom:10px; margin-left: 50px;height:100%; width: 290px; padding:20px;  border-radius:10px; background-color: rgb(175, 186, 247);}
+  .form-container2 { display:block; margin-top:5px; margin-bottom:10px; margin-left: 50px;height:100%; width: 290px; padding:20px;  border-radius:10px; background-color: rgb(156, 172, 150);}
+  .form-check-label {
+    font-size: 1rem;
+    margin-bottom: 7px;
+    margin-left:20px;
+  }
+
+
+
+  .checkbox-xl .form-check-input {
+    top: 0.8rem;
+    scale: 1.4;
+    margin-bottom: 0;
+    margin-left:20px;
+  }
+
+  .checkbox-xl .form-check-label {
+    padding-top: 2px;
+    font-size: 13px;
+    width: 130px;
+  }
+
+  .container-fluid {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .btn {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .logo {
+    margin-left: 0px;
+    margin-top: -60px;
+  }
+
+  .logo i {
+    font-size: 18px;
+  }
+
+  .logout {
+    text-align: right;
+    margin-top: -48px;
+    margin-right: 0px;
+  }
+
+
+
+</style>
+
+<form method="POST">
+  {% csrf_token %}
+
+  <p class="fs-6 text-center">{{ user.first_name }}</p>
+  <br>
+
+  <div class="logo">
+    <i class="fa fa-circle" style="color: red;"></i>
+    <i class="fa fa-circle" style="color: forestgreen;"></i>
+    <i class="fa fa-circle" style="color: #0080ff;"></i>
+    <h6>top3health</h6>
+  </div>
+
+  <div class="logout">
+    <a href="/logout">
+      <img src="{% static 'css/red-logout-land.png' %}" alt="Logout" class="text-end" />
+    </a>
+  </div>
+
+  <div class="container-fluid text-center mx-auto no-border">
+  
+   
+
+    <!-- "{{request.user.Regular_or_Study_Mode}}" -->
+
+    <!-- {% if Mode == True %}
+       <h6>Study Mode</h6>
+    {% endif %}
+
+     <p>Mode: "{{ study.mode }}"</p>
+<p>Study Topic: "{{ study.study_topic }}"</p> -->
+<!-- "{{request.user.CustomUser.Regular_or_Study_Mode}}" -->
+<!-- "{{Goals.Become_Healthier }}" -->
+ <br> <br>
+<h6 class="text-center mb-4">Please select the usage mode</h6>
+<div class="form-container mx-auto  text-start border" >
+
+
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="Mode" id="exampleRadios1" value="Regular_mode" checked>
+    <label class="form-check-label" for="exampleRadios1">
+      Regular Mode
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="Mode" id="exampleRadios2" value="Study_mode">
+    <label class="form-check-label" for="exampleRadios2">
+      Study Mode
+    </label>
+</div>
+</div>
+<br>
+<h6 class="text-center mb-4">Please select the topic of study, if applicable</h6>
+
+<div class="form-container2 mx-auto  text-start border" >
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="study_topic" id="exampleRadios3" value="Diabetes_study" >
+        <label class="form-check-label" for="exampleRadios3">
+          Diabetes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="study_topic" id="exampleRadios4" value="Cardio Vascular Disease">
+        <label class="form-check-label" for="exampleRadios4">
+          Cardio Vascular disease
+        </label>
+       </div> 
+    </div>
+
+        <div class="button-group space-around text-center mt-5  mx-auto">
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/landing">
+              <button class="btn btn-warning btn-sm" type="button">Home</button>
+            </a>
+          </div>
+    
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/goals">
+              <button class="btn btn-success btn-sm" type="submit">Save & Continue</button>
+            </a>
+          </div>
+    
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/goals">
+              <button class="btn btn-primary btn-sm" type="button">Next</button>
+            </a>
+          </div>
+        </div>
+        
+      
+    </form>
+    
+    {% endblock content %}

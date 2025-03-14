@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% block title %}Allergic-foods{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }   
+
+
+.container-fluid { height:100%;width:100%; padding-left:0px; padding-right:0px; max-width:none;   overflow-x: hidden;
+   }
+/* .form-check-label{font-size:28px;  color:rgb(10, 56, 141)} */
+/* .form-check{color:darkgreen; scale:2rem;} */
+.form-check-label{font-size:26px; scale:3rem;  margin-bottom: 1px; margin-left: 28px; margin-right:0px;  }
+
+.input-group {width:100%; margin-left: 0px;}
+
+.form-container { width: 270px; padding:10px; border-radius:30px;  background-color: rgb(166, 184, 161);}
+.form-container2 { width: 310px; padding:14px; border-radius:20px;  background-color: rgb(185, 202, 240);}
+.form-container3 { width: 310px; padding:14px;  border-radius:20px;  background-color: rgb(233, 178, 178);}
+
+
+.note {font-size: 10px;}
+  .checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.0;
+ margin-top:12px;  
+ margin-right: 80px;
+ margin-left: 10px;
+ margin-bottom: 0px;
+ border-width: 0.5px;
+ align-content: left;
+  
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 12px;
+    font-size:13px;
+    margin-left: -130px;
+    align-content:center;
+    width:130px;
+    
+ } 
+
+.btn {font-size:13px; margin-right:20px;}
+.button-group { 
+  display:inline-flex; align-items:center; margin-left:15px; padding-left:0px; 
+  justify-content: center; margin-top:20px; position:relative; white-space: nowrap;
+}
+
+.d-inline {margin-left: 5px; margin-right:2px;}
+    
+.logo {align-content: left; margin-left:0px; margin-top:-40px;}  
+  
+.logout{text-align: right; margin-top:-35px; margin-right:5px;}   
+
+.input-group-text {font-size:12px !important; width:60px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
+
+.name {margin-left:5px;}
+
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+      <p class="fs-6 name text-start"> {{user.first_name }}</p>
+     
+      <!-- <div class=logo>
+        <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+                <h6> top3health</h6>
+                
+                </div> -->
+                <div class=logout>
+                  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="text-end" alt="Veggies"></button></a>
+                 
+                  </div>     
+               
+    <div class="container-fluid  text-center no-border mx-auto ">
+   
+      
+   
+        <h6  class="text-center mb-3">My food triggers & substitutes</h6>
+       
+        
+<!-- <br>  -->
+
+
+
+        <!-- <br>  -->
+        <!-- <h3 class="text-center" >Other food substitutes  <button style="text-decoration:none; border:none; background-color:white;"><sup>?</sup></button></h3> -->
+
+        <div class="form-container2 mx-auto form-check   text-center border" >
+       
+        <!-- <br>  -->
+ <div class="input-group mb-2  input-group-sm">
+ <span class="input-group-text font-weight-bold">Food-1&nbsp;&nbsp;&nbsp;</span>
+ <input type="text" class="form-control text-center" name="Trig_Food_1" placeholder="Trigger food">
+ <input type="text" class="form-control text-center" name="Food_substitute_1" placeholder="My substitute">
+  </div>    
+       
+  <div class="input-group mb-2 input-group-sm">
+ <span class="input-group-text font-weight-bold">Food-2&nbsp;&nbsp;&nbsp;</span>
+ <input type="text" class="form-control text-center" name="Trig_Food_2" placeholder="Trigger food">
+ <input type="text" class="form-control text-center" name="Food_substitute_2" placeholder="My substitute">
+  </div> 
+       
+   <div class="input-group mb-2 input-group-sm">
+ <span class="input-group-text font-weight-bold">Food-3&nbsp;&nbsp;&nbsp;</span>
+ <input type="text" class="form-control text-center" name="Trig_Food_3" placeholder="Trigger food">
+ <input type="text" class="form-control text-center" name="Food_substitute_3" placeholder="My substitute">
+  </div> 
+       
+  <div class="input-group  input-group-sm">
+    <span class="input-group-text font-weight-bold">Food-4&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" class="form-control text-center" name="Trig_Food_2" placeholder="Trigger food">
+    <input type="text" class="form-control text-center" name="Food_substitute_2" placeholder="My substitute">
+     </div>               
+ 
+</div>
+<h6 class="text-center note mt-2"><b>Food triggers</b> can be from high sodium, saturated fat, high carbs</h6>
+        <h6 class="text-center note">causing digestive discomfort, sleep issues, or just feeling unwell</h6>
+<br> <br>
+<h6  class="text-center mb-3">My drink triggers & substitutes</h6>
+
+       
+
+<div class="form-container3 mx-auto form-check   text-center border" >
+       
+    
+
+ <div class="input-group mb-2  input-group-sm">
+    <span class="input-group-text font-weight-bold">Drink-1&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" class="form-control text-center" name="Trig_Drink_1" placeholder="Trigger drink">
+    <input type="text" class="form-control text-center" name="Drink_substitute_1" placeholder="My substitute">
+     </div>    
+          
+     <div class="input-group mb-2 input-group-sm">
+    <span class="input-group-text font-weight-bold">Drink-2&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" class="form-control text-center" name="Trig_Drink_2" placeholder="Trigger drink">
+    <input type="text" class="form-control text-center" name="Drink_substitute_2" placeholder="My substitute">
+     </div> 
+          
+      <div class="input-group input-group-sm">
+    <span class="input-group-text font-weight-bold">Drink-3&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" class="form-control text-center" name="Trig_Drink_3" placeholder="Trigger drink">
+    <input type="text" class="form-control text-center" name="Drink_substitute_3" placeholder="My substitute">
+     </div> 
+          
+
+</div>
+<h6 class="text-center note mt-2"><b>Drink triggers</b> can be from sodas, colas, alcohol, caffinated drinks</h6>
+<h6 class="text-center note">causing sleep issues, high blood sugar, or just feeling unwell</h6>
+
+<br> 
+
+<div class="button-group text-center">
+  <div class="d-inline  ml-2 gap-1 d-md-block span">
+    
+  <a href="/landing"><button class="btn btn-warning btn-sm text-center" type="button">Home</button></a>
+  </div> 
+         
+  <div class="d-inline  gap-2 d-md-block">
+    <a href="/mytrigfoods"></a><button class="btn btn-sm btn-success text-center" type="submit" >Save & Continue</button></a>
+    
+  </div>
+
+  <div class="d-inline gap-2 d-md-block span">
+  
+    <a href="/supplements"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+    </div> 
+  <br>
+  <!-- <a href="/profile"><button class="btn btn-primary btn-l" type="button">Next</button></a> -->
+  </div> 
+  </div>
+  <br> 
+        
+</form>
+
+{% endblock content %}

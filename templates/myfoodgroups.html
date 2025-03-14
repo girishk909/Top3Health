@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% block title %}Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      height:100%;
+      background-color: white;
+      margin: 0px;
+      padding:0px;
+      overflow: hidden;
+    }
+  }     
+  
+
+  .form-control {font-size:12px; color:black; width:330px;}    
+      
+  .form-check-input {font-size:18px; color: black; }    
+      
+  .input-group {  font-size:12px; width:330px;}    
+  .input-group-text { font-size:10px;}
+
+                
+  .btn {font-size:11px; margin-left:10px; margin-right:10px;}
+  .button-group { display: inline-flex;
+      
+    
+  }
+  .name {margin-left:5px;}
+  .d-inline {margin-left: 10px; margin-right:25px;}
+
+  .logout{text-align: right; margin-top:-35px; margin-right:5px;}   
+
+ul {
+  column-count: 2; text-align: start; margin-left:20px;
+}
+
+/* li::marker 
+{
+    font-size: 1rem;
+    font-weight: bolder;
+} */
+/* .gspace {margin-left:15px; font-size:10px; } */
+      
+.container-fluid  {width:100%; padding:0px;  overflow: hidden; } 
+.form-container { width:350px; padding:8px; border-radius:10px;  background-color: #5f76a3;}
+.placeholder {font-size:12px; }
+
+
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+}
+
+.pagination .page-link {
+  padding: 0.2rem 0.2rem;
+  text-align: center; /* Adjust padding as needed */
+  margin-left:-18px;
+}
+
+.form-container3 { width: 344px; padding:5px;  border-radius:13px;  background-color: rgb(233, 178, 178);}
+
+
+
+.pagination {
+        justify-content: center; /* Center the pagination */
+    }    
+  </style>
+<form method="POST">
+  {% csrf_token %}
+  
+
+
+     <div class="container-fluid  mx-auto text-center  no-border">
+
+     
+     
+      <nav aria-label="Page navigation example">
+        <ul style="font-size:10px; " class="pagination justify-content-center mt-2 ">
+          <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/minorsym">Symptoms</a></li>
+          <li style="font-size:10px;" class="page-item disabled" ><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myfitness">Fitness</a></li>
+          <li style="font-size:10px;" class="page-item active " ><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px; padding-top:5px; padding-bottom:5px;" href="/myfoodgroups">Foodgroups</a></li>
+          <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/mybreakfastdesign">Meals</a></li>
+          <li class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/supplements">Supplements</a></li>
+          <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myhabits">Habits</a></li>
+          <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myexpenses">Expenses</a></li>
+         
+          
+        </ul>
+      </nav>
+      <!-- <h6 style="font-size:15px;" class="text-center ">My Foodgroups assessment</h6> -->
+      <h6 style="font-size:13px;" class=" text-center mb-3 ">Please enter quantities consumed for major food groups</h6>
+     
+    <div class="form-container mx-auto text-center border" >
+       
+
+         <div class="input-group mb-1 text-center ">
+          <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 105px; text-align:right">Vegetables</span>
+          <input type="text" class="form-control text-center " name = "All_veggies" placeholder="USDA - 2-3 cups/day, different colors" list="minor" >  <datalist id="minor">
+            <option value="0.5">
+              <option value="1">
+            <option value="1.5">
+            <option value="2">
+              <option value="2.5">
+            <option value="3">
+               
+                    </datalist>
+          <span class="  text-center  font-weight-bold text-light " style="width: 325px; font-size:10px; color:white;"  >Dark green, red/orange, other types</span>  
+           </div>
+
+         <div class="input-group mb-1 text-center ">
+          <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 105px; text-align:right">Beans & Lentils</span>
+          <input type="text" class="form-control text-center " name = "Beans_Lentils" placeholder="USDA - 0.5 cup/day average" list="minor" >  <datalist id="minor">
+            <option value="0.5">
+              <option value="1">
+            <option value="1.5">
+            <option value="2">
+              <option value="2.5">
+            <option value="3">
+                    </datalist>
+          <span class="  text-center  font-weight-bold text-light " style="width: 335px; font-size:10px; color:white;"  >Garbanzo beans, Black beans, Pinto beans, Split peas, Lentils</span>   
+           </div>
+
+
+      <div class="input-group mb-1  text-center ">
+      <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 105px; text-align:right">Fruits & Berries</span>
+      <input type="text" class="form-control text-center " name = "Fruits_Berries" placeholder="USDA - 2 cups/day" list="minor" >  <datalist id="minor">
+        <option value="0.5">
+          <option value="1">
+        <option value="1.5">
+        <option value="2">
+          <option value="2.5">
+        <option value="3">
+                </datalist>
+      <span class="  text-center  font-weight-bold text-light " style="width: 325px; font-size:10px; color:white;"  >Various fruits and berries  </span>    
+       </div>
+
+
+<div class="input-group mb-1 text-center input-group-xl">
+  <span class="input-group-text text-center  text-dark " style="width: 80px;">Protein</span>
+  <input type="text" class="form-control text-center" name = "Protein" placeholder="USDA - 5 ounce-eq/day" list="minor" >  <datalist id="minor">
+    <option value="0.5">
+      <option value="1">
+    <option value="1.5">
+    <option value="2">
+      <option value="2.5">
+    <option value="3">
+            </datalist>  
+  <span class="  text-center   text-light " style="width: 325px; font-size:10px; color:white;"  >Oz equiv: 1 ounce of meat, fish or poultry, ¼ cup of cooked beans, 1 egg, 1 tblspn peanut butter, ¼ ounce of nuts/seeds, ¼ cup tofu</span>  
+</div>
+
+
+<div class="input-group mb-1 text-center input-group-xl">
+  <span class="input-group-text text-center mx-auto text-dark " style="width: 80px;">Dairy</span>
+  <input type="text" class="form-control text-center" name = "Dairy" placeholder="USDA -  3 cups/day" list="minor" >  <datalist id="minor">
+    <option value="0.5">
+      <option value="1">
+    <option value="1.5">
+    <option value="2">
+      <option value="2.5">
+    <option value="3">
+            </datalist> 
+  <span class="  text-center  font-weight-bold text-light " style="width: 325px; font-size:10px; color:white;"  >1 cup of milk, 1 cup yogurt (or substitutes), 2 oz cheese </span>  
+
+</div>
+                   
+
+ <div class="input-group text-center  input-group-xl">
+  <span class="input-group-text  text-dark " style="width: 80px;">Grains</span>
+  <input type="text" class="form-control text-center" name = "Grains" placeholder="USDA - 3 cups whole grains,3 cups refined grains" list="minor" >  <datalist id="minor">
+    <option value="0.5">
+      <option value="1">
+    <option value="1.5">
+    <option value="2">
+      <option value="2.5">
+    <option value="3">
+            </datalist>  
+  <span class="  text-center  font-weight-bold text-light " style="width: 345px; font-size:10px; color:white;"  >Rice, oats, bread, chapatti, quinoa, tortilla, pasta </span>  
+
+</div> 
+
+</div>
+  <br>
+   
+  <h6 style="font-size:12px;" class="text-center mt-1 mb-1" >Please enter your Allergic foods & substitutes</h6>
+
+  <div class="form-container3 mx-auto form-check   text-center border" >
+
+<div class="input-group mb-1 ">
+
+<input type="text" class="form-control text-center" name="Allergic1" placeholder="Allergic food" list="allergy" >  <datalist id="allergy">
+<option value="Milk">
+<option value="Yogurt">
+<option value="Walnuts">
+<option value="Peanuts">
+<option value="Pecans">
+<option value="Shellfish">
+<option value="Eggs">
+  <option value="Soy">
+    <option value="Gluten">
+    </datalist>
+<input type="text" class="form-control text-center" name="Substitute1" placeholder="My substitute" list="mysubs"> <datalist id="mysubs">
+<option value="Almond Milk">
+<option value="Oat Milk">
+<option value="2% Milk">
+<option value="1% Milk">
+<option value="Greek Yogurt">
+  <option value="Low fat Yogurt">
+  <option value="Kefir">
+    <option value="Buttermilk">
+      <option value="Cottage Cheese">
+        <option value="Almonds, Cashews">
+            <option value="Seeds - Sunflower, Pumpkin">
+              <option value= "Avoid">
+              
+    </datalist>
+</div>     
+ 
+<div class="input-group mb-1">
+
+<input type="text" class="form-control text-center" name="Allergic2" placeholder="Allergic food" list="allergy" >  <datalist id="allergy">
+<option value="Milk">
+<option value="Yogurt">
+<option value="Walnuts">
+<option value="Peanuts">
+<option value="Pecans">
+  <option value="Shellfish">
+  <option value="Eggs">
+    <option value="Soy">
+      <option value="Gluten">
+    </datalist>
+<input type="text" class="form-control text-center" name="Substitute2" placeholder="My substitute" list="mysubs"> <datalist id="mysubs">
+<option value="Milk">
+<option value="Yogurt">
+<option value="Walnuts">
+<option value="Peanuts">
+<option value="Pecans">
+  <option value="Shellfish">
+  <option value="Eggs">
+    <option value="Soy">
+      <option value="Gluten">
+    </datalist>
+</div> 
+ 
+<div class="input-group ">
+ <!-- <span class="input-group-text font-weight-bold">Sub-3&nbsp;&nbsp;&nbsp;</span>  -->
+  <input type="text" class="form-control text-center" name="Allergic3" placeholder="Allergic food" list="allergy" >  <datalist id="allergy">
+<option value="Milk">
+<option value="Yogurt">
+<option value="Walnuts">
+<option value="Peanuts">
+<option value="Pecans">
+  <option value="Shellfish">
+  <option value="Eggs">
+    <option value="Soy">
+      <option value="Gluten">
+    </datalist>
+<input type="text" class="form-control text-center" name="Substitute3" placeholder="My substitute" list="mysubs" >  <datalist id="mysubs">
+<option value="Almond Milk">
+<option value="Oat Milk">
+<option value="2% Milk">
+<option value="1% Milk">
+<option value="Greek Yogurt">
+  <option value="Low fat Yogurt">
+  <option value="Kefir">
+    <option value="Buttermilk">
+      <option value="Cottage Cheese">
+    </datalist>
+</div> 
+  
+</div>
+
+<div class="button-group mt-2 text-center mx-auto">
+ <!-- <div >
+  <a href="/landing"><button class="btn btn-warning " type="button">Home</button></a>
+</div>    -->
+       
+<div >
+  <a href="/mybreakfastdesign"></a><button class="btn  btn-success text-nowrap " type="submit" >Save & Continue</button></a>
+</div>
+   <!-- <div class="span">
+  
+    <a href="/myfitness"><button class="btn btn-primary  text-nowrap" type="button">Next</button></a>
+    </div>   -->
+
+    <!-- <div class="text-center   ">
+      <a href="/logout" class="btn btn-dark">Logout</a>
+      </div> -->
+       
+  </div>  
+</div>
+
+  
+
+
+</form>
+
+{% endblock content %}

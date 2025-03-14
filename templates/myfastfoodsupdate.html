@@ -1,0 +1,454 @@
+{% extends 'base.html' %}
+{% block title %}Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width : 400px) {
+    .container { max-width: 500px; padding:0px; margin-left: 0px; margin-right: 0px;}
+}    
+
+/* .form-container :: {font-size:20px; font-family: sans-serif;} */
+
+.form-check-label{color:rgb(10, 56, 141)}
+.form-check{color:darkgreen; scale:2rem;}
+.form-check-label{scale:3rem; font-size:18px; margin-bottom: 20px; margin-left: 10px; padding-top:27px;}
+
+
+::placeholder {
+  color: green;
+  font-size:15px;
+}
+.container-fluid { width:100%; overflow-x: hidden;  max-width:none;}
+.inputfield {
+  
+  height: 60px;
+  font-size: 25px;
+}
+
+/* .container-fluid {   } */
+ .checkbox-xl .form-check-input {
+ top: 1.4rem;
+ scale: 2.4;
+ margin-top:26px;    
+ margin-right: 0.9rem;
+ /* margin-left: 5.9rem; */
+ background-color: #d36810;
+ border-width: 0px;
+ border: #0080ff;
+ margin-bottom: 2px;
+
+ 
+ } 
+
+.checkbox-xl .form-check-label {
+ padding-top: 16px;
+    font-size:15px;
+    background-color: rgb(243, 239, 239);
+    margin: 0.1rem 1.5rem 0.5rem ;
+ }     
+
+ .form-container {padding:15px; width:400px;border-radius: 20px; background-color: rgb(235, 217, 186); }
+              
+.btn {font-size:15px; }
+.button-group { 
+  display:inline-flex;    
+  justify-content: space-around; margin-top:20px; position:relative;
+}
+
+.d-inline {margin-left: 20px; margin-right:15px; }
+    
+.logo {align-content: left; margin-left:10px; margin-top:5px;}  
+    
+.logout{text-align: right; margin-top:-50px; margin-right:5px;}      
+    
+/* .custom-checkbox-xl .custom-control-label::before,
+.custom-checkbox-xl .custom-control-label::after {
+  width: 5rem;
+  height: 5rem;
+  scale: 2.4;
+  background-color: #0080ff;
+}
+
+.custom-checkbox-xl .custom-control-label {
+  margin: .5rem 1rem;
+}    */
+.input-group-xl {
+    
+    font-size: 25px; 
+}    
+
+.input-group-text {font-size:16px !important; width:124px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
+
+</style>
+<form method="POST">
+  {% csrf_token %}
+    
+  <div class=logo>
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6>top3health</h6>
+    
+     </div>   
+   <div class=logout>
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+      <p class="fs-5 text-center"> {{user.first_name }}</p>
+   </div>   
+        
+    <div class="container-fluid  text-center mx-auto  no-border">
+  
+         
+      <h4 class=" text-center">My Fast foods - Update</h4>
+
+      {{fastfoods.Bacon}}
+
+        <!-- <div class="ml-3 d-inline-block"> -->
+          <!-- <div  class="form-container form-check success-checkbox checkbox-xl ml-6" > -->
+          <!-- <div class="custom-control custom-checkbox custom-checkbox-xl">  -->
+            <!-- <input type="checkbox" class="custom-control-input" id="customCheck2" name="example1">
+            <label class="custom-control-label" for="customCheck2"></label> -->
+            <div class="form-container input-group-xl text-center mx-auto form-check checkbox-xl checkbox-primary  border" >
+
+        <!-- {{ form|crispy}} -->
+
+
+        <div class="input-group mb-3 input-group-default">
+          <span class="input-group-text font-weight-bold">Bacon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          
+          <input type="text" name = "Bacon" id = "ch1" class="form-control" value="{{fastfoods.Bacon}}" placeholder="{{fastoods.Bacon}}" list="veg" >  <datalist id="veg" >
+            <option value="Once a day">
+              <option value="2 times per week">
+            <option value="3 times per week">
+            <option value="Once a week">
+              <option value="Once a month">
+            <option value="Rarely">
+                <option value="Avoid">
+                    </datalist>
+           </div>
+
+           <div class="input-group mb-3 input-group-default">
+            <span class="input-group-text font-weight-bold">Beef Burgers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            
+            <input type="text" name = "Burgers" id = "ch2" class="form-control" value="{{fastfoods.Burgers}}" placeholder="{{fastfoods.Burgers}}" list="veg"  >  <datalist id="veg">
+              <option value="Once a day">
+                <option value="2 times per week">
+              <option value="3 times per week">
+              <option value="Once a week">
+                <option value="Once a month">
+              <option value="Rarely">
+                  <option value="Avoid">
+                      </datalist>
+             </div>
+
+             <div class="input-group mb-3 input-group-default">
+              <span class="input-group-text font-weight-bold">French Fries&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              
+              <input type="text" name = "French_fries" id = "ch3" class="form-control" value="{{fastfoods.French_fries}}" placeholder="{{fastfoods.French_fries}}" list="veg"  >  <datalist id="veg">
+                <option value="Once a day">
+                  <option value="2 times per week">
+                <option value="3 times per week">
+                <option value="Once a week">
+                  <option value="Once a month">
+                <option value="Rarely">
+                    <option value="Avoid">
+                        </datalist>
+               </div>
+
+               <div class="input-group mb-3 input-group-default">
+                <span class="input-group-text font-weight-bold">Milk Shakes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                
+                <input type="text" name = "Milk_shakes" id = "ch4" class="form-control"value="{{fastfoods.Milk_shakes}}" placeholder="{{fastfoods.Milk_shakes}}" list="veg" >  <datalist id="veg">
+                  <option value="Once a day">
+                    <option value="2 times per week">
+                  <option value="3 times per week">
+                  <option value="Once a week">
+                    <option value="Once a month">
+                  <option value="Rarely">
+                      <option value="Avoid">
+                          </datalist>
+                 </div>
+
+                 <div class="input-group mb-3 input-group-default">
+                  <span class="input-group-text font-weight-bold">Soft drinks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  
+                  <input type="text" name = "Soft_drinks" id = "ch5" class="form-control" value="{{fastfoods.Soft_drinks}}" placeholder="{{fastfoods.Soft_drinks}}"  list="veg" >  <datalist id="veg">
+                    <option value="Once a day">
+                      <option value="2 times per week">
+                    <option value="3 times per week">
+                    <option value="Once a week">
+                      <option value="Once a month">
+                    <option value="Rarely">
+                        <option value="Avoid">
+                            </datalist>
+                   </div>
+
+                   <div class="input-group mb-3 input-group-default">
+                    <span class="input-group-text font-weight-bold">Fried foods&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    
+                    <input type="text" name = "Fried_foods" id = "ch6" class="form-control" value="{{fastfoods.Fried_foods}}" placeholder="{{fastfoods.Fried_foods}}" list="veg"  >  <datalist id="veg">
+                      <option value="Once a day">
+                        <option value="2 times per week">
+                      <option value="3 times per week">
+                      <option value="Once a week">
+                        <option value="Once a month">
+                      <option value="Rarely">
+                          <option value="Avoid">
+                              </datalist>
+                     </div>
+
+                     <div class="input-group mb-3 input-group-default">
+                      <span class="input-group-text font-weight-bold">Potato chips&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      
+                      <input type="text" name = "Potato_chips" id = "ch7" class="form-control" value="{{fastfoods.Potato_chips}}" placeholder="{{fastfoods.Potato_chips}}" list="veg" >  <datalist id="veg">
+                        <option value="Once a day">
+                          <option value="2 times per week">
+                        <option value="3 times per week">
+                        <option value="Once a week">
+                          <option value="Once a month">
+                        <option value="Rarely">
+                            <option value="Avoid">
+                                </datalist>
+                       </div>
+
+                       <div class="input-group mb-3 input-group-default">
+                        <span class="input-group-text font-weight-bold">Frozen Pizza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        
+                        <input type="text" name = "Frozen_pizza" id = "ch8" class="form-control" value="{{fastfoods.Frozen_pizza}}" placeholder="{{fastfoods.Frozen_pizza}}" list="veg" >  <datalist id="veg">
+                          <option value="Once a day">
+                            <option value="2 times per week">
+                          <option value="3 times per week">
+                          <option value="Once a week">
+                            <option value="Once a month">
+                          <option value="Rarely">
+                              <option value="Avoid">
+                                  </datalist>
+                         </div>
+
+                         <!-- <div class="input-group mb-3 input-group-default">
+                          <span class="input-group-text font-weight-bold">Regular Pizza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                          
+                          <input type="text" name = "Regular_pizza" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                            <option value="Once a day">
+                              <option value="2 times per week">
+                            <option value="3 times per week">
+                            <option value="Once a week">
+                              <option value="Once a month">
+                            <option value="Rarely">
+                                <option value="Avoid">
+                                    </datalist>
+                           </div> -->
+
+                           <div class="input-group mb-3 input-group-default">
+                            <span class="input-group-text font-weight-bold">Pancakes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            
+                            <input type="text" name = "Pancakes" id = "ch9" class="form-control" value="{{fastfoods.Pancakes}}" placeholder="{{fastfoods.Pancakes}}" list="veg" >  <datalist id="veg">
+                              <option value="Once a day">
+                                <option value="2 times per week">
+                              <option value="3 times per week">
+                              <option value="Once a week">
+                                <option value="Once a month">
+                              <option value="Rarely">
+                                  <option value="Avoid">
+                                      </datalist>
+                             </div>
+
+                             <div class="input-group mb-3 input-group-default">
+                              <span class="input-group-text font-weight-bold">Popcorn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              
+                              <input type="text" name = "Popcorn" id = "ch10" class="form-control" value="{{fastfoods.Popcorn}}" placeholder="{{fastfoods.Popcorn}}" list="veg" >  <datalist id="veg">
+                                <option value="Once a day">
+                                  <option value="2 times per week">
+                                <option value="3 times per week">
+                                <option value="Once a week">
+                                  <option value="Once a month">
+                                <option value="Rarely">
+                                    <option value="Avoid">
+                                        </datalist>
+                               </div>
+
+                               <div class="input-group mb-3 input-group-default">
+                                <span class="input-group-text font-weight-bold">Ice cream&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                
+                                <input type="text" name = "Ice_cream" id = "ch11" class="form-control" value="{{fastfoods.Ice_cream}}" placeholder="{{fastfoods.Ice_cream}}" list="veg" >  <datalist id="veg">
+                                  <option value="Once a day">
+                                    <option value="2 times per week">
+                                  <option value="3 times per week">
+                                  <option value="Once a week">
+                                    <option value="Once a month">
+                                  <option value="Rarely">
+                                      <option value="Avoid">
+                                          </datalist>
+                                 </div>
+
+                                 <div class="input-group mb-3 input-group-default">
+                                  <span class="input-group-text font-weight-bold">Cookies&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                  
+                                  <input type="text" name = "Cookies" id = "ch12" class="form-control" value="{{fastfoods.Cookies}}" placeholder="{{fastfoods.Cookies}}" list="veg" >  <datalist id="veg">
+                                    <option value="Once a day">
+                                      <option value="2 times per week">
+                                    <option value="3 times per week">
+                                    <option value="Once a week">
+                                      <option value="Once a month">
+                                    <option value="Rarely">
+                                        <option value="Avoid">
+                                            </datalist>
+                                   </div>
+
+                                   <div class="input-group mb-3 input-group-default">
+                                    <span class="input-group-text font-weight-bold">Frozen meals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    
+                                    <input type="text" name = "Frozen_meals" id = "ch13" class="form-control" value="{{fastfoods.Frozen_meals}}" placeholder="{{fastfoods.Frozen_meals}}" list="veg"  >  <datalist id="veg">
+                                      <option value="Once a day">
+                                        <option value="2 times per week">
+                                      <option value="3 times per week">
+                                      <option value="Once a week">
+                                        <option value="Once a month">
+                                      <option value="Rarely">
+                                          <option value="Avoid">
+                                              </datalist>
+                                     </div>
+
+                                     <!-- <div class="input-group mb-3 input-group-default">
+                                      <span class="input-group-text font-weight-bold">Margarine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                      
+                                      <input type="text" name = "Margarine" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                                        <option value="Once a day">
+                                          <option value="2 times per week">
+                                        <option value="3 times per week">
+                                        <option value="Once a week">
+                                          <option value="Once a month">
+                                        <option value="Rarely">
+                                            <option value="Avoid">
+                                                </datalist>
+                                       </div> -->
+                                       <!-- <div class="input-group mb-3 input-group-default">
+                                        <span class="input-group-text font-weight-bold">Canned foods&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        
+                                        <input type="text" name = "Canned_foods" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                                          <option value="Once a day">
+                                            <option value="2 times per week">
+                                          <option value="3 times per week">
+                                          <option value="Once a week">
+                                            <option value="Once a month">
+                                          <option value="Rarely">
+                                              <option value="Avoid">
+                                                  </datalist>
+                                         </div> -->
+
+                                         <div class="input-group mb-1 input-group-default">
+                                          <span class="input-group-text font-weight-bold">Cereals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                          
+                                          <input type="text" name = "Cereals" id = "ch14" class="form-control" value="{{fastfoods.Cereals}}" placeholder="{{fastfoods.Cereals}}" list="veg" >  <datalist id="veg">
+                                            <option value="Once a day">
+                                              <option value="2 times per week">
+                                            <option value="3 times per week">
+                                            <option value="Once a week">
+                                              <option value="Once a month">
+                                            <option value="Rarely">
+                                                <option value="Avoid">
+                                                    </datalist>
+                                           </div>
+
+                                           <!-- <div class="input-group mb-3 input-group-default">
+                                            <span class="input-group-text font-weight-bold">Butter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            
+                                            <input type="text" name = "Butter" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                                              <option value="Once a day">
+                                                <option value="2 times per week">
+                                              <option value="3 times per week">
+                                              <option value="Once a week">
+                                                <option value="Once a month">
+                                              <option value="Rarely">
+                                                  <option value="Avoid">
+                                                      </datalist>
+                                             </div> -->
+      </div>  
+        
+      <div class="button-group mx-auto mb-4 text-center">
+        <div class="d-inline gap-2 d-md-block">
+          <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+        </div>   
+               
+        <div class="d-inline gap-2 d-md-block">
+          <a href="/landing"></a><button class="btn btn-success btn-sm nowrap" type="submit" >Update</button></a>
+               
+          </div>    
+          
+          <!-- <div class="d-inline gap-2 d-md-block span">
+  
+            <a href="/myallergicfoods"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+            </div>  -->
+          </div>  
+          <br>
+
+
+<!-- </div> -->
+        
+        <!-- </div> -->
+        </div>
+</form>
+<!-- <script>
+    window.onload=dataFuntion;
+function dataFuntion(){
+    
+    let field1=document.getElementById('ch1').innerText;
+    console.log(field1);
+    if(field1==='Once'){
+        field1.innerText='Once A Day';
+        alert('works')
+    }
+    let field2=document.getElementById('ch2').innerText;
+    if(field2==='Once'){
+        field2.innerText='Once A Day';
+    }
+    let field3=document.getElementById('ch3').innerText;
+    if(field3==='Once'){
+        field3.innerText='Once A Day';
+    }
+    let field4=document.getElementById('ch4').innerText;
+    if(field4==='Once'){
+        field4.innerText='Once A Day';
+    }
+    let field5=document.getElementById('ch5').innerText;
+    if(field5==='Once'){
+        field5.innerText='Once A Day';
+    }
+    let field6=document.getElementById('ch6').innerText;
+    if(field6==='Once'){
+        field6.innerText='Once A Day';
+    }
+    let field7=document.getElementById('ch7').innerText;
+    if(field7==='Once'){
+        field7.innerText='Once A Day';
+    }
+    let field8=document.getElementById('ch8').innerText;
+    if(field8==='Once'){
+        field8.innerText='Once A Day';
+    }
+    let field9=document.getElementById('ch9').innerText;
+    if(field9==='Once'){
+        field9.innerText='Once A Day';
+    }
+    let field10=document.getElementById('ch10').innerText;
+    if(field10==='Once'){
+        field10.innerText='Once A Day';
+    }
+    let field11=document.getElementById('ch11').innerText;
+    if(field11==='Once'){
+        field11.innerText='Once A Day';
+    }
+    let field12=document.getElementById('ch12').innerText;
+    if(field12==='Once'){
+        field12.innerText='Once A Day';
+    }
+    let field13=document.getElementById('ch13').innerText;
+    if(field13==='Once'){
+        field13.innerText='Once A Day';
+    }
+}
+</script> -->
+
+{% endblock content %}

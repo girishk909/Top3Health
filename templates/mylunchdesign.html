@@ -1,0 +1,2343 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+ 
+
+ @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+
+
+.container-fluid {width:100%; height:100%; padding-left:0px; padding-right:0px; max-width:none;   overflow-x: hidden;}
+    
+
+.input-group-text {font-size: 10px; width:75px;}
+    
+
+.name {margin-left:10px;}
+
+.btn {font-size:13px;  margin-right: 8px; margin-left:8px; white-space: nowrap; padding:5px;}
+.button-group { 
+  display:inline-flex;  
+  justify-content: space-around;  margin-right:5px; white-space: no-wrap;
+}
+              
+
+.d-inline {margin-left: 0px; margin-right:5px;}
+    
+.logo {align-content: left; margin-left:-5px; margin-top:-40px;}  
+    
+.logout{text-align: right; margin-top:5px; margin-right:5px;}   
+.form-container1 { width: 345px; padding:7px; border-radius:10px;  background-color: rgb(84, 114, 94);;} 
+.form-container2 { width: 345px; padding:7px; border-radius:10px;  background-color: rgb(87, 84, 114);;} 
+.form-container3 { width: 345px; padding:7px; border-radius:10px;  background-color: rgb(114, 97, 84);;} 
+.form-container4 { width: 345px; padding:7px; border-radius:10px;  background-color: rgb(84, 114, 87);;} 
+.form-container5 { width: 345px; padding:7px; border-radius:10px;  background-color: rgb(103, 141, 197);;} 
+
+.form-control { font-size: 8px; width:275px; }
+
+
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+}
+.h6{font-size:20px;}
+.pagination .page-link {
+  padding: 0.25rem 0.35rem; /* Adjust padding as needed */
+  text-align: center;
+}
+
+/* select {
+   font-size: 10px;
+} */
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+
+
+      <div class="container-fluid   no-border mx-auto text-center background-color:forestgreen">
+        <br>
+        <nav aria-label="Page navigation example">
+          <ul style="font-size:10px;" class="pagination justify-content-center">
+            <li style="font-size:10px;" class="page-item" ><a class="page-link" style="font-size: 10px;" href="/myfoodgroups">Food groups</a></li>
+            <li style="font-size:10px;" class="page-item" ><a class="page-link" style="font-size: 10px;" href="/myfitness">Fitness habits</a></li>
+            <li style="font-size:10px;"class="page-item"><a class="page-link" style="font-size: 10px;" href="/minorsym">Health Status</a></li>
+            <li style="font-size:10px;"class="page-item "><a class="page-link" style="font-size: 10px;" href="/mybreakfastdesign">Breakfast choices</a></li>
+            <li style="font-size:10px;"class="page-item active"><a class="page-link" style="font-size: 10px;" href="/mylunchdesign">Lunch choices</a></li>
+            <li style="font-size:10px;"class="page-item"><a class="page-link" style="font-size: 10px;" href="/mydinnerdesign">Dinner choices</a></li>
+            <li class="page-item"><a class="page-link" style="font-size: 10px;" href="/supplements">Targets & Supplements</a></li>
+            <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+          </ul>
+        </nav>
+        
+        <h6 style ="font-size:14px" class=" text-center mt-2">My typical lunch & drinks</h6>
+        
+           <div class="form-container1 mx-auto   text-center form-check checkbox-xl checkbox-primary  border" >
+
+           
+            <h6 style ="font-size:12px; color:white;" class=" text-center">My typical lunch</h6>
+
+            <div class="input-group text-start mb-1 input-group-default ">
+              <!-- <span class="input-group-text  font-weight-bold mx-auto  text-start">Cuisine-1</span> -->
+             
+                     
+                              <!-- <span class="input-group-text  font-weight-bold mx-auto  text-start">Name</span> -->
+                              <input type="text" class="form-control text-start font-weight-bold" name="Lunch1"  placeholder="Lunch Name" list="lunch" >  
+
+                              <datalist id="breakfast">
+                                <option value="Burrito"></option>
+                                 <option value="Taco"></option>
+                                 <option value="Eggs"></option>
+                                 <option value="Egg sandwich"></option>
+                                 <option value="Omelette"></option>
+                                 <option value="Burger"></option>
+                                 <option value="Fried rice"></option>
+                                 <option value="Noodles"></option>
+                                 <option value="Rice & curry"></option>
+                                 <option value="Salad"></option>
+                                 <option value="Migas"></option>
+                                 
+                              </datalist>
+
+                              <input type="text" class="form-control text-start font-weight-bold" name="BCuisine1"  placeholder="Cuisine" list="cuisine">  
+                              <datalist id="cuisine">
+                                <option value="American">
+                                <option value="Mexican">   
+                                  <option value="Chinese"> 
+                                    <option value="Indian">   
+                                                  
+                                      </datalist>
+                
+                                      <!-- <span class="input-group-text  font-weight-bold mx-auto  text-start">Frequency</span> -->
+                                      <input type="text" class="form-control text-start font-weight-bold" name="B1_freq"  placeholder="Frequency" list="freq"> 
+                                      <datalist id="freq">
+                                      <option value="once a week">
+                                        <option value="Twice/week">    
+                                          <option value="3 times/wk">                 
+                                              </datalist>
+                
+                     
+               </div>   
+ 
+
+      
+             
+             <div class="row">
+         
+              <div class="input-group text-center mb-1">
+                <!-- <span class="input-group-text font-weight-bold mx-auto  text-center">Ingr-1</span> -->
+
+              <input type="text" name="IngredientB11" class="form-control text-center" placeholder="Breakfast Ingredient-1"  list="breakfast1">
+            <datalist id="breakfast1">
+              <option value="Egg_1_medium">
+                <option value="Milk_p5_cup">
+                <option value="Milk_1_cup">
+                <option value="yogurt_p5_cup">
+                <option value="cheese_1_oz">
+                <option value="sunflower_seeds_p25_cup">
+                <option value="sunflower_seeds_p125_cup">
+                <option value="pumpkin_seeds_p125_cup">
+                <option value="Walnuts_p25_cup">
+                <option value="Walnuts_p125_cup">
+                <option value="Walnuts_p0625_cup">
+                <option value="Walnuts_p0312_cup">
+                <option value="Cashew_p125_cup">
+                <option value="flaxseeds_2_tblspn">
+                <option value="flaxseeds_1_tblspn">
+                <option value="peanuts_p125_cup">
+                <option value="peanuts_p25_cup">
+                <option value="brazilnuts_2_numbers">
+                <option value="Brazilnuts_100gm">
+                <option value="Brazilnuts_1_medium">
+                <option value="Brazilnuts_p5_medium">
+                <option value="pinenuts_p25_cup">
+                <option value="pinenuts_p125_cup">
+                <option value="sesame_seeds_p06_cup">
+                <option value="almond_p25_cup">
+                <option value="almond_p125_cup">
+                <option value="almond_p0625_cup">
+                <option value="Pistachio_2_tblspn">
+                <option value="Pistachio_1_cup">
+                <option value="Pecans_1_cup">
+                <option value="Pecans_p125_cup">
+                <option value="Kale_1_cup">
+                <option value="Kale_p5_cup">
+                <option value="Kale_p25_cup">
+                <option value="Spinach_p5_cup">
+                <option value="Spinach_p25_cup">
+                <option value="Avocado_p5_cup">
+                <option value="Avocado_p25_cup">
+                <option value="Cucumber_p25_cup">
+                <option value="Cucumber_p5_cup">
+                <option value="Cucumber_1_cup">
+                <option value="Tomato_1_cup">
+                <option value="Tomato_p5_cup">
+                <option value="Tomato_p25_cup">
+                <option value="Onion_p25_medium">
+                <option value="Onion_p5_medium">
+                <option value="Onion_1_medium">
+                <option value="Carrots_1_cup">
+                <option value="Carrots_p5_cup">
+                <option value="Carrots_p75_cup">
+                <option value="Carrots_p25_cup">
+                <option value="Broccoli_1_cup">
+                <option value="Broccoli_p5_cup">
+                <option value="Broccoli_p25_cup">
+                <option value="Crimi_Mushroom_1_cup">
+                <option value="Crimi_Mushroom_p5_cup">
+                <option value="Crimi_Mushroom_p25_cup">
+                <option value="Shiitake_mushroom_p5_cup">
+                <option value="Shiitake_mushroom_p25_cup">
+                <option value="Cabbage_1_cup">
+                <option value="Cabbage_p5_cup">
+                <option value="Cabbage_p25_cup">
+                <option value="Eggplant_1_cup">
+                <option value="Eggplant_p5_cup">
+                <option value="Eggplant_p25_cup">
+                <option value="Cauliflower_1_cup">
+                <option value="Cauliflower_p25_cup">
+                <option value="Red_bell_pepper_1_cup">
+                <option value="Red_bell_pepper_p5_cup">
+                <option value="Red_bell_pepper_p25_cup">
+                <option value="Beets_p25_cup">
+                <option value="Beets_p5_cup">
+                <option value="Beets_1_cup">
+                <option value="Celery_1_cup">
+                <option value="Celery_p5_cup">
+                <option value="Celery_p25_cup">
+                <option value="Potato_1_cup">
+                <option value="Potato_p5_cup">
+                <option value="Potato_p25_cup">
+                <option value="Dill_p5_cup">
+                <option value="Dill_p25_cup">
+                <option value="Sweet_potato_1_cup">
+                <option value="Sweet_potato_p5_cup">
+                <option value="Sweet_potato_p25_cup">
+                <option value="Summer_squash_1_cup">
+                <option value="Summer_squash_p5_cup">
+                <option value="Summer_squash_p25_cup">
+                <option value="Winter_squash_1_cup">
+                <option value="Asparagus_1_cup">
+                <option value="Asparagus_p5_cup">
+                <option value="Asparagus_p25_cup">
+                <option value="Brussel_sprouts_1_cup">
+                <option value="Brussel_sprouts_p5_cup">
+                <option value="Brussel_sprouts_p25_cup">
+                <option value="Green_peas_1_cup">
+                <option value="Green_peas_p5_cup">
+                <option value="Green_peas_p25_cup">
+                <option value="Soy_beans_1_cup">
+                <option value="Soy_beans_p25_cup">
+                <option value="Seaweed_dulse_1_tblspn">
+                <option value="Seaweed_dulse_p5_tblspn">
+                <option value="Seaweed_dulse_p2_tblspn">
+                <option value="Corn_1_cup">
+                <option value="Corn_p5_cup">
+                <option value="Corn_p25_cup">
+                <option value="Collard_greens_1_cup">
+                <option value="Collard_greens_p5_cup">
+                <option value="Collard_greens_p25_cup">
+                <option value="Mustard_greens_1_cup">
+                <option value="Mustard_greens_p5_cup">
+                <option value="Drumstick_3_cup">
+                <option value="Drumstick_p25_cup">
+                <option value="Romaine_lettuce_2_cup">
+                <option value="Romaine_lettuce_1_cup">
+                <option value="Romaine_lettuce_0.25_cup">
+                <option value="Artichoke_p6_cup">
+                <option value="Okra_1_cup">
+                <option value="Okra_p5_cup">
+                <option value="crimi_mushroom_1_cup">
+                <option value="crimi_mushroom_p25_cup">
+                <option value="Basil_p5_cup">
+                <option value="Basil_4_tblspn">
+                <option value="Arrowroot_p8_cup">
+                <option value="Alfalfa_Sprouts_1_cup">
+                <option value="White_Radish_1_cup">
+                <option value="White_Radish_p5_cup">
+                <option value="White_Radish_p25_cup">
+                <option value="Karela_p75_medium">
+                <option value="Karela_p25_medium">
+                <option value="Mint_leaves_2_numbers">
+                <option value="Moringa_pods_1_cup">
+                <option value="Moringa_pods_p5_cup">
+                <option value="Wintermelon_1_cup">
+                <option value="Wintermelon_p6_cup">
+                <option value="Wintermelon_p25_cup">
+                <option value="Red_beetroot_1_p25_cup">
+                <option value="Red_beetroot_p5_cup">
+                <option value="Red_beetroot_p25_cup">
+                <option value="bitter_gourd_p82_cup">
+                <option value="Bitter_gourd_p5_cup">
+                <option value="Bitter_gourd_p25_cup">
+                <option value="Broadbean_75_cup">
+                <option value="Broadbrean_p5_cup">
+                <option value="Broadnean_p25_cup">
+                <option value="Tofu_p5_cup">
+                <option value="Tofu_p25_cup">
+                <option value="Green_beans_1_cup">
+                <option value="Green_beans_p5_cup">
+                <option value="Green_beans_p25_cups">
+                <option value="Bottle_gourd_p8_cup">
+                <option value="Bottle_gourd_p4_cup">
+                <option value="Karela_p8_cup">
+                <option value="Karela_p4_cup">
+                <option value="Beet_greens_1_cup">
+                <option value="Beet_greens_p5_cup">
+                <option value="Beet_greens_p25_cup">
+                <option value="Turnip_greens_1_cup">
+                <option value="Turnip_greens_p5_cup">
+                <option value="Ridge_gourd_1_cup">
+                <option value="Ridge_gourd_p5_cup">
+                <option value="Pumpkin_p4_cup">
+                <option value="Chayote_1_cup">
+                <option value="Chayote_p5_cup">
+                <option value="Zucchini_p5_cup">
+                <option value="Zucchini_p25_cup">
+                <option value="Grape_leaves_p5_cup">
+                <option value="Grape_leaves_p25_cup">
+                <option value="Grape_leaves_1_cup">
+                <option value="Green_olives_10">
+                <option value="Black_olives_1_cup">
+                <option value="Black_olives_p5_cup">
+                <option value="Black_olives_p25_cup">
+                <option value="Artichoke_p6_cup">
+                <option value="Artichoke_p3_cup">
+                <option value="Raw_mango_p6_cup">
+                <option value="Raw_mango_p3_cup">
+                <option value="tindora_p5_cup">
+                <option value="Bok_choy_1_cup">
+                <option value="Bok_choy_p5_cup">
+                <option value="Swiss_chard_1_cup">
+                <option value="Swiss_chard_p5_cup">
+                <option value="Snake_gourd_1_cup">
+                <option value="Snake_gourd_p5_cup">
+                <option value="White_mushroom_1_cup">
+                <option value="White_mushroom_p25_cup">
+                <option value="Oyster_mushroom_1p2_cup">
+                <option value="Oyster_mushroom_p4_cup">
+                <option value="Oyster_mushrooms_p2_cup">
+                <option value="Portabella_mushroom_1p2_cup">
+                <option value="Portabella_mushroom_p6_cup">
+                <option value="Parsley_p5_cup">
+                <option value="Parsley_p25_cup">
+                <option value="Fennel_sliced_1_cup">
+                <option value="Fennel_sliced_p25_cup">
+                <option value="Baby_Arugula_1_cup">
+                <option value="Baby_Arugula_p25_cup">
+                <option value="Raspberries_p125_cup">
+                <option value="Blueberries_1_cup">
+                <option value="Blueberries_p125_cup">
+                <option value="Blueberries_p0625_cup">
+                <option value="Strawberries_1_cup">
+                <option value="Strawberries_p25_cup">
+                <option value="Blackberries_p125_cup">
+                <option value="Cranberries_1_cup">
+                <option value="Cranberries_p125_cup">
+                <option value="Cherries_p65_cup">
+                <option value="Goji_berries_p125_cup">
+                <option value="Goji_berries_p5_tsp">
+                <option value="Apple_1_medium">
+                <option value="Apple_p5_medium">
+                <option value="Banana_1_medium">
+                <option value="Banana_p5_medium">
+                <option value="Grapefruit_p5_medium">
+                <option value="Grapefruit_p25_medium">
+                <option value="Kiwi_fruit_1_medium">
+                <option value="Kiwi_fruit_p5_medium">
+                <option value="Grapes_1_cup">
+                <option value="Grapes_p5_cup">
+                <option value="Grapes_p25_cup">
+                <option value="Dates_1_medium">
+                <option value="Dates_2_medium">
+                <option value="Jackfruit_p5_cup">
+                <option value="Orange_1_medium">
+                <option value="Orange_p5_medium">
+                <option value="Orange_p25_medium">
+                <option value="Papaya_1_medium">
+                <option value="Papaya_p125_medium">
+                <option value="Pears_1_medium">
+                <option value="Pear_p5_medium">
+                <option value="Cantaloupe_1_cup">
+                <option value="Cantaloupe_p5_cup">
+                <option value="Watermelon_1_cup">
+                <option value="Pineapple_1_cup">
+                <option value="Pineapple_1_cup">
+                <option value="Pineapple_p25_cup">
+                <option value="Plum_1_medium">
+                <option value="Figs_1_medium">
+                <option value="Apricot_1_medium">
+                <option value="Apricot_p5_medium">
+                <option value="Nectarine_1_medium">
+                <option value="Nectarine_p5_medium">
+                <option value="Mandarin_1_medium">
+                <option value="Mandarin_p5_medium">
+                <option value="Navel_Orange_1_medium">
+                <option value="Navel_Orange_p5_medium">
+                <option value="Passion_Fruit_1_medium">
+                <option value="Passion_Fruit_p5_medium">
+                <option value="Java_Plum_p5_cup">
+                <option value="Cherries_10_medium">
+                <option value="Cherries_5_medium">
+                <option value="Pomegranate_p67_cup">
+                <option value="Pomegranate_p33_cup">
+                <option value="Blackberries_p125_cup">
+                <option value="Mango_1_medium">
+                <option value="Mango_p25_medium">
+                <option value="Peach_p5_medium">
+                <option value="Garbanzo_beans_p5_cup">
+                <option value="Garbanzo_beans_p25_cup">
+                <option value="Kidney_beans_1_cup">
+                <option value="Kidney_beans_p5_cup">
+                <option value="Kidney_beans_p25_cup">
+                <option value="Pinto_beans_1_cup">
+                <option value="Pinto_beans_p5_cup">
+                <option value="Pinto_beans_p25_cup">
+                <option value="Lima_beans_1_cup">
+                <option value="Lima_beans_p5_cup">
+                <option value="Lima_beans_p25_cup">
+                <option value="Lentils_1_cup">
+                <option value="Lentils_p5_cup">
+                <option value="Lentils_p25_cup">
+                <option value="Broad_Beans_p75_cup">
+                <option value="Broad_Beans_p5_cup">
+                <option value="Broad_Beans_p25_cup">
+                <option value="Blackbeans_1_cup">
+                <option value="Blackbeans_p5_cup">
+                <option value="Blackbeans_p25_cup">
+                <option value="Cod_4_ox">
+                <option value="Chicken_4_oz">
+                <option value="Lamb_4_oz">
+                <option value="Salmon_4_oz">
+                <option value="Tuna_4_oz">
+                <option value="Scallops_4_oz">
+                <option value="Beef_4_oz">
+                <option value="Turkey_4_oz">
+                <option value="olive_oil_1_tblspn">
+                <option value="olive_oil_p5_tblspn">
+                <option value="Brown_rice_1_cup">
+                <option value="Brown_rice_p5_cup">
+                <option value="White_rice_short_grain_p5_cup">
+                <option value="White_rice_short_grain_1_cup">
+                <option value="jasmine_rice_1_cup">
+                <option value="Oats_p25_cup">
+                <option value="Oats_p5_cup">
+                <option value="whole_wheat_1_cup">
+                <option value="whole_wheat_p5_cup">
+                <option value="Millet_1_cup">
+                <option value="Millet_p5_cup">
+                <option value="Mung_dhal_p5_cup">
+                <option value="Quinoa_p375_cup">
+                <option value="Quinoa_p4_cup">
+                <option value="pita_bread_white_enriched">
+                <option value="Garlic_6_cloves">
+                <option value="Garlic_4_cloves">
+                <option value="pepper_1_tsp">
+                <option value="chili_peppers_2_tsp">
+                <option value="cumin_seeds_1_tsp">
+                <option value="cumin_seeds_2_tsp">
+                <option value="Cilantro_p5_cup">
+                <option value="Cilantro_p25_cup">
+                <option value="Red_chillies_2_tsp">
+                <option value="cloves">
+                <option value="cinnamon_2_tsp">
+                <option value="cinnamon_p5_tsp">
+                <option value="Turmeric_1_tsp">
+                <option value="ginger_1_tblspn">
+                <option value="salt_3_gm">
+                <option value="salt_1.5_gm">
+                <option value="Semolina">
+                
+          </datalist>  
+
+
+          <input type="text" name="IngredientB12" class="form-control text-center" placeholder="Breakfast  Ingredient-2"  list="breakfast1">
+          <datalist id="breakfast1">
+            <option value="Egg_1_medium">
+              <option value="Milk_p5_cup">
+              <option value="Milk_1_cup">
+              <option value="yogurt_p5_cup">
+              <option value="cheese_1_oz">
+              <option value="sunflower_seeds_p25_cup">
+              <option value="sunflower_seeds_p125_cup">
+              <option value="pumpkin_seeds_p125_cup">
+              <option value="Walnuts_p25_cup">
+              <option value="Walnuts_p125_cup">
+              <option value="Walnuts_p0625_cup">
+              <option value="Walnuts_p0312_cup">
+              <option value="Cashew_p125_cup">
+              <option value="flaxseeds_2_tblspn">
+              <option value="flaxseeds_1_tblspn">
+              <option value="peanuts_p125_cup">
+              <option value="peanuts_p25_cup">
+              <option value="brazilnuts_2_numbers">
+              <option value="Brazilnuts_100gm">
+              <option value="Brazilnuts_1_medium">
+              <option value="Brazilnuts_p5_medium">
+              <option value="pinenuts_p25_cup">
+              <option value="pinenuts_p125_cup">
+              <option value="sesame_seeds_p06_cup">
+              <option value="almond_p25_cup">
+              <option value="almond_p125_cup">
+              <option value="almond_p0625_cup">
+              <option value="Pistachio_2_tblspn">
+              <option value="Pistachio_1_cup">
+              <option value="Pecans_1_cup">
+              <option value="Pecans_p125_cup">
+              <option value="Kale_1_cup">
+              <option value="Kale_p5_cup">
+              <option value="Kale_p25_cup">
+              <option value="Spinach_p5_cup">
+              <option value="Spinach_p25_cup">
+              <option value="Avocado_p5_cup">
+              <option value="Avocado_p25_cup">
+              <option value="Cucumber_p25_cup">
+              <option value="Cucumber_p5_cup">
+              <option value="Cucumber_1_cup">
+              <option value="Tomato_1_cup">
+              <option value="Tomato_p5_cup">
+              <option value="Tomato_p25_cup">
+              <option value="Onion_p25_medium">
+              <option value="Onion_p5_medium">
+              <option value="Onion_1_medium">
+              <option value="Carrots_1_cup">
+              <option value="Carrots_p5_cup">
+              <option value="Carrots_p75_cup">
+              <option value="Carrots_p25_cup">
+              <option value="Broccoli_1_cup">
+              <option value="Broccoli_p5_cup">
+              <option value="Broccoli_p25_cup">
+              <option value="Crimi_Mushroom_1_cup">
+              <option value="Crimi_Mushroom_p5_cup">
+              <option value="Crimi_Mushroom_p25_cup">
+              <option value="Shiitake_mushroom_p5_cup">
+              <option value="Shiitake_mushroom_p25_cup">
+              <option value="Cabbage_1_cup">
+              <option value="Cabbage_p5_cup">
+              <option value="Cabbage_p25_cup">
+              <option value="Eggplant_1_cup">
+              <option value="Eggplant_p5_cup">
+              <option value="Eggplant_p25_cup">
+              <option value="Cauliflower_1_cup">
+              <option value="Cauliflower_p25_cup">
+              <option value="Red_bell_pepper_1_cup">
+              <option value="Red_bell_pepper_p5_cup">
+              <option value="Red_bell_pepper_p25_cup">
+              <option value="Beets_p25_cup">
+              <option value="Beets_p5_cup">
+              <option value="Beets_1_cup">
+              <option value="Celery_1_cup">
+              <option value="Celery_p5_cup">
+              <option value="Celery_p25_cup">
+              <option value="Potato_1_cup">
+              <option value="Potato_p5_cup">
+              <option value="Potato_p25_cup">
+              <option value="Dill_p5_cup">
+              <option value="Dill_p25_cup">
+              <option value="Sweet_potato_1_cup">
+              <option value="Sweet_potato_p5_cup">
+              <option value="Sweet_potato_p25_cup">
+              <option value="Summer_squash_1_cup">
+              <option value="Summer_squash_p5_cup">
+              <option value="Summer_squash_p25_cup">
+              <option value="Winter_squash_1_cup">
+              <option value="Asparagus_1_cup">
+              <option value="Asparagus_p5_cup">
+              <option value="Asparagus_p25_cup">
+              <option value="Brussel_sprouts_1_cup">
+              <option value="Brussel_sprouts_p5_cup">
+              <option value="Brussel_sprouts_p25_cup">
+              <option value="Green_peas_1_cup">
+              <option value="Green_peas_p5_cup">
+              <option value="Green_peas_p25_cup">
+              <option value="Soy_beans_1_cup">
+              <option value="Soy_beans_p25_cup">
+              <option value="Seaweed_dulse_1_tblspn">
+              <option value="Seaweed_dulse_p5_tblspn">
+              <option value="Seaweed_dulse_p2_tblspn">
+              <option value="Corn_1_cup">
+              <option value="Corn_p5_cup">
+              <option value="Corn_p25_cup">
+              <option value="Collard_greens_1_cup">
+              <option value="Collard_greens_p5_cup">
+              <option value="Collard_greens_p25_cup">
+              <option value="Mustard_greens_1_cup">
+              <option value="Mustard_greens_p5_cup">
+              <option value="Drumstick_3_cup">
+              <option value="Drumstick_p25_cup">
+              <option value="Romaine_lettuce_2_cup">
+              <option value="Romaine_lettuce_1_cup">
+              <option value="Romaine_lettuce_0.25_cup">
+              <option value="Artichoke_p6_cup">
+              <option value="Okra_1_cup">
+              <option value="Okra_p5_cup">
+              <option value="crimi_mushroom_1_cup">
+              <option value="crimi_mushroom_p25_cup">
+              <option value="Basil_p5_cup">
+              <option value="Basil_4_tblspn">
+              <option value="Arrowroot_p8_cup">
+              <option value="Alfalfa_Sprouts_1_cup">
+              <option value="White_Radish_1_cup">
+              <option value="White_Radish_p5_cup">
+              <option value="White_Radish_p25_cup">
+              <option value="Karela_p75_medium">
+              <option value="Karela_p25_medium">
+              <option value="Mint_leaves_2_numbers">
+              <option value="Moringa_pods_1_cup">
+              <option value="Moringa_pods_p5_cup">
+              <option value="Wintermelon_1_cup">
+              <option value="Wintermelon_p6_cup">
+              <option value="Wintermelon_p25_cup">
+              <option value="Red_beetroot_1_p25_cup">
+              <option value="Red_beetroot_p5_cup">
+              <option value="Red_beetroot_p25_cup">
+              <option value="bitter_gourd_p82_cup">
+              <option value="Bitter_gourd_p5_cup">
+              <option value="Bitter_gourd_p25_cup">
+              <option value="Broadbean_75_cup">
+              <option value="Broadbrean_p5_cup">
+              <option value="Broadnean_p25_cup">
+              <option value="Tofu_p5_cup">
+              <option value="Tofu_p25_cup">
+              <option value="Green_beans_1_cup">
+              <option value="Green_beans_p5_cup">
+              <option value="Green_beans_p25_cups">
+              <option value="Bottle_gourd_p8_cup">
+              <option value="Bottle_gourd_p4_cup">
+              <option value="Karela_p8_cup">
+              <option value="Karela_p4_cup">
+              <option value="Beet_greens_1_cup">
+              <option value="Beet_greens_p5_cup">
+              <option value="Beet_greens_p25_cup">
+              <option value="Turnip_greens_1_cup">
+              <option value="Turnip_greens_p5_cup">
+              <option value="Ridge_gourd_1_cup">
+              <option value="Ridge_gourd_p5_cup">
+              <option value="Pumpkin_p4_cup">
+              <option value="Chayote_1_cup">
+              <option value="Chayote_p5_cup">
+              <option value="Zucchini_p5_cup">
+              <option value="Zucchini_p25_cup">
+              <option value="Grape_leaves_p5_cup">
+              <option value="Grape_leaves_p25_cup">
+              <option value="Grape_leaves_1_cup">
+              <option value="Green_olives_10">
+              <option value="Black_olives_1_cup">
+              <option value="Black_olives_p5_cup">
+              <option value="Black_olives_p25_cup">
+              <option value="Artichoke_p6_cup">
+              <option value="Artichoke_p3_cup">
+              <option value="Raw_mango_p6_cup">
+              <option value="Raw_mango_p3_cup">
+              <option value="tindora_p5_cup">
+              <option value="Bok_choy_1_cup">
+              <option value="Bok_choy_p5_cup">
+              <option value="Swiss_chard_1_cup">
+              <option value="Swiss_chard_p5_cup">
+              <option value="Snake_gourd_1_cup">
+              <option value="Snake_gourd_p5_cup">
+              <option value="White_mushroom_1_cup">
+              <option value="White_mushroom_p25_cup">
+              <option value="Oyster_mushroom_1p2_cup">
+              <option value="Oyster_mushroom_p4_cup">
+              <option value="Oyster_mushrooms_p2_cup">
+              <option value="Portabella_mushroom_1p2_cup">
+              <option value="Portabella_mushroom_p6_cup">
+              <option value="Parsley_p5_cup">
+              <option value="Parsley_p25_cup">
+              <option value="Fennel_sliced_1_cup">
+              <option value="Fennel_sliced_p25_cup">
+              <option value="Baby_Arugula_1_cup">
+              <option value="Baby_Arugula_p25_cup">
+              <option value="Raspberries_p125_cup">
+              <option value="Blueberries_1_cup">
+              <option value="Blueberries_p125_cup">
+              <option value="Blueberries_p0625_cup">
+              <option value="Strawberries_1_cup">
+              <option value="Strawberries_p25_cup">
+              <option value="Blackberries_p125_cup">
+              <option value="Cranberries_1_cup">
+              <option value="Cranberries_p125_cup">
+              <option value="Cherries_p65_cup">
+              <option value="Goji_berries_p125_cup">
+              <option value="Goji_berries_p5_tsp">
+              <option value="Apple_1_medium">
+              <option value="Apple_p5_medium">
+              <option value="Banana_1_medium">
+              <option value="Banana_p5_medium">
+              <option value="Grapefruit_p5_medium">
+              <option value="Grapefruit_p25_medium">
+              <option value="Kiwi_fruit_1_medium">
+              <option value="Kiwi_fruit_p5_medium">
+              <option value="Grapes_1_cup">
+              <option value="Grapes_p5_cup">
+              <option value="Grapes_p25_cup">
+              <option value="Dates_1_medium">
+              <option value="Dates_2_medium">
+              <option value="Jackfruit_p5_cup">
+              <option value="Orange_1_medium">
+              <option value="Orange_p5_medium">
+              <option value="Orange_p25_medium">
+              <option value="Papaya_1_medium">
+              <option value="Papaya_p125_medium">
+              <option value="Pears_1_medium">
+              <option value="Pear_p5_medium">
+              <option value="Cantaloupe_1_cup">
+              <option value="Cantaloupe_p5_cup">
+              <option value="Watermelon_1_cup">
+              <option value="Pineapple_1_cup">
+              <option value="Pineapple_1_cup">
+              <option value="Pineapple_p25_cup">
+              <option value="Plum_1_medium">
+              <option value="Figs_1_medium">
+              <option value="Apricot_1_medium">
+              <option value="Apricot_p5_medium">
+              <option value="Nectarine_1_medium">
+              <option value="Nectarine_p5_medium">
+              <option value="Mandarin_1_medium">
+              <option value="Mandarin_p5_medium">
+              <option value="Navel_Orange_1_medium">
+              <option value="Navel_Orange_p5_medium">
+              <option value="Passion_Fruit_1_medium">
+              <option value="Passion_Fruit_p5_medium">
+              <option value="Java_Plum_p5_cup">
+              <option value="Cherries_10_medium">
+              <option value="Cherries_5_medium">
+              <option value="Pomegranate_p67_cup">
+              <option value="Pomegranate_p33_cup">
+              <option value="Blackberries_p125_cup">
+              <option value="Mango_1_medium">
+              <option value="Mango_p25_medium">
+              <option value="Peach_p5_medium">
+              <option value="Garbanzo_beans_p5_cup">
+              <option value="Garbanzo_beans_p25_cup">
+              <option value="Kidney_beans_1_cup">
+              <option value="Kidney_beans_p5_cup">
+              <option value="Kidney_beans_p25_cup">
+              <option value="Pinto_beans_1_cup">
+              <option value="Pinto_beans_p5_cup">
+              <option value="Pinto_beans_p25_cup">
+              <option value="Lima_beans_1_cup">
+              <option value="Lima_beans_p5_cup">
+              <option value="Lima_beans_p25_cup">
+              <option value="Lentils_1_cup">
+              <option value="Lentils_p5_cup">
+              <option value="Lentils_p25_cup">
+              <option value="Broad_Beans_p75_cup">
+              <option value="Broad_Beans_p5_cup">
+              <option value="Broad_Beans_p25_cup">
+              <option value="Blackbeans_1_cup">
+              <option value="Blackbeans_p5_cup">
+              <option value="Blackbeans_p25_cup">
+              <option value="Cod_4_ox">
+              <option value="Chicken_4_oz">
+              <option value="Lamb_4_oz">
+              <option value="Salmon_4_oz">
+              <option value="Tuna_4_oz">
+              <option value="Scallops_4_oz">
+              <option value="Beef_4_oz">
+              <option value="Turkey_4_oz">
+              <option value="olive_oil_1_tblspn">
+              <option value="olive_oil_p5_tblspn">
+              <option value="Brown_rice_1_cup">
+              <option value="Brown_rice_p5_cup">
+              <option value="White_rice_short_grain_p5_cup">
+              <option value="White_rice_short_grain_1_cup">
+              <option value="jasmine_rice_1_cup">
+              <option value="Oats_p25_cup">
+              <option value="Oats_p5_cup">
+              <option value="whole_wheat_1_cup">
+              <option value="whole_wheat_p5_cup">
+              <option value="Millet_1_cup">
+              <option value="Millet_p5_cup">
+              <option value="Mung_dhal_p5_cup">
+              <option value="Quinoa_p375_cup">
+              <option value="Quinoa_p4_cup">
+              <option value="pita_bread_white_enriched">
+              <option value="Garlic_6_cloves">
+              <option value="Garlic_4_cloves">
+              <option value="pepper_1_tsp">
+              <option value="chili_peppers_2_tsp">
+              <option value="cumin_seeds_1_tsp">
+              <option value="cumin_seeds_2_tsp">
+              <option value="Cilantro_p5_cup">
+              <option value="Cilantro_p25_cup">
+              <option value="Red_chillies_2_tsp">
+              <option value="cloves">
+              <option value="cinnamon_2_tsp">
+              <option value="cinnamon_p5_tsp">
+              <option value="Turmeric_1_tsp">
+              <option value="ginger_1_tblspn">
+              <option value="salt_3_gm">
+              <option value="salt_1.5_gm">
+              <option value="Semolina">
+              
+              
+              
+              
+     
+        </datalist>  
+            </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-group text-center mb-1">
+                <!-- <span class="input-group-text font-weight-bold mx-auto  text-center">Ingredient-2</span> -->
+
+              <input type="text" name="IngredientB13" class="form-control text-center" placeholder="Breakfast  Ingredient-3" list="breakfast2">
+            <datalist id="breakfast2">
+              <option value="Egg_1_medium">
+                <option value="Milk_p5_cup">
+                <option value="Milk_1_cup">
+                <option value="yogurt_p5_cup">
+                <option value="cheese_1_oz">
+                <option value="sunflower_seeds_p25_cup">
+                <option value="sunflower_seeds_p125_cup">
+                <option value="pumpkin_seeds_p125_cup">
+                <option value="Walnuts_p25_cup">
+                <option value="Walnuts_p125_cup">
+                <option value="Walnuts_p0625_cup">
+                <option value="Walnuts_p0312_cup">
+                <option value="Cashew_p125_cup">
+                <option value="flaxseeds_2_tblspn">
+                <option value="flaxseeds_1_tblspn">
+                <option value="peanuts_p125_cup">
+                <option value="peanuts_p25_cup">
+                <option value="brazilnuts_2_numbers">
+                <option value="Brazilnuts_100gm">
+                <option value="Brazilnuts_1_medium">
+                <option value="Brazilnuts_p5_medium">
+                <option value="pinenuts_p25_cup">
+                <option value="pinenuts_p125_cup">
+                <option value="sesame_seeds_p06_cup">
+                <option value="almond_p25_cup">
+                <option value="almond_p125_cup">
+                <option value="almond_p0625_cup">
+                <option value="Pistachio_2_tblspn">
+                <option value="Pistachio_1_cup">
+                <option value="Pecans_1_cup">
+                <option value="Pecans_p125_cup">
+                <option value="Kale_1_cup">
+                <option value="Kale_p5_cup">
+                <option value="Kale_p25_cup">
+                <option value="Spinach_p5_cup">
+                <option value="Spinach_p25_cup">
+                <option value="Avocado_p5_cup">
+                <option value="Avocado_p25_cup">
+                <option value="Cucumber_p25_cup">
+                <option value="Cucumber_p5_cup">
+                <option value="Cucumber_1_cup">
+                <option value="Tomato_1_cup">
+                <option value="Tomato_p5_cup">
+                <option value="Tomato_p25_cup">
+                <option value="Onion_p25_medium">
+                <option value="Onion_p5_medium">
+                <option value="Onion_1_medium">
+                <option value="Carrots_1_cup">
+                <option value="Carrots_p5_cup">
+                <option value="Carrots_p75_cup">
+                <option value="Carrots_p25_cup">
+                <option value="Broccoli_1_cup">
+                <option value="Broccoli_p5_cup">
+                <option value="Broccoli_p25_cup">
+                <option value="Crimi_Mushroom_1_cup">
+                <option value="Crimi_Mushroom_p5_cup">
+                <option value="Crimi_Mushroom_p25_cup">
+                <option value="Shiitake_mushroom_p5_cup">
+                <option value="Shiitake_mushroom_p25_cup">
+                <option value="Cabbage_1_cup">
+                <option value="Cabbage_p5_cup">
+                <option value="Cabbage_p25_cup">
+                <option value="Eggplant_1_cup">
+                <option value="Eggplant_p5_cup">
+                <option value="Eggplant_p25_cup">
+                <option value="Cauliflower_1_cup">
+                <option value="Cauliflower_p25_cup">
+                <option value="Red_bell_pepper_1_cup">
+                <option value="Red_bell_pepper_p5_cup">
+                <option value="Red_bell_pepper_p25_cup">
+                <option value="Beets_p25_cup">
+                <option value="Beets_p5_cup">
+                <option value="Beets_1_cup">
+                <option value="Celery_1_cup">
+                <option value="Celery_p5_cup">
+                <option value="Celery_p25_cup">
+                <option value="Potato_1_cup">
+                <option value="Potato_p5_cup">
+                <option value="Potato_p25_cup">
+                <option value="Dill_p5_cup">
+                <option value="Dill_p25_cup">
+                <option value="Sweet_potato_1_cup">
+                <option value="Sweet_potato_p5_cup">
+                <option value="Sweet_potato_p25_cup">
+                <option value="Summer_squash_1_cup">
+                <option value="Summer_squash_p5_cup">
+                <option value="Summer_squash_p25_cup">
+                <option value="Winter_squash_1_cup">
+                <option value="Asparagus_1_cup">
+                <option value="Asparagus_p5_cup">
+                <option value="Asparagus_p25_cup">
+                <option value="Brussel_sprouts_1_cup">
+                <option value="Brussel_sprouts_p5_cup">
+                <option value="Brussel_sprouts_p25_cup">
+                <option value="Green_peas_1_cup">
+                <option value="Green_peas_p5_cup">
+                <option value="Green_peas_p25_cup">
+                <option value="Soy_beans_1_cup">
+                <option value="Soy_beans_p25_cup">
+                <option value="Seaweed_dulse_1_tblspn">
+                <option value="Seaweed_dulse_p5_tblspn">
+                <option value="Seaweed_dulse_p2_tblspn">
+                <option value="Corn_1_cup">
+                <option value="Corn_p5_cup">
+                <option value="Corn_p25_cup">
+                <option value="Collard_greens_1_cup">
+                <option value="Collard_greens_p5_cup">
+                <option value="Collard_greens_p25_cup">
+                <option value="Mustard_greens_1_cup">
+                <option value="Mustard_greens_p5_cup">
+                <option value="Drumstick_3_cup">
+                <option value="Drumstick_p25_cup">
+                <option value="Romaine_lettuce_2_cup">
+                <option value="Romaine_lettuce_1_cup">
+                <option value="Romaine_lettuce_0.25_cup">
+                <option value="Artichoke_p6_cup">
+                <option value="Okra_1_cup">
+                <option value="Okra_p5_cup">
+                <option value="crimi_mushroom_1_cup">
+                <option value="crimi_mushroom_p25_cup">
+                <option value="Basil_p5_cup">
+                <option value="Basil_4_tblspn">
+                <option value="Arrowroot_p8_cup">
+                <option value="Alfalfa_Sprouts_1_cup">
+                <option value="White_Radish_1_cup">
+                <option value="White_Radish_p5_cup">
+                <option value="White_Radish_p25_cup">
+                <option value="Karela_p75_medium">
+                <option value="Karela_p25_medium">
+                <option value="Mint_leaves_2_numbers">
+                <option value="Moringa_pods_1_cup">
+                <option value="Moringa_pods_p5_cup">
+                <option value="Wintermelon_1_cup">
+                <option value="Wintermelon_p6_cup">
+                <option value="Wintermelon_p25_cup">
+                <option value="Red_beetroot_1_p25_cup">
+                <option value="Red_beetroot_p5_cup">
+                <option value="Red_beetroot_p25_cup">
+                <option value="bitter_gourd_p82_cup">
+                <option value="Bitter_gourd_p5_cup">
+                <option value="Bitter_gourd_p25_cup">
+                <option value="Broadbean_75_cup">
+                <option value="Broadbrean_p5_cup">
+                <option value="Broadnean_p25_cup">
+                <option value="Tofu_p5_cup">
+                <option value="Tofu_p25_cup">
+                <option value="Green_beans_1_cup">
+                <option value="Green_beans_p5_cup">
+                <option value="Green_beans_p25_cups">
+                <option value="Bottle_gourd_p8_cup">
+                <option value="Bottle_gourd_p4_cup">
+                <option value="Karela_p8_cup">
+                <option value="Karela_p4_cup">
+                <option value="Beet_greens_1_cup">
+                <option value="Beet_greens_p5_cup">
+                <option value="Beet_greens_p25_cup">
+                <option value="Turnip_greens_1_cup">
+                <option value="Turnip_greens_p5_cup">
+                <option value="Ridge_gourd_1_cup">
+                <option value="Ridge_gourd_p5_cup">
+                <option value="Pumpkin_p4_cup">
+                <option value="Chayote_1_cup">
+                <option value="Chayote_p5_cup">
+                <option value="Zucchini_p5_cup">
+                <option value="Zucchini_p25_cup">
+                <option value="Grape_leaves_p5_cup">
+                <option value="Grape_leaves_p25_cup">
+                <option value="Grape_leaves_1_cup">
+                <option value="Green_olives_10">
+                <option value="Black_olives_1_cup">
+                <option value="Black_olives_p5_cup">
+                <option value="Black_olives_p25_cup">
+                <option value="Artichoke_p6_cup">
+                <option value="Artichoke_p3_cup">
+                <option value="Raw_mango_p6_cup">
+                <option value="Raw_mango_p3_cup">
+                <option value="tindora_p5_cup">
+                <option value="Bok_choy_1_cup">
+                <option value="Bok_choy_p5_cup">
+                <option value="Swiss_chard_1_cup">
+                <option value="Swiss_chard_p5_cup">
+                <option value="Snake_gourd_1_cup">
+                <option value="Snake_gourd_p5_cup">
+                <option value="White_mushroom_1_cup">
+                <option value="White_mushroom_p25_cup">
+                <option value="Oyster_mushroom_1p2_cup">
+                <option value="Oyster_mushroom_p4_cup">
+                <option value="Oyster_mushrooms_p2_cup">
+                <option value="Portabella_mushroom_1p2_cup">
+                <option value="Portabella_mushroom_p6_cup">
+                <option value="Parsley_p5_cup">
+                <option value="Parsley_p25_cup">
+                <option value="Fennel_sliced_1_cup">
+                <option value="Fennel_sliced_p25_cup">
+                <option value="Baby_Arugula_1_cup">
+                <option value="Baby_Arugula_p25_cup">
+                <option value="Raspberries_p125_cup">
+                <option value="Blueberries_1_cup">
+                <option value="Blueberries_p125_cup">
+                <option value="Blueberries_p0625_cup">
+                <option value="Strawberries_1_cup">
+                <option value="Strawberries_p25_cup">
+                <option value="Blackberries_p125_cup">
+                <option value="Cranberries_1_cup">
+                <option value="Cranberries_p125_cup">
+                <option value="Cherries_p65_cup">
+                <option value="Goji_berries_p125_cup">
+                <option value="Goji_berries_p5_tsp">
+                <option value="Apple_1_medium">
+                <option value="Apple_p5_medium">
+                <option value="Banana_1_medium">
+                <option value="Banana_p5_medium">
+                <option value="Grapefruit_p5_medium">
+                <option value="Grapefruit_p25_medium">
+                <option value="Kiwi_fruit_1_medium">
+                <option value="Kiwi_fruit_p5_medium">
+                <option value="Grapes_1_cup">
+                <option value="Grapes_p5_cup">
+                <option value="Grapes_p25_cup">
+                <option value="Dates_1_medium">
+                <option value="Dates_2_medium">
+                <option value="Jackfruit_p5_cup">
+                <option value="Orange_1_medium">
+                <option value="Orange_p5_medium">
+                <option value="Orange_p25_medium">
+                <option value="Papaya_1_medium">
+                <option value="Papaya_p125_medium">
+                <option value="Pears_1_medium">
+                <option value="Pear_p5_medium">
+                <option value="Cantaloupe_1_cup">
+                <option value="Cantaloupe_p5_cup">
+                <option value="Watermelon_1_cup">
+                <option value="Pineapple_1_cup">
+                <option value="Pineapple_1_cup">
+                <option value="Pineapple_p25_cup">
+                <option value="Plum_1_medium">
+                <option value="Figs_1_medium">
+                <option value="Apricot_1_medium">
+                <option value="Apricot_p5_medium">
+                <option value="Nectarine_1_medium">
+                <option value="Nectarine_p5_medium">
+                <option value="Mandarin_1_medium">
+                <option value="Mandarin_p5_medium">
+                <option value="Navel_Orange_1_medium">
+                <option value="Navel_Orange_p5_medium">
+                <option value="Passion_Fruit_1_medium">
+                <option value="Passion_Fruit_p5_medium">
+                <option value="Java_Plum_p5_cup">
+                <option value="Cherries_10_medium">
+                <option value="Cherries_5_medium">
+                <option value="Pomegranate_p67_cup">
+                <option value="Pomegranate_p33_cup">
+                <option value="Blackberries_p125_cup">
+                <option value="Mango_1_medium">
+                <option value="Mango_p25_medium">
+                <option value="Peach_p5_medium">
+                <option value="Garbanzo_beans_p5_cup">
+                <option value="Garbanzo_beans_p25_cup">
+                <option value="Kidney_beans_1_cup">
+                <option value="Kidney_beans_p5_cup">
+                <option value="Kidney_beans_p25_cup">
+                <option value="Pinto_beans_1_cup">
+                <option value="Pinto_beans_p5_cup">
+                <option value="Pinto_beans_p25_cup">
+                <option value="Lima_beans_1_cup">
+                <option value="Lima_beans_p5_cup">
+                <option value="Lima_beans_p25_cup">
+                <option value="Lentils_1_cup">
+                <option value="Lentils_p5_cup">
+                <option value="Lentils_p25_cup">
+                <option value="Broad_Beans_p75_cup">
+                <option value="Broad_Beans_p5_cup">
+                <option value="Broad_Beans_p25_cup">
+                <option value="Blackbeans_1_cup">
+                <option value="Blackbeans_p5_cup">
+                <option value="Blackbeans_p25_cup">
+                <option value="Cod_4_ox">
+                <option value="Chicken_4_oz">
+                <option value="Lamb_4_oz">
+                <option value="Salmon_4_oz">
+                <option value="Tuna_4_oz">
+                <option value="Scallops_4_oz">
+                <option value="Beef_4_oz">
+                <option value="Turkey_4_oz">
+                <option value="olive_oil_1_tblspn">
+                <option value="olive_oil_p5_tblspn">
+                <option value="Brown_rice_1_cup">
+                <option value="Brown_rice_p5_cup">
+                <option value="White_rice_short_grain_p5_cup">
+                <option value="White_rice_short_grain_1_cup">
+                <option value="jasmine_rice_1_cup">
+                <option value="Oats_p25_cup">
+                <option value="Oats_p5_cup">
+                <option value="whole_wheat_1_cup">
+                <option value="whole_wheat_p5_cup">
+                <option value="Millet_1_cup">
+                <option value="Millet_p5_cup">
+                <option value="Mung_dhal_p5_cup">
+                <option value="Quinoa_p375_cup">
+                <option value="Quinoa_p4_cup">
+                <option value="pita_bread_white_enriched">
+                <option value="Garlic_6_cloves">
+                <option value="Garlic_4_cloves">
+                <option value="pepper_1_tsp">
+                <option value="chili_peppers_2_tsp">
+                <option value="cumin_seeds_1_tsp">
+                <option value="cumin_seeds_2_tsp">
+                <option value="Cilantro_p5_cup">
+                <option value="Cilantro_p25_cup">
+                <option value="Red_chillies_2_tsp">
+                <option value="cloves">
+                <option value="cinnamon_2_tsp">
+                <option value="cinnamon_p5_tsp">
+                <option value="Turmeric_1_tsp">
+                <option value="ginger_1_tblspn">
+                <option value="salt_3_gm">
+                <option value="salt_1.5_gm">
+                <option value="Semolina">
+                
+                
+       
+          </datalist>  
+
+          <input type="text" name="IngredientB14" class="form-control text-center" placeholder="Breakfast Ingredient-4" list="breakfast2">
+          <datalist id="breakfast2">
+            <option value="Egg_1_medium">
+              <option value="Milk_p5_cup">
+              <option value="Milk_1_cup">
+              <option value="yogurt_p5_cup">
+              <option value="cheese_1_oz">
+              <option value="sunflower_seeds_p25_cup">
+              <option value="sunflower_seeds_p125_cup">
+              <option value="pumpkin_seeds_p125_cup">
+              <option value="Walnuts_p25_cup">
+              <option value="Walnuts_p125_cup">
+              <option value="Walnuts_p0625_cup">
+              <option value="Walnuts_p0312_cup">
+              <option value="Cashew_p125_cup">
+              <option value="flaxseeds_2_tblspn">
+              <option value="flaxseeds_1_tblspn">
+              <option value="peanuts_p125_cup">
+              <option value="peanuts_p25_cup">
+              <option value="brazilnuts_2_numbers">
+              <option value="Brazilnuts_100gm">
+              <option value="Brazilnuts_1_medium">
+              <option value="Brazilnuts_p5_medium">
+              <option value="pinenuts_p25_cup">
+              <option value="pinenuts_p125_cup">
+              <option value="sesame_seeds_p06_cup">
+              <option value="almond_p25_cup">
+              <option value="almond_p125_cup">
+              <option value="almond_p0625_cup">
+              <option value="Pistachio_2_tblspn">
+              <option value="Pistachio_1_cup">
+              <option value="Pecans_1_cup">
+              <option value="Pecans_p125_cup">
+              <option value="Kale_1_cup">
+              <option value="Kale_p5_cup">
+              <option value="Kale_p25_cup">
+              <option value="Spinach_p5_cup">
+              <option value="Spinach_p25_cup">
+              <option value="Avocado_p5_cup">
+              <option value="Avocado_p25_cup">
+              <option value="Cucumber_p25_cup">
+              <option value="Cucumber_p5_cup">
+              <option value="Cucumber_1_cup">
+              <option value="Tomato_1_cup">
+              <option value="Tomato_p5_cup">
+              <option value="Tomato_p25_cup">
+              <option value="Onion_p25_medium">
+              <option value="Onion_p5_medium">
+              <option value="Onion_1_medium">
+              <option value="Carrots_1_cup">
+              <option value="Carrots_p5_cup">
+              <option value="Carrots_p75_cup">
+              <option value="Carrots_p25_cup">
+              <option value="Broccoli_1_cup">
+              <option value="Broccoli_p5_cup">
+              <option value="Broccoli_p25_cup">
+              <option value="Crimi_Mushroom_1_cup">
+              <option value="Crimi_Mushroom_p5_cup">
+              <option value="Crimi_Mushroom_p25_cup">
+              <option value="Shiitake_mushroom_p5_cup">
+              <option value="Shiitake_mushroom_p25_cup">
+              <option value="Cabbage_1_cup">
+              <option value="Cabbage_p5_cup">
+              <option value="Cabbage_p25_cup">
+              <option value="Eggplant_1_cup">
+              <option value="Eggplant_p5_cup">
+              <option value="Eggplant_p25_cup">
+              <option value="Cauliflower_1_cup">
+              <option value="Cauliflower_p25_cup">
+              <option value="Red_bell_pepper_1_cup">
+              <option value="Red_bell_pepper_p5_cup">
+              <option value="Red_bell_pepper_p25_cup">
+              <option value="Beets_p25_cup">
+              <option value="Beets_p5_cup">
+              <option value="Beets_1_cup">
+              <option value="Celery_1_cup">
+              <option value="Celery_p5_cup">
+              <option value="Celery_p25_cup">
+              <option value="Potato_1_cup">
+              <option value="Potato_p5_cup">
+              <option value="Potato_p25_cup">
+              <option value="Dill_p5_cup">
+              <option value="Dill_p25_cup">
+              <option value="Sweet_potato_1_cup">
+              <option value="Sweet_potato_p5_cup">
+              <option value="Sweet_potato_p25_cup">
+              <option value="Summer_squash_1_cup">
+              <option value="Summer_squash_p5_cup">
+              <option value="Summer_squash_p25_cup">
+              <option value="Winter_squash_1_cup">
+              <option value="Asparagus_1_cup">
+              <option value="Asparagus_p5_cup">
+              <option value="Asparagus_p25_cup">
+              <option value="Brussel_sprouts_1_cup">
+              <option value="Brussel_sprouts_p5_cup">
+              <option value="Brussel_sprouts_p25_cup">
+              <option value="Green_peas_1_cup">
+              <option value="Green_peas_p5_cup">
+              <option value="Green_peas_p25_cup">
+              <option value="Soy_beans_1_cup">
+              <option value="Soy_beans_p25_cup">
+              <option value="Seaweed_dulse_1_tblspn">
+              <option value="Seaweed_dulse_p5_tblspn">
+              <option value="Seaweed_dulse_p2_tblspn">
+              <option value="Corn_1_cup">
+              <option value="Corn_p5_cup">
+              <option value="Corn_p25_cup">
+              <option value="Collard_greens_1_cup">
+              <option value="Collard_greens_p5_cup">
+              <option value="Collard_greens_p25_cup">
+              <option value="Mustard_greens_1_cup">
+              <option value="Mustard_greens_p5_cup">
+              <option value="Drumstick_3_cup">
+              <option value="Drumstick_p25_cup">
+              <option value="Romaine_lettuce_2_cup">
+              <option value="Romaine_lettuce_1_cup">
+              <option value="Romaine_lettuce_0.25_cup">
+              <option value="Artichoke_p6_cup">
+              <option value="Okra_1_cup">
+              <option value="Okra_p5_cup">
+              <option value="crimi_mushroom_1_cup">
+              <option value="crimi_mushroom_p25_cup">
+              <option value="Basil_p5_cup">
+              <option value="Basil_4_tblspn">
+              <option value="Arrowroot_p8_cup">
+              <option value="Alfalfa_Sprouts_1_cup">
+              <option value="White_Radish_1_cup">
+              <option value="White_Radish_p5_cup">
+              <option value="White_Radish_p25_cup">
+              <option value="Karela_p75_medium">
+              <option value="Karela_p25_medium">
+              <option value="Mint_leaves_2_numbers">
+              <option value="Moringa_pods_1_cup">
+              <option value="Moringa_pods_p5_cup">
+              <option value="Wintermelon_1_cup">
+              <option value="Wintermelon_p6_cup">
+              <option value="Wintermelon_p25_cup">
+              <option value="Red_beetroot_1_p25_cup">
+              <option value="Red_beetroot_p5_cup">
+              <option value="Red_beetroot_p25_cup">
+              <option value="bitter_gourd_p82_cup">
+              <option value="Bitter_gourd_p5_cup">
+              <option value="Bitter_gourd_p25_cup">
+              <option value="Broadbean_75_cup">
+              <option value="Broadbrean_p5_cup">
+              <option value="Broadnean_p25_cup">
+              <option value="Tofu_p5_cup">
+              <option value="Tofu_p25_cup">
+              <option value="Green_beans_1_cup">
+              <option value="Green_beans_p5_cup">
+              <option value="Green_beans_p25_cups">
+              <option value="Bottle_gourd_p8_cup">
+              <option value="Bottle_gourd_p4_cup">
+              <option value="Karela_p8_cup">
+              <option value="Karela_p4_cup">
+              <option value="Beet_greens_1_cup">
+              <option value="Beet_greens_p5_cup">
+              <option value="Beet_greens_p25_cup">
+              <option value="Turnip_greens_1_cup">
+              <option value="Turnip_greens_p5_cup">
+              <option value="Ridge_gourd_1_cup">
+              <option value="Ridge_gourd_p5_cup">
+              <option value="Pumpkin_p4_cup">
+              <option value="Chayote_1_cup">
+              <option value="Chayote_p5_cup">
+              <option value="Zucchini_p5_cup">
+              <option value="Zucchini_p25_cup">
+              <option value="Grape_leaves_p5_cup">
+              <option value="Grape_leaves_p25_cup">
+              <option value="Grape_leaves_1_cup">
+              <option value="Green_olives_10">
+              <option value="Black_olives_1_cup">
+              <option value="Black_olives_p5_cup">
+              <option value="Black_olives_p25_cup">
+              <option value="Artichoke_p6_cup">
+              <option value="Artichoke_p3_cup">
+              <option value="Raw_mango_p6_cup">
+              <option value="Raw_mango_p3_cup">
+              <option value="tindora_p5_cup">
+              <option value="Bok_choy_1_cup">
+              <option value="Bok_choy_p5_cup">
+              <option value="Swiss_chard_1_cup">
+              <option value="Swiss_chard_p5_cup">
+              <option value="Snake_gourd_1_cup">
+              <option value="Snake_gourd_p5_cup">
+              <option value="White_mushroom_1_cup">
+              <option value="White_mushroom_p25_cup">
+              <option value="Oyster_mushroom_1p2_cup">
+              <option value="Oyster_mushroom_p4_cup">
+              <option value="Oyster_mushrooms_p2_cup">
+              <option value="Portabella_mushroom_1p2_cup">
+              <option value="Portabella_mushroom_p6_cup">
+              <option value="Parsley_p5_cup">
+              <option value="Parsley_p25_cup">
+              <option value="Fennel_sliced_1_cup">
+              <option value="Fennel_sliced_p25_cup">
+              <option value="Baby_Arugula_1_cup">
+              <option value="Baby_Arugula_p25_cup">
+              <option value="Raspberries_p125_cup">
+              <option value="Blueberries_1_cup">
+              <option value="Blueberries_p125_cup">
+              <option value="Blueberries_p0625_cup">
+              <option value="Strawberries_1_cup">
+              <option value="Strawberries_p25_cup">
+              <option value="Blackberries_p125_cup">
+              <option value="Cranberries_1_cup">
+              <option value="Cranberries_p125_cup">
+              <option value="Cherries_p65_cup">
+              <option value="Goji_berries_p125_cup">
+              <option value="Goji_berries_p5_tsp">
+              <option value="Apple_1_medium">
+              <option value="Apple_p5_medium">
+              <option value="Banana_1_medium">
+              <option value="Banana_p5_medium">
+              <option value="Grapefruit_p5_medium">
+              <option value="Grapefruit_p25_medium">
+              <option value="Kiwi_fruit_1_medium">
+              <option value="Kiwi_fruit_p5_medium">
+              <option value="Grapes_1_cup">
+              <option value="Grapes_p5_cup">
+              <option value="Grapes_p25_cup">
+              <option value="Dates_1_medium">
+              <option value="Dates_2_medium">
+              <option value="Jackfruit_p5_cup">
+              <option value="Orange_1_medium">
+              <option value="Orange_p5_medium">
+              <option value="Orange_p25_medium">
+              <option value="Papaya_1_medium">
+              <option value="Papaya_p125_medium">
+              <option value="Pears_1_medium">
+              <option value="Pear_p5_medium">
+              <option value="Cantaloupe_1_cup">
+              <option value="Cantaloupe_p5_cup">
+              <option value="Watermelon_1_cup">
+              <option value="Pineapple_1_cup">
+              <option value="Pineapple_1_cup">
+              <option value="Pineapple_p25_cup">
+              <option value="Plum_1_medium">
+              <option value="Figs_1_medium">
+              <option value="Apricot_1_medium">
+              <option value="Apricot_p5_medium">
+              <option value="Nectarine_1_medium">
+              <option value="Nectarine_p5_medium">
+              <option value="Mandarin_1_medium">
+              <option value="Mandarin_p5_medium">
+              <option value="Navel_Orange_1_medium">
+              <option value="Navel_Orange_p5_medium">
+              <option value="Passion_Fruit_1_medium">
+              <option value="Passion_Fruit_p5_medium">
+              <option value="Java_Plum_p5_cup">
+              <option value="Cherries_10_medium">
+              <option value="Cherries_5_medium">
+              <option value="Pomegranate_p67_cup">
+              <option value="Pomegranate_p33_cup">
+              <option value="Blackberries_p125_cup">
+              <option value="Mango_1_medium">
+              <option value="Mango_p25_medium">
+              <option value="Peach_p5_medium">
+              <option value="Garbanzo_beans_p5_cup">
+              <option value="Garbanzo_beans_p25_cup">
+              <option value="Kidney_beans_1_cup">
+              <option value="Kidney_beans_p5_cup">
+              <option value="Kidney_beans_p25_cup">
+              <option value="Pinto_beans_1_cup">
+              <option value="Pinto_beans_p5_cup">
+              <option value="Pinto_beans_p25_cup">
+              <option value="Lima_beans_1_cup">
+              <option value="Lima_beans_p5_cup">
+              <option value="Lima_beans_p25_cup">
+              <option value="Lentils_1_cup">
+              <option value="Lentils_p5_cup">
+              <option value="Lentils_p25_cup">
+              <option value="Broad_Beans_p75_cup">
+              <option value="Broad_Beans_p5_cup">
+              <option value="Broad_Beans_p25_cup">
+              <option value="Blackbeans_1_cup">
+              <option value="Blackbeans_p5_cup">
+              <option value="Blackbeans_p25_cup">
+              <option value="Cod_4_ox">
+              <option value="Chicken_4_oz">
+              <option value="Lamb_4_oz">
+              <option value="Salmon_4_oz">
+              <option value="Tuna_4_oz">
+              <option value="Scallops_4_oz">
+              <option value="Beef_4_oz">
+              <option value="Turkey_4_oz">
+              <option value="olive_oil_1_tblspn">
+              <option value="olive_oil_p5_tblspn">
+              <option value="Brown_rice_1_cup">
+              <option value="Brown_rice_p5_cup">
+              <option value="White_rice_short_grain_p5_cup">
+              <option value="White_rice_short_grain_1_cup">
+              <option value="jasmine_rice_1_cup">
+              <option value="Oats_p25_cup">
+              <option value="Oats_p5_cup">
+              <option value="whole_wheat_1_cup">
+              <option value="whole_wheat_p5_cup">
+              <option value="Millet_1_cup">
+              <option value="Millet_p5_cup">
+              <option value="Mung_dhal_p5_cup">
+              <option value="Quinoa_p375_cup">
+              <option value="Quinoa_p4_cup">
+              <option value="pita_bread_white_enriched">
+              <option value="Garlic_6_cloves">
+              <option value="Garlic_4_cloves">
+              <option value="pepper_1_tsp">
+              <option value="chili_peppers_2_tsp">
+              <option value="cumin_seeds_1_tsp">
+              <option value="cumin_seeds_2_tsp">
+              <option value="Cilantro_p5_cup">
+              <option value="Cilantro_p25_cup">
+              <option value="Red_chillies_2_tsp">
+              <option value="cloves">
+              <option value="cinnamon_2_tsp">
+              <option value="cinnamon_p5_tsp">
+              <option value="Turmeric_1_tsp">
+              <option value="ginger_1_tblspn">
+              <option value="salt_3_gm">
+              <option value="salt_1.5_gm">
+              <option value="Semolina">
+              
+              
+     
+        </datalist>  
+           
+          </div>    
+          </div>
+               
+          <div class="row">
+            <div class="input-group text-center mb-1">
+              <!-- <span class="input-group-text font-weight-bold mx-auto  text-center">Ingredient-3</span> -->
+            
+            
+              <input type="text" class="form-control text-center" placeholder="Breakfast Ingredient-5" name="IngredientB15" list="breakfast3">
+            <datalist id="breakfast3">
+              <option value="Egg_1_medium">
+                <option value="Milk_p5_cup">
+                <option value="Milk_1_cup">
+                <option value="yogurt_p5_cup">
+                <option value="cheese_1_oz">
+                <option value="sunflower_seeds_p25_cup">
+                <option value="sunflower_seeds_p125_cup">
+                <option value="pumpkin_seeds_p125_cup">
+                <option value="Walnuts_p25_cup">
+                <option value="Walnuts_p125_cup">
+                <option value="Walnuts_p0625_cup">
+                <option value="Walnuts_p0312_cup">
+                <option value="Cashew_p125_cup">
+                <option value="flaxseeds_2_tblspn">
+                <option value="flaxseeds_1_tblspn">
+                <option value="peanuts_p125_cup">
+                <option value="peanuts_p25_cup">
+                <option value="brazilnuts_2_numbers">
+                <option value="Brazilnuts_100gm">
+                <option value="Brazilnuts_1_medium">
+                <option value="Brazilnuts_p5_medium">
+                <option value="pinenuts_p25_cup">
+                <option value="pinenuts_p125_cup">
+                <option value="sesame_seeds_p06_cup">
+                <option value="almond_p25_cup">
+                <option value="almond_p125_cup">
+                <option value="almond_p0625_cup">
+                <option value="Pistachio_2_tblspn">
+                <option value="Pistachio_1_cup">
+                <option value="Pecans_1_cup">
+                <option value="Pecans_p125_cup">
+                <option value="Kale_1_cup">
+                <option value="Kale_p5_cup">
+                <option value="Kale_p25_cup">
+                <option value="Spinach_p5_cup">
+                <option value="Spinach_p25_cup">
+                <option value="Avocado_p5_cup">
+                <option value="Avocado_p25_cup">
+                <option value="Cucumber_p25_cup">
+                <option value="Cucumber_p5_cup">
+                <option value="Cucumber_1_cup">
+                <option value="Tomato_1_cup">
+                <option value="Tomato_p5_cup">
+                <option value="Tomato_p25_cup">
+                <option value="Onion_p25_medium">
+                <option value="Onion_p5_medium">
+                <option value="Onion_1_medium">
+                <option value="Carrots_1_cup">
+                <option value="Carrots_p5_cup">
+                <option value="Carrots_p75_cup">
+                <option value="Carrots_p25_cup">
+                <option value="Broccoli_1_cup">
+                <option value="Broccoli_p5_cup">
+                <option value="Broccoli_p25_cup">
+                <option value="Crimi_Mushroom_1_cup">
+                <option value="Crimi_Mushroom_p5_cup">
+                <option value="Crimi_Mushroom_p25_cup">
+                <option value="Shiitake_mushroom_p5_cup">
+                <option value="Shiitake_mushroom_p25_cup">
+                <option value="Cabbage_1_cup">
+                <option value="Cabbage_p5_cup">
+                <option value="Cabbage_p25_cup">
+                <option value="Eggplant_1_cup">
+                <option value="Eggplant_p5_cup">
+                <option value="Eggplant_p25_cup">
+                <option value="Cauliflower_1_cup">
+                <option value="Cauliflower_p25_cup">
+                <option value="Red_bell_pepper_1_cup">
+                <option value="Red_bell_pepper_p5_cup">
+                <option value="Red_bell_pepper_p25_cup">
+                <option value="Beets_p25_cup">
+                <option value="Beets_p5_cup">
+                <option value="Beets_1_cup">
+                <option value="Celery_1_cup">
+                <option value="Celery_p5_cup">
+                <option value="Celery_p25_cup">
+                <option value="Potato_1_cup">
+                <option value="Potato_p5_cup">
+                <option value="Potato_p25_cup">
+                <option value="Dill_p5_cup">
+                <option value="Dill_p25_cup">
+                <option value="Sweet_potato_1_cup">
+                <option value="Sweet_potato_p5_cup">
+                <option value="Sweet_potato_p25_cup">
+                <option value="Summer_squash_1_cup">
+                <option value="Summer_squash_p5_cup">
+                <option value="Summer_squash_p25_cup">
+                <option value="Winter_squash_1_cup">
+                <option value="Asparagus_1_cup">
+                <option value="Asparagus_p5_cup">
+                <option value="Asparagus_p25_cup">
+                <option value="Brussel_sprouts_1_cup">
+                <option value="Brussel_sprouts_p5_cup">
+                <option value="Brussel_sprouts_p25_cup">
+                <option value="Green_peas_1_cup">
+                <option value="Green_peas_p5_cup">
+                <option value="Green_peas_p25_cup">
+                <option value="Soy_beans_1_cup">
+                <option value="Soy_beans_p25_cup">
+                <option value="Seaweed_dulse_1_tblspn">
+                <option value="Seaweed_dulse_p5_tblspn">
+                <option value="Seaweed_dulse_p2_tblspn">
+                <option value="Corn_1_cup">
+                <option value="Corn_p5_cup">
+                <option value="Corn_p25_cup">
+                <option value="Collard_greens_1_cup">
+                <option value="Collard_greens_p5_cup">
+                <option value="Collard_greens_p25_cup">
+                <option value="Mustard_greens_1_cup">
+                <option value="Mustard_greens_p5_cup">
+                <option value="Drumstick_3_cup">
+                <option value="Drumstick_p25_cup">
+                <option value="Romaine_lettuce_2_cup">
+                <option value="Romaine_lettuce_1_cup">
+                <option value="Romaine_lettuce_0.25_cup">
+                <option value="Artichoke_p6_cup">
+                <option value="Okra_1_cup">
+                <option value="Okra_p5_cup">
+                <option value="crimi_mushroom_1_cup">
+                <option value="crimi_mushroom_p25_cup">
+                <option value="Basil_p5_cup">
+                <option value="Basil_4_tblspn">
+                <option value="Arrowroot_p8_cup">
+                <option value="Alfalfa_Sprouts_1_cup">
+                <option value="White_Radish_1_cup">
+                <option value="White_Radish_p5_cup">
+                <option value="White_Radish_p25_cup">
+                <option value="Karela_p75_medium">
+                <option value="Karela_p25_medium">
+                <option value="Mint_leaves_2_numbers">
+                <option value="Moringa_pods_1_cup">
+                <option value="Moringa_pods_p5_cup">
+                <option value="Wintermelon_1_cup">
+                <option value="Wintermelon_p6_cup">
+                <option value="Wintermelon_p25_cup">
+                <option value="Red_beetroot_1_p25_cup">
+                <option value="Red_beetroot_p5_cup">
+                <option value="Red_beetroot_p25_cup">
+                <option value="bitter_gourd_p82_cup">
+                <option value="Bitter_gourd_p5_cup">
+                <option value="Bitter_gourd_p25_cup">
+                <option value="Broadbean_75_cup">
+                <option value="Broadbrean_p5_cup">
+                <option value="Broadnean_p25_cup">
+                <option value="Tofu_p5_cup">
+                <option value="Tofu_p25_cup">
+                <option value="Green_beans_1_cup">
+                <option value="Green_beans_p5_cup">
+                <option value="Green_beans_p25_cups">
+                <option value="Bottle_gourd_p8_cup">
+                <option value="Bottle_gourd_p4_cup">
+                <option value="Karela_p8_cup">
+                <option value="Karela_p4_cup">
+                <option value="Beet_greens_1_cup">
+                <option value="Beet_greens_p5_cup">
+                <option value="Beet_greens_p25_cup">
+                <option value="Turnip_greens_1_cup">
+                <option value="Turnip_greens_p5_cup">
+                <option value="Ridge_gourd_1_cup">
+                <option value="Ridge_gourd_p5_cup">
+                <option value="Pumpkin_p4_cup">
+                <option value="Chayote_1_cup">
+                <option value="Chayote_p5_cup">
+                <option value="Zucchini_p5_cup">
+                <option value="Zucchini_p25_cup">
+                <option value="Grape_leaves_p5_cup">
+                <option value="Grape_leaves_p25_cup">
+                <option value="Grape_leaves_1_cup">
+                <option value="Green_olives_10">
+                <option value="Black_olives_1_cup">
+                <option value="Black_olives_p5_cup">
+                <option value="Black_olives_p25_cup">
+                <option value="Artichoke_p6_cup">
+                <option value="Artichoke_p3_cup">
+                <option value="Raw_mango_p6_cup">
+                <option value="Raw_mango_p3_cup">
+                <option value="tindora_p5_cup">
+                <option value="Bok_choy_1_cup">
+                <option value="Bok_choy_p5_cup">
+                <option value="Swiss_chard_1_cup">
+                <option value="Swiss_chard_p5_cup">
+                <option value="Snake_gourd_1_cup">
+                <option value="Snake_gourd_p5_cup">
+                <option value="White_mushroom_1_cup">
+                <option value="White_mushroom_p25_cup">
+                <option value="Oyster_mushroom_1p2_cup">
+                <option value="Oyster_mushroom_p4_cup">
+                <option value="Oyster_mushrooms_p2_cup">
+                <option value="Portabella_mushroom_1p2_cup">
+                <option value="Portabella_mushroom_p6_cup">
+                <option value="Parsley_p5_cup">
+                <option value="Parsley_p25_cup">
+                <option value="Fennel_sliced_1_cup">
+                <option value="Fennel_sliced_p25_cup">
+                <option value="Baby_Arugula_1_cup">
+                <option value="Baby_Arugula_p25_cup">
+                <option value="Raspberries_p125_cup">
+                <option value="Blueberries_1_cup">
+                <option value="Blueberries_p125_cup">
+                <option value="Blueberries_p0625_cup">
+                <option value="Strawberries_1_cup">
+                <option value="Strawberries_p25_cup">
+                <option value="Blackberries_p125_cup">
+                <option value="Cranberries_1_cup">
+                <option value="Cranberries_p125_cup">
+                <option value="Cherries_p65_cup">
+                <option value="Goji_berries_p125_cup">
+                <option value="Goji_berries_p5_tsp">
+                <option value="Apple_1_medium">
+                <option value="Apple_p5_medium">
+                <option value="Banana_1_medium">
+                <option value="Banana_p5_medium">
+                <option value="Grapefruit_p5_medium">
+                <option value="Grapefruit_p25_medium">
+                <option value="Kiwi_fruit_1_medium">
+                <option value="Kiwi_fruit_p5_medium">
+                <option value="Grapes_1_cup">
+                <option value="Grapes_p5_cup">
+                <option value="Grapes_p25_cup">
+                <option value="Dates_1_medium">
+                <option value="Dates_2_medium">
+                <option value="Jackfruit_p5_cup">
+                <option value="Orange_1_medium">
+                <option value="Orange_p5_medium">
+                <option value="Orange_p25_medium">
+                <option value="Papaya_1_medium">
+                <option value="Papaya_p125_medium">
+                <option value="Pears_1_medium">
+                <option value="Pear_p5_medium">
+                <option value="Cantaloupe_1_cup">
+                <option value="Cantaloupe_p5_cup">
+                <option value="Watermelon_1_cup">
+                <option value="Pineapple_1_cup">
+                <option value="Pineapple_1_cup">
+                <option value="Pineapple_p25_cup">
+                <option value="Plum_1_medium">
+                <option value="Figs_1_medium">
+                <option value="Apricot_1_medium">
+                <option value="Apricot_p5_medium">
+                <option value="Nectarine_1_medium">
+                <option value="Nectarine_p5_medium">
+                <option value="Mandarin_1_medium">
+                <option value="Mandarin_p5_medium">
+                <option value="Navel_Orange_1_medium">
+                <option value="Navel_Orange_p5_medium">
+                <option value="Passion_Fruit_1_medium">
+                <option value="Passion_Fruit_p5_medium">
+                <option value="Java_Plum_p5_cup">
+                <option value="Cherries_10_medium">
+                <option value="Cherries_5_medium">
+                <option value="Pomegranate_p67_cup">
+                <option value="Pomegranate_p33_cup">
+                <option value="Blackberries_p125_cup">
+                <option value="Mango_1_medium">
+                <option value="Mango_p25_medium">
+                <option value="Peach_p5_medium">
+                <option value="Garbanzo_beans_p5_cup">
+                <option value="Garbanzo_beans_p25_cup">
+                <option value="Kidney_beans_1_cup">
+                <option value="Kidney_beans_p5_cup">
+                <option value="Kidney_beans_p25_cup">
+                <option value="Pinto_beans_1_cup">
+                <option value="Pinto_beans_p5_cup">
+                <option value="Pinto_beans_p25_cup">
+                <option value="Lima_beans_1_cup">
+                <option value="Lima_beans_p5_cup">
+                <option value="Lima_beans_p25_cup">
+                <option value="Lentils_1_cup">
+                <option value="Lentils_p5_cup">
+                <option value="Lentils_p25_cup">
+                <option value="Broad_Beans_p75_cup">
+                <option value="Broad_Beans_p5_cup">
+                <option value="Broad_Beans_p25_cup">
+                <option value="Blackbeans_1_cup">
+                <option value="Blackbeans_p5_cup">
+                <option value="Blackbeans_p25_cup">
+                <option value="Cod_4_ox">
+                <option value="Chicken_4_oz">
+                <option value="Lamb_4_oz">
+                <option value="Salmon_4_oz">
+                <option value="Tuna_4_oz">
+                <option value="Scallops_4_oz">
+                <option value="Beef_4_oz">
+                <option value="Turkey_4_oz">
+                <option value="olive_oil_1_tblspn">
+                <option value="olive_oil_p5_tblspn">
+                <option value="Brown_rice_1_cup">
+                <option value="Brown_rice_p5_cup">
+                <option value="White_rice_short_grain_p5_cup">
+                <option value="White_rice_short_grain_1_cup">
+                <option value="jasmine_rice_1_cup">
+                <option value="Oats_p25_cup">
+                <option value="Oats_p5_cup">
+                <option value="whole_wheat_1_cup">
+                <option value="whole_wheat_p5_cup">
+                <option value="Millet_1_cup">
+                <option value="Millet_p5_cup">
+                <option value="Mung_dhal_p5_cup">
+                <option value="Quinoa_p375_cup">
+                <option value="Quinoa_p4_cup">
+                <option value="pita_bread_white_enriched">
+                <option value="Garlic_6_cloves">
+                <option value="Garlic_4_cloves">
+                <option value="pepper_1_tsp">
+                <option value="chili_peppers_2_tsp">
+                <option value="cumin_seeds_1_tsp">
+                <option value="cumin_seeds_2_tsp">
+                <option value="Cilantro_p5_cup">
+                <option value="Cilantro_p25_cup">
+                <option value="Red_chillies_2_tsp">
+                <option value="cloves">
+                <option value="cinnamon_2_tsp">
+                <option value="cinnamon_p5_tsp">
+                <option value="Turmeric_1_tsp">
+                <option value="ginger_1_tblspn">
+                <option value="salt_3_gm">
+                <option value="salt_1.5_gm">
+                <option value="Semolina">
+                
+                
+          </datalist>  
+
+          <input type="text" name="IngredientB16" class="form-control text-center" placeholder="Breakfast Ingredient-6" list="breakfast2">
+          <datalist id="breakfast2">
+            <option value="Egg_1_medium">
+              <option value="Milk_p5_cup">
+              <option value="Milk_1_cup">
+              <option value="yogurt_p5_cup">
+              <option value="cheese_1_oz">
+              <option value="sunflower_seeds_p25_cup">
+              <option value="sunflower_seeds_p125_cup">
+              <option value="pumpkin_seeds_p125_cup">
+              <option value="Walnuts_p25_cup">
+              <option value="Walnuts_p125_cup">
+              <option value="Walnuts_p0625_cup">
+              <option value="Walnuts_p0312_cup">
+              <option value="Cashew_p125_cup">
+              <option value="flaxseeds_2_tblspn">
+              <option value="flaxseeds_1_tblspn">
+              <option value="peanuts_p125_cup">
+              <option value="peanuts_p25_cup">
+              <option value="brazilnuts_2_numbers">
+              <option value="Brazilnuts_100gm">
+              <option value="Brazilnuts_1_medium">
+              <option value="Brazilnuts_p5_medium">
+              <option value="pinenuts_p25_cup">
+              <option value="pinenuts_p125_cup">
+              <option value="sesame_seeds_p06_cup">
+              <option value="almond_p25_cup">
+              <option value="almond_p125_cup">
+              <option value="almond_p0625_cup">
+              <option value="Pistachio_2_tblspn">
+              <option value="Pistachio_1_cup">
+              <option value="Pecans_1_cup">
+              <option value="Pecans_p125_cup">
+              <option value="Kale_1_cup">
+              <option value="Kale_p5_cup">
+              <option value="Kale_p25_cup">
+              <option value="Spinach_p5_cup">
+              <option value="Spinach_p25_cup">
+              <option value="Avocado_p5_cup">
+              <option value="Avocado_p25_cup">
+              <option value="Cucumber_p25_cup">
+              <option value="Cucumber_p5_cup">
+              <option value="Cucumber_1_cup">
+              <option value="Tomato_1_cup">
+              <option value="Tomato_p5_cup">
+              <option value="Tomato_p25_cup">
+              <option value="Onion_p25_medium">
+              <option value="Onion_p5_medium">
+              <option value="Onion_1_medium">
+              <option value="Carrots_1_cup">
+              <option value="Carrots_p5_cup">
+              <option value="Carrots_p75_cup">
+              <option value="Carrots_p25_cup">
+              <option value="Broccoli_1_cup">
+              <option value="Broccoli_p5_cup">
+              <option value="Broccoli_p25_cup">
+              <option value="Crimi_Mushroom_1_cup">
+              <option value="Crimi_Mushroom_p5_cup">
+              <option value="Crimi_Mushroom_p25_cup">
+              <option value="Shiitake_mushroom_p5_cup">
+              <option value="Shiitake_mushroom_p25_cup">
+              <option value="Cabbage_1_cup">
+              <option value="Cabbage_p5_cup">
+              <option value="Cabbage_p25_cup">
+              <option value="Eggplant_1_cup">
+              <option value="Eggplant_p5_cup">
+              <option value="Eggplant_p25_cup">
+              <option value="Cauliflower_1_cup">
+              <option value="Cauliflower_p25_cup">
+              <option value="Red_bell_pepper_1_cup">
+              <option value="Red_bell_pepper_p5_cup">
+              <option value="Red_bell_pepper_p25_cup">
+              <option value="Beets_p25_cup">
+              <option value="Beets_p5_cup">
+              <option value="Beets_1_cup">
+              <option value="Celery_1_cup">
+              <option value="Celery_p5_cup">
+              <option value="Celery_p25_cup">
+              <option value="Potato_1_cup">
+              <option value="Potato_p5_cup">
+              <option value="Potato_p25_cup">
+              <option value="Dill_p5_cup">
+              <option value="Dill_p25_cup">
+              <option value="Sweet_potato_1_cup">
+              <option value="Sweet_potato_p5_cup">
+              <option value="Sweet_potato_p25_cup">
+              <option value="Summer_squash_1_cup">
+              <option value="Summer_squash_p5_cup">
+              <option value="Summer_squash_p25_cup">
+              <option value="Winter_squash_1_cup">
+              <option value="Asparagus_1_cup">
+              <option value="Asparagus_p5_cup">
+              <option value="Asparagus_p25_cup">
+              <option value="Brussel_sprouts_1_cup">
+              <option value="Brussel_sprouts_p5_cup">
+              <option value="Brussel_sprouts_p25_cup">
+              <option value="Green_peas_1_cup">
+              <option value="Green_peas_p5_cup">
+              <option value="Green_peas_p25_cup">
+              <option value="Soy_beans_1_cup">
+              <option value="Soy_beans_p25_cup">
+              <option value="Seaweed_dulse_1_tblspn">
+              <option value="Seaweed_dulse_p5_tblspn">
+              <option value="Seaweed_dulse_p2_tblspn">
+              <option value="Corn_1_cup">
+              <option value="Corn_p5_cup">
+              <option value="Corn_p25_cup">
+              <option value="Collard_greens_1_cup">
+              <option value="Collard_greens_p5_cup">
+              <option value="Collard_greens_p25_cup">
+              <option value="Mustard_greens_1_cup">
+              <option value="Mustard_greens_p5_cup">
+              <option value="Drumstick_3_cup">
+              <option value="Drumstick_p25_cup">
+              <option value="Romaine_lettuce_2_cup">
+              <option value="Romaine_lettuce_1_cup">
+              <option value="Romaine_lettuce_0.25_cup">
+              <option value="Artichoke_p6_cup">
+              <option value="Okra_1_cup">
+              <option value="Okra_p5_cup">
+              <option value="crimi_mushroom_1_cup">
+              <option value="crimi_mushroom_p25_cup">
+              <option value="Basil_p5_cup">
+              <option value="Basil_4_tblspn">
+              <option value="Arrowroot_p8_cup">
+              <option value="Alfalfa_Sprouts_1_cup">
+              <option value="White_Radish_1_cup">
+              <option value="White_Radish_p5_cup">
+              <option value="White_Radish_p25_cup">
+              <option value="Karela_p75_medium">
+              <option value="Karela_p25_medium">
+              <option value="Mint_leaves_2_numbers">
+              <option value="Moringa_pods_1_cup">
+              <option value="Moringa_pods_p5_cup">
+              <option value="Wintermelon_1_cup">
+              <option value="Wintermelon_p6_cup">
+              <option value="Wintermelon_p25_cup">
+              <option value="Red_beetroot_1_p25_cup">
+              <option value="Red_beetroot_p5_cup">
+              <option value="Red_beetroot_p25_cup">
+              <option value="bitter_gourd_p82_cup">
+              <option value="Bitter_gourd_p5_cup">
+              <option value="Bitter_gourd_p25_cup">
+              <option value="Broadbean_75_cup">
+              <option value="Broadbrean_p5_cup">
+              <option value="Broadnean_p25_cup">
+              <option value="Tofu_p5_cup">
+              <option value="Tofu_p25_cup">
+              <option value="Green_beans_1_cup">
+              <option value="Green_beans_p5_cup">
+              <option value="Green_beans_p25_cups">
+              <option value="Bottle_gourd_p8_cup">
+              <option value="Bottle_gourd_p4_cup">
+              <option value="Karela_p8_cup">
+              <option value="Karela_p4_cup">
+              <option value="Beet_greens_1_cup">
+              <option value="Beet_greens_p5_cup">
+              <option value="Beet_greens_p25_cup">
+              <option value="Turnip_greens_1_cup">
+              <option value="Turnip_greens_p5_cup">
+              <option value="Ridge_gourd_1_cup">
+              <option value="Ridge_gourd_p5_cup">
+              <option value="Pumpkin_p4_cup">
+              <option value="Chayote_1_cup">
+              <option value="Chayote_p5_cup">
+              <option value="Zucchini_p5_cup">
+              <option value="Zucchini_p25_cup">
+              <option value="Grape_leaves_p5_cup">
+              <option value="Grape_leaves_p25_cup">
+              <option value="Grape_leaves_1_cup">
+              <option value="Green_olives_10">
+              <option value="Black_olives_1_cup">
+              <option value="Black_olives_p5_cup">
+              <option value="Black_olives_p25_cup">
+              <option value="Artichoke_p6_cup">
+              <option value="Artichoke_p3_cup">
+              <option value="Raw_mango_p6_cup">
+              <option value="Raw_mango_p3_cup">
+              <option value="tindora_p5_cup">
+              <option value="Bok_choy_1_cup">
+              <option value="Bok_choy_p5_cup">
+              <option value="Swiss_chard_1_cup">
+              <option value="Swiss_chard_p5_cup">
+              <option value="Snake_gourd_1_cup">
+              <option value="Snake_gourd_p5_cup">
+              <option value="White_mushroom_1_cup">
+              <option value="White_mushroom_p25_cup">
+              <option value="Oyster_mushroom_1p2_cup">
+              <option value="Oyster_mushroom_p4_cup">
+              <option value="Oyster_mushrooms_p2_cup">
+              <option value="Portabella_mushroom_1p2_cup">
+              <option value="Portabella_mushroom_p6_cup">
+              <option value="Parsley_p5_cup">
+              <option value="Parsley_p25_cup">
+              <option value="Fennel_sliced_1_cup">
+              <option value="Fennel_sliced_p25_cup">
+              <option value="Baby_Arugula_1_cup">
+              <option value="Baby_Arugula_p25_cup">
+              <option value="Raspberries_p125_cup">
+              <option value="Blueberries_1_cup">
+              <option value="Blueberries_p125_cup">
+              <option value="Blueberries_p0625_cup">
+              <option value="Strawberries_1_cup">
+              <option value="Strawberries_p25_cup">
+              <option value="Blackberries_p125_cup">
+              <option value="Cranberries_1_cup">
+              <option value="Cranberries_p125_cup">
+              <option value="Cherries_p65_cup">
+              <option value="Goji_berries_p125_cup">
+              <option value="Goji_berries_p5_tsp">
+              <option value="Apple_1_medium">
+              <option value="Apple_p5_medium">
+              <option value="Banana_1_medium">
+              <option value="Banana_p5_medium">
+              <option value="Grapefruit_p5_medium">
+              <option value="Grapefruit_p25_medium">
+              <option value="Kiwi_fruit_1_medium">
+              <option value="Kiwi_fruit_p5_medium">
+              <option value="Grapes_1_cup">
+              <option value="Grapes_p5_cup">
+              <option value="Grapes_p25_cup">
+              <option value="Dates_1_medium">
+              <option value="Dates_2_medium">
+              <option value="Jackfruit_p5_cup">
+              <option value="Orange_1_medium">
+              <option value="Orange_p5_medium">
+              <option value="Orange_p25_medium">
+              <option value="Papaya_1_medium">
+              <option value="Papaya_p125_medium">
+              <option value="Pears_1_medium">
+              <option value="Pear_p5_medium">
+              <option value="Cantaloupe_1_cup">
+              <option value="Cantaloupe_p5_cup">
+              <option value="Watermelon_1_cup">
+              <option value="Pineapple_1_cup">
+              <option value="Pineapple_1_cup">
+              <option value="Pineapple_p25_cup">
+              <option value="Plum_1_medium">
+              <option value="Figs_1_medium">
+              <option value="Apricot_1_medium">
+              <option value="Apricot_p5_medium">
+              <option value="Nectarine_1_medium">
+              <option value="Nectarine_p5_medium">
+              <option value="Mandarin_1_medium">
+              <option value="Mandarin_p5_medium">
+              <option value="Navel_Orange_1_medium">
+              <option value="Navel_Orange_p5_medium">
+              <option value="Passion_Fruit_1_medium">
+              <option value="Passion_Fruit_p5_medium">
+              <option value="Java_Plum_p5_cup">
+              <option value="Cherries_10_medium">
+              <option value="Cherries_5_medium">
+              <option value="Pomegranate_p67_cup">
+              <option value="Pomegranate_p33_cup">
+              <option value="Blackberries_p125_cup">
+              <option value="Mango_1_medium">
+              <option value="Mango_p25_medium">
+              <option value="Peach_p5_medium">
+              <option value="Garbanzo_beans_p5_cup">
+              <option value="Garbanzo_beans_p25_cup">
+              <option value="Kidney_beans_1_cup">
+              <option value="Kidney_beans_p5_cup">
+              <option value="Kidney_beans_p25_cup">
+              <option value="Pinto_beans_1_cup">
+              <option value="Pinto_beans_p5_cup">
+              <option value="Pinto_beans_p25_cup">
+              <option value="Lima_beans_1_cup">
+              <option value="Lima_beans_p5_cup">
+              <option value="Lima_beans_p25_cup">
+              <option value="Lentils_1_cup">
+              <option value="Lentils_p5_cup">
+              <option value="Lentils_p25_cup">
+              <option value="Broad_Beans_p75_cup">
+              <option value="Broad_Beans_p5_cup">
+              <option value="Broad_Beans_p25_cup">
+              <option value="Blackbeans_1_cup">
+              <option value="Blackbeans_p5_cup">
+              <option value="Blackbeans_p25_cup">
+              <option value="Cod_4_ox">
+              <option value="Chicken_4_oz">
+              <option value="Lamb_4_oz">
+              <option value="Salmon_4_oz">
+              <option value="Tuna_4_oz">
+              <option value="Scallops_4_oz">
+              <option value="Beef_4_oz">
+              <option value="Turkey_4_oz">
+              <option value="olive_oil_1_tblspn">
+              <option value="olive_oil_p5_tblspn">
+              <option value="Brown_rice_1_cup">
+              <option value="Brown_rice_p5_cup">
+              <option value="White_rice_short_grain_p5_cup">
+              <option value="White_rice_short_grain_1_cup">
+              <option value="jasmine_rice_1_cup">
+              <option value="Oats_p25_cup">
+              <option value="Oats_p5_cup">
+              <option value="whole_wheat_1_cup">
+              <option value="whole_wheat_p5_cup">
+              <option value="Millet_1_cup">
+              <option value="Millet_p5_cup">
+              <option value="Mung_dhal_p5_cup">
+              <option value="Quinoa_p375_cup">
+              <option value="Quinoa_p4_cup">
+              <option value="pita_bread_white_enriched">
+              <option value="Garlic_6_cloves">
+              <option value="Garlic_4_cloves">
+              <option value="pepper_1_tsp">
+              <option value="chili_peppers_2_tsp">
+              <option value="cumin_seeds_1_tsp">
+              <option value="cumin_seeds_2_tsp">
+              <option value="Cilantro_p5_cup">
+              <option value="Cilantro_p25_cup">
+              <option value="Red_chillies_2_tsp">
+              <option value="cloves">
+              <option value="cinnamon_2_tsp">
+              <option value="cinnamon_p5_tsp">
+              <option value="Turmeric_1_tsp">
+              <option value="ginger_1_tblspn">
+              <option value="salt_3_gm">
+              <option value="salt_1.5_gm">
+              <option value="Semolina">
+              
+               
+     
+        </datalist>  
+          </div>
+          </div>
+
+          <h6 style ="font-size:12px; color:white;" class=" text-center">My typical lunch drink</h6>
+          
+           
+        
+        <div class="row">
+          <div class="input-group  text-center ">
+          
+          
+            <input type="text" class="form-control  text-center" placeholder="Drink 1" name="Ingredientbdr11" list="bkdr">
+          <datalist id="bkdr">
+            <option value="Apple Juice 1 CUP">
+                <option value="Apple Juice - 1/2 CUP">
+                    <option value="Cranberry Juice 1 CUP">
+                        <option value="Cranberry Juice - 1/2 CUP">
+                  <option value="Orange Juice 1 CUP">
+                    <option value="Orange Juice - 1/2 CUP">
+                        <option value="Milk - 1 CUP">
+                            <option value="Milk - 1/2 CUP">
+                                <option value="Coffee - 1 CUP">
+                                    <option value="Coffee - 1/2 CUP">
+                                        <option value="Tea - 1 CUP">
+                                            <option value="Tea - 1/2 CUP">
+        </datalist>  
+        <input type="text" class="form-control text-center" placeholder="Drink 2" name="Ingredientbdr12" list="bkdr">
+        <datalist id="bkdr">
+            <option value="Apple Juice 1 CUP">
+                <option value="Apple Juice - 1/2 CUP">
+                    <option value="Cranberry Juice 1 CUP">
+                        <option value="Cranberry Juice - 1/2 CUP">
+                  <option value="Orange Juice 1 CUP">
+                    <option value="Orange Juice - 1/2 CUP">
+                        <option value="Milk - 1 CUP">
+                            <option value="Milk - 1/2 CUP">
+                                <option value="Coffee - 1 CUP">
+                                    <option value="Coffee - 1/2 CUP">
+                                        <option value="Tea - 1 CUP">
+                                            <option value="Tea - 1/2 CUP">
+        </div>
+     </div>
+
+    </div>
+
+    <!-- <div class="form-container5 mx-auto mt-3  mb-3 text-center form-check checkbox-xl checkbox-primary  border" >
+        <h6 style ="font-size:12px; color:white;" class=" text-center">My typical daily water intake</h6> -->
+        
+         
+      
+      <!-- <div class="row">
+        <div class="input-group mb-1 text-center ">
+        
+        
+          <input type="text" class="form-control  text-center" placeholder="Water intake" name="Water_intake" list="water">
+        <datalist id="water">
+          <option value="2 cups">
+            <option value="3 cups">
+              <option value="4 cups">
+                <option value="5 cups">
+                <option value="6 cups">
+                <option value="7 cups">
+            <option value="8 cups">
+              <option value="More than 8 cups">
+                
+      </datalist>  
+      
+      </div>
+      </div> -->
+      <!-- </div> -->
+
+    <!-- <div class="container-fluid  mx-auto text-center  no-border"> -->
+     
+      
+        <!-- <h6 class=" text-center ">My weekly food selections</h6> -->
+        <p class="text-center mt-3" style="font-size:14px;"> Acceptable lunch suggestions</p>
+      <div class="form-container2 mx-auto text-center border" >
+         
+            <!-- {{ form|crispy}} -->
+  
+            <div class="input-group mb-1  text-center">
+              <span class=" input-group-text text-center font-weight-bold text-dark " style="width: 100px;"  >Vegetable<br>Salads</span>
+              <input type="text"  class="form-control  " name = "Veggie_Salads"  placeholder="Various salads" list="veg" > <datalist id="veg">
+                
+                <option value="2 times per week">
+                  <option value="3 times per week">
+                  
+                        </datalist> 
+               </div>
+        
+    
+  
+            <div class="input-group mb-1 input-group-xl">
+              <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Pastas</span>
+              <input type="text" class="form-control" name = "Veggie_Pasta" placeholder="Different types of veggies in pasta" list="veg" > <datalist id="veg">
+                    
+                <option value="Daily">
+                  <option value="Once a week">
+                <option value="Twice a week">
+                <option value="2 times per week">
+                   
+                  
+                        </datalist>   
+            </div>
+  
+           <div class="input-group mb-1  text-center ">
+            <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 100px; text-align:right">Tacos/Burritos</span>
+            <input type="text" class="form-control " name = "Eggs" placeholder="Burrito/Tacos with beans, veggies" list="veg" > <datalist id="veg">
+              
+              <option value="Once a week">
+                <option value="Twice a week">
+                      <option value="Avoid">
+                
+                      </datalist>   
+             </div>
+  
+                      
+           <!-- <div class="input-group mb-1  text-center ">
+            <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 100px; text-align:right">Omelettes</span>
+            <input type="text" class="form-control " name = "Veggie_Omelettes" placeholder="1 Veggies Omelette per week" list="veg" > <datalist id="veg">
+          
+              <option value="Once a week">
+              <option value="Twice a week">
+                    <option value="Avoid">
+                
+                      </datalist>   
+             </div> -->
+  
+  
+  
+        <!-- <div class="input-group mb-1  text-center ">
+        <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 100px; text-align:right">Egg based</span>
+        <input type="text" class="form-control " name = "Eggs" placeholder="Boiled or scrambled eggs, omelettes" list="veg" > <datalist id="veg">
+          
+          <option value="Once a week">
+            <option value="Twice a week">
+                  <option value="Avoid">
+            
+                  </datalist>   
+         </div> -->
+  
+         <div class="input-group mb-1 input-group-xl">
+          <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Grains</span>
+          <input type="text" class="form-control" name = "Grains" placeholder="Rice, Quinoa, Tortilla, Chapatti, Oats, Pasta" list="veg" > <datalist id="veg">
+                
+            <option value="Daily">
+            <option value="2 times per week">
+              <option value="3 times per week">
+              
+                    </datalist>   
+        </div>
+  
+ 
+  
+    <div class="input-group mb-1 input-group-xl">
+      <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Veggie<br>Smoothies</span>
+      <input type="text" class="form-control" name = "Veggie_Smoothies" placeholder="Veggie smoothies" list="veg" > <datalist id="veg">
+  
+        <option value="Daily">
+          <option value="Once a week">
+          <option value="2 times per week">
+              <option value="Infrequently">
+            
+                  </datalist>   
+    </div>
+  
+    <div class="input-group mb-1 input-group-xl">
+      <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Soups</span>
+      <input type="text" class="form-control" name = "Soups" placeholder="Various soups" list="veg" > <datalist id="veg">
+          
+          <option value="Once a week">
+          <option value="2 times per week">
+            
+                  </datalist>   
+    </div>
+                     
+  
+   <div class="input-group mb-1 input-group-xl">
+      <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Beans &<br>Legumes</span>
+      <input type="text" class="form-control" name = "Beans_Legumes" placeholder="Beans, Legumes in various foods" list="veg" > <datalist id="veg">
+          
+        <option value="Daily">  
+          <option value="2 times per week">
+            <option value="3 times per week">
+            
+                  </datalist>   
+    </div>
+   
+   
+  <!-- <div class="input-group mb-1 input-group-xl">
+    <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Herbs &<br> Spices</span>
+    <input type="text" class="form-control" name = "Herbs_Spices" placeholder="Herbs and Spices" list="veg" > <datalist id="veg">
+          
+      <option value="Daily">
+      <option value="2 times per week">
+        <option value="3 times per week">
+        
+              </datalist>   
+  </div> -->
+  
+  </div>
+
+
+
+<br>
+
+
+<div class="button-group text-center mb-1 mx-auto nowrap">
+  <div class="gap-2 text-center d-md-block">
+    <a href="/landing"><button class="btn btn-warning " name="home" type="button">Home</button></a>
+  </div>   
+        
+  
+  <div class="gap-2 d-md-block">
+    <a href="/mydinnerdesign"><button name="savecontinue" class=" btn btn-success text-center nowrap" type="submit">Save & Continue</button></a>
+  </div>
+  
+  <div class="d-inline gap-2 d-md-block  span">
+    
+    <a href="/mydinnerdesign"><button class="btn btn-primary " type="button">Next</button></a>
+    </div> 
+  
+    <div class="text-center   ">
+      <a href="/logout" class="btn  btn-dark">Logout</a>
+      </div>
+  </div>
+
+
+
+        </form>
+
+
+        {% endblock content %}

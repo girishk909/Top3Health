@@ -1,0 +1,18 @@
+Food_id,Food,Quantity,Measure,weight,unit,prep,GI,Water,Water (DV),Energy,Energy (DV),"Protein
+(8g x body weight)",Protein (DV),"Total lipid 
+(fat)",Total lipid (DV),"Carbohydrate, 
+by difference",Carbs (DV),"Fiber, 
+total dietary",Fiber (DV),"Sugars, 
+total",Sugar (DV),Boron,Boron (DV),Calcium,Calcium (DV),Chloride,Chloride (DV),Chromium,Chromium (DV),Copper,Copper (DV),Iodine,Iodine (DV),Iron,Iron (DV),Magnesium,Magnesium (DV),Manganese,Manganese (DV),Molybdenum,Molybdenum (DV),"Phosphorus, P",Phosphorus (DV),"Potassium, K",Potassium (DV),Selenium,Selenium (DV),Sodium,Sodium (DV),Zinc,Zinc (DV),"Thiamin
+(B1)",Thiamin (DV),"Riboflavin
+(B2)",Riboflavin (DV),"Niacin(B3)
+niacin equi",Niacin (DV),"Vitamin 
+B-6",Vitamin B-6(DV),"Vitamin
+ B-12",Vitamin B12 (DV),"Biotin(B7)
+ug",Biotin B7 (DV),Choline,Choline (DV),"Folate, 
+DFE(B9)",Folate (DV),Pantothenic,Pantothenic (DV),"Vitamin C, 
+total ascorbic acid",Vitamin C (DV),"Vitamin A, 
+RAE",Vitamin A (DV),"Vitamin D
+ (IU)",Vitamin D (DV),"Vitamin E 
+(alpha-tocopherol)",Vitamin E (DV),Fatty acids total saturated,Fatty saturated (DV),Fatty acids total monounsaturated,Fatty acids total monounsaturated (DV),Fatty acids total polyunsaturated,Fatty acids total polyunsaturated (DV),Fatty acids total trans,Fatty acids (DV) total trans,Cholesterol,Cholesterol (DV),omega-3 fatty,omega-3 fatty (DV),omega-6 fatty,omega-6 fatty (DV),Alanine,Arginine,Aspartic Acid,Cystenine,Glutamic Acid,Glycine,Histidine,Isoleucine,Leucine,Lysine,Methionine,Phenylalanine,Proline,Serine,Threonine,Tryptophan,Tyrosine,Valine
+194,Banana_1_medium,1,medium,118,grams,fresh,low,88.39,0.044195,105.02,0.05251,1.29,0.023035714,0.39,0.004814815,26.95,0.089833333,3.07,0.1228,14.43,0.2886,122.14,0.040713333,5.9,0.0059,93.22,0.04661,0.93,0.026571429,0.09,0.1,9.44,0.062933333,0.31,0.017222222,31.86,0.07965,0.32,0.16,0,0,25.96,0.037085714,422.44,0.120697143,1.18,0.021454545,1.18,0.000786667,0.18,0.016363636,0.04,0.033333333,0.09,0.069230769,0.78,0.04875,0.43,0.252941176,0,0,3.07,0.102333333,11.56,0.0272,23.6,0.059,0.39,0.078,10.27,0.136933333,3.78,0.0042,0,0,0.12,0.008,0.13,0.005909091,0.04,0.002352941,0.09,0.005294118,0,0,0,0,0.03,0.0125,0.05,0.006944444,0.05,0.06,0.15,0.01,0.18,0.04,0.09,0.03,0.08,0.06,0.01,0.06,0.03,0.05,0.03,0.01,0.01,0.06

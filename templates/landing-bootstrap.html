@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+   
+{% load static %}
+{% block content %}
+
+   
+<style>
+    
+    /* @media (max-width: 100%) {  */
+  /* .container {width:100%; text-align: center; margin-left:0px;  margin-right: 0px; overflow-x: hidden; overflow-y:hidden;} */
+  /* .col-space >[class*='col-'] {
+    margin-bottom: 10px;
+  }} */
+
+  @media (max-width: 700px) { 
+        .navbar-collapse {
+            position: fixed; 
+            top: 70px; /* Adjust top position as needed */
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000; 
+            background-color: rgba(255, 255, 255, 0.9); 
+            overflow-y: auto; 
+        }
+    }
+  /* @media 
+  (max-width:767.98px) {} */
+ 
+    
+/* .logo {margin-top:10px; margin-bottom:0px;}  */
+ 
+
+
+.container-fluid {
+
+    width: 100%;
+    height:100%;
+    position: relative;
+    max-height: fit-content;
+    
+    margin-left:-20px;
+    margin-right:30px;
+    padding:0px;
+    overflow-y: hidden;
+    overflow-x:hidden;
+    color:Black;
+    
+    }
+
+  .dashboard-container {
+        max-width: 800px; /* Adjust this value as needed */
+        margin: 0 auto; /* Center the container */
+        padding: 1px; 
+    }
+
+
+    .footer {
+        position: absolute; 
+        bottom: 10px; /* Adjust this value as needed */ 
+        left: 50%;
+        transform: translateX(-50%); 
+        width: 100%; 
+        text-align: center;
+    } 
+
+.top-bar {background: white;
+ color:white; margin-top:0px; padding: 0 0 0 0;line-height:1.1rem; font-size:25px;}
+
+
+
+.navbar {
+  font-size:0.9rem;
+  font-weight: 400px;
+  /* margin-bottom: -20px; */
+  margin-top:10px;
+  margin-right:2px;
+ 
+  box-shadow: 0 .4rem .4rem rgba(0,0,0,0,.1);
+  z-index: 1;
+  background-color:white!important;
+
+}
+
+.nav-item {
+  padding: 0.1rem;
+  margin-left: 30px;
+
+}
+
+.nav-link {
+   color: #5b5555!important;
+  
+}
+
+.nav-link.active,
+.nav-link:hover  {
+color: #496cb3!important;
+
+}
+
+.fixed-background {
+  position:relative;
+  width: 100%;
+  z-index:1000!important;
+}
+
+.fixed-wrap {
+  clip:rect(0, auto, auto, 0);
+  position:absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height:100%;
+  z-index: -999 !important;
+
+}
+
+
+
+.p {line-height: 10px; font-size:12px; margin-left:0px;margin-bottom:0px;}
+.logo {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom:0px;
+  }
+
+  /* .logo i {
+    font-size: 18px; margin-top:-20px; margin-bottom: 10px;
+  } */
+
+  .btn {
+    font-size: 10px;
+    margin-left:25px; margin-right:25px;
+    margin: 5px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-left:5px;
+    text-wrap: nowrap;
+   
+  }
+
+.hr{line-height: 200px;}
+/* .col {margin-left:-20px;} */
+
+
+.col-4 {border:0.5px; border-color:rgb(248, 247, 245)}
+.btn-default{background-color:white; height:35px; width:60px; margin-bottom:10px; padding-bottom:10px; font-size:20px; font-weight:400; border: 0.5px; }
+.btn-default1{background-color:white; height:50px; width:100px; font-size:10px; border: 0.5px;}
+.fb {font-size:60px; font-weight: 300px; margin-bottom:-20px;}
+
+/* .get{display:inline-block} */
+.btn-default[disabled] {
+    background-color: white;
+    color: black;
+    }
+   
+.xyz{display: inline-block; margin-left:5px; margin-top:3px;} 
+.pqr {color:black;}   
+/* .fixed-bottom {margin-bottom:20px; text-align: center;} */
+
+.alert {
+   width:600px; align-content: center; margin-left:50px;  }
+   html,body {
+    height: 100%;
+	  margin: 0;
+  }
+
+  .button-container {
+  display: flex; /* Arrange buttons horizontally */
+  justify-content: center; /* Center buttons within the container */
+  margin-top: auto; /* Move buttons to the bottom based on content height */
+  margin-bottom: 10px; /* Add some bottom margin for spacing */
+  width: 100%; /* Ensure buttons fill the container width */
+  position:relative;
+}  
+.pqr {margin-right:30px;}
+
+img.dashboard-image {
+        max-width: 100%; /* Make the image responsive */
+        height: 100%;
+        /* height: auto;  */
+    }
+
+.subplot-container {
+    border: 0.15px solid #b4baec; /* Add a subtle border around each subplot */
+    padding: 2px; /* Add some padding for better spacing */
+    margin-bottom: 0px; 
+    width:85%;
+    height: 85%;
+}    
+
+/* .abc {width:300px; margin-left:130px;} */
+
+.navbar-toggler {
+        padding: 0.35rem 0.65rem 0.35rem 0.65rem; 
+    }
+.navbar-toggler-icon {
+        width: 1.2rem; 
+        height: 1.2rem; }
+
+        .image-container { /* New class for the image and buttons */
+        display: flex;
+        flex-direction: column; /* Stack vertically by default */
+        align-items: center; /* Center horizontally */
+    }
+
+
+
+       
+    
+</style> 
+
+
+
+<form method="POST">
+  {% csrf_token %}
+
+  
+  <div class="container-fluid mx-auto overflow-hidden text-center no-border">
+
+<!-- {{user.role}} -->
+    <!-- <div class="alert alert-warning alert-dismissible fade show mx-auto" role="alert">
+      <strong>Welcome to top3health!!</strong> This web app will help reduce and potentially reverse chronic illnesses.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> -->
+    
+    
+    <!-- <h6 style = "font-family: 'Playfair Display'; font-size:10px;" class="text-center mt-5 mb-3">My weekly health status</h6> -->
+  
+
+        <div class="top-bar overflow-hidden text-center mx-auto no-border fixed-top">
+          
+          <div class="row text-center overflow-hidden">
+           
+            <div class="col-2 no-border">
+              <div class="logo text-start xyz">
+                
+                  <i class="fa fa-circle" style="font-size:20px;color:red"></i>
+                  <i class="fa fa-circle" style="font-size:20px;color:forestgreen"></i>
+                  <i class="fa fa-circle" style="font-size:20px;color:#0080ff"></i>
+                  <h6 style="font-size:14px;"class="text-center pqr mr-3" >top3health</h6>
+              </div>
+              <div>
+                
+              </div>
+          </div>
+              <div class="col-9 no-border overflow-hidden text-center mx-auto">
+                  <div class="navbar navbar-light no-border text-end navbar-expand-lg bg-light" >
+                      <hr style="height:5px;color:#b47474;background-color:#e78c8c;">
+                      <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">  
+        
+                          <p class="p"> {{user.first_name }}</p>
+                          <span class="navbar-toggler-icon "></span>
+                      </button>  
+
+                      
+                      <div class="collapse overflow-hidden navbar-collapse mb-4" id="navbarResponsive">
+                        
+                        <ul class="navbar-nav mx-auto text-center">  
+                              <li class="nav-item"><a href="{% url 'minorsym' %}" class="nav-link">My Symptoms</a></li>
+                              <li class="nav-item"><a href="{% url 'settings' %}" class="nav-link">Settings</a></li>
+                              <!-- <li class="nav-item"><a href="{% url 'Dailylog' %}" class="nav-link">Daily-Log</a></li> -->
+                              <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+         
+          </div> 
+        
+        
+        </div>
+ 
+       
+      <br><br><br>
+      
+
+  <div class="dashboard-container">
+    <div>  <h6 style="font-size:14px;"class="text-center mt-3">My health status : Building Bronze level</h6> 
+      <a href="{% url 'Dailylog' %}"><button type="button" class="btn btn-outline-dark">Daily-Log</button></a> 
+
+        <div> <button type="button" style="font-size:16px; font-family:Arial, Helvetica, sans-serif; width:80px; color:black; margin-right:30px;" class="btn btn-outline-light disabled ">28.8</button>
+            <button type="button" style="font-size:16px; font-family:Arial, Helvetica, sans-serif; width:80px; color:black; margin-right:30px;" class="btn btn-outline-light disabled ">1700</button>
+            <button type="button" style="font-size:16px; font-family:Arial, Helvetica, sans-serif;; width:80px; color:black; margin-right:30px;" class="btn btn-outline-light disabled ">59.0</button>
+            
+        </div></div>
+
+        <div>  <button type="button" style="font-size:13px; width:80px; color:black; margin-top:-25px;  margin-right:30px;" class="btn btn-outline-light disabled">BMI</button>
+            <button type="button" style="font-size:13px; width:80px; color:black; margin-top:-25px; margin-right:30px;" class="btn btn-outline-light disabled">BMR</button>
+            <button type="button" style="font-size:13px; width:80px; color:black; margin-top:-25px;  margin-right:30px;" class="btn btn-outline-light disabled">HEI</button>
+        </div>
+        <img src="data:image/png;base64,{{ image_data }}" alt="Health Dashboard" class="dashboard-image subplot-container text-center mx-auto">
+    
+
+
+    <br>
+   
+  
+  </div>
+</div>
+  <p class="footer p mt-4 fixed-bottom" >Copyright - Top3health.com</p>
+ <br> 
+ 
+
+</form>
+        {% endblock content %}

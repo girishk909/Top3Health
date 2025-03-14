@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% block title %}Goals{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+  @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+  .form-check-label {
+    font-size: 1rem;
+    margin-bottom: 7px;
+    margin-left:20px;
+  }
+
+  .form-container {
+    width: 280px;
+   
+    /* height:45vh; */
+    padding: 14px;
+    border-radius: 10px;
+    background-color: #dbe2e6;
+  }
+
+  .checkbox-xl .form-check-input {
+    top: 1rem;
+    scale: 1.2;
+    margin-bottom: 0;
+    margin-left:9px;
+  }
+
+  .checkbox-xl .form-check-label {
+    padding-top: 2px;
+    font-size: 13px;
+    width: 150px;
+  }
+
+  .container-fluid {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .btn {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .logo {
+    margin-left: 0px;
+    margin-top: -60px;
+  }
+
+  .logo i {
+    font-size: 18px;
+  }
+
+  .logout {
+    text-align: right;
+    margin-top: -48px;
+    margin-right: 0px;
+  }
+</style>
+
+<form method="POST">
+  {% csrf_token %}
+
+  <p class="fs-6 text-center">{{ user.first_name }}</p>
+  <br>
+
+  <!-- <div class="logo">
+    <i class="fa fa-circle" style="color: red;"></i>
+    <i class="fa fa-circle" style="color: forestgreen;"></i>
+    <i class="fa fa-circle" style="color: #0080ff;"></i>
+    <h6>top3health</h6>
+  </div> -->
+
+  <div class="logout">
+    <a href="/logout">
+      <img src="{% static 'css/red-logout-land.png' %}" alt="Logout" class="text-end" />
+    </a>
+  </div>
+
+</style>
+
+   
+               
+    <div class="container-fluid    text-center mx-auto   no-border">
+  
+      
+        
+   
+        <h6 class="text-center ">My Goals - Update</h6>
+        
+    <br>
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container text-center mx-auto  form-check checkbox-xl checkbox-primary  border" >
+    <!-- {{ form|crispy }} -->
+             
+    <div class="form-check checkbox-xl text-start">
+      <input type="checkbox" class="form-check-input ml-2" id="check1" name="Become_Healthier" value="something" {% if goals.Become_Healthier %} checked {% endif %}>
+      <label class="form-check-label text-left" for="check1">Become healthier</label>
+      </div>
+
+
+      <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check2" name="Lose_Weight" value="something" {% if goals.Lose_Weight %} checked {% endif %}>
+        <label class="form-check-label text-left" for="checkbox-2">Lose weight</label>
+        </div>
+        
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check3" name="Improve_Productivity" value="something" {% if goals.Improve_Productivity %} checked {% endif %}>
+        <label class="form-check-label text-left">Improve productivity</label>
+        </div>
+           
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check4" name="Increase_Fitness" value="something" {% if goals.Increase_Fitness %} checked {% endif %} >
+        <label class="form-check-label text-left" for="check1">Increase fitness</label>
+        </div>
+
+        
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check6" name="Reduce Stress" value="something" {% if goals.Reduce_Stress %} checked {% endif %}>
+        <label class="form-check-label text-left">Reduce Stress</label>
+        </div>   
+
+        <div class="form-check checkbox-xl text-start">
+          <input type="checkbox" class="form-check-input" id="check2" name="Reduce_fast_foods" value="something" {% if goals.Reduce_fast_foods %} checked {% endif %}>
+          <label class="form-check-label text-left">Reduce Fast foods</label>
+          </div>
+
+          <div class="form-check checkbox-xl  text-start">
+            <input type="checkbox" class="form-check-input ml-2" id="check2" name="Improve_Symptoms" value="something" {% if goals.Improve_Symptoms %} checked {% endif %}>
+            <label class="form-check-label text-left" for="checkbox-2">Improve Health symptoms</label>
+            </div>
+
+            <div class="form-check checkbox-xl text-start">
+              <input type="checkbox" class="form-check-input" id="check2" name="Use_Habits" value="something" {% if goals.Use_Habits %} checked {% endif %}>
+              <label class="form-check-label text-left" for="checkbox-2" >Create/Drop Habits</label>
+              </div>     
+
+        <!-- <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check1" name="Organize_Kitchen" value="something"  {% if goals.Improve_Sleep %} checked {% endif %}>
+        <label class="form-check-label text-left" for="check1">Improve Sleep</label>
+        </div> -->
+          
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check2" name="Quit_Substances" value="something" {% if goals.Quit_Substances %} checked {% endif %}>
+        <label class="form-check-label text-left" for="checkbox-2">Reduce/Quit substances</label>
+        </div>
+        
+  
+
+          <div class="form-check checkbox-xl text-start">
+            <input type="checkbox" class="form-check-input" id="check1" name="Reduce_Expenses" value="something" {% if goals.Reduce_Expenses %} checked {% endif %}>
+            <label class="form-check-label text-left" for="check1">Reduce Expenses</label>
+            </div>
+
+      
+        
+        <!-- <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check2" name="Include_Yoga" value="something"  {% if goals.Include_Yoga %} checked {% endif %}>
+        <label class="form-check-label text-left">Explore Yoga</label>
+        </div>    -->
+
+       
+       
+        <!-- <div class="form-check checkbox-xl">
+          <input type="checkbox" class="form-check-input" id="check2" name="Explore_Mindful" value="something">
+          <label class="form-check-label text-left">Explore Mindfulness</label>
+          </div> -->
+ 
+</div> 
+ 
+<br> <br>
+<div class="button-group space-around text-center mx-auto">
+
+<div class="d-inline gap-2 d-md-block span">
+<a href="/landing"><button class="btn btn-primary btn-sm" type="button">Home</button></a>
+</div> 
+       
+<div class="d-inline gap-2 d-md-block">
+  <a href="/settings"><button class="btn btn-warning btn-sm" type="submit">Update</button></a>
+<!-- <button class="btn btn-success btn-sm" type="submit" >Update</button> -->
+</div>
+
+<div class="d-inline gap-2 d-md-block span">
+  <a href="/settings"><button class="btn btn-success btn-sm" type="button">Back</button></a>
+  </div>
+
+</div> 
+</div>    
+   
+   
+        </form>
+        
+        
+
+
+{% endblock content %}

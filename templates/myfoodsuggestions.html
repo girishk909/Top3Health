@@ -1,0 +1,437 @@
+{% extends 'base.html' %}
+{% block title %}Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      height:100%;
+      background-color: white;
+      margin: 0px;
+      padding:0px;
+      overflow: hidden;
+    }
+  }     
+  
+      
+  /*.logout {align-content: right; margin-left: 850px; margin-top: -40px;}*/   
+  
+  .checkbox-xl .form-check-input {
+   top: 1.4rem;
+   margin-top:26px;    
+   margin-right: 0.4rem;
+   margin-left:100px;    
+   margin-bottom: 18px;
+      font-size:32px;
+   }
+  
+  .checkbox-xl .form-check-label {
+   padding-top: 9px;
+      font-size:38px;
+   }
+      
+  input[type=checkbox]
+  {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.4); /* IE */
+    -moz-transform: scale(1.4); /* FF */
+    -webkit-transform: scale(1.4); /* Safari and Chrome */
+    -o-transform: scale(1.4); /* Opera */
+    padding: 6.0px;
+      align-content: center;
+      font-size: 12px;
+  }  
+  .form-control {font-size:12px; color:black; width:300px;}    
+      
+  .form-check-input {font-size:18px; color: black; }    
+      
+  .input-group { width:100%; font-size:18px;}    
+  .input-group-text { font-size:12px;}
+
+                
+  .btn {font-size:12px; margin-left:10px; margin-right:10px;}
+  .button-group { display: inline-flex;
+      
+    
+  }
+  .name {margin-left:5px;}
+  .d-inline {margin-left: 10px; margin-right:25px;}
+      
+  /* .logo {align-content: left; margin-left:0px; margin-top:-38px;}   */
+      
+
+  .logout{text-align: right; margin-top:-35px; margin-right:5px;}   
+
+ul {
+  column-count: 2; text-align: start; margin-left:20px;
+}
+
+/* li::marker 
+{
+    font-size: 1rem;
+    font-weight: bolder;
+} */
+.gspace {margin-left:15px; font-size:12px; }
+      
+.container-fluid  {width:100%; padding:0px;  overflow: hidden; } 
+.form-container { width:390px; padding:10px; border-radius:10px;  background-color: #eeb792;}
+.form-container2 { width:390px; padding:10px; border-radius:10px;  background-color: #bbc6e7;}
+.placeholder {font-size:21px; width:180px;}
+  /* .form-control {font-size:14px;} */
+  
+  </style>
+<form method="POST">
+  {% csrf_token %}
+  <!-- <p class="fs-6  name"> {{user.first_name }}</p> -->
+  <!-- <div class="logo ">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6>top3health</h6>
+    
+     </div> -->
+     <!-- <div class="logout ">
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="float-right" alt="Veggies"></button></a>
+     
+   </div> -->
+ 
+     <div class="container-fluid  mx-auto text-center  no-border">
+     
+      
+      <h6 class=" text-center ">My weekly food selections</h6>
+      <p class="text-center" style="font-size:14px;"> Please indicate acceptable weekly suggestions</p>
+    <div class="form-container mx-auto text-center border" >
+       
+          <!-- {{ form|crispy}} -->
+
+
+    <div class="input-group mb-1  text-center">
+      <span class=" input-group-text text-center font-weight-bold text-dark " style="width: 110px;"  >Salads</span>
+      <input type="text"  class="form-control  " name = "Salads"  placeholder="Various salads" list="veg" > <datalist id="veg">
+        
+        <option value="2 times per week">
+          <option value="3 times per week">
+          
+                </datalist> 
+       </div>
+
+
+       <!-- <div class="input-group mb-1  text-center ">
+        <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 110px; text-align:right">Smoothies</span>
+        <input type="text" class="form-control " name = "Smoothies" placeholder="Fruit, nuts & milk smoothies" list="veg" > <datalist id="veg">
+        
+          <option value="Daily">  
+          <option value="Once a week">
+            <option value="2 times per week">
+                
+              
+                    </datalist>   
+         </div> -->
+
+         <div class="input-group mb-1  text-center ">
+          <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 110px; text-align:right">Tacos/Burritos</span>
+          <input type="text" class="form-control " name = "Tacos_Burritos" placeholder="Burrito with beans, veggies" list="veg" > <datalist id="veg">
+            
+            <option value="Once a week">
+              <option value="Twice a week">
+                    <option value="Avoid">
+              
+                    </datalist>   
+           </div>
+
+                    
+         <div class="input-group mb-1  text-center ">
+          <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 110px; text-align:right">Sandwiches</span>
+          <input type="text" class="form-control " name = "Sandwiches" placeholder="Veggies Omelettes" list="veg" > <datalist id="veg">
+        
+            <option value="Once a week">
+            <option value="Twice a week">
+                  <option value="Avoid">
+              
+                    </datalist>   
+           </div>
+
+
+
+      <div class="input-group mb-1  text-center ">
+      <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 110px; text-align:right">Egg based</span>
+      <input type="text" class="form-control " name = "Egg_based" placeholder="Boiled, scrambled, other egg preparations" list="veg" > <datalist id="veg">
+        
+        <option value="Once a week">
+          <option value="Twice a week">
+                <option value="Avoid">
+          
+                </datalist>   
+       </div>
+
+       <div class="input-group mb-1  text-center ">
+        <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 110px; text-align:right">Fruit/Berries</span>
+        <input type="text" class="form-control " name = "Fruits_Berries" placeholder="Fruit, berries smoothie or separately" list="veg" > <datalist id="veg">
+        
+          <option value="Daily">  
+            <option value="Twice a week">
+              
+                    </datalist>   
+         </div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 110px;">Pastas</span>
+  <input type="text" class="form-control" name = "Pasta" placeholder="Different types of veggies in pasta" list="veg" > <datalist id="veg">
+        
+    <option value="Daily">
+      <option value="Once a week">
+    <option value="Twice a week">
+    <option value="2 times per week">
+       
+      
+            </datalist>   
+</div>
+
+
+
+  <div class="input-group mb-1 input-group-xl">
+    <span class="input-group-text font-weight-bold text-dark " style="width: 110px;">Oats</span>
+    <input type="text" class="form-control" name = "Oats" placeholder="Oatmeal with fruits/berries" list="veg" > <datalist id="veg">
+
+      <option value="Daily">
+        <option value="Once a week">
+        <option value="2 times per week">
+            <option value="Infrequently">
+          
+                </datalist>   
+  </div>
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 110px;">Dairy</span>
+  <input type="text" class="form-control" name = "Dairy" placeholder="Milk, Cheese, Yogurt or substitutes" list="veg" > <datalist id="veg">
+        
+    <option value="Daily">
+    <option value="2 times per week">
+      <option value="3 times per week">
+        <option value="Infrequently">
+          <option value="Avoid">
+      
+            </datalist>   
+</div>
+
+<div class="input-group mb-1 input-group-xl">
+    <span class="input-group-text font-weight-bold text-dark " style="width: 110px;">Soups</span>
+    <input type="text" class="form-control" name = "Soups" placeholder="Various soups" list="veg" > <datalist id="veg">
+        
+        <option value="Once a week">
+        <option value="2 times per week">
+          
+                </datalist>   
+  </div>
+                   
+
+ <div class="input-group mb-1 input-group-xl">
+    <span class="input-group-text font-weight-bold text-dark " style="width: 110px;">Beans, Legumes</span>
+    <input type="text" class="form-control" name = "Beans_Legumes" placeholder="Beans, Legumes in various foods" list="veg" > <datalist id="veg">
+        
+      <option value="Daily">  
+        <option value="2 times per week">
+          <option value="3 times per week">
+          
+                </datalist>   
+  </div>
+
+  <div class="input-group mb-1 input-group-xl">
+    <span class="input-group-text font-weight-bold text-dark " style="width: 110px;">Nuts, Seeds</span>
+    <input type="text" class="form-control" name = "Nuts_Seeds" placeholder="Nuts & Seeds" list="veg" > <datalist id="veg">
+        
+      <option value="Daily">  
+      <option value="Once a week">
+        <option value="2 times per week">
+          <option value="3 times per week">
+            
+          
+                </datalist>   
+  </div>
+
+ <div class="input-group  input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 110px;">Grains</span>
+  <input type="text" class="form-control" name = "Grains" placeholder="Rice, Quinoa, Tortilla, Chapatti, Oats" list="veg" > <datalist id="veg">
+        
+    <option value="Daily">
+    <option value="2 times per week">
+      <option value="3 times per week">
+      
+            </datalist>   
+</div>
+ 
+ 
+<!-- <div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Roti/Chapatti</span>
+  <input type="text" class="form-control" name = "Roti" placeholder="Herbs and Spices" list="veg" > <datalist id="veg">
+        
+    <option value="Daily">
+    <option value="2 times per week">
+      <option value="3 times per week">
+      
+            </datalist>   
+</div> -->
+<!-- <p class="text-center mt-3" style="font-size:12px; margin-right:70px;color:white;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantities as needed:</b><br></p>
+<ul class="ml-4" style="font-size:12px;  color:white;">
+  
+  <li>Pepper</li>
+  <li>Ginger</li>
+  <li>Clove</li>
+  <li>Cinnamon</li>
+  <li>Parsley</li>
+  <li>Sage</li>
+  <li>Mint</li>
+  <li>Rosemary</li>
+  <li>Cumin</li>
+  <li>Oregano</li>
+  <li>Red chilis</li>
+  <li>Coriander</li>
+  <li>Cardmom</li>
+  <li>Turmeric</li>
+</ul>     -->
+
+</div>
+
+<p class="text-center mt-2" style="font-size:14px;"> Please select your cuisine choices</p>
+<div class="form-container2 mx-auto  text-center border" >
+
+  <div class="input-group mb-2 input-group-default">
+    <span class="input-group-text font-weight-bold">Cuisine 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    
+    <input type="text" name = "Cuisine1" id = "ch1" class="form-control text-center" placeholder="Cuisine-1" list="minor" >  <datalist id="minor">
+      <option value="Mexican">
+        <option value="American">
+      <option value="Italian">
+      <option value="Chinese">
+        <option value="Mediterranean">
+          <option value="Indian">
+      
+              </datalist>
+             
+              <input type="text" name = "cuisine1_freq" id = "ch1" class="form-control text-center" placeholder="Frequency" list="freq"> 
+              <datalist id="freq">
+              <option value="once a week">
+                <option value="Twice/week">    
+                  <option value="3 times/wk">                 
+                      </datalist>
+     </div>
+        
+     
+     <div class="input-group mb-2 input-group-default">
+      <span class="input-group-text font-weight-bold">Cuisine 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      
+      <input type="text" name = "Cuisine2" id = "ch1" class="form-control text-center" placeholder="Cuisine-2" list="minor" >  <datalist id="minor">
+        <option value="Mexican">
+          <option value="American">
+        <option value="Italian">
+        <option value="Chinese">
+          <option value="Mediterranean">
+            <option value="Indian">
+                </datalist>
+
+                <input type="text" name = "Cuisine2_freq" id = "ch1" class="form-control text-center" placeholder="Frequency" list="freq"> 
+                <datalist id="freq">
+                <option value="once a week">
+                  <option value="Twice/week">    
+                    <option value="3 times/wk">                 
+                        </datalist>
+       </div>
+
+
+       <div class="input-group mb-2 input-group-default">
+        <span class="input-group-text font-weight-bold">Cuisine 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        
+        <input type="text" name = "Cuisine4" id = "ch1" class="form-control text-center" placeholder="Cuisine-3" list="minor" >  <datalist id="minor">
+          <option value="Mexican">
+            <option value="American">
+          <option value="Italian">
+          <option value="Chinese">
+            <option value="Mediterranean">
+              <option value="Indian">
+                  </datalist>
+
+                  <input type="text" name = "Cuisine4_freq" id = "ch1" class="form-control text-center" placeholder="Frequency" list="freq"> 
+                  <datalist id="freq">
+                  <option value="once a week">
+                    <option value="Twice/week">    
+                      <option value="3 times/wk">                 
+                          </datalist>
+         </div>
+
+         <div class="input-group  input-group-default">
+          <span class="input-group-text font-weight-bold">Cuisine 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          
+          <input type="text" name = "Cuisine5" id = "ch1" class="form-control text-center" placeholder="Cuisine-4" list="minor" >  <datalist id="minor">
+            <option value="Mexican">
+              <option value="American">
+            <option value="Italian">
+            <option value="Chinese">
+              <option value="Mediterranean">
+                <option value="Indian">
+                    </datalist>
+
+                    <input type="text" name = "Cuisine5_freq" id = "ch1" class="form-control text-center" placeholder="Frequency" list="freq"> 
+                    <datalist id="freq">
+                    <option value="once a week">
+                      <option value="Twice/week">    
+                        <option value="3 times/wk">                 
+                            </datalist>
+           </div>
+    
+    
+           <!-- <div class="input-group  input-group-default">
+            <span class="input-group-text font-weight-bold">Cuisine 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            
+            <input type="text" name = "Cuisine6" id = "ch1" class="form-control text-center" placeholder="Cuisine-6" list="minor" >  <datalist id="minor">
+              <option value="Mexican">
+                <option value="American">
+              <option value="Italian">
+              <option value="Chinese">
+                <option value="Mediterranean">
+                  <option value="Indian">
+                      </datalist>
+
+                      <input type="text" name = "Cuisine6_freq" id = "ch1" class="form-control text-center" placeholder="Frequency" list="freq"> 
+                      <datalist id="freq">
+                      <option value="once a week">
+                        <option value="Twice/week">    
+                          <option value="3 times/wk">                 
+                              </datalist>
+             </div> -->
+
+
+
+  </div><br>
+        
+<div class="button-group mt-2 mb-2 text-center mx-auto">
+<!-- <div >
+  <a href="/landing"><button class="btn btn-warning " type="button">Home</button></a>
+</div>    -->
+       
+<div >
+  <a href="/myallergicfoods"></a><button class="btn  btn-success text-nowrap" type="submit" >Save & Continue</button></a>
+</div>
+  <!-- <div class="span">
+  
+    <a href="/myallergicfoods"><button class="btn btn-primary  text-nowrap" type="button">Next</button></a>
+    </div>  -->
+
+    <div class="text-center  mb-1 ">
+      <a href="/logout" class="btn  btn-dark">Logout</a>
+      </div>
+       
+  </div>  
+</div>
+
+  
+
+
+</form>
+
+{% endblock content %}

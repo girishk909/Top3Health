@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+
+{% block contentscript %}
+<script>
+ function validateHeight() {
+  var feetInput = document.getElementById("Height_ft");
+  var inchesInput = document.getElementById("Height_in");
+  var feetValue = feetInput.value;
+  var inchesValue = inchesInput.value;
+
+  // Regular expression for feet (1 or 2 digits, 0-6)
+  var feetRegex = /^([0-6]|\d)$/;
+  // Regular expression for inches (0-9 or 00-11)
+  var inchesRegex = /^[0-9]$|^0[0-1][0-1]$/;
+
+  var isValid = true; // Flag to track overall validation
+  var errorMessage = ""; // String to store combined error messages
+
+  // Check validation for feet
+  if (!feetRegex.test(feetValue)) {
+    errorMessage += "Feet must be between 0 and 6.\n";
+    isValid = false;
+  }
+
+  // Check validation for inches
+  if (!inchesRegex.test(inchesValue)) {
+    errorMessage += "Inches must be between 0 and 11.\n";
+    isValid = false;
+  }
+
+  // Update error message containers
+  document.getElementById("feet-error").textContent = errorMessage.includes("Feet") ? errorMessage : "";
+  document.getElementById("inches-error").textContent = errorMessage.includes("Inches") ? errorMessage : "";
+
+  return isValid; // Optional: Prevent form submission if validation fails
+}
+</script>
+    
+{% endblock %}
+{% block title %}Profile{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (max-width: 100%) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }   
+
+.form-container { display:block; margin-top:10px; margin-bottom:10px;height:100%; width: 365px; padding:8px;  border-radius:10px; background-color: rgb(182, 199, 192);}
+
+::placeholder {
+  color: green;
+}
+
+    
+.ml-4 {margin-top:30px; }    
+              
+.btn {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+.button-group { 
+  display:inline-flex;   margin-bottom: 0px; 
+  justify-content: space-around; margin-top:0px;  white-space: nowrap;
+} 
+.text {font-size:10px ;}
+.placeholder-label {font-size:8px;}
+
+/* .d-inline {margin-left: 30px; margin-right:65px; } */
+    
+.logo {align-content: left; margin-left:0px; margin-top:-38px;}  
+    
+.logout{text-align: right; margin-top:-30px; margin-right:5px;}    
+.input-group-text {font-size: 12px; width:110px;}
+.container-fluid { height:100%; width:100%;  margin: 0;
+    overflow-x: hidden;}
+.form-control {font-size:12px; margin-left:-5px;}
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+  <p class="fs-6 text-start"> {{user.first_name }}</p>
+  
+  <!-- <div class="logo text-start">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6> -->
+         
+     </div>  
+     <!-- <div class="logout text-end">
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+      
+     </div>  -->
+   <div class="container-fluid  no-border text-center mx-auto">
+   
+      
+        
+        <h6 class="text-center">My Profile</h6>
+
+    <div class="form-container mx-auto  mt-2 text-center border" >
+       
+    <!-- {{ form|crispy}} -->
+
+    <div class="input-group  mb-1 input-group-default">
+
+      <span class="input-group-text font-weight-bold">Height(ft, in)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <input type="text" name = "Height_ft" id = "Height_ft" class="form-control text-center"placeholder="Feet" maxlength="2" onchange="validateHeight()">
+      <span id="feet-error" class="text-danger"></span> 
+      <input type="text" name = "Height_in" id = "Height_in" class="form-control text-center"placeholder="Inches" maxlength="2" onchange="validateHeight()" >
+      <span id="inches-error" class="text-danger"></span>
+       </div>
+       
+       <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Weight (Pounds)</span>
+        <input type="text" name = "Weight_in_pounds" class="form-control"  placeholder="Your weight in Pounds">
+         </div>       
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Gender&nbsp;&nbsp;M, F, X&nbsp;</span>
+        <input type="text" name = "Gender" class="form-control" placeholder="Male, Female, Non-binary" list="gender">  <datalist id="gender">
+        <option value="Male">
+        <option value="Female">
+        <option value="Non-binary">
+                </datalist>
+         </div>  
+             
+          <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Calories-intake&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Calories_intake" class="form-control" placeholder="Daily calories (if known)">
+         </div>        
+             
+         <div class="input-group mb-1 input-group-default">
+          <span class="input-group-text font-weight-bold">Calories-burned&nbsp;</span>
+          <input type="text" name = "Calories_burned" class="form-control" placeholder="Daily calories (if known)">
+           </div>   
+           
+           <div class="input-group mb-1 input-group-default">
+            <span class="input-group-text font-weight-bold">Protein-intake&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <input type="text" name = "Protein_intake" class="form-control" placeholder="Daily Protein (if known)">
+             </div>
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Carbs-intake&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name= "Carbs_intake" class="form-control"  placeholder="Daily Carbs (if known)">
+         </div> 
+
+         <div class="input-group mb-1 input-group-default">
+          <span class="input-group-text font-weight-bold">Water-intake&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <input type="text" name="Water_intake" class="form-control" placeholder="Daily Water intake">
+           </div> 
+         
+         <div class="input-group mb-1 input-group-default">
+          <span class="input-group-text font-weight-bold">Cooking skills</span>
+          <input type="text" name= "Processed_intake" class="form-control "  placeholder="Eat out vs. cooking" list="fast"><datalist style="font-size:10px;" id="fast">
+            <option value="Eat out, fastfoods mostly">
+            <option value="Eat out, healthy choices">  
+            <option value="Eat out, make simple meals">
+            <option value="Eat out less, prepare meals">
+            <option value="Eat out rarely, prepare meals">
+                    </datalist>
+           </div> 
+       
+      
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Race&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Race" class="form-control" placeholder="Race" list="race"><datalist id="race">
+        <option value="White">
+        <option value="Black or African American">
+        <option value="American Indian and Alaska native">
+      <option value="Asian">
+        <option value="Native Hawaiian/Pacific Islander">
+        <option value="2 or more races">
+                </datalist>
+         </div>  
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Ethnicity&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Ethnicity" class="form-control" placeholder="Ethnicity" list="ethnicity" >     
+         <datalist id="ethnicity">
+            <option value="Arab">
+            <option value="Jewish">
+            <option value="Irish">
+            <option value="Chinese">
+            <option value="French">
+            <option value="Italian">
+            <option value="Russian">
+            <option value="Dutch">
+            <option value="Carribean">
+            <option value="African">
+            <option value="Indian">
+            <option value="Vietnamese">
+            <option value="Mixed">      
+          </datalist>        
+             
+         </div>         
+             
+        <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Stress Level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Stress_level" class="form-control" placeholder="High, Medium, Low" list=stress>    
+         <datalist id="stress">
+            <option value="High">
+            <option value="Medium">
+            <option value="Low">
+          </datalist>    
+         </div>    
+
+         <div class="input-group mb-1 input-group-default">
+          <span class="input-group-text font-weight-bold">Sleep Quality&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <input type="text" name = "Sleep_quality" class="form-control" placeholder="Poor, Moderate, Good" list=sleep>    
+           <datalist id="sleep">
+              <option value="Poor">
+              <option value="Moderate">
+              <option value="Good">
+            </datalist>    
+           </div>  
+
+</div><br> <br>
+
+
+  <p class="text-center" style="font-size:12px;"><b>Note:</b> Please enter height in feet, inches<br>(for example: For a person 5 ft and 10 inches, enter 5 10)</p>
+
+  <div class="button-group space-around no-wrap ml-2 mt-3 mb-1 text-center mx-auto">
+    <div class="d-inline gap-3  span">
+      
+    <a href="/landing"><button class="btn btn-warning btn-sm mr-5" type="button">Home</button></a>
+    </div> 
+           
+    <div class="d-inline gap-3 ">
+      <a href="/healthscreening"></a><button class="btn btn-success mr-5 btn-sm" type="submit" >Save & Continue</button></a>
+      
+    </div>
+    <div class="d-inline gap-2  span">
+  
+      <a href="/healthscreening"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+      </div> 
+
+      <div class="text-center  mb-1 ">
+        <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
+        </div>
+    
+    
+   
+    </div> 
+
+</div>
+        </form>
+
+{% endblock content %}

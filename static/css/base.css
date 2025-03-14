@@ -1,0 +1,72 @@
+    @media (max-width: 900px) {
+  .block {
+    display: flex;
+  }
+}
+
+/* .logout{text-align: right; margin-top:-70px; margin-right:10px; margin-bottom: 0px;} */
+
+.container {
+  
+  /*  margin-left: 20px;*/
+    width: 90%;
+      position: relative;
+     margin-left:10px;
+     margin-right: 20px;
+      margin-top:100px;
+      margin-bottom: 0px;
+      display:inline-block;
+      padding: 10px;
+      white-space: nowrap;
+  }    
+      
+  .topnav {
+    
+    background-color: rgb(255, 255, 255);
+       width: 100%;
+       white-space: nowrap;
+       margin-left:20px;
+       display: inline-block;
+       padding-right: 20px;
+      padding-left: 10px;
+      margin-top:50px ;
+      width:100%;
+      
+  }
+  
+  /* Navbar links */
+  .topnav a {
+    
+    color: white;
+    text-align: left;
+  
+    padding-right: 5px;
+      padding-left: 10px;
+  
+      margin-left:5px;
+      margin-top: 50px;
+    text-decoration: none;
+      margin-bottom: 3px;
+  /*    width:80%;*/
+      position: relative;
+      display: inline-block;
+     
+  }
+  
+  .topnav a:hover {
+    background-color: white;
+    color: black;
+  }    
+  
+  .img-thumbnail{
+    background: none;
+    border: none;
+}
+.text-center{color:rgb(0, 55, 100)}
+.form-check-label{color:darkgreen; font-family: Arial, Helvetica, sans-serif; }
+.form-check{color:darkgreen}
+.checkbox {font-size: 18px;margin-left: 10px;}    
+
+/* .btn {font-size:25px;}   */
+
+  /* .position-fixed  {margin-top:100px; margin-right:100px;} */

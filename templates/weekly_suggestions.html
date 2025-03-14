@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+ 
+ @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+@media only screen and (min-width : 400px) {
+    .container { max-width: 100%; padding:0px; background-color: #ffffff; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+::-webkit-calendar-picker-indicator {
+filter: invert(1);
+width: 25px;
+  height: 28px;
+margin-left:-20px;
+}
+
+/* .form-container {  width:330px; padding:10px;  background-color: rgb(191, 233, 200);} */
+
+.container-fluid {height:100%; padding-left:0px; padding-right:0px;  overflow-x: hidden;}
+    
+
+h5 { position: relative; font-family: "Dancing Script", cursive; font-size:20px; font-style: normal; font-variant: normal; font-weight: 10px; line-height: normal; color: rgb(15, 15, 15); transform: scaleY(1.0); text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 20px; }
+
+.input-group { width:210px; font-size: 15px; }
+.input-group-text { font-size: 10px; width:98px; text-align:center; background-color: rgb(144, 166, 233);}  
+.group-text { font-size: 10px; width:78px; text-align:center; background-color: rgb(66, 88, 53);}  
+    
+
+/* .form-control {font-size: 10px;} */
+              
+
+.d-inline {margin-left: 0px; margin-right:5px;}
+    
+.logo {align-content: left; margin-left:5px; margin-top:-60px;}  
+    
+.logout{text-align: right; margin-top:-35px; margin-right:0px;}   
+.form-container { width: 230px; padding:10px; border-radius:15px;  background-color: rgb(230, 232, 236);} 
+.form-container2 { width: 550px; padding:0px; border-color:blue; border-radius:15px; border-width:20px; background-color: rgb(251, 252, 253);}
+
+.form-control {width:50px;font-size: 8px; text-align: center; }
+.form-control2 {width:168px; font-size: 10px; text-align: left; color:black;}
+.form-control3 {width:358px; text-align:left; font-size:  10px;  }
+
+.colcustom1 {background-color: #434b75; font-size:12px;  border-width:0px; padding-right:12px;border-radius: 10px; padding-bottom:4px;padding-top:5px;padding-left:10px;}
+
+.btn {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .button-group {
+    display:inline-flex; 
+    justify-content: center;
+    margin-top: 0;
+  }
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+   color:darkgreen;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+      color:darkgreen;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+      color:darkgreen;
+}
+
+.calendar.popup {
+  max-width: 15%;
+}
+div#cid_4 {
+  width: calc(37% - 14px);
+}
+.calendar-new-month {
+  padding-right: 8%;
+}
+.calendar-new-year {
+  padding-right: 8%;
+}
+ 
+.name {margin-left:10px;}
+li[data-type="control_datetime"] .icon-liteMode {
+    width: 20px;
+    } 
+.marg {margin-top:-50px;  color:rebeccapurple;}
+
+.marg2 { color:rebeccapurple;}
+
+
+body {
+      font-family: Playfair;
+      
+    }
+    h1 {
+      text-align: center;
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+    }
+    ul {
+      list-style-type: none;
+    }
+    li {
+      padding: 10px;
+    }
+.cursive {
+    font-family: Great Vibes;
+    font-size: 14px;
+    color: crimson;
+    
+}
+
+.cursive2 {
+font-family: Great Vibes;
+font-size: 40px;
+color: darkorange;
+background-color: lightred;}
+
+
+.centered {
+  position: absolute;
+  top:5%;
+  left: 50%;
+  transform: translate(-50%, -50%);}
+
+/* .placeholder {font-size:8px;}  */
+
+::-webkit-input-placeholder {
+   font-size: 8px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 8px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 8px!important;
+} 
+
+</style>
+<form method="POST">
+  {% csrf_token %}
+<br>
+  <h5 class="text-center mb-1">My food suggestions</h5> 
+<div class="container-fluid no-border mx-auto text-center background-color:forestgreen">
+
+ 
+      
+<!-- <img src="{% static 'css/world_map.png' %}" > -->
+             <!-- <a> <img src= "{% static 'css/world_grey1.png' %}" alt="login"></a> -->
+             <div class="form-container2 mx-auto  text-center form-check border border-lg border-dark" >
+              <span style=" color: crimson;"class=" text-start">Breakfast</span><br>
+              <input type="text" style="border: none; font-style:italic; font-size:16px; " class="text-center mb-1 "  name="Fitness_1" placeholder="Smoothie with fruit, nuts and milk" >
+              
+              
+       <div class="row ">
+                
+                <div class="row  justify-content-center mb-1  ">
+                <input type="text" style="border: none;" class="form-control2  no-border border-white text-center  " name="Breakfast" value="Spinach - 1/2 cup" >
+                <input type="text" style="border: none;" class="form-control2  no-border border-white text-center  " name="Breakfast" value="Peaches - 1/2 cup" >
+                <input type="text" style="border: none;" class="form-control2  no-border border-white text-center " name="Breakfast" value="Milk - 1 cup" >
+               
+               </div>
+        </div>
+        
+          <div class="row">
+            <div class="row  justify-content-center mb-1  ">
+            <input type="text" style="border: none;" class="form-control2  no-border border-white text-center " name="Breakfast" value="Mango - 1/2 cup" >
+            <input type="text" style="border: none;" class="form-control2 no-border border-white text-center " name="Breakfast" value="Cashew - 1/25 cup" >
+            <input type="text" style="border: none;" class="form-control2  no-border border-white text-center " name="Breakfast" value="Avocado - 1/2" >
+      </div>
+    </div>
+  </div>            
+      <br> 
+
+
+             <div class="form-container2 mx-auto  text-center form-check  border border border-lg border-dark" >
+              <span style=" color: rgb(20, 67, 220);" class="text-start"   >Lunch</span><br>
+              <input type="text" style="border: none; font-style:italic; font-size:16px; " class=" text-center mb-1 "  name="Fitness_1" placeholder="Veggie & Cheese Omelette" >
+             
+              <br>
+              <div class="row ">
+                
+                <div class="row  justify-content-center mb-1  ">
+                <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Eggs 2 medium" placeholder="Herbs/spices-1">
+                <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Spinach 1 cup" placeholder="Herbs/spices-1">
+                <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Cheese 1/2 oz" placeholder="Herbs/spices-1">
+               
+          </div>
+        </div>
+        
+        
+          <div class="row  ">
+            <div class="row  justify-content-center mb-1  ">
+            <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Red bell pepper 1/2 cup" placeholder="Herbs/spices-1">
+            <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Avocado 1/2 medium" placeholder="Herbs/spices-1">
+            <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Broccoli 1/2 cup" placeholder="Herbs/spices-1">
+      </div>
+    </div>
+  </div>
+                          
+      <br> 
+      <div class="form-container2 mx-auto  text-center form-check  border border border-lg border-dark" >
+        <span style=" color: rgb(41, 155, 56);"class=" text-start">Dinner</span><br>
+      <input type="text" style="border: none; font-style:italic; font-size:16px; " class=" text-center mb-1 "  name="Fitness_1" placeholder=" Burrito with black beans, lettuce, tomato & onions" >
+     
+      
+
+        <div class="row  justify-content-center mb-1  ">
+        <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Tortilla - 2 small" placeholder="Herbs/spices-1">
+        <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Black beans - 1/2 cup" placeholder="Herbs/spices-1">
+        <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Tomato - 1 cup" placeholder="Herbs/spices-1">
+
+  </div>
+
+  <div class="row  justify-content-center mb-1">
+    <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Onions 1/2 medium" placeholder="Herbs/spices-1">
+    <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Lettuce - 1/2 cup" placeholder="Herbs/spices-1">
+    <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Sauce" placeholder="Herbs/spices-1">
+
+</div>
+</div>
+<br>
+
+
+
+
+                 
+      <h5 class="text-center mb-2">My weekly fitness choices </h5> 
+
+      <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+        <div class="input-group mb-1">
+            <span class="input-group-text font-weight-bold">Moderate intensity</span>
+
+   
+              <br>
+            
+            <input type="text" class="form-control text-center" name="Fitness_1" placeholder="Your activity 1" list="fit1">
+            <datalist id="fit1">
+        <option value="Walking">
+        <option value="Jogging">
+        <option value="Elliptic">
+        <option value="Weights">
+        <option value="Biking">
+        <option value="Zumba"> 
+        <option value="Swimming">
+        <option value="Martial_arts">
+        <option value="Bootcamp">
+        <option value="Games">
+        <option value="Pilates">
+        <option value="Yoga">
+        <option value="Breathing">
+        <option value="Mindfulness">
+        
+             </datalist> 
+             </div> 
+
+ <h5 class="text-center mb-2">OR</h5> 
+      <div class="input-group mb-1 ">
+        <span class="input-group-text text-center font-weight-bold">Rigorous intensity</span>
+   
+        <input type="text3" class="form-control text-center" name="Fitness_1" placeholder="Your activity 2"  list="fit1">
+            <datalist id="fit1">
+        <option value="Walking">
+        <option value="Jogging">
+        <option value="Elliptic">
+        <option value="Weights">
+        <option value="Biking">
+        <option value="Zumba"> 
+        <option value="Swimming">
+        <option value="Martial_arts">
+        <option value="Bootcamp">
+        <option value="Games">
+        <option value="Pilates">
+        <option value="Yoga">
+        <option value="Breathing">
+        <option value="Mindfulness">
+        
+             </datalist> 
+            
+            </div>   
+            
+
+<div class="input-group mb-1 ">
+  <span class="input-group-text text-center font-weight-bold">Muscle building</span>
+
+  <input type="text3" class="form-control text-center" name="Fitness_1" placeholder="Your activity 2"  list="fit1">
+      <datalist id="fit1">
+  <option value="Squats">
+  <option value="Pushups">
+  <option value="Lunges">
+  <option value="Weights">
+ 
+  
+       </datalist> 
+      
+      </div>   
+      <div class="input-group mb-1 ">
+        <span class="input-group-text text-center font-weight-bold">Balance</span>
+      
+        <input type="text3" class="form-control text-center" name="Fitness_1" placeholder="Your activity 2"  list="fit1">
+            <datalist id="fit1">
+        
+        <option value="Tai-chi">
+        <option value="Pilates">
+        <option value="Yoga">
+ 
+        
+             </datalist> 
+            
+            </div> 
+
+    </div>
+      
+
+<br>
+<!-- <h5 class="text-center mb-2">My daily habit log</h5> 
+
+<div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+  <div class="input-group mb-1">
+      <span style="width:78px; text-align:center; background-color: rgb(168, 180, 162)" class="input-group-text font-weight-bold">Habit 1</span>
+      
+      <input type="text" class="form-control text-center" name="Habit_1" placeholder="Your habit 1"
+
+      list="habit1">
+      <datalist id="habit1">
+        <option value="Daily - Stretches, light weights">
+          <option value="Daily - Healthy breakfast">
+          <option value="Daily - Healthy lunch">
+          <option value="Daily - Clean kitchen before bed ">
+          <option value="Daily - Floss after brush">
+          <option value="Daily - 5 to 8 cups water"> 
+          <option value="Daily - Note daily savings">
+            <option value="Weekend - Laundry">
+              <option value="Weekend - House cleaning">
+                <option value="Weekend - Clean car(s)">
+                  <option value="Weekend - Engage with a book/podcast">
+                    <option value="Weekend - Meet friends/family, cookout">
+                      <option value="Weekend - Yoga/Mindful">
+                        <option value="Weekend - Shopping">
+                      <option value="Weekend - Weekend savings">
+  
+       </datalist> 
+       </div> 
+
+<div class="input-group mb-1 ">
+  <span style="width:78px; text-align:center; background-color: rgb(168, 180, 162)"class="input-group-text text-center font-weight-bold">Habit 2</span>
+
+  <input type="text3" class="form-control text-center" name="Habit_2" placeholder="Your habit 2"  list="habit1">
+      <datalist id="habit1">
+        <option value="Daily - Stretches, light weights">
+          <option value="Daily - Healthy breakfast">
+          <option value="Daily - Healthy lunch">
+          <option value="Daily - Clean kitchen before bed ">
+          <option value="Daily - Floss after brush">
+          <option value="Daily - 5 to 8 cups water"> 
+          <option value="Daily - Note daily savings">
+            <option value="Weekend - Laundry">
+              <option value="Weekend - House cleaning">
+                <option value="Weekend - Clean car(s)">
+                  <option value="Weekend - Engage with a book/podcast">
+                    <option value="Weekend - Meet friends/family, cookout">
+                      <option value="Weekend - Yoga/Mindful">
+                        <option value="Weekend - Shopping">
+                      <option value="Weekend - Weekend savings">
+  
+       </datalist> 
+      
+      </div>  
+
+      <div class="input-group mb-1 ">
+        <span style="width:78px; text-align:center; background-color: rgb(168, 180, 162)" class="input-group-text text-center font-weight-bold">Habit 3</span>
+      
+        <input type="text3" class="form-control text-center" name="Habit_3" placeholder="Your habit 3"  list="habit1">
+        
+        <datalist id="habit1">
+          <option value="Daily - Stretches, light weights">
+            <option value="Daily - Healthy breakfast">
+            <option value="Daily - Healthy lunch">
+            <option value="Daily - Clean kitchen before bed ">
+            <option value="Daily - Floss after brush">
+            <option value="Daily - 5 to 8 cups water"> 
+            <option value="Daily - Note daily savings">
+              <option value="Weekend - Laundry">
+                <option value="Weekend - House cleaning">
+                  <option value="Weekend - Clean car(s)">
+                    <option value="Weekend - Engage with a book/podcast">
+                      <option value="Weekend - Meet friends/family, cookout">
+                        <option value="Weekend - Yoga/Mindful">
+                          <option value="Weekend - Shopping">
+                        <option value="Weekend - Weekend savings">
+  
+        
+             </datalist> 
+            
+            </div>  
+
+            <div class="input-group mb-1 ">
+              <span style="width:78px; text-align:center; background-color: rgb(168, 180, 162)" class="input-group-text text-center font-weight-bold">Habit 4</span>
+            
+              <input type="text3" class="form-control text-center" name="Habit_4" placeholder="Your habit 4"  list="habit1">
+                  <datalist id="habit1">
+                    <option value="Daily - Stretches, light weights">
+                      <option value="Daily - Healthy breakfast">
+                      <option value="Daily - Healthy lunch">
+                      <option value="Daily - Clean kitchen before bed ">
+                      <option value="Daily - Floss after brush">
+                      <option value="Daily - 5 to 8 cups water"> 
+                      <option value="Daily - Note daily savings">
+                        <option value="Weekend - Laundry">
+                          <option value="Weekend - House cleaning">
+                            <option value="Weekend - Clean car(s)">
+                              <option value="Weekend - Engage with a book/podcast">
+                                <option value="Weekend - Meet friends/family, cookout">
+                                  <option value="Weekend - Yoga/Mindful">
+                                    <option value="Weekend - Shopping">
+                                  <option value="Weekend - Weekend savings">
+              
+                   </datalist> 
+                  
+                  </div>  
+
+                  <div class="input-group mb-1 ">
+                    <span style="width:78px; text-align:center; background-color: rgb(168, 180, 162)" class="input-group-text text-center font-weight-bold">Habit 5</span>
+                  
+                    <input type="text3" class="form-control text-center" name="Habit_5" placeholder="Your habit 5"  list="habit1">
+                        <datalist id="habit1">
+                          <option value="Daily - Stretches, light weights">
+                            <option value="Daily - Healthy breakfast">
+                            <option value="Daily - Healthy lunch">
+                            <option value="Daily - Clean kitchen before bed ">
+                            <option value="Daily - Floss after brush">
+                            <option value="Daily - 5 to 8 cups water"> 
+                            <option value="Daily - Note daily savings">
+                              <option value="Weekend - Laundry">
+                                <option value="Weekend - House cleaning">
+                                  <option value="Weekend - Clean car(s)">
+                                    <option value="Weekend - Engage with a book/podcast">
+                                      <option value="Weekend - Meet friends/family, cookout">
+                                        <option value="Weekend - Yoga/Mindful">
+                                          <option value="Weekend - Shopping">
+                                        <option value="Weekend - Weekend savings">
+
+                    
+                    
+                         </datalist> 
+                        
+                        </div>   -->
+                        <!-- </div> -->
+                        
+
+<div class="button-group text-center mx-auto nowrap">
+<div >
+  <a href="/landing"><button class="btn btn-warning" name="home" type="button">Home</button></a>
+</div>   
+      
+
+<div >
+  <a href="/landing"><button name="savecontinue" class=" btn btn-success " type="submit">Save & Continue</button></a>
+</div>
+
+<div class=" gap-2 ">
+  
+  <a href="/landing"><button class="btn btn-primary " type="button">Next</button></a>
+  </div> 
+
+
+<div class=" mb-1 ">
+  <a href="/logout" class="btn btn-dark ">Logout</a>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+        </form>
+
+
+        {% endblock content %}

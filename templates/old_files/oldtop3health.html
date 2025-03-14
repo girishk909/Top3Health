@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+
+   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, touch-action=none ">
+    <meta name="HandheldFriendly" content="true">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/top3_url.css'%}">
+    
+   <title>{{ tophealth.com }}</title>
+    </head>
+
+    <body>
+
+           <div id = "circle_text">
+           <div id="circle1"></div>
+           <div id="circle2"></div>
+           <div id="circle3"></div>
+           <h3> Top3Health</h3> 
+            
+        </div>
+
+            <div class="abc">
+
+         <!-- <button type="submit"> <img src="{% static 'css/3870822.png' %}" alt="My image"/> </button> -->
+
+         <a href="{% url 'login' %}"><img src="{% static 'css/3870822.png' %}"></a>
+
+         
+        </div>
+      
+        <ul style="color:black;"> 
+         <li> HOME </li>
+         <li> ABOUT&nbsp;Us </li>
+         <li> &nbsp;&nbsp;&nbsp;&nbsp;CONTACT</li>
+        </ul>
+        <h2> © Copyright, Top3health.com</h2>
+      </body>
+  
+    
+  
+   {% endblock content %} 
+  

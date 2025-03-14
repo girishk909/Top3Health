@@ -1,0 +1,487 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+from django.template.defaultfilters import stringfilter
+{% block content %}
+<style>
+ 
+ @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+@media only screen and (min-width : 400px) {
+    .container { max-width: 100%; padding:0px; background-color: #ffffff; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+::-webkit-calendar-picker-indicator {
+filter: invert(1);
+width: 25px;
+  height: 28px;
+margin-left:-20px;
+}
+
+/* .form-container {  width:330px; padding:10px;  background-color: rgb(191, 233, 200);} */
+
+.container-fluid {height:100%; padding-left:0px; }
+              
+
+.d-inline {margin-left: 0px; margin-right:0px;}
+    
+.logo {align-content: left; margin-left:5px; margin-top:-60px;}  
+    
+.logout{text-align: right; margin-top:-35px; margin-right:0px;}   
+.form-container2 { width: 430px; padding:10px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
+.form-container3 { width: 325px; padding:15px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
+.form-container { width: 400px; padding:15px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
+
+.form-control {margin-bottom: 0px; width:100px;font-size: 12px;}
+
+
+
+.colcustom1 {background-color: #313d7e; font-size:12px;  border-width:0px; padding-right:12px;border-radius: 10px; padding-bottom:4px;padding-top:5px;padding-left:10px;}
+
+.btn {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+}
+
+.calendar.popup {
+  max-width: 15%;
+}
+div#cid_4 {
+  width: calc(37% - 14px);
+}
+.calendar-new-month {
+  padding-right: 8%;
+}
+.calendar-new-year {
+  padding-right: 8%;
+}
+ 
+li[data-type="control_datetime"] .icon-liteMode {
+    width: 20px;
+    } 
+
+h5 { position: relative; font-family: "Dancing Script", cursive; font-size:20px;  
+font-variant: normal; font-weight: 10px; line-height: normal; color: rgb(15, 15, 15); transform: scaleY(1.0); 
+text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 20px; }    
+    
+.input-group-text {font-size: 12px; width:170px;}   
+
+.checkbox-xl .form-check-input {
+    top: 1.0rem;
+    scale: 2.1;
+    margin-top: 8px;
+    margin-left:0px;
+  }
+
+  .checkbox-xl .form-check-label {
+    padding-top: 0px;
+    font-size: 18px;
+    width: 60px;
+  }
+</style>
+<form method="POST">
+  {% csrf_token %}
+
+         <br> 
+         <div class="container-fluid  no-border mx-auto text-center background-color:forestgreen">
+      
+<h6 style="font-size:13px;">Date:&nbsp;&nbsp;&nbsp;&nbsp; <input name="Meal_date2" class="text-white colcustom1 mb-1" type="date"  /></h6>
+
+
+
+{% if request.user.mode == 'study_mode' %}
+
+
+<h5 
+  class="text-center mb-3"> 
+  </h5>
+
+        <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+          <div class="input-group mb-1">
+              <span class="input-group-text font-weight-bold">Fitness Activity</span>
+              
+              <input type="text" class="form-control text-center" name="Fitness_1" placeholder="Your activity 1"
+  
+              list="fit1">
+              <datalist id="fit1">
+          <option value="Walking">
+          <option value="Jogging">
+          <option value="Elliptic">
+          <option value="Weights">
+          <option value="Biking">
+          <option value="Zumba"> 
+          <option value="Swimming">
+          <option value="Martial_arts">
+          <option value="Bootcamp">
+          <option value="Games">
+          <option value="Pilates">
+          <option value="Yoga">
+          <option value="Breathing">
+          <option value="Mindfulness">
+          
+               </datalist> 
+               </div> 
+  
+        <div class="input-group mb-1 ">
+          <span class="input-group-text text-center font-weight-bold">Fitness activity</span>
+     
+          <input type="text3" class="form-control text-center" name="Fitness_1" placeholder="Your activity 2"  list="fit1">
+              <datalist id="fit1">
+          <option value="Walking">
+          <option value="Jogging">
+          <option value="Elliptic">
+          <option value="Weights">
+          <option value="Biking">
+          <option value="Zumba"> 
+          <option value="Swimming">
+          <option value="Martial_arts">
+          <option value="Bootcamp">
+          <option value="Games">
+          <option value="Pilates">
+          <option value="Yoga">
+          <option value="Breathing">
+          <option value="Mindfulness">
+          
+               </datalist> 
+              
+              </div>   
+              
+  </div>
+             
+             {% endif %}
+            </div>
+             
+             <h5 class="text-center mb-2">My daily food log</h5>
+             <h6  style= "font-size:16px;"class=" text-center mb-2 ">USDA Major food groups </h6>
+             <div class="form-container2 mx-auto text-center form-check checkbox-xl checkbox-primary  border" >
+
+             <div class="input-group text-center mb-2 ">
+              <!-- <span style="width:110px;" class="input-group-text font-weight-bold mx-auto  text-center">Breakfast name</span> -->
+              <input type="text" style="width:110px;" class="form-control text-center" name="Breakfast_name"  placeholder="Breakfast name ">
+              <input type="text" style="width:280px;" class="form-control text-center" name="Breakfast description"  placeholder="Breakfast description ">  
+               </div>
+
+               <div class="input-group text-center mb-2 ">
+                <span style="width:110px;" class="input-group-text font-weight-bold mx-auto  text-center">Lunch name</span>
+                <input type="text" style="width:280px;" class="form-control text-center" name="veggies"  placeholder="Breakfast description ">  
+                 </div>
+
+                 <div class="input-group text-center mb-2 ">
+                  <span style="width:110px;" class="input-group-text font-weight-bold mx-auto  text-center">Dinner name</span>
+                  <input type="text" style="width:280px;" class="form-control text-center" name="veggies"  placeholder="Breakfast description ">  
+                   </div>
+
+
+               </div>
+
+        <div class="form-container2 mx-auto text-center form-check checkbox-xl checkbox-primary  border" >
+
+          
+
+          <div class="input-group text-center mb-2 ">
+            <span style="width:250px;" class="input-group-text font-weight-bold mx-auto  text-center">Veggies - green, red/orange, others</span>
+            <input type="text" style="width:100px;" class="form-control text-center" name="veggies"  placeholder="2-3 cups per day ">  
+             </div>    
+
+             <div class="input-group text-center mb-2 ">
+              <span style="width:250px;" class="input-group-text font-weight-bold mx-auto  text-center">Fruits/Berries </span>
+              <input type="text" style="width:100px;" class="form-control text-center" name="fruits_berries"  placeholder="2 cups per day ">  
+              <!-- <h5 style = "font-size:14px;" class="text-start mx-auto mt-2">All colored fruits and berries </h5> -->
+               </div>  
+      
+               <div class="input-group text-center mb-2 ">
+                <span style="width:250px;" class="input-group-text font-weight-bold mx-auto  text-center">Grains - whole & refined</span>
+                <input type="text" style="width:100px;" class="form-control text-center" name="grains"  placeholder="3 oz whole, 3 oz refined">  
+                <!-- <h5 style = "font-size:14px;" class="text-start mx-auto mt-2">3 oz whole and 3 oz refined grains </h5> -->
+                 </div>  
+
+                 <div class="input-group text-center mb-2 ">
+                  <span style="width:250px;" class="input-group-text font-weight-bold mx-auto  text-center">Beans & Lentils</span>
+                  <input type="text" style="width:100px;" class="form-control text-center" name="beans_lentils"  placeholder="3 oz whole, 3 oz refined">  
+                  <!-- <h5 style = "font-size:14px;" class="text-start mx-auto mt-2">3 oz whole and 3 oz refined grains </h5> -->
+                   </div>   
+
+                 <div class="input-group text-center mb-2 ">
+                  <span style="width:250px;" class="input-group-text font-weight-bold mx-auto  text-center">Dairy - Milk, Yogurt, Cheese, Eggs</span>
+                  <input type="text" style="width:100px;" class="form-control text-center" name="dairy"  placeholder="3 cups">  
+                  <!-- <h5 style = "font-size:14px;" class="text-start mx-auto mt-2">Milk or substitte, yogurt or substitute, cheese </h5> -->
+                   </div>    
+
+                   <div class="input-group text-center mb-2 ">
+                    <span style="width:250px;" class="input-group-text font-weight-bold mx-auto  text-center">Protein - Meat, Beans, Nuts, Dairy </span>
+                    <input type="text" style="width:100px;" class="form-control text-center" name="protein"  placeholder="5 cup equivalents">  
+                    
+                     </div>    
+      
+  
+  
+       
+      
+                 
+      <h5 class="text-center mt-4 mb-2">My daily fitness log</h5> 
+      <h6  style= "font-size:16px;"class=" text-center mb-2 ">HHS Fitness suggestions </h6>
+
+      <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+        <div class="input-group mb-1">
+            <span class="input-group-text font-weight-bold">Moderate Intensity<br>(at least 20 minutes/day)</span>
+            
+            <input type="text" class="form-control text-center" name="moderate_intensity_type"  placeholder="Activity type"
+
+            list="fit1">
+            <datalist id="fit1">
+        <option value="Walking">
+        <option value="Jogging">
+        <option value="Elliptic">
+        <option value="Weights">
+        <option value="Biking">
+        <option value="Zumba"> 
+        <option value="Swimming">
+        <option value="Martial_arts">
+        <option value="Bootcamp">
+        <option value="Sports">
+       
+        
+             </datalist> 
+             <input type="text" class="form-control text-center" name="moderate_intensity"  placeholder="Minutes">
+             </div> 
+
+             <h6 class="text-center">OR</h6>
+
+      <div class="input-group mb-1 ">
+        <span class="input-group-text text-center font-weight-bold">Vigorous intensity<br>(at least 10 minutes/day) </span>
+   
+        <input type="text3" class="form-control text-center" name="vigorous_intensity_type" placeholder="Activity type"  list="fit1">
+            <datalist id="fit1">
+        <option value="Walking">
+        <option value="Jogging">
+        <option value="Elliptic">
+        <option value="Weights">
+        <option value="Biking">
+        <option value="Zumba"> 
+        <option value="Swimming">
+        <option value="Martial_arts">
+        <option value="Bootcamp">
+        <option value="Sports">
+        
+             </datalist> 
+             <input type="text" class="form-control text-center" name="vigorous_intensity"  placeholder="Minutes">
+            </div>   
+
+            <div class="input-group mb-1 ">
+              <span class="input-group-text text-center font-weight-bold">Muscle building<br>(at least 10 minutes/day) </span>
+         
+              <input type="text3" class="form-control text-center" name="muscle_build_type" placeholder="Activity type"  list="fit3">
+                  <datalist id="fit3">
+              <option value="Weights">
+              <option value="calisthenics">
+              
+              
+                   </datalist> 
+                   <input type="text" class="form-control text-center" name="muscle_build"  placeholder="Minutes">
+                  
+                  </div> 
+
+                  <div class="input-group mb-1 ">
+                    <span class="input-group-text text-center font-weight-bold">Balance<br>(at least 10 minutes/day) </span>
+               
+                    <input type="text3" class="form-control text-center" name="balance_type" placeholder="Activity type"  list="fit2">
+                        <datalist id="fit2">
+                          <option value="Taichi">
+                    <option value="Yoga">
+                      
+                    
+                         </datalist> 
+                         <input type="text" class="form-control text-center" name="balance"  placeholder="Minutes">
+                        
+                        </div> 
+            
+</div>
+
+
+
+<div class="form-container3 mx-auto  text-center form-check checkbox-xl checkbox-primary  border">
+
+  {% if  myhabits.Stretches or myhabits.Reduce_processed or myhabits.Prepare_meals or myhabits.Wake_time or myhabits.food_cost_savings or myhabits.Clear_kitchen or myhabits.Brush_floss or myhabits.Groceries_shop or myhabits.daily_mindfulness or myhabits.food_suggestions or myhabits.reduce_alcohol or myhabits.reduce_smoking %}
+
+  <h5 class="text-center mb-2">My habit tracker</h5>
+
+  {% endif %}
+
+       {% if  myhabits.Stretches %}
+    
+        <div class="input-group mb-1">
+            <input type="text" style="width:150px; margin-right:25px;" class="form-control text-center " name="{{ myhabits.Stretches }}" value="{{ myhabits.Stretches }}" placeholder="Your habit 1" readonly>
+            <input type="checkbox" class="checkbox-xl form-check-input" id="check1" name="Stretch_check" value="something">
+        </div>
+    
+{% endif %}
+
+{% if myhabits %}
+    
+
+<div class="input-group mb-1 ">
+
+  <input type="text" style = "width:150px; margin-right:25px;" class="form-control text-center" name="{{myhabits.Reduce_processed}}" value="{{myhabits.Reduce_processed}}" placeholder="Your habit 2" readonly  >
+  <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="processed_check" value="something" >
+      </div>  
+
+      {% endif %}
+
+      {% if myhabits.Prepare_meals %}
+
+
+      <div class="input-group mb-1 ">
+     
+      
+        <input type="text" style = "width:150px; margin-right:25px;" class="form-control text-center" name="{{myhabits.Prepare_meals}}" value="{{myhabits.Prepare_meals}}" placeholder="Your habit 3"  list="habit1" readonly>
+        <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="meals_check" value="something" readonly>
+       
+            
+            </div>  
+            {% endif %}
+
+            {% if myhabits.Wake_time %}
+
+<div class="input-group mb-1 ">
+  <input type="text" style = "width:150px; margin-right:25px;" class="form-control text-center" name="{{myhabits.Wake_time}}" value="{{myhabits.Wake_time}}" placeholder="Your habit 4"  list="habit1" readonly>
+  <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="waketime_check" value="something" >
+      </div>  
+
+      {% endif %}
+      {% if myhabits.food_cost_savings %}
+
+      <div class="input-group mb-1 ">
+        <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.food_cost_savings}}" value="{{myhabits.food_cost_savings}}" placeholder="Your habit 5"  list="habit1" readonly>
+        <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="waketime_check" value="something" >
+            
+            </div>  
+            {% endif %}
+            {% if myhabits.Clear_kitchen %}
+
+<div class="input-group mb-1 ">
+  <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.Clear_kitchen}}" value="{{myhabits.Clear_kitchen}}" placeholder="Your habit 5"  list="habit1" readonly>
+  <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="kitchen_check" value="something" >
+      
+      </div>  
+      {% endif %}
+      {% if myhabits.Brush_Floss %}
+
+            <div class="input-group mb-1 ">
+              <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.Brush_Floss}}" value="{{myhabits.Brush_Floss}}" placeholder="Your habit 5"  list="habit1" readonly>
+              <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="floss_check" value="something" >
+                  
+                  </div> 
+                  {% endif %}
+                  {% if myhabits.Groceries_shop %}
+  <div class="input-group mb-1 ">
+    <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.Groceries_shop}}" value="{{myhabits.Groceries_shop}}" placeholder="Your habit 5"  list="habit1" readonly>
+    <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="groceries_check" value="something" >
+        
+        </div> 
+        {% endif %}
+        {% if myhabits.daily_mindfulness %}
+        
+
+        <div class="input-group mb-1 ">
+          <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.daily_mindfulness}}" value="{{myhabits.daily_mindfulness}}" placeholder="Your habit 5"  list="habit1" readonly>
+          <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="mindful_check" value="something" >
+              
+              </div> 
+
+              {% endif %}
+              {% if myhabits.Groceries_shop %}
+
+      <div class="input-group mb-1 ">
+        <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.Groceries_shop}}" value="{{myhabits.Groceries_shop}}" placeholder="Your habit 5"  list="habit1" readonly>
+        <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="groceries_check" value="something" >
+            
+            </div> 
+            {% endif %}
+              <!-- {% if myhabits.food_suggestions %}
+
+      <div class="input-group mb-1 ">
+        <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.food_suggestions}}" value="{{myhabits.food_suggestions}}" placeholder="Your habit 5"  list="habit1" readonly>
+        <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="foodsugg_check" value="something" >
+            
+            </div> 
+            {% endif %} -->
+            {% if myhabits.reduce_alcohol %}
+
+
+            <div class="input-group mb-1 ">
+              <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.reduce_alcohol}}" value="{{myhabits.reduce_alcohol}}" placeholder="Your habit 5"  list="habit1" readonly>
+              <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="alcohol_check" value="something"  >
+                  
+                  </div>     
+                  {% endif %}
+            {% if myhabits.reduce_smoking %}
+
+                  <div class="input-group  ">
+                    <input type="text3" style =  "margin-right:25px;" class="form-control text-center" name="{{myhabits.reduce_smoking}}" value="{{myhabits.reduce_smoking}}" placeholder="Your habit 5"  list="habit1" readonly>
+                    <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="smoke_check" value="something" >
+                        
+                        </div> 
+                        {% endif %}
+            
+</div>
+
+                       
+
+</div>
+<br>
+{% if not myhabits.Stretches and not myhabits.Reduce_processed and not myhabits.Prepare_meals and not myhabits.Wake_time and not myhabits.food_cost_savings and not myhabits.Clear_kitchen and not myhabits.Brush_floss and not myhabits.Groceries_shop and not myhabits.daily_mindfulness and not myhabits.food_suggestions and not myhabits.reduce_alcohol and not myhabits.reduce_smoking %}
+    <h6 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" class=" text-center  ">Please visit HABITS under settings to input/update your habits</h6>
+{% endif %}
+                        
+<br>
+<div class="button-group text-center mx-auto nowrap">
+<div class=" text-center ">
+  <a href="/landing"><button class="btn btn-warning btn-xs" name="home" type="button">Home</button></a>
+</div>   
+      
+
+<div >
+  <a href="/landing"><button name="savecontinue" class=" btn btn-success text-center btn-xs nowrap" type="submit">Save & Continue</button></a>
+</div>
+
+<div class=" gap-2 ">
+  
+  <a href="/landing"><button class="btn btn-primary btn-xs" type="button">Next</button></a>
+  </div> 
+
+  <div class="text-center  mb-1 ">
+    <a href="/logout" class="btn btn-xs btn-dark">Logout</a>
+    </div>
+</div>
+</div>
+<br>
+        </form>
+
+
+        {% endblock content %}

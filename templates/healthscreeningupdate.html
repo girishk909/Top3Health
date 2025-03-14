@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width : 400px) {
+    .container { max-width: 500px; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}    
+::-webkit-calendar-picker-indicator {
+filter: invert(1);
+width: 25px;
+  height: 28px;
+margin-left:-20px;
+} 
+.form-container { display:block; margin-top:10px; margin-bottom:10px;height:100%; width: 370px; padding:8px;  border-radius:10px; background-color: rgb(247, 178, 175);}
+.colcustom1 {background-color: #2946eb; font-size:12px;  border-width:0px; padding-right:12px;border-radius: 10px; padding-bottom:4px;padding-top:5px;padding-left:10px;}
+
+::placeholder {
+  color: green;
+}
+
+.calendar.popup {
+  max-width: 15%;
+}
+div#cid_4 {
+  width: calc(37% - 14px);
+}
+.calendar-new-month {
+  padding-right: 8%;
+}
+.calendar-new-year {
+  padding-right: 8%;
+}
+ 
+li[data-type="control_datetime"] .icon-liteMode {
+    width: 20px;
+    }     
+
+    
+.ml-4 {margin-top:30px; }    
+              
+.btn {font-size:15px; margin-left:20px; margin-right:20px; } 
+.button-group { 
+  display:inline-flex;  padding:10px; margin-left:8px; margin-bottom: 0px; 
+  justify-content: space-around; margin-top:0px;  white-space: nowrap;
+} 
+.text {font-size:10px ;}
+.placeholder-label {font-size:8px;}
+
+/* .d-inline {margin-left: 30px; margin-right:65px; } */
+    
+.logo {align-content: left; margin-left:6px; margin-top:-38px;}  
+    
+.logout{text-align: right; margin-top:-51px; margin-right:-14px;}    
+.input-group-text {font-size: 13px; width:170px;}
+.container-fluid { height:100%; width:100%}
+.form-control {font-size:12px; margin-left:-5px;}
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+  <p class="fs-6 text-center"> {{user.first_name }}</p>
+  
+  <div class="logo ">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6>
+         
+     </div>  
+   <div class="container-fluid  no-border text-center mx-auto">
+   
+   
+      
+     <div class="logout ">
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+      
+     </div>   
+    
+        
+        <br>
+        <h6 class="text-center">My yearly Health screening update</h6>
+
+    <div class="form-container mx-auto  text-center border" >
+       
+    <!-- {{ form|crispy}} -->
+
+    <div class="input-group  mb-1 input-group-default">
+      <span class="input-group-text font-weight-bold">Blood glucose (Fasting) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      
+      <input type="text" name = "Blood_glucose" id = "ch1" class="form-control text-center"placeholder="Your blood glucose level" value="{{myhealthscreening.Blood_glucose}}">
+       </div>
+       
+       <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">A1C</span>
+        <input type="text" name = "A1C" class="form-control text-center"  placeholder="Your A1C result" value="{{myhealthscreening.A1C}}">
+         </div>   
+         
+         <div class="input-group mb-1 input-group-default">
+            <span class="input-group-text font-weight-bold">Blood pressure - systolic&nbsp;&nbsp;&nbsp;</span>
+            <input type="text" name = "BP_systolic" class="form-control text-center" placeholder="BP - Systolic" value="{{myhealthscreening.BP_systolic}}">
+             </div> 
+
+             <div class="input-group mb-1 input-group-default">
+                <span class="input-group-text font-weight-bold">Blood pressure - diastolic&nbsp;&nbsp;&nbsp;</span>
+                <input type="text" name = "BP_diastolic" class="form-control text-center" placeholder="BP - Diastolic" value="{{myhealthscreening.BP_diastolic}}">
+                 </div> 
+                     
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Total Cholesterol&nbsp;&nbsp;</span>
+        <input type="text" name = "Total_Cholesterol" class="form-control text-center" placeholder="Cholesterol level" list="gender" value="{{myhealthscreening.Total_Cholesterol}}">
+         </div>  
+             
+                
+         <div class="input-group mb-1 input-group-default">
+          <span class="input-group-text font-weight-bold">HDL&nbsp;</span>
+          <input type="text" name = "HDL" class="form-control text-center" placeholder="HDL - high-density lipoprotein" value="{{myhealthscreening.HDL}}">
+           </div>   
+           
+                    
+           <div class="input-group mb-1 input-group-default">
+            <span class="input-group-text font-weight-bold">LDL&nbsp;</span>
+            <input type="text" name = "LDL" class="form-control text-center" placeholder="HDL - high-density lipoprotein" value="{{myhealthscreening.LDL}}">
+             </div>   
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Triglycerides level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name= "Triglycerides" class="form-control text-center"  placeholder="Triglycerides" value="{{myhealthscreening.Triglycerides}}" >
+         </div>       
+       
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Smoker&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name="Smoker" class="form-control text-center" placeholder="Smoker or non-smoker" value="{{myhealthscreening.Smoker}}" list=smoker>    
+        <datalist id="smoker">
+            <option value="Yes">
+           <option value="No">
+           
+         </datalist>    
+         </div>  
+             
+             
+          <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Blood-Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Blood_type" class="form-control text-center" placeholder="A+, A-, B+, B-, AB, O+, O-" value="{{myhealthscreening.Blood_type}}" list=blood-type>
+           <datalist id="blood-type">
+            <option value="A+">
+            <option value="A-">
+            <option value="B+">
+            <option value="AB+">
+            <option value="AB-">      
+            <option value="O+">
+            <option value="O-">      
+          </datalist>        
+              
+         </div>        
+</div>
+<br>
+
+<h6 class="text-center">My Dental status</h6>
+<div class="form-container mx-auto  text-center border" >
+       
+  <div class="input-group mb-1 input-group-default">
+    <span class="input-group-text font-weight-bold">Regular Dental<br>check-ups&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" name="Dental_checkups" class="form-control text-center" placeholder="Dental checkups" value="{{myhealthscreening.Dental_checkups}}" list=dental_check>    
+    <datalist id="dental_check">
+        <option value="Yes">
+       <option value="No">
+       
+     </datalist>    
+     </div> 
+
+     <div class="input-group mb-1 input-group-default">
+      <span class="input-group-text font-weight-bold">Regular cleanings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <input type="text" name="Dental_cleanings" class="form-control text-center" value="{{myhealthscreening.Dental_cleanings}}" placeholder="Dental cleanings" list=dental_clean>    
+      <datalist id="dental_clean">
+          <option value="Yes">
+         <option value="No">
+         
+       </datalist>    
+       </div> 
+                             
+      
+</div>
+
+<h6 class="text-center">My Vision status</h6>
+<div class="form-container mx-auto  text-center border" >
+       
+  <div class="input-group input-group-default">
+    <span class="input-group-text font-weight-bold">Regular Vision check-ups&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" name="Vision_checkups" class="form-control text-center" placeholder="Vision checkups" value="{{myhealthscreening.Vision_checkups}}" list=vision_check>    
+    <datalist id="vision_check">
+        <option value="Yes">
+       <option value="No">
+       
+     </datalist>    
+     </div> 
+
+
+</div>
+
+
+<div class="no-wrap input-group form-container2  mx-auto text-center input-group-default" style="display:block;">
+<h6 style="font-size:13px; text-align: center;">My screening results will be available by:</h6>
+
+"{{myhealthscreening.Screen_date}}"
+
+<br><br>
+
+<h6 style="font-size:13px; text-align: center;">My next/update on screening will be available by the date chosen</h6>
+<h6 style="font-size:13px; text-align:center; margin-left:20px; "> <input name="Screen_date" value="{{myhealthscreening.Screen_date}}" class="text-white colcustom1 mb-1" type="date"  /></h6>
+</div>
+
+<div class="button-group space-around text-center mx-auto">
+
+    <div class="d-inline gap-4 mr-4 d-md-block span">
+    <a href="/landing"><button class="btn btn-primary btn-sm" type="button">Home</button></a>
+    </div> 
+           
+    <div class="d-inline mr-4 gap-4 d-md-block">
+      <a href="/settings"><button class="btn btn-warning btn-sm" type="submit">Update</button></a>
+    <!-- <button class="btn btn-success btn-sm" type="submit" >Update</button> -->
+    </div>
+    
+    <div class="d-inline gap-2 d-md-block span">
+      <a href="/settings"><button class="btn btn-success btn-sm" type="button">Back</button></a>
+      </div>
+    
+    </div> 
+<br>
+</div>
+        </form>
+
+{% endblock content %}

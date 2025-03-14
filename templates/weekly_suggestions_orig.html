@@ -1,0 +1,1192 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+ 
+ @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+@media only screen and (min-width : 400px) {
+    .container { max-width: 100%; padding:0px; background-color: #ffffff; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+::-webkit-calendar-picker-indicator {
+filter: invert(1);
+width: 25px;
+  height: 28px;
+margin-left:-20px;
+}
+
+/* .form-container {  width:330px; padding:10px;  background-color: rgb(191, 233, 200);} */
+
+.container-fluid {height:100%; padding-left:0px; padding-right:0px;  overflow-x: hidden;}
+    
+
+h5 { position: relative; font-family: "Dancing Script", cursive; font-size:20px; font-style: normal; font-variant: normal; font-weight: 10px; line-height: normal; color: rgb(15, 15, 15); transform: scaleY(1.0); text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 20px; }
+
+.input-group { width:290px; font-size: 15px; }
+.input-group-text { font-size: 10px; width:98px; text-align:center; background-color: cadetblue;}  
+
+    
+
+/* .form-control {font-size: 10px;} */
+              
+
+.d-inline {margin-left: 0px; margin-right:5px;}
+    
+.logo {align-content: left; margin-left:5px; margin-top:-60px;}  
+    
+.logout{text-align: right; margin-top:-35px; margin-right:0px;}   
+.form-container { width: 620px; padding:25px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
+
+.form-control {width:98px;font-size: 8px; text-align: center;}
+
+.colcustom1 {background-color: #313d7e; font-size:12px;  border-width:0px; padding-right:12px;border-radius: 10px; padding-bottom:4px;padding-top:5px;padding-left:10px;}
+
+.btn {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .button-group {
+    display:inline-flex; 
+    justify-content: center;
+    margin-top: 0;
+  }
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+}
+
+.calendar.popup {
+  max-width: 15%;
+}
+div#cid_4 {
+  width: calc(37% - 14px);
+}
+.calendar-new-month {
+  padding-right: 8%;
+}
+.calendar-new-year {
+  padding-right: 8%;
+}
+ 
+.name {margin-left:10px;}
+li[data-type="control_datetime"] .icon-liteMode {
+    width: 20px;
+    } 
+
+.full-size-img {
+    background: url('{% static "css/world_grey1.png" %}' ) no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    margin-top:30px;
+}
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+
+  <!-- <p class="fs-6 text-start name"> {{user.first_name }}</p> -->
+
+ 
+       
+    <!-- <div class="logo text-start">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6> -->
+    
+     <!-- </div>    -->
+        
+     <!-- <div class="logout text-end">
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+     </div> -->
+
+         
+         <div class="container-fluid  no-border mx-auto text-center background-color:forestgreen">
+      
+<!-- <h6 style="font-size:13px;">Date:&nbsp;&nbsp;&nbsp;&nbsp; <input name="Meal_date2" class="text-white colcustom1 mb-1" type="date"  /></h6> -->
+
+
+
+<!-- <h5 class="text-center mb-3">Study mode - My daily blood sugar levels</h5> -->
+<div class = "text-center mt-3">                   
+  <!-- <a href="{% url 'login' %}"> <img src= "{% static 'css/world_grey1.png' %}" alt="login"></a> -->
+  <div class="full-size-img">
+    
+
+
+  </div>
+
+             <h5 class="text-center mb-3">My weekly Meal Suggestions</h5>
+
+        <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+    
+
+          <!-- <div class="input-group mx-auto mb-3 ">
+            <span class="input-group-text font-weight-bold mx-auto  text-center">Breakfast</span>
+            <input type="text" class="form-control text-center" name="Breakfast"  placeholder="Breakfast name">  
+            
+             </div>    
+             <div class="row mb-2 text-center">
+              <span class="input-group-text font-weight-bold text-center col-2">Dark greens</span>
+              <span class="input-group-text font-weight-bold text-center col-2" >Red/Orange</span>
+              <span class="input-group-text font-weight-bold text-center col-2">Fruits & Berries</span>
+              <span class="input-group-text font-weight-bold text-center col-2">Protein</span>
+              <span class="input-group-text font-weight-bold text-center col-2">Grains</span>
+              <span class="input-group-text font-weight-bold text-center col-2">Dairy</span>
+              <!-- <span class="input-group-text font-weight-bold col-2 text-center ">Herbs/spices</span> -->
+               <!-- </div>   
+             
+               <div class="row mb-2">
+                
+                  <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dark-greens-1" list="dk">
+                  <datalist id="dk">
+              <option value="Spinach 0.5 cup">
+                <option value="Spinach 1.0 cup">
+              <option value="Broccoli 0.5 cup">
+                <option value="Broccoli 0.5 cup">
+              <option value="Kale 0.5 cup">
+                <option value="Kale 0.5 cup">
+              <option value="Collards 0.5 cup">
+                <option value="Collards 1.0 cup">
+              <option value="Bok choy 0.5 cup">
+                <option value="Bok choy 1.0 cup">
+                  <option value="Romain lettuce 0.5 cup">
+                    <option value="Romain lettuce 1.0 cup">
+                      <option value="Cilantro 0.125 cup">
+                        <option value="Methi leaf 0.5 cup">
+                          <option value="Parsley 0.5 cup">
+                            <option value="Asparagus 0.5 cup">
+                              <option value="Avocado 0.25 cup">
+                                <option value="Avocado 0.5 cup">
+                   </datalist>  
+                 
+                   <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Red/Orange-1" list="ro">
+                   <datalist id="ro">
+               <option value="Red bellpepper 0.5 cup">
+                 <option value="Orange bellpepper 0.5 cup">
+               <option value="Pumpkin 0.5 cup">
+                 <option value="Broccoli 0.5 cup">
+               <option value="Sweet potatoes 0.5 cup">
+                 <option value="Carrots 0.5 cup">
+               <option value="Tomatoes 0.5 cup">
+                 <option value="Tomatoes 1.0 cup">
+               <option value="Butternut squash 0.5 cup">
+                 <option value="Acorn squash 0.5 cup"> -->
+                  
+                    <!-- </datalist>    -->
+                  <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Other veg-1" list="ov">
+                  <datalist id="ov">
+              <option value="Avocado 0.25 cup">
+                <option value="Avocado 0.5 cup">
+                <option value="Beets 0.25 cup">
+              <option value="Beets 0.5 cup">
+                <option value="Asparagus 0.5 cup">
+              <option value="Cauliflower 0.5 cup">
+                <option value="Mushrooms 0.5 cup">
+              <option value="Tomatillo 0.5 cup">
+                <option value="Green beans 0.5 cup">
+              <option value="Green peas 0.25 cup">
+               
+                 
+                   </datalist>     -->
+
+                   <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Fruits/Berries" list="fr">
+                   <datalist id="fr">
+               <option value="Apple 1 small">
+                 <option value="Banana 1 large">
+               <option value="Grapes 0.5 cup">
+                 <option value="Mango 0.5 cup">
+               <option value="Peach 0.5 cup">
+                <option value="Pear 0.5 cup">
+                 <option value="Orange 0.5">
+               <option value="Papaya 0.5 cup">
+                 <option value="Pineapple 0.5 cup ">
+               <option value="Watermelon 0.5 cup">
+                 <option value="Kiwi 0.5 cup">
+                  <option value="Fruit juice 0.5 cup">
+                    </datalist>    -->
+
+
+
+
+<!-- 
+                  <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Protein-1" list="pr">
+                  <datalist id="pr">
+              <option value="Meat 1 oz">
+                <option value="Mushroom 0.5 cup">
+                <option value="Poultry 1 oz">
+                <option value="Fish 1 oz">
+              <option value="Blackbeans 0.25 cup">
+                <option value="Pintobeans 0.25 cup">
+              <option value="Kidney beans  0.25 cup">
+                <option value="Lentils 0.25 cup">
+                <option value="1 egg">
+              <option value="Almonds 10 whole">
+                <option value="Sunflower seeds 1.5 tblspn">
+              <option value="Cashews 1.5 tblspn">
+                <option value="Tofu 0.25 cup">
+                  <option value="Peanut butter 1 tblspn">
+               
+                 
+                   </datalist>     
+                   <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Grains-1"  list="gr">
+                   <datalist id="gr">
+               <option value="Break 1 slice">
+                 <option value="Ready-to-eat cereal 1 cup">
+                 <option value="Cooked rice 0.5 cup">
+               <option value="Bagel 2 inch">
+                 <option value="Barley 0.5 cup">
+               <option value="Chapatti 1 small">
+                 <option value="Chapatti 0.5 large">
+                 <option value="Pancake 1 small">
+               <option value="Tortilla 1 small">
+                 <option value="Corn tortilla 1 small">
+                
+                  
+                    </datalist>      
+                  <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dairy-1" list="dr">
+                  <datalist id="dr">
+              <option value="Milk 1 cup">
+                <option value="Soy milk 1 cup">
+                <option value="Yogurt 1 cup">
+                  <option value="Shredded cheese 0.3 cup">
+              <option value="Cheddar cheese 1.5 oz">
+                <option value="Swiss cheese 1.5 oz">
+                  <option value="Parmesan cheese 1.5 oz">
+                    <option value="Mozzarella 1.5 oz">
+                      <option value="Ricotta cheese 0.5 cup">
+                        <option value="Cottage cheese 2 cup">
+                          <option value="Queso fresco 2 oz">
+                            <option value="Queso blanco 2 slices">
+           
+               
+                 
+                   </datalist>        -->
+                  <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Herbs/spices-1">  -->
+                
+                  <!-- </div> -->
+
+                  <!-- <div class="row mb-4">
+                
+                    <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dark-greens-2" list="dk">
+                    <datalist id="dk">
+                <option value="Spinach 0.5 cup">
+                  <option value="Spinach 1.0 cup">
+                <option value="Broccoli 0.5 cup">
+                  <option value="Broccoli 0.5 cup">
+                <option value="Kale 0.5 cup">
+                  <option value="Kale 0.5 cup">
+                <option value="Collards 0.5 cup">
+                  <option value="Collards 1.0 cup">
+                <option value="Bok choy 0.5 cup">
+                  <option value="Bok choy 1.0 cup">
+                    <option value="Romain lettuce 0.5 cup">
+                      <option value="Romain lettuce 1.0 cup">
+                        <option value="Cilantro 0.125 cup">
+                          <option value="Methi leaf 0.5 cup">
+                            <option value="Parsley 0.5 cup">
+                              <option value="Asparagus 0.5 cup">
+                                <option value="Avocado 0.25 cup">
+                                  <option value="Avocado 0.5 cup">
+                     </datalist>  
+                   
+                     <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Red/Orange-2" list="ro">
+                     <datalist id="ro">
+                 <option value="Red bellpepper 0.5 cup">
+                   <option value="Orange bellpepper 0.5 cup">
+                 <option value="Pumpkin 0.5 cup">
+                   <option value="Broccoli 0.5 cup">
+                 <option value="Sweet potatoes 0.5 cup">
+                   <option value="Carrots 0.5 cup">
+                 <option value="Tomatoes 0.5 cup">
+                   <option value="Tomatoes 1.0 cup">
+                 <option value="Butternut squash 0.5 cup">
+                   <option value="Acorn squash 0.5 cup">
+                    
+                      </datalist>    -->
+                    <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Other veg-1" list="ov">
+                    <datalist id="ov">
+                <option value="Avocado 0.25 cup">
+                  <option value="Avocado 0.5 cup">
+                  <option value="Beets 0.25 cup">
+                <option value="Beets 0.5 cup">
+                  <option value="Asparagus 0.5 cup">
+                <option value="Cauliflower 0.5 cup">
+                  <option value="Mushrooms 0.5 cup">
+                <option value="Tomatillo 0.5 cup">
+                  <option value="Green beans 0.5 cup">
+                <option value="Green peas 0.25 cup">
+                 
+                   
+                     </datalist>     -->
+  
+                     <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Fruits/Berries-2" list="fr">
+                     <datalist id="fr">
+                 <option value="Apple 1 small">
+                   <option value="Banana 1 large">
+                 <option value="Grapes 0.5 cup">
+                   <option value="Mango 0.5 cup">
+                 <option value="Peach 0.5 cup">
+                  <option value="Pear 0.5 cup">
+                   <option value="Orange 0.5">
+                 <option value="Papaya 0.5 cup">
+                   <option value="Pineapple 0.5 cup ">
+                 <option value="Watermelon 0.5 cup">
+                   <option value="Kiwi 0.5 cup">
+                    <option value="Fruit juice 0.5 cup">
+                      </datalist>   
+  
+  
+                    <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Protein-2" list="pr">
+                    <datalist id="pr">
+                <option value="Meat 1 oz">
+                  <option value="Mushroom 0.5 cup">
+                  <option value="Poultry 1 oz">
+                  <option value="Fish 1 oz">
+                <option value="Blackbeans 0.25 cup">
+                  <option value="Pintobeans 0.25 cup">
+                <option value="Kidney beans  0.25 cup">
+                  <option value="Lentils 0.25 cup">
+                  <option value="1 egg">
+                <option value="Almonds 10 whole">
+                  <option value="Sunflower seeds 1.5 tblspn">
+                <option value="Cashews 1.5 tblspn">
+                  <option value="Tofu 0.25 cup">
+                    <option value="Peanut butter 1 tblspn">
+                 
+                   
+                     </datalist>     
+                     <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Grains-2"  list="gr">
+                     <datalist id="gr">
+                 <option value="Break 1 slice">
+                   <option value="Ready-to-eat cereal 1 cup">
+                   <option value="Cooked rice 0.5 cup">
+                 <option value="Bagel 2 inch">
+                   <option value="Barley 0.5 cup">
+                 <option value="Chapatti 1 small">
+                   <option value="Chapatti 0.5 large">
+                   <option value="Pancake 1 small">
+                 <option value="Tortilla 1 small">
+                   <option value="Corn tortilla 1 small">
+                  
+                    
+                      </datalist>      
+                    <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dairy-2" list="dr">
+                    <datalist id="dr">
+                <option value="Milk 1 cup">
+                  <option value="Soy milk 1 cup">
+                  <option value="Yogurt 1 cup">
+                    <option value="Shredded cheese 0.3 cup">
+                <option value="Cheddar cheese 1.5 oz">
+                  <option value="Swiss cheese 1.5 oz">
+                    <option value="Parmesan cheese 1.5 oz">
+                      <option value="Mozzarella 1.5 oz">
+                        <option value="Ricotta cheese 0.5 cup">
+                          <option value="Cottage cheese 2 cup">
+                            <option value="Queso fresco 2 oz">
+                              <option value="Queso blanco 2 slices"> -->
+             
+                 
+                   
+                     <!-- </datalist>        -->
+                    <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Herbs/spices-1">  -->
+                  
+                    <!-- </div> -->
+
+                    <!-- <div class="input-group mx-auto mb-3 ">
+                      <span class="input-group-text font-weight-bold mx-auto  text-center">Lunch</span>
+                      <input type="text" class="form-control text-center" name="Breakfast"  placeholder="Lunch name">  
+                      
+                       </div>    
+                       <div class="row mb-2 text-center">
+                        <span class="input-group-text font-weight-bold text-center col-2">Dark greens</span>
+                        <span class="input-group-text font-weight-bold text-center col-2"  >Red/Orange</span>
+                        <span class="input-group-text font-weight-bold text-center col-2">Fruits/Berries</span>
+                        <span class="input-group-text font-weight-bold text-center col-2">Protein</span>
+                        <span class="input-group-text font-weight-bold text-center col-2">Grains</span>
+                        <span class="input-group-text font-weight-bold text-center col-2">Dairy</span>
+                        < <span class="input-group-text font-weight-bold col-2 text-center ">Herbs/spices</span> -->
+                         <!-- </div>   
+                       
+                         <div class="row mb-2">
+                          
+                            <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dark-greens-1" list="dk">
+                            <datalist id="dk">
+                        <option value="Spinach 0.5 cup">
+                          <option value="Spinach 1.0 cup">
+                        <option value="Broccoli 0.5 cup">
+                          <option value="Broccoli 0.5 cup">
+                        <option value="Kale 0.5 cup">
+                          <option value="Kale 0.5 cup">
+                        <option value="Collards 0.5 cup">
+                          <option value="Collards 1.0 cup">
+                        <option value="Bok choy 0.5 cup">
+                          <option value="Bok choy 1.0 cup">
+                            <option value="Romain lettuce 0.5 cup">
+                              <option value="Romain lettuce 1.0 cup">
+                                <option value="Cilantro 0.125 cup">
+                                  <option value="Methi leaf 0.5 cup">
+                                    <option value="Parsley 0.5 cup">
+                                      <option value="Asparagus 0.5 cup">
+                                        <option value="Avocado 0.25 cup">
+                                          <option value="Avocado 0.5 cup">
+                             </datalist>  
+                           
+                             <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Red/Orange-1" list="ro">
+                             <datalist id="ro">
+                         <option value="Red bellpepper 0.5 cup">
+                           <option value="Orange bellpepper 0.5 cup">
+                         <option value="Pumpkin 0.5 cup">
+                           <option value="Broccoli 0.5 cup">
+                         <option value="Sweet potatoes 0.5 cup">
+                           <option value="Carrots 0.5 cup">
+                         <option value="Tomatoes 0.5 cup">
+                           <option value="Tomatoes 1.0 cup">
+                         <option value="Butternut squash 0.5 cup">
+                           <option value="Acorn squash 0.5 cup"> -->
+                            
+                              <!-- </datalist>     -->
+                            <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Other veg-1" list="ov">
+                            <datalist id="ov">
+                        <option value="Avocado 0.25 cup">
+                          <option value="Avocado 0.5 cup">
+                          <option value="Beets 0.25 cup">
+                        <option value="Beets 0.5 cup">
+                          <option value="Asparagus 0.5 cup">
+                        <option value="Cauliflower 0.5 cup">
+                          <option value="Mushrooms 0.5 cup">
+                        <option value="Tomatillo 0.5 cup">
+                          <option value="Green beans 0.5 cup">
+                        <option value="Green peas 0.25 cup">
+                         
+                           
+                             </datalist>     -->
+          
+                             <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Fruits/Berries" list="fr">
+                             <datalist id="fr">
+                         <option value="Apple 1 small">
+                           <option value="Banana 1 large">
+                         <option value="Grapes 0.5 cup">
+                           <option value="Mango 0.5 cup">
+                         <option value="Peach 0.5 cup">
+                          <option value="Pear 0.5 cup">
+                           <option value="Orange 0.5">
+                         <option value="Papaya 0.5 cup">
+                           <option value="Pineapple 0.5 cup ">
+                         <option value="Watermelon 0.5 cup">
+                           <option value="Kiwi 0.5 cup">
+                            <option value="Fruit juice 0.5 cup">
+                              </datalist>   
+          
+          
+          
+          
+          
+                            <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Protein-1" list="pr">
+                            <datalist id="pr">
+                        <option value="Meat 1 oz">
+                          <option value="Mushroom 0.5 cup">
+                          <option value="Poultry 1 oz">
+                          <option value="Fish 1 oz">
+                        <option value="Blackbeans 0.25 cup">
+                          <option value="Pintobeans 0.25 cup">
+                        <option value="Kidney beans  0.25 cup">
+                          <option value="Lentils 0.25 cup">
+                          <option value="1 egg">
+                        <option value="Almonds 10 whole">
+                          <option value="Sunflower seeds 1.5 tblspn">
+                        <option value="Cashews 1.5 tblspn">
+                          <option value="Tofu 0.25 cup">
+                            <option value="Peanut butter 1 tblspn">
+                         
+                           
+                             </datalist>     
+                             <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Grains-1"  list="gr">
+                             <datalist id="gr">
+                         <option value="Break 1 slice">
+                           <option value="Ready-to-eat cereal 1 cup">
+                           <option value="Cooked rice 0.5 cup">
+                         <option value="Bagel 2 inch">
+                           <option value="Barley 0.5 cup">
+                         <option value="Chapatti 1 small">
+                           <option value="Chapatti 0.5 large">
+                           <option value="Pancake 1 small">
+                         <option value="Tortilla 1 small">
+                           <option value="Corn tortilla 1 small">
+                          
+                            
+                              </datalist>      
+                            <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dairy-1" list="dr">
+                            <datalist id="dr">
+                        <option value="Milk 1 cup">
+                          <option value="Soy milk 1 cup">
+                          <option value="Yogurt 1 cup">
+                            <option value="Shredded cheese 0.3 cup">
+                        <option value="Cheddar cheese 1.5 oz">
+                          <option value="Swiss cheese 1.5 oz">
+                            <option value="Parmesan cheese 1.5 oz">
+                              <option value="Mozzarella 1.5 oz">
+                                <option value="Ricotta cheese 0.5 cup">
+                                  <option value="Cottage cheese 2 cup">
+                                    <option value="Queso fresco 2 oz">
+                                      <option value="Queso blanco 2 slices">
+                     
+                         
+                           
+                             </datalist>        -->
+                            <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Herbs/spices-1">  -->
+                          
+                            <!-- </div>
+          
+                            <div class="row mb-4">
+                          
+                              <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dark-greens-2" list="dk">
+                              <datalist id="dk">
+                          <option value="Spinach 0.5 cup">
+                            <option value="Spinach 1.0 cup">
+                          <option value="Broccoli 0.5 cup">
+                            <option value="Broccoli 0.5 cup">
+                          <option value="Kale 0.5 cup">
+                            <option value="Kale 0.5 cup">
+                          <option value="Collards 0.5 cup">
+                            <option value="Collards 1.0 cup">
+                          <option value="Bok choy 0.5 cup">
+                            <option value="Bok choy 1.0 cup">
+                              <option value="Romain lettuce 0.5 cup">
+                                <option value="Romain lettuce 1.0 cup">
+                                  <option value="Cilantro 0.125 cup">
+                                    <option value="Methi leaf 0.5 cup">
+                                      <option value="Parsley 0.5 cup">
+                                        <option value="Asparagus 0.5 cup">
+                                          <option value="Avocado 0.25 cup">
+                                            <option value="Avocado 0.5 cup">
+                               </datalist>  
+                             
+                               <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Red/Orange-2" list="ro">
+                               <datalist id="ro">
+                           <option value="Red bellpepper 0.5 cup">
+                             <option value="Orange bellpepper 0.5 cup">
+                           <option value="Pumpkin 0.5 cup">
+                             <option value="Broccoli 0.5 cup">
+                           <option value="Sweet potatoes 0.5 cup">
+                             <option value="Carrots 0.5 cup">
+                           <option value="Tomatoes 0.5 cup">
+                             <option value="Tomatoes 1.0 cup">
+                           <option value="Butternut squash 0.5 cup">
+                             <option value="Acorn squash 0.5 cup">
+                              
+                                </datalist>    -->
+                              <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Other veg-1" list="ov">
+                              <datalist id="ov">
+                          <option value="Avocado 0.25 cup">
+                            <option value="Avocado 0.5 cup">
+                            <option value="Beets 0.25 cup">
+                          <option value="Beets 0.5 cup">
+                            <option value="Asparagus 0.5 cup">
+                          <option value="Cauliflower 0.5 cup">
+                            <option value="Mushrooms 0.5 cup">
+                          <option value="Tomatillo 0.5 cup">
+                            <option value="Green beans 0.5 cup">
+                          <option value="Green peas 0.25 cup">
+                           
+                             
+                               </datalist>     -->
+            
+                               <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Fruits/Berries-2" list="fr">
+                               <datalist id="fr">
+                           <option value="Apple 1 small">
+                             <option value="Banana 1 large">
+                           <option value="Grapes 0.5 cup">
+                             <option value="Mango 0.5 cup">
+                           <option value="Peach 0.5 cup">
+                            <option value="Pear 0.5 cup">
+                             <option value="Orange 0.5">
+                           <option value="Papaya 0.5 cup">
+                             <option value="Pineapple 0.5 cup ">
+                           <option value="Watermelon 0.5 cup">
+                             <option value="Kiwi 0.5 cup">
+                              <option value="Fruit juice 0.5 cup">
+                                </datalist>   
+            
+            
+            
+            
+            
+                              <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Protein-2" list="pr">
+                              <datalist id="pr">
+                          <option value="Meat 1 oz">
+                            <option value="Mushroom 0.5 cup">
+                            <option value="Poultry 1 oz">
+                            <option value="Fish 1 oz">
+                          <option value="Blackbeans 0.25 cup">
+                            <option value="Pintobeans 0.25 cup">
+                          <option value="Kidney beans  0.25 cup">
+                            <option value="Lentils 0.25 cup">
+                            <option value="1 egg">
+                          <option value="Almonds 10 whole">
+                            <option value="Sunflower seeds 1.5 tblspn">
+                          <option value="Cashews 1.5 tblspn">
+                            <option value="Tofu 0.25 cup">
+                              <option value="Peanut butter 1 tblspn">
+                           
+                             
+                               </datalist>     
+                               <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Grains-2"  list="gr">
+                               <datalist id="gr">
+                           <option value="Break 1 slice">
+                             <option value="Ready-to-eat cereal 1 cup">
+                             <option value="Cooked rice 0.5 cup">
+                           <option value="Bagel 2 inch">
+                             <option value="Barley 0.5 cup">
+                           <option value="Chapatti 1 small">
+                             <option value="Chapatti 0.5 large">
+                             <option value="Pancake 1 small">
+                           <option value="Tortilla 1 small">
+                             <option value="Corn tortilla 1 small">
+                            
+                              
+                                </datalist>      
+                              <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dairy-2" list="dr">
+                              <datalist id="dr">
+                          <option value="Milk 1 cup">
+                            <option value="Soy milk 1 cup">
+                            <option value="Yogurt 1 cup">
+                              <option value="Shredded cheese 0.3 cup">
+                          <option value="Cheddar cheese 1.5 oz">
+                            <option value="Swiss cheese 1.5 oz">
+                              <option value="Parmesan cheese 1.5 oz">
+                                <option value="Mozzarella 1.5 oz">
+                                  <option value="Ricotta cheese 0.5 cup">
+                                    <option value="Cottage cheese 2 cup">
+                                      <option value="Queso fresco 2 oz">
+                                        <option value="Queso blanco 2 slices">
+                       
+                           
+                             
+                               </datalist>        -->
+                              <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Herbs/spices-1">  -->
+                            
+                              <!-- </div>
+                              <div class="input-group mx-auto mb-3 ">
+                                <span class="input-group-text font-weight-bold mx-auto  text-center">Dinner</span>
+                                <input type="text" class="form-control text-center" name="Breakfast"  placeholder="Dinner name">  
+                                
+                                 </div>    
+                                 <div class="row mb-2 text-center">
+                                  <span class="input-group-text font-weight-bold text-center col-2">Dark greens</span>
+                                  <span class="input-group-text font-weight-bold text-center col-2"  >Red/Orange</span>
+                                  <span class="input-group-text font-weight-bold text-center col-2">Fruits/Berries</span>
+                                  <span class="input-group-text font-weight-bold text-center col-2">Protein</span>
+                                  <span class="input-group-text font-weight-bold text-center col-2">Grains</span>
+                                  <span class="input-group-text font-weight-bold text-center col-2">Dairy</span>
+                                   <span class="input-group-text font-weight-bold col-2 text-center ">Herbs/spices</span> -->
+                                   <!-- </div>   
+                                 
+                                   <div class="row mb-2">
+                                    
+                                      <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dark-greens-1" list="dk">
+                                      <datalist id="dk">
+                                  <option value="Spinach 0.5 cup">
+                                    <option value="Spinach 1.0 cup">
+                                  <option value="Broccoli 0.5 cup">
+                                    <option value="Broccoli 0.5 cup">
+                                  <option value="Kale 0.5 cup">
+                                    <option value="Kale 0.5 cup">
+                                  <option value="Collards 0.5 cup">
+                                    <option value="Collards 1.0 cup">
+                                  <option value="Bok choy 0.5 cup">
+                                    <option value="Bok choy 1.0 cup">
+                                      <option value="Romain lettuce 0.5 cup">
+                                        <option value="Romain lettuce 1.0 cup">
+                                          <option value="Cilantro 0.125 cup">
+                                            <option value="Methi leaf 0.5 cup">
+                                              <option value="Parsley 0.5 cup">
+                                                <option value="Asparagus 0.5 cup">
+                                                  <option value="Avocado 0.25 cup">
+                                                    <option value="Avocado 0.5 cup">
+                                       </datalist>   -->
+                                     
+                                       <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Red/Orange-1" list="ro">
+                                       <datalist id="ro">
+                                   <option value="Red bellpepper 0.5 cup">
+                                     <option value="Orange bellpepper 0.5 cup">
+                                   <option value="Pumpkin 0.5 cup">
+                                     <option value="Broccoli 0.5 cup">
+                                   <option value="Sweet potatoes 0.5 cup">
+                                     <option value="Carrots 0.5 cup">
+                                   <option value="Tomatoes 0.5 cup">
+                                     <option value="Tomatoes 1.0 cup">
+                                   <option value="Butternut squash 0.5 cup">
+                                     <option value="Acorn squash 0.5 cup">
+                                      
+                                        </datalist>     -->
+                                      <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Other veg-1" list="ov">
+                                      <datalist id="ov">
+                                  <option value="Avocado 0.25 cup">
+                                    <option value="Avocado 0.5 cup">
+                                    <option value="Beets 0.25 cup">
+                                  <option value="Beets 0.5 cup">
+                                    <option value="Asparagus 0.5 cup">
+                                  <option value="Cauliflower 0.5 cup">
+                                    <option value="Mushrooms 0.5 cup">
+                                  <option value="Tomatillo 0.5 cup">
+                                    <option value="Green beans 0.5 cup">
+                                  <option value="Green peas 0.25 cup">
+                                   
+                                     
+                                       </datalist>     -->
+                    
+                                       <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Fruits/Berries" list="fr">
+                                       <datalist id="fr">
+                                   <option value="Apple 1 small">
+                                     <option value="Banana 1 large">
+                                   <option value="Grapes 0.5 cup">
+                                     <option value="Mango 0.5 cup">
+                                   <option value="Peach 0.5 cup">
+                                    <option value="Pear 0.5 cup">
+                                     <option value="Orange 0.5">
+                                   <option value="Papaya 0.5 cup">
+                                     <option value="Pineapple 0.5 cup ">
+                                   <option value="Watermelon 0.5 cup">
+                                     <option value="Kiwi 0.5 cup">
+                                      <option value="Fruit juice 0.5 cup">
+                                        </datalist>   
+                    
+                    
+                    
+                    
+                    
+                                      <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Protein-1" list="pr">
+                                      <datalist id="pr">
+                                  <option value="Meat 1 oz">
+                                    <option value="Mushroom 0.5 cup">
+                                    <option value="Poultry 1 oz">
+                                    <option value="Fish 1 oz">
+                                  <option value="Blackbeans 0.25 cup">
+                                    <option value="Pintobeans 0.25 cup">
+                                  <option value="Kidney beans  0.25 cup">
+                                    <option value="Lentils 0.25 cup">
+                                    <option value="1 egg">
+                                  <option value="Almonds 10 whole">
+                                    <option value="Sunflower seeds 1.5 tblspn">
+                                  <option value="Cashews 1.5 tblspn">
+                                    <option value="Tofu 0.25 cup">
+                                      <option value="Peanut butter 1 tblspn">
+                                   
+                                     
+                                       </datalist>     
+                                       <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Grains-1"  list="gr">
+                                       <datalist id="gr">
+                                   <option value="Break 1 slice">
+                                     <option value="Ready-to-eat cereal 1 cup">
+                                     <option value="Cooked rice 0.5 cup">
+                                   <option value="Bagel 2 inch">
+                                     <option value="Barley 0.5 cup">
+                                   <option value="Chapatti 1 small">
+                                     <option value="Chapatti 0.5 large">
+                                     <option value="Pancake 1 small">
+                                   <option value="Tortilla 1 small">
+                                     <option value="Corn tortilla 1 small">
+                                    
+                                      
+                                        </datalist>      
+                                      <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dairy-1" list="dr">
+                                      <datalist id="dr">
+                                  <option value="Milk 1 cup">
+                                    <option value="Soy milk 1 cup">
+                                    <option value="Yogurt 1 cup">
+                                      <option value="Shredded cheese 0.3 cup">
+                                  <option value="Cheddar cheese 1.5 oz">
+                                    <option value="Swiss cheese 1.5 oz">
+                                      <option value="Parmesan cheese 1.5 oz">
+                                        <option value="Mozzarella 1.5 oz">
+                                          <option value="Ricotta cheese 0.5 cup">
+                                            <option value="Cottage cheese 2 cup">
+                                              <option value="Queso fresco 2 oz">
+                                                <option value="Queso blanco 2 slices">
+                               
+                                   
+                                     
+                                       </datalist>       
+                                       <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Herbs/spices-1">  -->
+                                    
+                                      <!-- </div>
+                    
+                                      <div class="row mb-2">
+                                    
+                                        <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dark-greens-2" list="dk">
+                                        <datalist id="dk">
+                                    <option value="Spinach 0.5 cup">
+                                      <option value="Spinach 1.0 cup">
+                                    <option value="Broccoli 0.5 cup">
+                                      <option value="Broccoli 0.5 cup">
+                                    <option value="Kale 0.5 cup">
+                                      <option value="Kale 0.5 cup">
+                                    <option value="Collards 0.5 cup">
+                                      <option value="Collards 1.0 cup">
+                                    <option value="Bok choy 0.5 cup">
+                                      <option value="Bok choy 1.0 cup">
+                                        <option value="Romain lettuce 0.5 cup">
+                                          <option value="Romain lettuce 1.0 cup">
+                                            <option value="Cilantro 0.125 cup">
+                                              <option value="Methi leaf 0.5 cup">
+                                                <option value="Parsley 0.5 cup">
+                                                  <option value="Asparagus 0.5 cup">
+                                                    <option value="Avocado 0.25 cup">
+                                                      <option value="Avocado 0.5 cup">
+                                         </datalist>  
+                                       
+                                         <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Red/Orange-2" list="ro">
+                                         <datalist id="ro">
+                                     <option value="Red bellpepper 0.5 cup">
+                                       <option value="Orange bellpepper 0.5 cup">
+                                     <option value="Pumpkin 0.5 cup">
+                                       <option value="Broccoli 0.5 cup">
+                                     <option value="Sweet potatoes 0.5 cup">
+                                       <option value="Carrots 0.5 cup">
+                                     <option value="Tomatoes 0.5 cup">
+                                       <option value="Tomatoes 1.0 cup">
+                                     <option value="Butternut squash 0.5 cup">
+                                       <option value="Acorn squash 0.5 cup">
+                                        
+                                          </datalist>     -->
+                                        <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Other veg-1" list="ov">
+                                        <datalist id="ov">
+                                    <option value="Avocado 0.25 cup">
+                                      <option value="Avocado 0.5 cup">
+                                      <option value="Beets 0.25 cup">
+                                    <option value="Beets 0.5 cup">
+                                      <option value="Asparagus 0.5 cup">
+                                    <option value="Cauliflower 0.5 cup">
+                                      <option value="Mushrooms 0.5 cup">
+                                    <option value="Tomatillo 0.5 cup">
+                                      <option value="Green beans 0.5 cup">
+                                    <option value="Green peas 0.25 cup">
+                                     
+                                       
+                                         </datalist>     -->
+<!--                       
+                                         <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Fruits/Berries-2" list="fr">
+                                         <datalist id="fr">
+                                     <option value="Apple 1 small">
+                                       <option value="Banana 1 large">
+                                     <option value="Grapes 0.5 cup">
+                                       <option value="Mango 0.5 cup">
+                                     <option value="Peach 0.5 cup">
+                                      <option value="Pear 0.5 cup">
+                                       <option value="Orange 0.5">
+                                     <option value="Papaya 0.5 cup">
+                                       <option value="Pineapple 0.5 cup ">
+                                     <option value="Watermelon 0.5 cup">
+                                       <option value="Kiwi 0.5 cup">
+                                        <option value="Fruit juice 0.5 cup">
+                                          </datalist>   
+                      
+                      
+                       -->
+                      
+<!--                       
+                                        <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Protein-2" list="pr">
+                                        <datalist id="pr">
+                                    <option value="Meat 1 oz">
+                                      <option value="Mushroom 0.5 cup">
+                                      <option value="Poultry 1 oz">
+                                      <option value="Fish 1 oz">
+                                    <option value="Blackbeans 0.25 cup">
+                                      <option value="Pintobeans 0.25 cup">
+                                    <option value="Kidney beans  0.25 cup">
+                                      <option value="Lentils 0.25 cup">
+                                      <option value="1 egg">
+                                    <option value="Almonds 10 whole">
+                                      <option value="Sunflower seeds 1.5 tblspn">
+                                    <option value="Cashews 1.5 tblspn">
+                                      <option value="Tofu 0.25 cup">
+                                        <option value="Peanut butter 1 tblspn"> -->
+                                     
+                                       
+                                         <!-- </datalist>     
+                                         <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Grains-2"  list="gr">
+                                         <datalist id="gr">
+                                     <option value="Break 1 slice">
+                                       <option value="Ready-to-eat cereal 1 cup">
+                                       <option value="Cooked rice 0.5 cup">
+                                     <option value="Bagel 2 inch">
+                                       <option value="Barley 0.5 cup">
+                                     <option value="Chapatti 1 small">
+                                       <option value="Chapatti 0.5 large">
+                                       <option value="Pancake 1 small">
+                                     <option value="Tortilla 1 small">
+                                       <option value="Corn tortilla 1 small"> -->
+                                      
+                                        
+                                          <!-- </datalist>      
+                                        <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Dairy-2" list="dr">
+                                        <datalist id="dr">
+                                    <option value="Milk 1 cup">
+                                      <option value="Soy milk 1 cup">
+                                      <option value="Yogurt 1 cup">
+                                        <option value="Shredded cheese 0.3 cup">
+                                    <option value="Cheddar cheese 1.5 oz">
+                                      <option value="Swiss cheese 1.5 oz">
+                                        <option value="Parmesan cheese 1.5 oz">
+                                          <option value="Mozzarella 1.5 oz">
+                                            <option value="Ricotta cheese 0.5 cup">
+                                              <option value="Cottage cheese 2 cup">
+                                                <option value="Queso fresco 2 oz">
+                                                  <option value="Queso blanco 2 slices">
+                                  -->
+                                     
+                                       
+                                         <!-- </datalist>        -->
+                                        <!-- <input type="text" class="form-control text-center col-2" name="Breakfast"  placeholder="Herbs/spices-1">  -->
+                                      
+                                        <!-- </div> -->
+                           
+                           </div>
+                  
+                 
+                 
+       
+       
+
+
+
+      <br>
+                 
+      <h5 class="text-center mb-2">My weekly fitness choices </h5> 
+
+      <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+        <div class="input-group mb-1">
+            <span class="input-group-text font-weight-bold">Moderate intensity</span>
+            
+            <input type="text" class="form-control text-center" name="Fitness_1" placeholder="Your activity 1" list="fit1">
+            <datalist id="fit1">
+        <option value="Walking">
+        <option value="Jogging">
+        <option value="Elliptic">
+        <option value="Weights">
+        <option value="Biking">
+        <option value="Zumba"> 
+        <option value="Swimming">
+        <option value="Martial_arts">
+        <option value="Bootcamp">
+        <option value="Games">
+        <option value="Pilates">
+        <option value="Yoga">
+        <option value="Breathing">
+        <option value="Mindfulness">
+        
+             </datalist> 
+             </div> 
+
+      <div class="input-group mb-1 ">
+        <span class="input-group-text text-center font-weight-bold">Rigorous intensity</span>
+   
+        <input type="text3" class="form-control text-center" name="Fitness_1" placeholder="Your activity 2"  list="fit1">
+            <datalist id="fit1">
+        <option value="Walking">
+        <option value="Jogging">
+        <option value="Elliptic">
+        <option value="Weights">
+        <option value="Biking">
+        <option value="Zumba"> 
+        <option value="Swimming">
+        <option value="Martial_arts">
+        <option value="Bootcamp">
+        <option value="Games">
+        <option value="Pilates">
+        <option value="Yoga">
+        <option value="Breathing">
+        <option value="Mindfulness">
+        
+             </datalist> 
+            
+            </div>   
+            
+</div>
+<br>
+<h5 class="text-center mb-2">My daily habit log</h5> 
+
+<div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+  <div class="input-group mb-1">
+      <span class="input-group-text font-weight-bold">Habit 1</span>
+      
+      <input type="text" class="form-control text-center" name="Habit_1" placeholder="Your habit 1"
+
+      list="habit1">
+      <datalist id="habit1">
+        <option value="Daily - Stretches, light weights">
+          <option value="Daily - Healthy breakfast">
+          <option value="Daily - Healthy lunch">
+          <option value="Daily - Clean kitchen before bed ">
+          <option value="Daily - Floss after brush">
+          <option value="Daily - 5 to 8 cups water"> 
+          <option value="Daily - Note daily savings">
+            <option value="Weekend - Laundry">
+              <option value="Weekend - House cleaning">
+                <option value="Weekend - Clean car(s)">
+                  <option value="Weekend - Engage with a book/podcast">
+                    <option value="Weekend - Meet friends/family, cookout">
+                      <option value="Weekend - Yoga/Mindful">
+                        <option value="Weekend - Shopping">
+                      <option value="Weekend - Weekend savings">
+  
+       </datalist> 
+       </div> 
+
+<div class="input-group mb-1 ">
+  <span class="input-group-text text-center font-weight-bold">Habit 2</span>
+
+  <input type="text3" class="form-control text-center" name="Habit_2" placeholder="Your habit 2"  list="habit1">
+      <datalist id="habit1">
+        <option value="Daily - Stretches, light weights">
+          <option value="Daily - Healthy breakfast">
+          <option value="Daily - Healthy lunch">
+          <option value="Daily - Clean kitchen before bed ">
+          <option value="Daily - Floss after brush">
+          <option value="Daily - 5 to 8 cups water"> 
+          <option value="Daily - Note daily savings">
+            <option value="Weekend - Laundry">
+              <option value="Weekend - House cleaning">
+                <option value="Weekend - Clean car(s)">
+                  <option value="Weekend - Engage with a book/podcast">
+                    <option value="Weekend - Meet friends/family, cookout">
+                      <option value="Weekend - Yoga/Mindful">
+                        <option value="Weekend - Shopping">
+                      <option value="Weekend - Weekend savings">
+  
+       </datalist> 
+      
+      </div>  
+
+      <div class="input-group mb-1 ">
+        <span class="input-group-text text-center font-weight-bold">Habit 3</span>
+      
+        <input type="text3" class="form-control text-center" name="Habit_3" placeholder="Your habit 3"  list="habit1">
+        
+        <datalist id="habit1">
+          <option value="Daily - Stretches, light weights">
+            <option value="Daily - Healthy breakfast">
+            <option value="Daily - Healthy lunch">
+            <option value="Daily - Clean kitchen before bed ">
+            <option value="Daily - Floss after brush">
+            <option value="Daily - 5 to 8 cups water"> 
+            <option value="Daily - Note daily savings">
+              <option value="Weekend - Laundry">
+                <option value="Weekend - House cleaning">
+                  <option value="Weekend - Clean car(s)">
+                    <option value="Weekend - Engage with a book/podcast">
+                      <option value="Weekend - Meet friends/family, cookout">
+                        <option value="Weekend - Yoga/Mindful">
+                          <option value="Weekend - Shopping">
+                        <option value="Weekend - Weekend savings">
+  
+        
+             </datalist> 
+            
+            </div>  
+
+            <div class="input-group mb-1 ">
+              <span class="input-group-text text-center font-weight-bold">Habit 4</span>
+            
+              <input type="text3" class="form-control text-center" name="Habit_4" placeholder="Your habit 4"  list="habit1">
+                  <datalist id="habit1">
+                    <option value="Daily - Stretches, light weights">
+                      <option value="Daily - Healthy breakfast">
+                      <option value="Daily - Healthy lunch">
+                      <option value="Daily - Clean kitchen before bed ">
+                      <option value="Daily - Floss after brush">
+                      <option value="Daily - 5 to 8 cups water"> 
+                      <option value="Daily - Note daily savings">
+                        <option value="Weekend - Laundry">
+                          <option value="Weekend - House cleaning">
+                            <option value="Weekend - Clean car(s)">
+                              <option value="Weekend - Engage with a book/podcast">
+                                <option value="Weekend - Meet friends/family, cookout">
+                                  <option value="Weekend - Yoga/Mindful">
+                                    <option value="Weekend - Shopping">
+                                  <option value="Weekend - Weekend savings">
+              
+                   </datalist> 
+                  
+                  </div>  
+
+                  <div class="input-group mb-1 ">
+                    <span class="input-group-text text-center font-weight-bold">Habit 5</span>
+                  
+                    <input type="text3" class="form-control text-center" name="Habit_5" placeholder="Your habit 5"  list="habit1">
+                        <datalist id="habit1">
+                          <option value="Daily - Stretches, light weights">
+                            <option value="Daily - Healthy breakfast">
+                            <option value="Daily - Healthy lunch">
+                            <option value="Daily - Clean kitchen before bed ">
+                            <option value="Daily - Floss after brush">
+                            <option value="Daily - 5 to 8 cups water"> 
+                            <option value="Daily - Note daily savings">
+                              <option value="Weekend - Laundry">
+                                <option value="Weekend - House cleaning">
+                                  <option value="Weekend - Clean car(s)">
+                                    <option value="Weekend - Engage with a book/podcast">
+                                      <option value="Weekend - Meet friends/family, cookout">
+                                        <option value="Weekend - Yoga/Mindful">
+                                          <option value="Weekend - Shopping">
+                                        <option value="Weekend - Weekend savings">
+
+                    
+                    
+                         </datalist> 
+                        
+                        </div>  
+                        </div>
+                        <br>
+
+<div class="button-group text-center mx-auto nowrap">
+<div >
+  <a href="/landing"><button class="btn btn-warning" name="home" type="button">Home</button></a>
+</div>   
+      
+
+<div >
+  <a href="/landing"><button name="savecontinue" class=" btn btn-success " type="submit">Save & Continue</button></a>
+</div>
+
+<div class=" gap-2 ">
+  
+  <a href="/landing"><button class="btn btn-primary " type="button">Next</button></a>
+  </div> 
+
+
+<div class=" mb-1 ">
+  <a href="/logout" class="btn btn-dark ">Logout</a>
+  </div>
+
+</div>
+</div>
+</div>
+<br>
+        </form>
+
+
+        {% endblock content %}

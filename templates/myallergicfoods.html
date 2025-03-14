@@ -1,0 +1,385 @@
+{% extends 'base.html' %}
+{% block title %}Allergic-foods{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }   
+
+
+.container-fluid { height:100%;width:100%; padding-left:0px; padding-right:0px; max-width:none;   overflow-x: hidden;
+   }
+/* .form-check-label{font-size:28px;  color:rgb(10, 56, 141)} */
+/* .form-check{color:darkgreen; scale:2rem;} */
+.form-check-label{font-size:20px; scale:3rem;  margin-bottom: 1px; margin-left: 28px; margin-right:0px;  }
+
+.input-group {width:100%; margin-left: 0px;}
+
+.form-container { width: 280px; padding:8px; border-radius:20px;  background-color: rgb(166, 184, 161);}
+.form-container2 { width: 280px; padding:8px; border-radius:20px;  background-color: rgb(185, 202, 240);}
+.form-container3 { width: 300px; padding:12px;  border-radius:20px;  background-color: rgb(233, 178, 178);}
+
+  .checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.0;
+ margin-top:5px;  
+ margin-right: 50px;
+ margin-left: 0px;
+ margin-bottom: 0px;
+ border-width: 0.5px;
+ align-content: center;
+  
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 5px;
+    font-size:11px;
+    margin-left: -35px;
+    align-content:center;
+    width:180px;
+    
+ } 
+
+.btn {font-size:13px; margin-right:20px;}
+.button-group { 
+  display:inline-flex; align-items:center; margin-left:15px; padding-left:0px; 
+  justify-content: center; margin-top:10px; position:relative; white-space: nowrap;
+}
+
+.d-inline {margin-left: 5px; margin-right:2px;}
+    
+.logo {align-content: left; margin-left:0px; margin-top:-40px;}  
+  
+.logout{text-align: right; margin-top:10px; margin-right:5px;}   
+
+.input-group-text {font-size:12px !important; width:55px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
+
+.placeholder-label {font-size:8px;}
+.form-control{font-size:11px;}
+.ital2{font-size:14px;  margin-left:15px;}  
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+  
+                <!-- <div class=logout>
+                  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="text-end" alt="Veggies"></button></a>
+                 
+                  </div>      -->
+               
+    <div class="container-fluid  text-center no-border mx-auto ">
+   
+      <h6 class="text-center mt-4 mb-4" >My Allergic food, Foods to avoid  & substitutes  </h6>
+
+      <div class="form-container3 mx-auto form-check   text-center border" >
+
+        <!-- <option value="Kidney stone risk">
+          <option value="On blood thinner meds">
+        <option value="Inflammatory bowl">
+        <option value="GERD"> -->
+     
+      <!-- <br>  -->
+      <h6 class="text-center mb-1">Allergic Foods to avoid</h6> 
+<div class="input-group mb-1 ">
+<span class="input-group-text font-weight-bold">Sub-1&nbsp;&nbsp;&nbsp;</span>
+<input type="text" class="form-control text-center" name="allergicFood1" placeholder="Allergic food"list="minor" >  <datalist id="minor">
+<option value="Milk">
+  <option value="Yogurt">
+<option value="Walnuts">
+<option value="Peanuts">
+  <option value="Pecans">
+    <option value="Shellfish">
+    <option value="Eggs">
+      <option value="Soy">
+        <option value="Gluten">
+        </datalist>
+<input type="text" class="form-control text-center" name="Food_substitute_1" placeholder="My substitute" list="mysubs"> <datalist id="mysubs">
+  <option value="Almond Milk">
+    <option value="Oat Milk">
+  <option value="2% Milk">
+  <option value="1% Milk">
+    <option value="Greek Yogurt">
+      <option value="Low fat Yogurt">
+      <option value="Kefir">
+        <option value="Buttermilk">
+          <option value="Cottage Cheese">
+            <option value="Almonds, Cashews">
+                <option value="Seeds - Sunflower, Pumpkin">
+                  <option value= "Avoid">
+                  
+        </datalist>
+</div>    
+     
+<div class="input-group mb-1">
+<span class="input-group-text font-weight-bold">Sub-2&nbsp;&nbsp;&nbsp;</span>
+<input type="text" class="form-control text-center" name="AllergicFood2" placeholder="Allergic food" list="minor" >  <datalist id="minor">
+  <option value="Milk">
+    <option value="Yogurt">
+  <option value="Walnuts">
+  <option value="Peanuts">
+    <option value="Pecans">
+      <option value="Shellfish">
+      <option value="Eggs">
+        <option value="Soy">
+          <option value="Gluten">
+        </datalist>
+<input type="text" class="form-control text-center" name="Food_substitute_2" placeholder="My substitute" list="mysubs"> <datalist id="mysubs">
+  <option value="Milk">
+    <option value="Yogurt">
+  <option value="Walnuts">
+  <option value="Peanuts">
+    <option value="Pecans">
+      <option value="Shellfish">
+      <option value="Eggs">
+        <option value="Soy">
+          <option value="Gluten">
+        </datalist>
+</div> 
+     
+ <div class="input-group mb-1">
+<span class="input-group-text font-weight-bold">Sub-3&nbsp;&nbsp;&nbsp;</span>
+<input type="text" class="form-control text-center" name="AllergicFood3" placeholder="Allergic food" list="minor" >  <datalist id="minor">
+  <option value="Milk">
+    <option value="Yogurt">
+  <option value="Walnuts">
+  <option value="Peanuts">
+    <option value="Pecans">
+      <option value="Shellfish">
+      <option value="Eggs">
+        <option value="Soy">
+          <option value="Gluten">
+        </datalist>
+<input type="text" class="form-control text-center" name="Food_substitute_3" placeholder="My substitute" list="mysubs" >  <datalist id="mysubs">
+  <option value="Almond Milk">
+    <option value="Oat Milk">
+  <option value="2% Milk">
+  <option value="1% Milk">
+    <option value="Greek Yogurt">
+      <option value="Low fat Yogurt">
+      <option value="Kefir">
+        <option value="Buttermilk">
+          <option value="Cottage Cheese">
+        </datalist>
+</div> 
+     
+<div class="input-group mb-1">
+  <span class="input-group-text font-weight-bold">Sub-4&nbsp;&nbsp;&nbsp;</span>
+  <input type="text" class="form-control text-center" name="AllergicFood4" placeholder="Allergic food" list="minor" >  <datalist id="minor">
+    <option value="Milk">
+      <option value="Yogurt">
+    <option value="Walnuts">
+    <option value="Peanuts">
+      <option value="Pecans">
+        <option value="Shellfish">
+        <option value="Eggs">
+          <option value="Soy">
+            <option value="Gluten">
+          </datalist>
+  <input type="text" class="form-control text-center" name="Food_substitute_4" placeholder="My substitute" list="mysubs" >  <datalist id="mysubs">
+    <option value="Almond Milk">
+      <option value="Oat Milk">
+    <option value="2% Milk">
+    <option value="1% Milk">
+      <option value="Greek Yogurt">
+        <option value="Low fat Yogurt">
+        <option value="Kefir">
+          <option value="Buttermilk">
+            <option value="Cottage Cheese">
+          </datalist>
+  </div> 
+
+  <div class="input-group mb-1">
+    <span class="input-group-text font-weight-bold">Sub-5&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" class="form-control text-center" name="AllergicFood5" placeholder="Allergic food" list="minor" >  <datalist id="minor">
+      <option value="Milk">
+        <option value="Yogurt">
+      <option value="Walnuts">
+      <option value="Peanuts">
+        <option value="Pecans">
+          <option value="Shellfish">
+          <option value="Eggs">
+            <option value="Soy">
+              <option value="Gluten">
+            </datalist>
+    <input type="text" class="form-control text-center" name="Food_substitute_5" placeholder="My substitute" list="mysubs" >  <datalist id="mysubs">
+      <option value="Almond Milk">
+        <option value="Oat Milk">
+      <option value="2% Milk">
+      <option value="1% Milk">
+        <option value="Greek Yogurt">
+          <option value="Low fat Yogurt">
+          <option value="Kefir">
+            <option value="Buttermilk">
+              <option value="Cottage Cheese">
+            </datalist>
+    </div> 
+    <h6 class="text-center mb-1">Foods to avoid</h6> 
+    <div class="input-group mb-1">
+      <span class="input-group-text font-weight-bold">Sub-6&nbsp;&nbsp;&nbsp;</span>
+      <input type="text" class="form-control text-center" name="AllergicFood6" placeholder="Food to avoid" list="avoid" >  <datalist id="avoid">
+        <option value="Soy based foods">
+          <option value="Iodine rich foods">
+        <option value="Cruciferous vegetables">
+       
+              </datalist>
+      <!-- <input type="text" class="form-control text-center" name="Food_substitute_6" placeholder="My substitute" list="mysubs" >  <datalist id="mysubs">
+        <option value="Almond Milk">
+          <option value="Oat Milk">
+        <option value="2% Milk">
+        <option value="1% Milk">
+          <option value="Greek Yogurt">
+            <option value="Low fat Yogurt">
+            <option value="Kefir">
+              <option value="Buttermilk">
+                <option value="Cottage Cheese">
+              </datalist> -->
+      </div> 
+
+      <div class="input-group mb-1">
+        <span class="input-group-text font-weight-bold">Sub-7&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" class="form-control text-center" name="AllergicFood7" placeholder="Food to avoid" list="avoid" >  <datalist id="avoid">
+          <option value="Soy based foods">
+            <option value="Iodine rich foods">
+          <option value="Cruciferous vegetables">
+                </datalist>
+        <!-- <input type="text" class="form-control text-center" name="Food_substitute_7" placeholder="My substitute" list="mysubs" >  <datalist id="mysubs">
+          <option value="Almond Milk">
+            <option value="Oat Milk">
+          <option value="2% Milk">
+          <option value="1% Milk">
+            <option value="Greek Yogurt">
+              <option value="Low fat Yogurt">
+              <option value="Kefir">
+                <option value="Buttermilk">
+                  <option value="Cottage Cheese">
+                </datalist> -->
+        </div> 
+
+        <div class="input-group mb-1">
+          <span class="input-group-text font-weight-bold">Sub-8&nbsp;&nbsp;&nbsp;</span>
+          <input style="color:brown" class="form-control text-center" name="AllergicFood8" placeholder="Food to avoid" list="avoid" >  <datalist id="avoid">
+            <option value="Soy based foods">
+              <option value="Iodine rich foods">
+            <option value="Cruciferous vegetables">
+                  </datalist>
+          <!-- <input type="text" class="form-control text-center" name="Food_substitute_8" placeholder="My substitute" list="mysubs" >  <datalist id="mysubs">
+            <option value="Almond Milk">
+              <option value="Oat Milk">
+            <option value="2% Milk">
+            <option value="1% Milk">
+              <option value="Greek Yogurt">
+                <option value="Low fat Yogurt">
+                <option value="Kefir">
+                  <option value="Buttermilk">
+                    <option value="Cottage Cheese">
+                  </datalist> -->
+          </div> 
+
+</div>
+<br>
+<span class="  text-center mt-2   " style="width: 325px; font-size:10px; "  ><b>Allergic foods</b>&nbsp;&nbsp;&nbsp;Milk, Yogurt, Shellfish, Gluten, Peanuts, Walnuts<br></span>  
+<span class="  text-center mt-2   " style="width: 325px; font-size:10px; "  ><b>Foods to avoid</b>&nbsp;&nbsp;&nbsp;Soy based, Cruciferous, Iodine rich foods<br></span>  
+
+       
+        
+   
+    <!-- <div class="form-container mx-auto  text-end checkbox-xl checkbox-primary  border" >
+     {{ form|crispy }}  -->
+             
+     <!-- <div class="form-check text-center checkbox-xl ">
+      <input type="checkbox" class="form-check-input text-start  " id="check1" name="Regular_Milk" value="something" >
+      <label class="form-check-label text-start " for="check1">Avoid Cruciferous vegetables</label>
+      </div>
+
+
+      <div class="form-check text-center checkbox-xl ">
+        <input type="checkbox" class="form-check-input " id="check2" name="Regular_Yogurt" value="something" >
+        <label class="form-check-label text-start" for="checkbox-2">Avoid Soy based foods</label>
+        </div>
+        
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input " id="check3" name="Peanuts" value="something">
+        <label class="form-check-label text-start">Avoid Iodine rich foods</label>
+        </div>
+           
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input ml-1" id="check4" name="Walnuts" value="something" >
+        <label class="form-check-label text-start" for="check1">Avoid Phosphorus rich foods</label>
+        </div>
+        
+</div>   -->
+
+ <br> 
+
+ <!-- <h6 class="text-center mt-4">My food substitutes</h6>
+
+<div class="form-container2 mx-auto form-check text-center checkbox-xl checkbox-primary  border" >
+
+<div class="form-check checkbox-xl">
+  <input type="checkbox" class="form-check-input  " id="check2" name="Lactose_free_Milk" value="something">
+  <label class="form-check-label text-start" for="checkbox-2">Almond,&nbsp;Oat&nbsp;Milk&nbsp;etc</label>
+  </div>
+     
+  <div class="form-check checkbox-xl">
+  <input type="checkbox" class="form-check-input  " id="check1" name="Greek_Yogurt" value="something" >
+  <label class="form-check-label text-start" for="check1">Greek&nbsp;Yogurt&nbsp;or&nbsp;other</label>
+  </div>
+    
+  <div class="form-check checkbox-xl">
+  <input type="checkbox" class="form-check-input  " id="check2" name="Gluten_free_foods" value="something">
+  <label class="form-check-label text-start" for="checkbox-2">Gluten&nbsp;free&nbsp;foods</label>
+  </div>
+        </div>  -->
+
+        <!-- <br>  -->
+        <!-- <h3 class="text-center" >Other food substitutes  <button style="text-decoration:none; border:none; background-color:white;"><sup>?</sup></button></h3> -->
+   
+
+<!-- <h5 class = "ital2 ml-5 mb-1 text-start">
+  <strong>FOOD & drug related:</strong><br>
+&#8226;  Kidney stones risk<br>
+&#8226;  Using blood thinners  <br>  
+&#8226;  Inflammatory bowel<br>  -->
+
+
+<!-- </h5> -->
+ <br> <br> <br><br> <br><br>
+<div class="button-group text-center">
+  <div class="d-inline  ml-2 gap-1 d-md-block span">
+    
+  <a href="/landing"><button class="btn btn-warning btn-sm text-center" type="button">Home</button></a>
+  </div> 
+         
+  <div class="d-inline  gap-2 d-md-block">
+    <a href="/supplements"></a><button class="btn btn-sm btn-success text-center" type="submit" >Save & Continue</button></a>
+    
+  </div>
+
+  <div class="d-inline gap-2 d-md-block span">
+  
+    <a href="/supplements"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+    </div> 
+
+    <div class="text-center   ">
+      <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
+      </div>
+  <br>
+  <!-- <a href="/profile"><button class="btn btn-primary btn-l" type="button">Next</button></a> -->
+  </div> 
+  </div>
+  
+        
+</form>
+
+{% endblock content %}

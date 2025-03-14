@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% block title %}Goals{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+  /* @media only screen and (min-width : 600px) {
+      .container { max-width: 600px;  padding:10px; margin-left: 0px; margin-right: 0px; overflow-x: hidden; background-color: #0080ff;}
+  } */
+  /* @media only screen and (min-width: 400px) {
+      .container {
+        max-width: 100%;
+        max-height:100%;
+        background-color: white;
+        margin: 0;
+        overflow-x: hidden;
+      }
+    }
+  
+  
+  .container-fluid { height:100%;width:100%;}
+  .form-container { width: 360px; padding:10px; border-radius:30px; background-color: rgb(211, 218, 224);}
+  
+  
+  .checkbox-xl .form-check-input {
+   /* top: 1.6rem; */
+   /* scale: 1.0;
+   /* margin-top:8px;   */
+   /* margin-right: 10px; */
+   /* margin-left: 25px; 
+   margin-bottom: 0px;
+  
+  
+   align-content: start;
+   } */
+   
+  /* .checkbox-xl .form-check-label {
+   padding-top: 0px;
+      font-size:13px;
+      /* margin-left: 10px;
+      margin-top:7px;
+      margin-right:10px; */
+      /* margin-right:1px;
+      width:160px;
+      align-content: center;
+   }  */
+  
+   /* .form-control {width:190px; font-size: 12px;}
+   .form-check{font-size: 14px;}
+  
+  .btn {font-size:13px; margin-left:20px;margin-right:20px;}
+  .button-group { 
+    display:inline-flex; align-items:center;  padding:0px; 
+    justify-content: center; margin-top:0px; position:relative; white-space: nowrap;
+  }
+  
+  .d-inline {margin-left: 10px; margin-right:10px;}
+  .input-group-text {font-size: 12px; width:155px;}
+    
+  .logo {align-content: left; margin-left:0px; margin-top:-38px;}  
+      
+  .logout{align-content: right; text-align: right; margin-top:-35px; margin-right:-5px; }    
+  .name{margin-left:10px;}
+  
+  
+  .placeholder{font-size: 12px;} */ 
+
+
+
+  @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+
+.container-fluid { height:100%;width:100%;}
+.form-container { width: 340px; padding:10px; border-radius:30px; background-color: rgb(211, 218, 224);}
+
+
+.checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.0;
+ /* margin-top:8px;   */
+ /* margin-right: 10px; */
+ margin-left: 25px; 
+ margin-bottom: 0px;
+
+
+ align-content: start;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 0px;
+    font-size:13px;
+    /* margin-left: 10px;
+    margin-top:7px;
+    margin-right:10px; */
+    margin-right:1px;
+    width:160px;
+    align-content: center;
+ } 
+
+ .form-control {width:190px; font-size: 12px;}
+ .form-check{font-size: 14px;}
+
+.btn {font-size:13px; margin-left:20px;margin-right:20px;}
+.button-group { 
+  display:inline-flex; align-items:center;  padding:0px; 
+  justify-content: center; margin-top:0px; position:relative; white-space: nowrap;
+}
+
+.d-inline {margin-left: 10px; margin-right:10px;}
+
+.placeholder{font-size: 12px;}
+.ital2{font-size:14px;  margin-left:15px;}  
+.input-group-text {font-size: 12px; width:155px;}
+    
+.logo {align-content: left; margin-left:0px; margin-top:-38px;}  
+    
+.logout{align-content: right; text-align: right; margin-top:-35px; margin-right:-5px; }    
+
+.placeholder{font-size: 12px;}
+.name{margin-left:10px;}
+  
+  </style>
+
+    <form method="POST">
+      {% csrf_token %}
+      <p class="fs-6 text-start name"> {{user.first_name }}</p>
+      <!-- <div class=logo>
+        <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+                <h5> top3health</h5>
+                </div> -->
+                
+    <div class="container-fluid  mx-auto text-center  no-border">
+
+     
+      "{{majorsym.Major1}}"
+       
+        <div class="logout text-end">
+          <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+          
+         </div>
+         <br><br>
+         <h6 class=" text-center ">Major Symptoms - Update</h6>
+ <br> <br>
+         
+    <div class="form-container  mx-auto  text-center border" >
+    <!-- {{ form|crispy }} -->
+
+    <div class="input-group mb-2 input-group-default">
+      <span class="input-group-text font-weight-bold">Major Symptom 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+    <input type="text" name = "Major1" id = "ch1" class="form-control text-center" placeholder="{{majorsym.Major1}}" value="{{majorsym.Major1}}" list="major" >  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis">   
+                  <option value="Muliple Sclerosis(MS)">  
+                 
+              </datalist>
+    
+</div>
+     <div class="input-group mb-2 input-group-default">
+      <span class="input-group-text font-weight-bold">Major Symptom 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+ 
+     <input type="text" name = "Major2" id = "ch1" class="form-control text-center" placeholder="{{majorsym.Major2}}" value="{{majorsym.Major2}}" list="major" >  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis">  
+                  <option value="Muliple Sclerosis(MS)">  
+                  
+              </datalist>
+    
+            </div>
+
+      <div class="input-group mb-2 input-group-default">
+                <span class="input-group-text font-weight-bold">Major Symptom 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+     <input type="text" name = "Major3" id = "ch1" class="form-control text-center" placeholder="{{majorsym.Major3}}" value="{{majorsym.Major3}}" list="major" >  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis"> 
+                  <option value="Muliple Sclerosis(MS)">   
+                  
+              </datalist>
+            </div>
+
+            <br>
+
+<h6 class="text-center font-weight-bold mb-3">Major Symptoms (not covered above)</h6>
+       
+
+
+<div class="mx-auto text-center ">   
+
+<div class="input-group mb-2    input-group-sm">
+<span class="input-group-text font-weight-bold">My Major Symptom 1</span>
+<input type="text" class="form-control  text-center" name="My_Major_Symptom_1" value="{{majorsym.My_Major_Symptom_1}}" placeholder="{{majorsym.My_Major_Symptom_1}}">
+</div>   
+  
+<div class="input-group mb-2 input-group-sm">
+<span class="input-group-text font-weight-bold">My Major Symptom 2</span>
+<input type="text" class="form-control text-center" name="My_Major_Symptom_2"  value="{{majorsym.My_Major_Symptom_2}}" placeholder="{{majorsym.My_Major_Symptom_2}}">
+</div>        
+</div>
+
+</div>
+
+    <br><br><br> <br><br><br> <br><br><br><br>
+
+
+ 
+<br>
+<div class="d-inline mt-3 gap-2 d-md-block">
+    <a href="/landing"><button class="btn btn-primary btn-sm mr-3" type="button">Home</button></a>
+</div> 
+
+<div class="d-inline gap-2 d-md-block">
+    <a href="/settings"><button class="btn btn-warning btn-sm mr-3" type="submit">Update</button></a>
+  <!-- <button class="btn btn-success btn-sm" type="submit" >Update</button> -->
+  </div>
+  
+  <div class="d-inline gap-2 d-md-block ">
+    <a href="/settings"><button class="btn btn-success btn-sm mr-3" type="button">Back</button></a>
+    </div>
+
+</div> 
+       <br>
+  </div> 
+</div>
+    
+        </form>
+
+{% endblock content %}

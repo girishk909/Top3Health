@@ -1,0 +1,1055 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Profile{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+    
+
+.container-fluid {  width:100%;  padding:0px;  margin-left: 20px; margin-right: 0px;  overflow-x: hidden; }
+.form-container { display:block;margin-top:10px; margin-left: 0px; width: 350px; padding:20px;  border-radius:20px; background-color: rgb(182, 199, 195);}
+.form-container2 { display:block;  margin-top:30px;  width: 330px; padding:5px;  border-radius:20px; background-color: rgb(182, 199, 195);}
+::placeholder {
+  font-size:12px; width:170px;border-width: 0px;border:none;border-color: white;
+}
+
+
+.fixed {width:70px; margin-right:8px; padding:0px; }
+.fixed2 {width:205px;  font-size: 15px;text-align: center; border:none; border-color: white;}
+    
+ .top-buffer{
+  margin-top: 40px;
+}
+    
+/* .ml-4 {margin-top:30px; }     */
+              
+.btn {font-size:15px; margin-left: 10px; margin-right: 10px;}
+.button-group { 
+  display:inline-flex;  margin-left:10px; padding-top:10px; 
+  justify-content: space-around; margin-top:0px; position:relative; white-space: nowrap;
+}
+
+.form-check-label{color:rgb(8, 8, 8)}
+.form-check{color:white; scale:2.5rem; font-size:18px; margin-left:10px;}
+.form-check-label{scale:2.8rem; margin-bottom: 2px; margin-left: 0px; margin-right:0px; width:160px;padding-top:18px; padding-bottom:0px;font-size:15px; }
+/* .placeholder-label { font-size:0.4px;} */
+
+/* .form-control {width:1px; font-size:12px; height:28px;} */
+.form-control {margin-right:12px;width:100px; margin-left:-10px;font-size: 12px;}
+
+.checkbox-xl .form-check-input {
+   top: 1.3rem;
+   margin-top:0px;    
+   margin-right: 0.5rem;
+   margin-left:1px;    
+   margin-bottom: 0.5rem;
+      font-size:22px;
+      height: 8px;
+      align-items: center;
+   }
+
+.checkbox-xl .form-check-label {
+   padding-top: 0px;
+      font-size:5px;
+   }
+.form-check-input {
+ top: 1.4rem;
+ scale: 0.9;
+ margin-top:5px;  
+ margin-right: 0px;
+ margin-left: 0px;
+ margin-bottom: 0px;
+ width:4px; 
+ padding-left:0px;
+ padding-right:0px;
+ height: 15px;
+ }
+
+.d-inline {margin-left: 20px; margin-right:65px;}
+    
+.logo {align-content: left; margin-left:0px; margin-top:-38px;}  
+    
+.logout{text-align: right; margin-top:-45px; margin-right:0px;}     
+/* .input-group-text {width:255px;font-size: 13px;  margin-left:25px;text-align: center;} */
+/* .input-group-text2 {font-size: 12px; width:100px;} */
+
+.input-group-text {width:290px;font-size: 15px; padding-left:5px; margin-left:5px;text-align: center;}
+.input-group-text2 {width:100px;font-size: 14px; padding:7px; margin-left:-10px;text-align: center;}
+.controls {font-size:15px;}
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+  <p class="fs-6 text-center"> {{user.first_name }}</p>
+  <div class=logo>
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6>
+    
+     </div>   
+   <div class="logout">
+    <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+    
+   </div>  
+
+    
+    <div class="container-fluid   no-border text-center mx-auto">
+       
+<h6 class="text-center">My fitness activities</h6>
+
+  
+    <div class="form-container  mx-auto text-center border" >
+       
+ 
+       <div class="mx-auto text-center ">   
+
+        <div class="input-group mb-3 input-group-sm">
+        <span class="input-group-text2 fixed font-weight-bold ">Walking</span>
+        <input type="text" name="Walking" class="form-control  text-center" placeholder="Minutes per walk session">
+        </div>   
+              
+        </div>
+
+
+    <div >
+      <div class=" text-center mx-auto">
+
+        <span class=" fixed2 text-center fst-italic ">Please input days for walking</span>
+        <span class="input-group-text mb-2 font-weight-bold">
+       
+          <div >
+            <div class="mr-3 controls" >
+                <label for="viewstats">
+                  &nbsp;&nbsp;Mon&nbsp;&nbsp;
+                </label>
+                <br>
+                <input  type="checkbox" value="MonWalk" name="MonWalk">
+            </div>
+        </div>
+     
+        <div >
+          <div class="controls">
+              <label for="viewstats">
+                  Tue&nbsp;&nbsp;
+              </label>
+              <br>
+              <input type="checkbox" value="TuWalk" name="TuWalk">
+          </div>
+      </div>
+     
+      <div >
+        <div class="controls">
+            <label for="viewstats">
+                Wed&nbsp;&nbsp;
+            </label>
+            <br>
+            <input type="checkbox" value="WedWalk" name="WedWalk">
+        </div>
+    </div>
+  
+    <div >
+      <div class="controls">
+          <label for="viewstats">
+            &nbsp;Thu&nbsp;&nbsp;&nbsp;
+          </label>
+          <br>
+          <input type="checkbox" value="ThuWalk" name="ThuWalk">
+      </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Fri&nbsp;&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="FriWalk" name="FriWalk">
+    </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sat&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SatWalk" name="SatWalk">
+    </div>
+  </div>
+     
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sun&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SunWalk" name="SunWalk">
+    </div>
+  </div>
+    
+    
+   
+  </div>
+  
+  </span>
+
+
+
+      </div>
+
+      <div class="mx-auto text-center ">   
+
+        <div class="input-group mb-2 input-group-sm">
+        <span class="input-group-text2 fixed font-weight-bold ">Jogging</span>
+        <input type="text" name="Jogging" class="form-control  text-center" placeholder="Minutes per jog session">
+        </div>   
+              
+        </div>
+
+
+    <div >
+      <div class=" text-center mx-auto">
+
+        <span class=" fixed2 text-center fst-italic ">Please input days for jogging</span>
+        <span class="input-group-text mb-3 font-weight-bold">
+       
+          <div >
+            <div class="mr-3 controls" >
+                <label for="viewstats">
+                  &nbsp;&nbsp;Mon&nbsp;&nbsp;
+                </label>
+                <br>
+                <input  type="checkbox" value="MonJog" name="MonJog">
+            </div>
+        </div>
+     
+        <div >
+          <div class="controls">
+              <label for="viewstats">
+                  Tue&nbsp;&nbsp;
+              </label>
+              <br>
+              <input type="checkbox" value="TuJog" name="TuJog">
+          </div>
+      </div>
+     
+      <div >
+        <div class="controls">
+            <label for="viewstats">
+                Wed&nbsp;&nbsp;
+            </label>
+            <br>
+            <input type="checkbox" value="WedJog" name="WedJog">
+        </div>
+    </div>
+  
+    <div >
+      <div class="controls">
+          <label for="viewstats">
+            &nbsp;Thu&nbsp;&nbsp;&nbsp;
+          </label>
+          <br>
+          <input type="checkbox" value="ThuJog" name="ThuJog">
+      </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Fri&nbsp;&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="FriJog" name="FriJog">
+    </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sat&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SatJog" name="SatJog">
+    </div>
+  </div>
+     
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sun&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SunJog" name="SunJog">
+    </div>
+  </div>
+    
+    
+   
+  </div>
+  
+  </span>
+
+      </div>
+
+      <div class="mx-auto text-center ">   
+
+        <div class="input-group mb-2 input-group-sm">
+        <span class="input-group-text2 fixed font-weight-bold ">Elliptic</span>
+        <input type="text" name="Elliptic_Machine" class="form-control  text-center" placeholder="Minutes per Elliptic session">
+        </div>   
+              
+        </div>
+
+
+    <div >
+      <div class=" text-center mx-auto">
+
+        <span class=" fixed2 text-center fst-italic ">Please input days for Elliptic Machine</span>
+        <span class="input-group-text mb-3 font-weight-bold">
+       
+          <div >
+            <div class="mr-3 controls" >
+                <label for="viewstats">
+                  &nbsp;&nbsp;Mon&nbsp;&nbsp;
+                </label>
+                <br>
+                <input  type="checkbox" value="MonEli" name="MonEli">
+            </div>
+        </div>
+     
+        <div >
+          <div class="controls">
+              <label for="viewstats">
+                  Tue&nbsp;&nbsp;
+              </label>
+              <br>
+              <input type="checkbox" value="TuEli" name="TuEli">
+          </div>
+      </div>
+     
+      <div >
+        <div class="controls">
+            <label for="viewstats">
+                Wed&nbsp;&nbsp;
+            </label>
+            <br>
+            <input type="checkbox" value="WedEli" name="WedEli">
+        </div>
+    </div>
+  
+    <div >
+      <div class="controls">
+          <label for="viewstats">
+            &nbsp;Thu&nbsp;&nbsp;&nbsp;
+          </label>
+          <br>
+          <input type="checkbox" value="ThuEli" name="ThuEli">
+      </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Fri&nbsp;&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="FriEli" name="FriEli">
+    </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sat&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SatEli" name="SatEli">
+    </div>
+  </div>
+     
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sun&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SunEli" name="SunEli">
+    </div>
+  </div>
+    
+    
+   
+  </div>
+  
+  </span>
+
+      </div>
+
+            <div class="mx-auto text-center ">   
+
+        <div class="input-group mb-2 input-group-sm">
+        <span class="input-group-text2 fixed font-weight-bold ">Weights</span>
+        <input type="text" name="Weight_lifting" class="form-control  text-center" placeholder="Minutes per weights session">
+        </div>   
+              
+        </div>
+
+
+    <div >
+      <div class=" text-center mx-auto">
+
+        <span class=" fixed2 text-center fst-italic ">Please input days for weights</span>
+        <span class="input-group-text mb-3 font-weight-bold">
+       
+          <div >
+            <div class="mr-3 controls" >
+                <label for="viewstats">
+                  &nbsp;&nbsp;Mon&nbsp;&nbsp;
+                </label>
+                <br>
+                <input  type="checkbox" value="MonWei" name="MonWei">
+            </div>
+        </div>
+     
+        <div >
+          <div class="controls">
+              <label for="viewstats">
+                  Tue&nbsp;&nbsp;
+              </label>
+              <br>
+              <input type="checkbox" value="TuWei" name="TuWei">
+          </div>
+      </div>
+     
+      <div >
+        <div class="controls">
+            <label for="viewstats">
+                Wed&nbsp;&nbsp;
+            </label>
+            <br>
+            <input type="checkbox" value="WedWei" name="WedWei">
+        </div>
+    </div>
+  
+    <div >
+      <div class="controls">
+          <label for="viewstats">
+            &nbsp;Thu&nbsp;&nbsp;&nbsp;
+          </label>
+          <br>
+          <input type="checkbox" value="ThuWei" name="ThuWei">
+      </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Fri&nbsp;&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="FriWei" name="FriWei">
+    </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sat&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SatWei" name="SatWei">
+    </div>
+  </div>
+     
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sun&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SunWei" name="SunWei">
+    </div>
+  </div>
+    
+    
+   
+  </div>
+  
+  </span>
+
+
+
+      </div>
+
+      <div class="mx-auto text-center ">   
+
+        <div class="input-group mb-2 input-group-sm">
+        <span class="input-group-text2 fixed font-weight-bold ">Biking</span>
+        <input type="text" name="Biking" class="form-control  text-center" placeholder="Minutes per biking session">
+        </div>   
+              
+        </div>
+
+
+    <div >
+      <div class=" text-center mx-auto">
+
+        <span class=" fixed2 text-center fst-italic ">Please input days for biking</span>
+        <span class="input-group-text mb-3 font-weight-bold">
+       
+          <div >
+            <div class="mr-3 controls" >
+                <label for="viewstats">
+                  &nbsp;&nbsp;Mon&nbsp;&nbsp;
+                </label>
+                <br>
+                <input  type="checkbox" value="MonBike" name="MonBike">
+            </div>
+        </div>
+     
+        <div >
+          <div class="controls">
+              <label for="viewstats">
+                  Tue&nbsp;&nbsp;
+              </label>
+              <br>
+              <input type="checkbox" value="TuBike" name="TuBike">
+          </div>
+      </div>
+     
+      <div >
+        <div class="controls">
+            <label for="viewstats">
+                Wed&nbsp;&nbsp;
+            </label>
+            <br>
+            <input type="checkbox" value="WedBike" name="WedBike">
+        </div>
+    </div>
+  
+    <div >
+      <div class="controls">
+          <label for="viewstats">
+            &nbsp;Thu&nbsp;&nbsp;&nbsp;
+          </label>
+          <br>
+          <input type="checkbox" value="ThuBike" name="ThuBike">
+      </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Fri&nbsp;&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="FriBike" name="FriBike">
+    </div>
+  </div>
+  
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sat&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SatBike" name="SatBike">
+    </div>
+  </div>
+     
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+          &nbsp;Sun&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="SunBike" name="SunBike">
+    </div>
+  </div>
+    
+    
+   
+  </div>
+  
+  </span>
+
+
+
+      </div>
+       
+<div class="mx-auto text-center ">   
+
+  <div class="input-group mb-2 input-group-sm">
+  <span class="input-group-text2 fixed font-weight-bold ">Zumba</span>
+  <input type="text" name="Zumba" class="form-control  text-center" placeholder="Minutes per Zumba session">
+  </div>   
+        
+  </div>
+
+
+<div >
+<div class=" text-center mx-auto">
+
+  <span class=" fixed2 text-center fst-italic ">Please input days for Zumba</span>
+  <span class="input-group-text mb-3 font-weight-bold">
+ 
+    <div >
+      <div class="mr-3 controls" >
+          <label for="viewstats">
+            &nbsp;&nbsp;Mon&nbsp;&nbsp;
+          </label>
+          <br>
+          <input  type="checkbox" value="MonZum" name="MonZum">
+      </div>
+  </div>
+
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+            Tue&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="TuZum" name="TuZum">
+    </div>
+</div>
+
+<div >
+  <div class="controls">
+      <label for="viewstats">
+          Wed&nbsp;&nbsp;
+      </label>
+      <br>
+      <input type="checkbox" value="WedZum" name="WedZum">
+  </div>
+</div>
+
+<div >
+<div class="controls">
+    <label for="viewstats">
+      &nbsp;Thu&nbsp;&nbsp;&nbsp;
+    </label>
+    <br>
+    <input type="checkbox" value="ThuZum" name="ThuZum">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Fri&nbsp;&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="FriZum" name="FriZum">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Sat&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="SatZum" name="SatZum">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Sun&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="SunZum" name="SunZum">
+</div>
+</div>
+
+
+
+</div>
+
+</span>
+
+
+
+</div>
+
+<div class="mx-auto text-center ">   
+
+  <div class="input-group mb-2 input-group-sm">
+  <span class="input-group-text2 fixed font-weight-bold ">Swimming</span>
+  <input type="text" name="Swimming" class="form-control  text-center" placeholder="Minutes per swim session">
+  </div>   
+        
+  </div>
+
+
+<div >
+<div class=" text-center mx-auto">
+
+  <span class=" fixed2 text-center fst-italic ">Please input days for swimming</span>
+  <span class="input-group-text mb-3 font-weight-bold">
+ 
+    <div >
+      <div class="mr-3 controls" >
+          <label for="viewstats">
+            &nbsp;&nbsp;Mon&nbsp;&nbsp;
+          </label>
+          <br>
+          <input  type="checkbox" value="MonSwim" name="MonSwim">
+      </div>
+  </div>
+
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+            Tue&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="TuSwim" name="TuSwim">
+    </div>
+</div>
+
+<div >
+  <div class="controls">
+      <label for="viewstats">
+          Wed&nbsp;&nbsp;
+      </label>
+      <br>
+      <input type="checkbox" value="WedSwim" name="WedSwim">
+  </div>
+</div>
+
+<div >
+<div class="controls">
+    <label for="viewstats">
+      &nbsp;Thu&nbsp;&nbsp;&nbsp;
+    </label>
+    <br>
+    <input type="checkbox" value="ThuSwim" name="ThuSwim">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Fri&nbsp;&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="FriSwim" name="FriSwim">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Sat&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="SatSwim" name="SatSwim">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Sun&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="SunSwim" name="SunSwim">
+</div>
+</div>
+
+
+
+</div>
+
+</span>
+
+
+
+</div>
+
+<!-- <div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-3 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Bootcamp</span>
+<input type="text" name = "Bootcamp" id = "ch1" class="form-control"placeholder="minutes" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-3 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Bootcamp / week</span>
+<input type="text" name = "Bootcamp_sessions_per_week" class="form-control"  placeholder="Bootcamp frequency  ">
+ </div>  
+</div>
+</div> -->
+
+<!-- <div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-3 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Tai-chi</span>
+<input type="text" name = "Tai-chi" id = "ch1" class="form-control"placeholder="minutes" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-3 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Tai-chi / week</span>
+<input type="text" name = "Taichi_sessions_per_week" class="form-control"  placeholder="Taichi frequency  ">
+ </div>  
+</div>
+</div> -->
+
+<!-- <div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-3 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Sports</span>
+<input type="text" name = "Sports" id = "ch1" class="form-control"placeholder="minutes" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-3 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Sports / week</span>
+<input type="text" name = "Sports_sessions_per_week" class="form-control"  placeholder="Sports frequency  ">
+ </div>  
+</div>
+</div> -->
+
+<!-- <div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-3 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Pilates</span>
+<input type="text" name = "Pilates" id = "ch1" class="form-control"placeholder="minutes" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-3 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Pilates / week</span>
+<input type="text" name = "Pilates_sessions_per_week" class="form-control"  placeholder="Pilates frequency  ">
+ </div>  
+</div>
+</div> -->
+
+<div class="mx-auto text-center ">   
+
+  <div class="input-group mb-2 input-group-sm">
+  <span class="input-group-text2 fixed font-weight-bold ">Martial&nbsp;Arts</span>
+  <input type="text" name="Martial-arts" class="form-control  text-center" placeholder="Minutes per MA session">
+  </div>   
+        
+  </div>
+
+
+
+<div class=" text-center mx-auto">
+
+  <span class=" fixed2 text-center fst-italic ">Please input days for Martial-arts</span>
+  <span class="input-group-text mb-3 font-weight-bold">
+ 
+    <div >
+      <div class="mr-1 controls" >
+          <label for="viewstats">
+            &nbsp;&nbsp;Mon&nbsp;&nbsp;
+          </label>
+          <br>
+          <input  type="checkbox" value="MonMA" name="MonMA">
+      </div>
+  </div>
+
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+            Tue&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="TuMA" name="TuMA">
+    </div>
+</div>
+
+<div >
+  <div class="controls">
+      <label for="viewstats">
+          Wed&nbsp;&nbsp;
+      </label>
+      <br>
+      <input type="checkbox" value="WedMA" name="WedMA">
+  </div>
+</div>
+
+<div >
+<div class="controls">
+    <label for="viewstats">
+      &nbsp;Thu&nbsp;&nbsp;&nbsp;
+    </label>
+    <br>
+    <input type="checkbox" value="ThuMA" name="ThuMA">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Fri&nbsp;&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="FriMA" name="FriMA">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Sat&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="SatMA" name="SatMA">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Sun&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="SunMA" name="SunMA">
+</div>
+</div>
+
+</div>
+
+<div class="mx-auto text-center ">   
+
+  <div class="input-group mb-2 input-group-sm">
+  <span class="input-group-text2 fixed font-weight-bold ">Yoga</span>
+  <input type="text" name="Yoga" class="form-control  text-center" placeholder="Minutes per Yoga session">
+  </div>   
+        
+  </div>
+
+
+<div >
+<div class=" text-center mx-auto">
+
+  <span class=" fixed2 text-center fst-italic ">Please input days for Yoga</span>
+  <span class="input-group-text mb-3 font-weight-bold">
+ 
+    <div >
+      <div class="mr-3 controls" >
+          <label for="viewstats">
+            &nbsp;&nbsp;Mon&nbsp;&nbsp;
+          </label>
+          <br>
+          <input  type="checkbox" value="MonYog" name="MonYog">
+      </div>
+  </div>
+
+  <div >
+    <div class="controls">
+        <label for="viewstats">
+            Tue&nbsp;&nbsp;
+        </label>
+        <br>
+        <input type="checkbox" value="TuYog" name="TuYog">
+    </div>
+</div>
+
+<div >
+  <div class="controls">
+      <label for="viewstats">
+          Wed&nbsp;&nbsp;
+      </label>
+      <br>
+      <input type="checkbox" value="WedYog" name="WedYog">
+  </div>
+</div>
+
+<div >
+<div class="controls">
+    <label for="viewstats">
+      &nbsp;Thu&nbsp;&nbsp;&nbsp;
+    </label>
+    <br>
+    <input type="checkbox" value="ThuYog" name="ThuYog">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Fri&nbsp;&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="FriYog" name="FriYog">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Sat&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="SatYog" name="SatYog">
+</div>
+</div>
+
+<div >
+<div class="controls">
+  <label for="viewstats">
+    &nbsp;Sun&nbsp;&nbsp;
+  </label>
+  <br>
+  <input type="checkbox" value="SunYog" name="SunYog">
+</div>
+</div>
+
+</div>
+
+</span>
+
+</div>
+
+</div>
+         
+
+
+   
+    <div class="button-group nowrap mx-auto mr-3 mt-2 text-center">
+      <!-- <div class=" d-md-block"> -->
+        <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+      <!-- </div>    -->
+             
+      <!-- <div class="d-inline gap-2 d-md-block"> -->
+        <a href="/myfoodgroups"></a><button class="btn btn-sm btn-success" type="submit" >Save & Continue</button></a>
+      <!-- </div> -->
+
+      <!-- <div class="d-inline gap-2 d-md-block span"> -->
+  
+        <a href="/myfoodgroups"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+        <!-- </div>  -->
+             
+      </div> 
+    
+  
+</div>
+</div>
+</div>
+<br>
+
+        </form>
+
+{% endblock content %}

@@ -1,0 +1,868 @@
+{% extends 'base.html' %}
+{% block title %}Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width : 400px) {
+    .container { max-width: 500px; padding:0px; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}    
+
+/* .form-container :: {font-size:20px; font-family: sans-serif;} */
+
+.form-check-label{color:rgb(10, 56, 141)}
+.form-check{color:darkgreen; scale:1.6rem;}
+.form-check-label{scale:3rem; font-size:10px; margin-bottom: 0px; margin-left: 0px; padding-top:0px;}
+
+
+::placeholder {
+  color: green;
+  font-size:12px;
+}
+.container-fluid { width:100%; overflow-x: hidden;  max-width:none;}
+.inputfield {
+  
+  height: 60px;
+  font-size: 20px;
+}
+
+/* .container-fluid {   } */
+ /* .checkbox-xl .form-check-input {
+ top: 1.4rem;
+ scale: 1.0;
+ margin-top:26px;    
+ margin-right: 0.9rem;
+ 
+ background-color: #200ae9;
+ border-width: 0px;
+ border: #0080ff;
+ margin-bottom: 2px;
+
+ 
+ } 
+
+.checkbox-xl .form-check-label {
+ padding-top: 16px;
+    font-size:15px;
+    background-color: rgb(243, 239, 239);
+    margin: 0.1rem 1.5rem 0.5rem ;
+ }      */
+
+ .checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 0.8;
+ margin-top:6px;  
+ margin-right: -35px;
+ margin-left: 25px;
+ margin-bottom: 15px;
+ border-width: 0.5px;
+ align-content: left;
+  
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: -10px;
+    font-size:12px;
+    margin-left: 5px;
+    align-content:left;
+    width:160px;
+    margin-top:-50px;
+    color: black;
+    
+ } 
+ .form-container {padding:10px; width:350px;border-radius: 20px; background-color: rgb(165, 201, 240); }
+              
+.btn {font-size:15px; }
+.button-group { 
+  display:inline-flex;    
+  justify-content: space-around; margin-top:20px; position:relative;
+}
+
+.d-inline {margin-left: 20px; margin-right:15px; }
+    
+.logo {align-content: left; margin-left:10px; margin-top:5px;}  
+    
+.logout{text-align: right; margin-top:-50px; margin-right:5px;}      
+    
+
+.input-group-xl {
+    
+    font-size: 16px; 
+}    
+
+.input-group-text {font-size:13px !important; width:105px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
+
+
+</style>
+    
+<form method="POST">
+  {% csrf_token %}
+    
+  <div class=logo>
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6>top3health</h6>
+    
+     </div>   
+   <div class=logout>
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+      <p class="fs-6 text-center"> {{user.first_name }}</p>
+   </div>   
+        
+    <div class="container-fluid  text-center mx-auto  no-border">
+       
+      <h6 class=" text-center">My Cuisines & meal selections</h6>
+
+      <p class="fs-6 text-danger text-center mt-2 font-italic"> Your choices will enable meal suggestions</p>
+
+        <!-- <div class="ml-3 d-inline-block"> -->
+          <!-- <div  class="form-container form-check success-checkbox checkbox-xl ml-6" > -->
+          <!-- <div class="custom-control custom-checkbox custom-checkbox-xl">  -->
+            <!-- <input type="checkbox" class="custom-control-input" id="customCheck2" name="example1">
+            <label class="custom-control-label" for="customCheck2"></label> -->
+            <div class="form-container input-group-xl text-center mx-auto form-check checkbox-xl checkbox-primary  border" >
+
+        <!-- {{ form|crispy}} -->
+
+        <div class="input-group mb-0 input-group-default">
+          <span class="input-group-text font-weight-bold">&nbsp;&nbsp;US Generic&nbsp;&nbsp;<br>Breakfast</span>
+          <br>
+          <input type="text" name = "US_Generic" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+            <option value="Once a day">
+              <option value="2 times per week">
+            <option value="3 times per week">
+            <option value="Once a week">
+              <option value="Once a month">
+            <option value="Rarely">
+                <option value="Avoid">
+                    </datalist>
+           </div>
+
+          
+           <div class="row">
+            
+                <div class="form-check  checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                    <label class="form-check-label text-left">Scrambled Eggs</label>
+                    </div>
+            
+            
+                <div class="form-check checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                    <label class="form-check-label text-left">Pancakes</label>
+                    </div>
+            
+                <div class="form-check  checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                    <label class="form-check-label text-left">Oatmeal with toppings</label>
+                    </div>
+            
+            
+                <div class="form-check checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                    <label class="form-check-label text-left">Bagels with fillings</label>
+                    </div>
+            
+           
+                <div class="form-check  checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                    <label class="form-check-label text-left">Various Omelettes</label>
+                    </div>
+            
+           
+                <div class="form-check checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                    <label class="form-check-label text-left">Boiled Eggs</label>
+                    </div>
+            
+            
+                <div class="form-check  checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                    <label class="form-check-label text-left">Various Smoothies</label>
+                    </div>
+            
+           
+                <div class="form-check checkbox-xl">
+                    <input type="checkbox" class="form-check-input mb-2" id="check2" name="Pancakes" value="something">
+                    <label class="form-check-label text-left">Various Fruit Juices</label>
+                    </div>
+            
+                  
+                </div>
+              
+    <br>
+          <div class="input-group mb-0 input-group-default">
+          <span class="input-group-text font-weight-bold ">&nbsp;&nbsp;US Generic&nbsp;&nbsp;<br>Lunch</span>
+          
+          <input type="text" name = "US_Generic" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+            <option value="Once a day">
+              <option value="2 times per week">
+            <option value="3 times per week">
+            <option value="Once a week">
+              <option value="Once a month">
+            <option value="Rarely">
+                <option value="Avoid">
+                    </datalist>
+           </div>
+           <br>
+           <div class="row">
+                <div class="form-check  checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                    <label class="form-check-label text-left">Various Salads</label>
+                    </div>
+           
+            
+                <div class="form-check checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                    <label class="form-check-label text-left">American Soups</label>
+                    </div>
+           
+          
+
+          
+            
+                <div class="form-check  checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                    <label class="form-check-label text-left">Various Sandwiches</label>
+                    </div>
+            
+           
+                <div class="form-check checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                    <label class="form-check-label text-left">Egg salad Sandwich</label>
+                    </div>
+            
+          
+          
+          
+            
+                <div class="form-check  checkbox-xl">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                    <label class="form-check-label text-left">Various Burgers</label>
+                    </div>
+            
+           
+                <div class="form-check checkbox-xl mb-2">
+                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                    <label class="form-check-label text-left">Various Pizzas</label>
+                    </div>
+           
+                  </div>
+           <div class="input-group mb-0 input-group-default">
+            <span class="input-group-text font-weight-bold">Chinese&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            
+            <input type="text" name = "Burgers" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+              <option value="Once a day">
+                <option value="2 times per week">
+              <option value="3 times per week">
+              <option value="Once a week">
+                <option value="Once a month">
+              <option value="Rarely">
+                  <option value="Avoid">
+                      </datalist>
+             </div>
+<br>
+             <div class="row">
+                
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Stir-fry noodles</label>
+                        </div>
+               
+                
+                    <div class="form-check checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Fried Rice</label>
+                        </div>
+                
+              
+    
+             
+                
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Sweet Sour based dishes</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Hot Sour Soup</label>
+                        </div>
+               
+              
+              
+              
+                
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Egg Drop Soup</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">General Tso's based dishes</label>
+                        </div>
+              
+              
+
+              
+               
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Mongolian based dishes</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Orange sauce based dishes</label>
+                        </div>
+                
+                
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Chinese dumpling</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl mb-2">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Garlic Eggplant Sauce</label>
+                        </div>
+                
+              </div>
+             <div class="input-group mb-0 input-group-default">
+              <span class="input-group-text font-weight-bold">Mexican&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              
+              <input type="text" name = "French_fries" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                <option value="Once a day">
+                  <option value="2 times per week">
+                <option value="3 times per week">
+                <option value="Once a week">
+                  <option value="Once a month">
+                <option value="Rarely">
+                    <option value="Avoid">
+                        </datalist>
+               </div>
+               <br>
+               <div class="row">
+               
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Various Tacos</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Various Enchiladas</label>
+                        </div>
+               
+             
+    
+             
+               
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Fajitas & toppings</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Mexican Rice</label>
+                        </div>
+                
+             
+              
+             
+                
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Migas</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Various Burritos</label>
+                        </div>
+               
+              
+
+             
+               
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Quesadillas</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Burrito Bowl</label>
+                        </div>
+                
+              
+
+
+              
+                
+                    <div class="form-check  checkbox-xl">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                        <label class="form-check-label text-left">Tortilla Soup</label>
+                        </div>
+                
+                
+                    <div class="form-check checkbox-xl mb-2">
+                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                        <label class="form-check-label text-left">Mexican Vegetable Soup</label>
+                        </div>
+                </div>
+              
+               <div class="input-group mb-0 input-group-default">
+                <span class="input-group-text font-weight-bold">Thai&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                
+                <input type="text" name = "Milk_shakes" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                  <option value="Once a day">
+                    <option value="2 times per week">
+                  <option value="3 times per week">
+                  <option value="Once a week">
+                    <option value="Once a month">
+                  <option value="Rarely">
+                      <option value="Avoid">
+                          </datalist>
+                 </div>
+                 <br>
+                 <div class="row">
+                    
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Pad Thai types</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Thai Fried Rice</label>
+                            </div>
+                    
+                 
+                  
+                  
+                    
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Pumpkin Soup</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Spring Rolls</label>
+                            </div>
+                    
+                  
+    
+                  
+                    
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Thai Red Curry</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Tom Yum soup</label>
+                            </div>
+                    
+                 
+    
+    
+                  
+                    
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Tom Kha Soup</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl mb-2">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Pineapple fried Rice</label>
+                            </div>
+                    
+                  
+                          </div>
+
+                 <div class="input-group mb-0 input-group-default">
+                  <span class="input-group-text font-weight-bold">Indian&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  
+                  <input type="text" name = "Soft_drinks" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                    <option value="Once a day">
+                      <option value="2 times per week">
+                    <option value="3 times per week">
+                    <option value="Once a week">
+                      <option value="Once a month">
+                    <option value="Rarely">
+                        <option value="Avoid">
+                            </datalist>
+                   </div>
+                   <br>
+                   <div class="row">
+                    
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Chick peas Curry</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Kidney beans Curry</label>
+                            </div>
+                    
+                  
+                  
+                  
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Veggie Sambar Curry types</label>
+                            </div>
+                   
+                        <div class="form-check checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Tomato Rasam Curry</label>
+                            </div>
+                    
+                  
+    
+                  
+                    
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Aloo Gobi Curry</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Okra Curry</label>
+                            </div>
+                    
+                  
+    
+    
+                 
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Indian Tomato Soup</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Spicy Lemon Rice</label>
+                            </div>
+                    
+                  
+            
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Onion Mushroom Curry</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Pepper Garlic Soup</label>
+                            </div>
+                    
+                        <div class="form-check  checkbox-xl">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                            <label class="form-check-label text-left">Spicy Tamarind Rice</label>
+                            </div>
+                    
+                    
+                        <div class="form-check checkbox-xl mb-2">
+                            <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                            <label class="form-check-label text-left">Veggie Pulao types</label>
+                            </div>
+                    
+                </div>
+                   <div class="input-group mb-0 input-group-default">
+                    <span class="input-group-text font-weight-bold">Italian&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    
+                    <input type="text" name = "Fried_foods" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                      <option value="Once a day">
+                        <option value="2 times per week">
+                      <option value="3 times per week">
+                      <option value="Once a week">
+                        <option value="Once a month">
+                      <option value="Rarely">
+                          <option value="Avoid">
+                              </datalist>
+                     </div>
+                     <br>
+                     <div class="row">
+                            <div class="form-check  checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                <label class="form-check-label text-left">Eggplant Parmesan</label>
+                                </div>
+                        
+                       
+                            <div class="form-check checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                <label class="form-check-label text-left">Minestrone Soup</label>
+                                </div>
+                        
+                      
+                      
+                      
+                            <div class="form-check  checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                <label class="form-check-label text-left">Various Pasta dishes</label>
+                                </div>
+                        
+                            <div class="form-check checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                <label class="form-check-label text-left">Bruschetta</label>
+                                </div>
+                       
+                      
+        
+                     
+                            <div class="form-check  checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                <label class="form-check-label text-left">Alfredo Noodles</label>
+                                </div>
+                       
+                            <div class="form-check checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                <label class="form-check-label text-left">Lasagna</label>
+                                </div>
+                       
+        
+        
+                     
+                            <div class="form-check  checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                <label class="form-check-label text-left">Tortellini Soup</label>
+                                </div>
+                        
+                            <div class="form-check checkbox-xl mb-2">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                <label class="form-check-label text-left">Eggplant Sandwich</label>
+                                </div>
+                        
+</div>
+                     <div class="input-group mb-0 input-group-default">
+                      <span class="input-group-text font-weight-bold">Vietnamese&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      
+                      <input type="text" name = "Potato_chips" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                        <option value="Once a day">
+                          <option value="2 times per week">
+                        <option value="3 times per week">
+                        <option value="Once a week">
+                          <option value="Once a month">
+                        <option value="Rarely">
+                            <option value="Avoid">
+                                </datalist>
+                       </div>
+                       <br>
+                       <div class="row">
+                      
+                            <div class="form-check  checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                <label class="form-check-label text-left">Pho Soup</label>
+                                </div>
+                   
+                            <div class="form-check checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                <label class="form-check-label text-left">Banh-Mi</label>
+                                </div>
+                       
+                      
+                    
+                            <div class="form-check  checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                <label class="form-check-label text-left">Vietnamese Crepes</label>
+                                </div>
+                        
+                            <div class="form-check checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                <label class="form-check-label text-left">Jackfruit smoothie</label>
+                                </div>
+                        
+        
+                      
+                            <div class="form-check  checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                <label class="form-check-label text-left">Avocado smoothie</label>
+                                </div>
+                        
+                            <div class="form-check checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                <label class="form-check-label text-left">Vietnamese Stir Fry Noodles</label>
+                                </div>
+                        
+        
+        
+                     
+                            <div class="form-check  checkbox-xl">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                <label class="form-check-label text-left">Vietnamese Curry Soup</label>
+                                </div>
+                        
+                            <div class="form-check checkbox-xl mb-2">
+                                <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                <label class="form-check-label text-left">Tofu in Tomato Sauce</label>
+                                </div>
+                        
+</div>
+                       <div class="input-group mb-0 input-group-default">
+                        <span class="input-group-text font-weight-bold">Japanese&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        
+                        <input type="text" name = "Frozen_pizza" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                          <option value="Once a day">
+                            <option value="2 times per week">
+                          <option value="3 times per week">
+                          <option value="Once a week">
+                            <option value="Once a month">
+                          <option value="Rarely">
+                              <option value="Avoid">
+                                  </datalist>
+                         </div>
+                         <br>
+                         <div class="row">
+                 
+                                <div class="form-check  checkbox-xl">
+                                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                    <label class="form-check-label text-left">Poke Bowl</label>
+                                    </div>
+                            
+                                <div class="form-check checkbox-xl">
+                                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                    <label class="form-check-label text-left">Ramen noodles</label>
+                                    </div>
+                            
+                          
+                        
+                                <div class="form-check  checkbox-xl">
+                                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                    <label class="form-check-label text-left">Miso Soup</label>
+                                    </div>
+                          
+                                <div class="form-check checkbox-xl">
+                                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                    <label class="form-check-label text-left">Japanese Curry</label>
+                                    </div>
+                           
+            
+                          
+                                <div class="form-check  checkbox-xl ">
+                                    <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                    <label class="form-check-label text-left">Eggplant Donbury</label>
+                                    </div>
+                        
+                                <div class="form-check checkbox-xl mb-2">
+                                    <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                    <label class="form-check-label text-left">Grilled rice balls</label>
+                                    </div>
+                            
+            
+    </div>
+
+                           <div class="input-group mb-0 input-group-default">
+                            <span class="input-group-text font-weight-bold">Mediterranean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            
+                            <input type="text" name = "Pancakes" id = "ch1" class="form-control"placeholder="Daily, Weekly, Monthly, Avoid" list="veg" >  <datalist id="veg">
+                              <option value="Once a day">
+                                <option value="2 times per week">
+                              <option value="3 times per week">
+                              <option value="Once a week">
+                                <option value="Once a month">
+                              <option value="Rarely">
+                                  <option value="Avoid">
+                                      </datalist>
+                             </div>
+                             <br>
+                             <div class="row">
+                                    <div class="form-check  checkbox-xl">
+                                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                        <label class="form-check-label text-left">Bruschetta Tartines</label>
+                                        </div>
+                                
+                                    <div class="form-check checkbox-xl">
+                                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                        <label class="form-check-label text-left">Chickpea Burgers</label>
+                                        </div>
+                              
+                              
+                             
+                                    <div class="form-check  checkbox-xl">
+                                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                        <label class="form-check-label text-left">Quinoa Salad</label>
+                                        </div>
+                              
+                                    <div class="form-check checkbox-xl">
+                                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                        <label class="form-check-label text-left">Caponata</label>
+                                        </div>
+                               
+                
+                             
+                                    <div class="form-check  checkbox-xl">
+                                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                        <label class="form-check-label text-left">Lentil Soup</label>
+                                        </div>
+                                
+                                    <div class="form-check checkbox-xl">
+                                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                        <label class="form-check-label text-left">Falafel types</label>
+                                        </div>
+                                
+                                    <div class="form-check  checkbox-xl">
+                                        <input type="checkbox" class="form-check-input " id="check2" name="Scrambled_eggs" value="something">
+                                        <label class="form-check-label text-left">Stuffed Grape leaves</label>
+                                        </div>
+                               
+                                    <div class="form-check checkbox-xl mb-2">
+                                        <input type="checkbox" class="form-check-input " id="check2" name="Pancakes" value="something">
+                                        <label class="form-check-label text-left">Spanish Potato Omelette</label>
+                                        </div>
+                                
+                            </div>
+      </div>  
+        
+      <div class="button-group mx-auto mb-4 text-center">
+        <div class="d-inline gap-2 d-md-block">
+          <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+        </div>   
+               
+        <div class="d-inline gap-2 d-md-block">
+          <a href="/myeatoutmeals"></a><button class="btn btn-success btn-sm nowrap" type="submit" >Save & Continue</button></a>
+               
+          </div>    
+          
+          <div class="d-inline gap-2 d-md-block span">
+  
+            <a href="/myeatoutmeals"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+            </div> 
+          </div>  
+          <br>
+
+
+<!-- </div> -->
+        
+        <!-- </div> -->
+        </div>
+</form>
+
+{% endblock content %}

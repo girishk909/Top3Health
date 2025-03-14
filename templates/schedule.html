@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+ 
+ 
+<style> 
+  @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }  
+
+::-webkit-calendar-picker-indicator {
+filter: invert(1);
+width: 25px;
+  height: 28px;
+margin-left:-20px;
+}
+
+
+.container-fluid {width:100%; padding-left:0px; padding-right:0px; max-width:none;   overflow-x: hidden;}
+.form-container1 { width: 220px;  padding:15px; border-radius:20px;  background-color: rgb(124, 177, 151);} 
+.form-container2 { width: 220px;  padding:15px; border-radius:20px;  background-color: rgb(187, 204, 236);} 
+  
+.form-check {margin-left:1px; margin-bottom: 9px; font-size:10px;}  
+
+
+.input-group-text { margin-left:0px; font-size: 5px; width:150px;}    
+  
+
+.form-control {font-size: 6px;}
+.input {color: darkgreen; font-size: 20px;}
+
+
+            
+.btn {font-size:13px; margin-left:20px; margin-right:10px;}
+.button-group { 
+display:inline-flex; align-items:left; margin-left:10px; padding-left:10px; 
+justify-content: space-around; margin-top:2px; position:relative;
+}
+
+.d-inline {margin-left: 10px; margin-right:35px;}
+  
+.logo {align-content: left; margin-left:-8px; margin-top:-38px;} 
+ 
+  
+.logout{text-align: right; margin-top:-45px; margin-right:-8px;}    
+.spacing {margin-bottom:40px; margin-top:20px; padding:20px;}
+ .select {
+ font-size: 5px;
+}
+
+.colcustom1 {background-color: #4a613a; font-size:12px;  border-width:0px; padding-right:8px;border-radius: 10px; padding-bottom:2px;padding-top:5px;padding-left:8px;}
+.colcustom2 {background-color: #3a5161; font-size:12px; border-width:0px; padding-right:8px;border-radius: 10px; padding-bottom:2px;padding-top:5px;padding-left:8px;}
+.calendar.popup {
+  max-width: 15%;
+}
+div#cid_4 {
+  width: calc(37% - 14px);
+}
+.calendar-new-month {
+  padding-right: 8%;
+}
+.calendar-new-year {
+  padding-right: 8%;
+}
+ 
+li[data-type="control_datetime"] .icon-liteMode {
+    width: 15px;
+    } 
+</style>
+ 
+  <script>
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  $(function() {
+    $("#datePicker").datetimepicker({
+        defaultDate:'now'       
+    });
+});
+  </script>
+
+ 
+  <title>
+    My weekly schedule
+  </title>  
+    
+  <form method="POST">
+    {% csrf_token %}
+    <p class="fs-6 text-center"> {{user.first_name }}</p>
+      <div class="logo text-start">
+      <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+      <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+      <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+              <h6> top3health</h6>
+      
+       </div>   
+     <div class="logout text-end">
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+     </div>      
+         
+         
+        <!-- {{ form|crispy }} -->
+  
+        <div class="container-fluid   no-border mx-auto text-center background-color:forestgreen">
+          <h6>Meal&nbsp;& Fitness Schedule </h6>
+          
+          <img src="{% static 'css/calendar.png' %}" class =" mb-3" alt="My image"/>  
+          <h6 style="font-size:13px;">Please select dates for meal suggestions</h6>
+          <div class="form-container1 mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+      
+   
+            <div class=  "text-dark " >
+    
+            
+   
+    
+
+<h6 style="font-size:13px;"> Day 1:&nbsp;&nbsp;&nbsp;&nbsp; <input name="Meal_date1"  class="text-white colcustom1 mb-1" value="fsd" id="startdateId" type="date">  </h6>
+
+<h6 style="font-size:13px;">Day 2:&nbsp;&nbsp;&nbsp;&nbsp; <input name="Meal_date2" class="text-white colcustom1 mb-1" type="date"  /></h6>
+
+<h6 style="font-size:13px;">Day 3:&nbsp;&nbsp;&nbsp;&nbsp; <input name="Meal_date3" class="text-white colcustom1" type="date"  /></h6>
+
+</div>
+</div>
+    
+     <br>  
+  
+     <img src="{% static 'css/clipart175336.png' %}" class =" mb-3" alt="My image"/>
+     <h6 style="font-size:13px;">Please select dates for fitness suggestions</h6>
+     <div class="form-container2 mx-auto text-center form-check checkbox-xl checkbox-primary  border" >
+ 
+    
+
+ 
+ 
+    
+   
+   <br>
+  
+<h6 style="font-size:13px;" >Day 1:&nbsp;&nbsp; &nbsp;&nbsp; <input name="Fit_date1" class="text-white colcustom2 mb-1" type="date"  /></h6>
+<h6 style="font-size:13px;">Day 2:&nbsp;&nbsp; &nbsp;&nbsp; <input name="Fit_date2" class="text-white colcustom2 mb-1" type="date"  /></h6>
+<h6 style="font-size:13px;">Day 3:&nbsp;&nbsp; &nbsp;&nbsp; <input name="Fit_date3" class="text-white colcustom2" type="date"  /></h6>
+
+  
+          </div>
+        
+<br>
+<div class="button-group ml-4 nowrap">
+  <div class="d-inline gap-2 d-md-block">
+    <a href="/landing"><button class="btn btn-warning btn-sm nowrap" type="button">Home</button></a>
+  </div>   
+         
+  <div class="d-inline gap-2 mb-1 d-md-block">
+    <a href="/landing"></a><button class="btn btn-sm btn-success no-wrap" type="submit" 
+    
+     >Save & Continue</button></a>
+  </div>
+  
+  </div>
+  
+
+<br>
+</form>
+{% endblock content %}

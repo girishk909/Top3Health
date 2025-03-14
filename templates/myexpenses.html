@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block title %}Minor Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      padding:0px;
+      overflow-x: hidden;
+    }
+  }
+
+
+
+.container-fluid { width:100%; padding:0px; overflow:hidden;}
+.form-container { width: 355px; padding:5px;border-radius:10px; background-color: rgb(211, 218, 224);}
+.form-container2 { width: 355px; padding:5px;border-radius:10px; background-color: rgb(212, 224, 211);}
+
+
+.checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.0;
+ margin-top:8px;  
+ margin-right: 0px;
+ margin-left: 30px;
+ margin-bottom: 0px;
+ padding-top:10px;
+ align-content: center;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 0px;
+    font-size:0px;
+    margin-left: 0px;
+    margin-top:7px;
+    margin-right:0px;
+    width:150px;
+    align-content: center;
+ } 
+
+ .form-control {width:15px; font-size:10px;  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
+ 
+
+.btn {font-size:13px; margin-left:10px; margin-right:10px;}
+.button-group { 
+  display:inline-flex;   padding:0px; 
+  justify-content: center; margin-top:20px;  white-space: nowrap;
+}
+
+
+.input-group-text {width:110px; font-size:10px;}
+.input-group {width:343px; font-size: 18px;}
+    
+.logo {align-content: left; margin-left:-8px; margin-top:-25px;}  
+    
+.logout{align-content: right; text-align: right; margin-top:5px; margin-right:8px; }    
+
+.placeholder {font-size:2px;}
+
+
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+      <!-- <p class="fs-6 text-center"> {{user.first_name }}</p> -->
+
+      <!-- <div class="logout text-end">
+        <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+      
+       </div> -->
+     
+      <!-- <div class="logo text-start">
+        <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+                <h6> top3health</h6>
+               
+                </div> -->
+
+      <div class="container-fluid   mx-auto text-center  no-border">
+ 
+        <nav aria-label="Page navigation example">
+          <ul style="font-size:10px; " class="pagination justify-content-center mt-2 ">
+            <li style="font-size:10px;"class="page-item"><a class="page-link disabled" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/minorsym">Symptoms</a></li>
+            <li style="font-size:10px;" class="page-item" ><a class="page-link disabled" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myfitness">Fitness</a></li>
+            <li style="font-size:10px;" class="page-item " ><a class="page-link disabled" style="font-size: 10px;padding-left:10px;padding-right:10px; padding-top:5px; padding-bottom:5px;" href="/myfoodgroups">Foodgroups</a></li>
+            <li style="font-size:10px;"class="page-item"><a class="page-link disabled" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/mybreakfastdesign">Meals</a></li>
+            <li style="font-size:10px;"class="page-item"><a class="page-link disabled" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/mysupplements">Supplements</a></li>
+            <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myhabits">Habits</a></li>
+            <li style="font-size:10px;"class="page-item active"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myexpenses">Expenses</a></li>
+            
+           
+            
+            
+          </ul>
+        </nav>
+        
+ <br>
+        
+        <h6 class=" mx-auto text-center mb-3">Weekly food and misc. expenses</h6>
+
+
+       
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container  mx-auto  text-center  border" >
+    <!-- {{ form|crispy }} -->
+                    
+
+  <div class="input-group mb-1 ">
+ 
+    <span class="input-group-text font-weight-bold">Weekly <br> expenses</span>
+   
+    <input type="text" class="form-control font-weight-bold text-center fw-bold" readonly=readonly  placeholder="Family members"> 
+   
+   <input type="text" class="form-control font-weight-bold text-center fw-bold" readonly=readonly placeholder="Weekly cost" > 
+      
+    </div>    
+
+<div class="input-group mb-1 ">
+ 
+    <span class="input-group-text font-weight-bold ">Eat out<br>Lunch & <br>Dinner</span>
+    <input type="text" class="form-control text-center"  name="family_eatout_count" placeholder="# family members" >
+    
+    <input type="text" class="form-control text-center" name="weekly_eatout_cost" placeholder="Eat-out cost">
+   
+      
+    </div>  
+          
+     <div class="input-group mb-1">
+    <span class="input-group-text font-weight-bold">Food related<br>Groceries&nbsp;&nbsp;</span>
+    <input type="text" class="form-control text-center" name="family_grocery_count" placeholder="# family members">
+    <input type="text" class="form-control text-center" name="weekly_grocery_cost" placeholder="Groceries cost">
+     </div> 
+          
+      <div class="input-group mb-1">
+    <span class="input-group-text font-weight-bold">Smoking,Alcohol,<br>Hot/cold drinks</span>
+    <input type="text" class="form-control text-center" name="Misc_expense_member" placeholder="# family members">
+    <input type="text" class="form-control text-center" name="Misc_expenses" placeholder="Misc expenses">
+   
+     </div> 
+              
+   </div>
+<br>
+<h6 class="mx-auto text-center mx-auto mb-3">Monthly medical & gym expenses</h6>
+<div class="form-container2 mx-auto form-check   text-center border" >
+
+  <div class="input-group mb-1 ">
+ 
+    <span class="input-group-text font-weight-bold  ">Monthly <br>expenses</span>
+    <!-- <input type="text" class="form-control text-center"  name="family_eatout_count"  > -->
+    <input type="text" class="form-control font-weight-bold text-center fw-bold " readonly=readonly  placeholder="Family members">  
+    <!-- <input type="text" class="form-control text-center" name="weekly_eatout_cost"> -->
+   <input type="text" class="form-control font-weight-bold text-center fw-bold" readonly=readonly placeholder="Monthly Cost" > 
+      
+    </div>  
+
+    <div class="input-group mb-1">
+        <span class="input-group-text font-weight-bold">Health<br>Premiums</span>
+        <input type="text" class="form-control text-center" name="family_premium_count" placeholder="# family members">
+        <input type="text" class="form-control text-center" name="insurance_premium" placeholder="Premium cost">
+        
+         </div>    
+              
+         <div class="input-group mb-1 ">
+        <span class="input-group-text font-weight-bold">Doctor's office</span>
+        <input type="text" class="form-control text-center" name="members_for_office_visit" placeholder="# family members">
+        <input type="text" class="form-control text-center" name="office_visit_cost" placeholder="Office visit cost">
+        
+         </div> 
+              
+          <div class="input-group mb-1 ">
+        <span class="input-group-text text-left font-weight-bold">Meds,Supplements</span>
+        <input type="text" class="form-control text-center" name="members_for_prescriptions" placeholder="# family members">
+        <input type="text" class="form-control text-center" name="prescription_cost" placeholder="Meds,Sup cost">
+        
+         </div> 
+
+         <div class="input-group mb-1 ">
+          <span class="input-group-text text-left font-weight-bold">Out of pocket<br>medical<br></span>
+          <input type="text" class="form-control text-center" name="members_for_oop" placeholder="# family members">
+          <input type="text" class="form-control text-center" name="oop_cost" placeholder="OOP cost">
+          
+           </div> 
+
+           <div class="input-group ">
+            <span class="input-group-text text-left font-weight-bold">Gym<br> membership</span>
+            <input type="text" class="form-control text-center" name="members_for_gym" placeholder="# family members">
+            <input type="text" class="form-control text-center" name="gym_cost" placeholder="Gym cost">
+            
+             </div> 
+                   
+</div>
+
+
+<div class="button-group text-center mb-3 mx-auto">
+  <!-- <div >
+    
+  <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+  </div>  -->
+         
+  <div >
+    <a href="/beginpage"></a><button class="btn btn-success btn-sm" type="submit" >Save & Continue</button></a>
+    
+  </div>
+
+
+<!-- <div class="text-center   ">
+  <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
+  </div> -->
+
+  <!-- <div >
+  
+    <a href="/landing"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+    </div>  -->
+
+  </div>
+  </div> 
+
+ 
+
+        </form>
+       
+{% endblock content %}

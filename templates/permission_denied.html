@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+ 
+ @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+@media only screen and (min-width : 400px) {
+    .container { max-width: 100%; padding:0px; background-color: #ffffff; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+::-webkit-calendar-picker-indicator {
+filter: invert(1);
+width: 25px;
+  height: 28px;
+margin-left:-20px;
+border:none;
+}
+
+
+
+/* .form-container {  width:330px; padding:10px;  background-color: rgb(191, 233, 200);} */
+
+.container-fluid {height:100%; padding-left:0px; padding-right:0px;  overflow-x: hidden;}
+    
+
+h5 { position: relative; font-family: "Dancing Script", cursive; font-size:20px; font-style: normal; font-variant: normal; font-weight: 10px; line-height: normal; color: rgb(15, 15, 15); transform: scaleY(1.0); text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 20px; }
+
+.input-group { width:290px; font-size: 15px; }
+.input-group-text { font-size: 12px; width:110px; text-align:center;}    
+    
+
+.form-control {font-size: 10px;}
+              
+
+.d-inline {margin-left: 0px; margin-right:5px;}
+    
+.logo {align-content: left; margin-left:5px; margin-top:-60px;}  
+    
+.logout{text-align: right; margin-top:-35px; margin-right:5px;}   
+.form-container { width: 350px; padding:25px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
+
+.form-control {margin-left: 10px; width:100px;font-size: 22px;}
+
+.colcustom1 {background-color: #313d7e; font-size:12px;  border-width:0px; padding-right:12px;border-radius: 10px; padding-bottom:4px;padding-top:5px;padding-left:10px;}
+
+.btn {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+}
+
+.calendar.popup {
+  max-width: 15%;
+}
+div#cid_4 {
+  width: calc(37% - 14px);
+}
+.calendar-new-month {
+  padding-right: 8%;
+}
+.calendar-new-year {
+  padding-right: 8%;
+}
+ 
+li[data-type="control_datetime"] .icon-liteMode {
+    width: 20px;
+    } 
+
+.tp{background-color: #313d7e; width:120px; border:none; color:white;}    
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Permission Denied</title>
+  </head>
+  <body>
+      <h1>Permission Denied</h1>
+      <p>You do not have permission to access this page.</p>
+  </body>
+  </html>
+
+
+<div class="button-group text-center mx-auto  nowrap">
+<div class=" text-center ">
+  <a href="/landing"><button class="btn btn-warning btn-xs" name="home" type="button">Home</button></a>
+</div>   
+      
+
+<div >
+  <a href="/landing"><button name="savecontinue" class=" btn btn-success text-center btn-xs nowrap" type="submit">Save & Continue</button></a>
+</div>
+
+<div class=" gap-2 ">
+  
+  <a href="/landing"><button class="btn btn-primary btn-xs" type="button">Next</button></a>
+  </div> 
+</div>
+
+<br>
+        </form>
+
+
+        {% endblock content %}

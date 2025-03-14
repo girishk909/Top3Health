@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% block title %}Minor Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+@media only screen and (min-width : 400px) {
+    .container { max-width: 100%;  background-color: #0080ff; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+
+.container-fluid { height:100%;width:auto; padding-left:0px; padding-right:0px; max-width:none;   overflow-x: hidden;}
+.form-container { width: 345px; padding:10px;border-radius:25px; background-color: rgb(211, 218, 224);}
+.form-container2 { width: 345px; padding:10px;border-radius:25px; background-color: rgb(212, 224, 211);}
+
+
+.checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.2;
+ margin-top:8px;  
+ margin-right: 10px;
+ margin-left: 5px;
+ margin-bottom: 0px;
+ padding-top:10px;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 0px;
+    font-size:15px;
+    margin-left: 10px;
+    margin-top:7px;
+    margin-right:10px;
+    width:220px;
+    align-content: center;
+ } 
+
+ .form-control {width:200px;}
+
+.btn {font-size:15px; margin-right:20px;}
+.button-group { 
+  display:inline-flex; align-items:center; margin-left:10px; padding:0px; 
+  justify-content: center; margin-top:0px; position:relative; white-space: nowrap;
+}
+
+.d-inline {margin-left: 10px; margin-right:10px;}
+.input-group-text {font-size: 15px; width:145px;}
+    
+.logo {align-content: left; margin-left:5px; margin-top:-1px;}  
+    
+.logout{align-content: right; text-align: right; margin-top:-45px; margin-right:5px; }    
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+     
+      <div class=logo>
+        <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+                <h6> top3health</h6>
+               
+                </div>
+
+                <div class="logout text-end">
+                  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+                  <p class="fs-6 text-center"> {{user.first_name }}</p>
+                 </div>
+             
+                
+      <div class="container-fluid   mx-auto text-center  no-border">
+ 
+  
+        <h6 class="text-center ">Minor Symptoms - Update</h6>
+
+        
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container  mx-auto  text-center  border" >
+    <!-- {{ form|crispy }} -->
+             
+    <div class="form-check checkbox-xl mb-1 ">
+      <input type="checkbox" class="form-check-input ml-4 "  name="Fatigue" id="Fatigue"   {% if myhealthstatus.Fatigue %} checked {% endif %}>
+      <label for="Fatigue" class="form-check-label text-start" for="check1" >Fatigue</label>
+      </div>
+
+      <div class="form-check checkbox-xl mb-1 ">
+        <input type="checkbox" class="form-check-input ml-4 space-around" id="Insomnia" name="Insomnia" {% if myhealthstatus.Insomnia%} checked {% endif %} >
+        <label for="Insomnia" class="form-check-label text-left" >Insomnia</label>
+        </div>
+        
+        <div class="form-check checkbox-xl mb-1 ">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="Low_motivation" name="Low_motivation" {% if myhealthstatus.Low_motivation%} checked {% endif %}>
+        <label class="form-check-label text-left">Low motivation</label>
+        </div>
+           
+        <div class="form-check checkbox-xl  mb-1">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="Migraine" name="Migraine" {% if myhealthstatus.Migraine%} checked {% endif %} >
+        <label class="form-check-label text-left" >Migraine</label>
+        </div>
+          
+        <div class="form-check checkbox-xl mb-1 ">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="Constipation" name="Constipation" {% if myhealthstatus.Constipation%} checked {% endif %}>
+        <label class="form-check-label text-left" >Constipation</label>
+        </div>
+        
+        <div class="form-check checkbox-xl mb-1 ">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="Lack_of_focus" name="Lack_of_focus" {% if myhealthstatus.Lack_of_focus%} checked {% endif %}>
+        <label class="form-check-label text-left">Lack of Focus</label>
+        </div>   
+           
+        <div class="form-check checkbox-xl mb-1">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="Frequent_sickness" name="Frequent_sickness" {% if myhealthstatus.Frequent_sickness%} checked {% endif %} >
+        <label class="form-check-label text-left" >Frequent sickness</label>
+        </div>
+          
+        <div class="form-check checkbox-xl mb-1">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="ADD_ADHD" name="ADD_ADHD" {% if myhealthstatus.ADD_ADHD%} checked {% endif %} >
+        <label class="form-check-label text-left" >ADD_ADHD</label>
+        </div>
+        
+        <div class="form-check checkbox-xl mb-1 ">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="Minor_skin_issue" name="Minor_skin_issues" {% if myhealthstatus.Minor_skin_issues%} checked {% endif %}>
+        <label class="form-check-label  text-left">Minor skin issues</label>
+        </div>   
+           
+        <div class="form-check checkbox-xl mb-4">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="Body_Pain" name="Body_Pain" {% if myhealthstatus.Body_Pain%} checked {% endif %}>
+        <label class="form-check-label text-left" >Body pain</label>
+        </div>
+          
+<h6 class="font-weight-bold mx-auto text-center mb-3">Minor Symptoms (not covered above)</h6>
+       
+<div class="ml-4  mx-auto text-center ">   
+
+<div class="input-group  mb-2    input-group-sm">
+<span class="input-group-text font-weight-bold">Minor Symptom 1</span>
+<input type="text" class="form-control mr-5 text-center" name="My_Minor_Symptom_1" placeholder="Symptom 1" value="{{myhealthstatus.My_Minor_Symptom_1}}">
+</div>   
+  
+<div class="input-group  input-group-sm">
+<span class="input-group-text font-weight-bold">Minor Symptom 2</span>
+<input type="text" class="form-control mr-5 text-center" name="My_Minor_Symptom_2" placeholder="Symptom 2" value="{{myhealthstatus.My_Minor_Symptom_2}}">
+</div>        
+</div>
+
+
+</div>
+<br>
+<h6 class=" text-center ">Major Symptoms - Update</h6>
+<div class="form-container2  mx-auto  text-center  border" >
+         
+<div class="form-check checkbox-xl mb-1">
+  <input type="checkbox" class="form-check-input space-around" id="Cardiovascular_CVD" name="Cardiovascular_CVD" {% if myhealthstatus.Cardiovascular_CVD%} checked {% endif %} >
+  <label class="form-check-label text-left" for="check1">Cardiovascular_CVD</label>
+  </div>
+
+  <div class="form-check checkbox-xl mb-1 space-around">
+    <input type="checkbox" class="form-check-input " id="check2" name="Obesity" {% if myhealthstatus.Obesity%} checked {% endif %}>
+    <label class="form-check-label text-left" for="checkbox-2">Obesity</label>
+    </div>
+    
+    <div class="form-check checkbox-xl mb-1 space-around">
+    <input type="checkbox" class="form-check-input " id="check3" name="Hypothyroid" {% if myhealthstatus.Hypothyroid%} checked {% endif %}>
+    <label class="form-check-label text-left">Hypothyroid</label>
+    </div>
+       
+    <div class="form-check checkbox-xl mb-1 space-around">
+    <input type="checkbox" class="form-check-input " id="check4" name="Hyperthyroid" {% if myhealthstatus.Hyperthyroid%} checked {% endif %} >
+    <label class="form-check-label text-left" for="check1">Hyperthyroid</label>
+    </div>
+      
+    <div class="form-check checkbox-xl mb-1 space-around">
+    <input type="checkbox" class="form-check-input " id="check5" name="Arthritis" {% if myhealthstatus.Arthritis%} checked {% endif %}>
+    <label class="form-check-label text-left" for="checkbox-2">Arthritis</label>
+    </div>
+    
+    <div class="form-check checkbox-xl mb-1 space-around">
+    <input type="checkbox" class="form-check-input " id="check6" name="Diabetes" {% if myhealthstatus.Diabetes%} checked {% endif %}>
+    <label class="form-check-label text-left">Diabetes</label>
+    </div>   
+       
+    <div class="form-check checkbox-xl mb-1 space-around">
+    <input type="checkbox" class="form-check-input " id="check1" name="Cancer" {% if myhealthstatus.Cancer%} checked {% endif %}>
+    <label class="form-check-label text-left" for="check1">Cancer</label>
+    </div>
+      
+    <div class="form-check checkbox-xl mb-1 space-around">
+    <input type="checkbox" class="form-check-input " id="check9" name="Alzheimers" {% if myhealthstatus.Alzheimers%} checked {% endif %}>
+    <label class="form-check-label text-left" for="checkbox-2">Alzheimers'</label>
+    </div>
+    
+    <div class="form-check checkbox-xl mb-1 space-around">
+    <input type="checkbox" class="form-check-input " id="check2" name="Osteoporosis" {% if myhealthstatus.Osteoporosis%} checked {% endif %}>
+    <label class="form-check-label  text-left">Osteoporosis</label>
+    </div>   
+       
+    <div class="form-check checkbox-xl mb-4 space-around">
+    <input type="checkbox" class="form-check-input " id="check10" name="Fibromyalgia" {% if myhealthstatus.Fibromyalgia%} checked {% endif %}>
+    <label class="form-check-label text-left" for="check1">Fibromyalgia</label>
+    </div>
+       
+
+<h6 class="display-7  mb-3 font-weight-bold">Major Symptoms (not covered above)</h6>
+   
+<div class="ml-4  text-center ">   
+
+<div class="input-group mb-2    input-group-sm">
+<span class="input-group-text font-weight-bold">Major Symptom 1</span>
+<input type="text" class="form-control mr-5 text-center" name="My_Major_Symptom_1" value="{{myhealthstatus.My_Major_Symptom_1}}" placeholder="Symptom 3">
+</div>   
+
+<div class="input-group mb-1 input-group-sm">
+<span class="input-group-text font-weight-bold">Major Symptom 2</span>
+<input type="text" class="form-control mr-5 text-center" name="My_Major_Symptom_2" value="{{myhealthstatus.My_Major_Symptom_1}}" placeholder="Symptom 4">
+</div>        
+</div>
+
+</div>
+
+<div class="button-group ml-3 mt-2 text-center mx-auto">
+  <div class="d-inline  d-md-block ">
+    
+  <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+  </div> 
+         
+  <div class="d-inline  d-md-block">
+    <a href="/landing"></a><button class="btn btn-success btn-sm" type="submit" >Update</button></a>
+    
+  </div>
+  
+  
+  </div> 
+  
+        </form>
+        
+{% endblock content %}

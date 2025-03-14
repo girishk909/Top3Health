@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block title %}Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width : 900px) {
+    .container { max-width: 400px; }
+}    
+
+/* .form-container :: {font-size:20px; font-family: sans-serif;} */
+
+.form-check-label{color:rgb(10, 56, 141)}
+.form-check{color:darkgreen; scale:2rem;}
+.form-check-label{scale:3rem; font-size:25px; margin-bottom: 30px; margin-left: 20px; padding-top:-27px;}
+
+
+::placeholder {
+  color: green;
+}
+
+.inputfield {
+  
+  height: 60px;
+  font-size: 10px;
+}
+
+
+ .checkbox-xl .form-check-input {
+ top: 1.4rem;
+ scale: 2.4;
+ margin-top:26px;    
+ margin-right: 0.9rem;
+ margin-left: 6.9rem;
+ background-color: #0080ff;
+ border-width: 0px;
+ border: #0080ff;
+ 
+ } 
+
+.checkbox-xl .form-check-label {
+ padding-top: 16px;
+    font-size:24px;
+    background-color: white;
+ }     
+
+              
+.btn {font-size:25px; margin-right:60px;}
+.button-group { 
+  display:inline-flex; align-items:left; margin-left:0px; padding:20px; 
+  justify-content: space-around; margin-top:80px; position:relative;
+}
+
+.d-inline {margin-left: 30px; margin-right:65px;}
+    
+.logo {align-content: left; margin-left:-30px; margin-top:-30px;}  
+    
+.logout{text-align: right; margin-top:-70px; margin-right:-20px;}    
+    
+    
+.input-group {
+    
+   margin-left: 190px;
+}    
+</style>
+    
+   <div  class="form-container input-group-xl mb-2" style="color:forestgreen" > 
+        
+    <div class="container-fluid p-5 my-5 border">
+       
+    <div class=logo>
+    <i class="fa fa-circle" style="font-size:28px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:28px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:28px;color:#0080ff"></i>
+            <h3>top3health</h3>
+    
+     </div>   
+   <div class=logout>
+      <a href="/logout"> <img src="{% static 'css/red-logout.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+   </div>      
+         
+      <h4 class="display-6 text-center">Minor Symptoms</h4>
+
+        <br> 
+        <br>
+
+        <div class="ml-4 d-inline-block">
+         <div  class="form-container form-check checkbox-xl"  >
+
+        {{ form|crispy}}
+
+    
+        
+<div class="button-group">
+<div class="d-inline gap-2 d-md-block">
+  <button class="btn btn-warning btn-large" type="button">Home</button>
+</div>   
+       
+<div class="d-inline gap-2 d-md-block">
+  <a href="/profile"></a><button class="btn btn-success" type="submit" >Save & Continue</button></a>
+       
+<!-- <div class="d-inline gap-2 d-md-block">
+  <button class="btn btn-primary" type="button">Next</button>
+</div> -->
+  </div>     
+</div>
+</div>
+        
+        </div>
+        </div>
+</form>
+
+{% endblock content %}

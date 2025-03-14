@@ -1,0 +1,872 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }   
+
+.container-fluid {width:100%;  height:auto; padding-left:0px; padding-right:0px; max-width:none;   overflow-x: hidden;}
+.form-container1 { width: 330px; padding:10px; border-radius:20px;  background-color: rgb(84, 114, 94);} 
+.form-container2 { width: 330px; padding:10px; border-radius:20px;  background-color: rgb(89, 135, 212);} 
+.form-container3 { width: 330px; padding:10px; border-radius:20px;  background-color: rgb(145, 73, 76);} 
+    
+.form-check {margin-left:1px; margin-bottom: 10px; font-size:16px;}  
+
+.input-group {font-size: 12px;}
+.input-group-text { margin-left:0px; font-size:12px; width:100px; background-color: rgb(221, 225, 228);}   
+
+.form-control {font-size: 12px; }
+.no-margin
+{
+  margin-bottom: 0px !important;
+  margin-top: 0px;
+}
+              
+.btn {font-size:13px; margin-right: 20px; margin-left:20px;}
+.button-group { 
+  display:inline-flex;  margin-left:30px; padding-left:10px; 
+  justify-content: space-around; margin-top:0px; position:relative;
+}
+
+.d-inline {margin-left: 10px; margin-right:15px;}
+.name {margin-left:5px;}
+    
+.logo {align-content: left; margin-left:-5px; margin-top:-40px;}  
+    
+.logout{text-align: right; margin-top:-35px; margin-right:8px;}    
+.placeholder{font-size:16px;}
+.botfont{font-size: 10px;}
+
+
+
+</style>
+<form method="POST">
+  {% csrf_token %}
+  <p class="fs-6 text-start name"> {{user.first_name }}</p>
+ <!-- <form> -->
+ 
+       
+    <!-- <div class="logo text-start">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6>
+    
+     </div>    -->
+   <div class="logout text-end">
+    <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+   </div>      
+   
+ 
+    
+       <h6 class="text-center">My favorite eat-outs</h6>
+            
+      <!-- {{ form|crispy }} -->
+
+      <div class="container-fluid  no-border mx-auto text-center background-color:forestgreen">
+
+      
+        <div class="form-container1 mx-auto  text-center form-check border " >
+          
+            <h6 class="text-center botfont text-white mb-1">Breakfast places</h6>
+  
+          
+      <div class="input-group text-start mb-1">
+        <span class="input-group-text font-weight-bold  mx-auto text-start">Restaurant - 1</span>
+        <input type="text" name="Restaurant1" class="form-control text-center" placeholder="Restaurant name" list="fastfoods">  
+        <datalist id="fastfoods">   
+  <option value="Arby's">
+    <option value="Baja Fresh Mexican Grill">
+    <option value="Bojangles' Famous Chicken & Biscuits">
+    <option value="Burger King">
+    <option value="California Pizza Kitchen">
+    <option value="Carl's Jr.">
+    <option value="Checkers">
+    <option value="Chick-fil-A">
+    <option value="Chipotle Mexican Grill">
+    <option value="Cici's Pizza">
+    <option value="Culver's">
+    <option value="Denny's">
+    <option value="Domino's Pizza">
+    <option value="Dunkin' Donuts">
+    <option value="Einstein Bros. Bagels">
+    <option value="El Pollo Loco">
+    <option value="Five Guys Burgers and Fries">
+    <option value="Freddy's Frozen Custard & Steakburgers">
+    <option value="Hardee's">
+    <option value="Hooters">
+    <option value="In-N-Out Burger">
+    <option value="Jack in the Box">
+    <option value="Jamba Juice">
+    <option value="KFC">
+    <option value="Little Caesars Pizza">
+    <option value="Long John Silver's">
+    <option value="McDonald's">
+    <option value="Marco's Pizza">
+    <option value="Mellow Mushroom">
+    <option value="Moe's Southwest Grill">
+    <option value="O'Charley's">
+    <option value="Panera Bread">
+    <option value="Papa John's Pizza">
+    <option value="Pizza Hut">
+    <option value="Popeyes Louisiana Kitchen">
+    <option value="Quiznos">
+    <option value="Red Robin Gourmet Burgers and Brews">
+    <option value="Rubio's Coastal Grill">
+    <option value="Ruby Tuesday">
+      <option value="Sbarro">
+        <option value="Sonic Drive-In">
+        <option value="Subway">
+        <option value="Taco Bell">
+        <option value="Ted's Montana Grill">
+        <option value="TGI Fridays">
+        <option value="Wendy's">
+        <option value="White Castle">
+        <option value="Waffle House">
+        <option value="Wingstop">
+        <option value="Applebee's">
+        <option value="Bistro 1885">
+        <option value="Bonefish Grill">
+        <option value="Buca di Beppo">
+        <option value="California Pizza Kitchen">
+        <option value="Carrabba's Italian Grill">
+        <option value="Cheesecake Factory">
+        <option value="Chili's Grill & Bar">
+        <option value="Chipotle Mexican Grill">
+        <option value="Cracker Barrel Old Country Store">
+        <option value="Denny's">
+        <option value="Duffy's Sports Grill">
+        <option value="Fogo de Chão">
+        <option value="Golden Corral">
+        <option value="Houlihan's">
+        <option value="IHOP">
+        <option value="Joe's Crab Shack">
+        <option value="LongHorn Steakhouse">
+        <option value="O'Charley's">
+        <option value="On the Border">
+        <option value="Outback Steakhouse">
+        <option value="P.F. Chang's China Bistro">
+        <option value="Red Lobster">
+        <option value="Red Robin Gourmet Burgers and Brews">
+        <option value="Rubio's Coastal Grill">
+        <option value="Ruby Tuesday">
+        <option value="TGI Fridays">
+        <option value="Texas Roadhouse">
+          <option value="Waffle House">
+            <option value="Chipotle Mexican Grill">
+            <option value="Panera Bread">
+            <option value="Chipotle Mexican Grill">
+            <option value="Panera Bread">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Cava Grill">
+            <option value="Noodles & Company">
+            <option value="Chipotle Mexican Grill">
+            <option value="Panera Bread">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Cava Grill">
+            <option value="Noodles & Company">
+            <option value="Chipotle Mexican Grill">
+            <option value="Panera Bread">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Cava Grill">
+            <option value="Noodles & Company">
+            <option value="Chipotle Mexican Grill">
+            <option value="Panera Bread">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Cava Grill">
+            <option value="Noodles & Company">
+            <option value="Chipotle Mexican Grill">
+            <option value="Panera Bread">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Cava Grill">
+            <option value="Noodles & Company">
+            <option value="Chipotle Mexican Grill">
+            <option value="Panera Bread">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Cava Grill">
+            <option value="Noodles & Company">
+            
+            </datalist>    
+         </div>  
+
+
+          <div class="input-group text-center mb-2 ">
+            <span class="input-group-text font-weight-bold   mx-auto text-start">Breakfast - 1</span>
+            <input type="text" class="form-control text-center" placeholder="Breakfast name">  
+             </div> 
+              
+              
+             <div class="input-group text-start mb-1 ">
+                <span class="input-group-text font-weight-bold   mx-auto text-start">Restaurant - 2</span>
+                <input type="text" name="Restaurant2" class="form-control text-center" placeholder="Restaurant name" list="fastfoods">  
+                <datalist id="fastfoods">   
+          <option value="Arby's">
+            <option value="Baja Fresh Mexican Grill">
+            <option value="Bojangles' Famous Chicken & Biscuits">
+            <option value="Burger King">
+            <option value="California Pizza Kitchen">
+            <option value="Carl's Jr.">
+            <option value="Checkers">
+            <option value="Chick-fil-A">
+            <option value="Chipotle Mexican Grill">
+            <option value="Cici's Pizza">
+            <option value="Culver's">
+            <option value="Denny's">
+            <option value="Domino's Pizza">
+            <option value="Dunkin' Donuts">
+            <option value="Einstein Bros. Bagels">
+            <option value="El Pollo Loco">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Freddy's Frozen Custard & Steakburgers">
+            <option value="Hardee's">
+            <option value="Hooters">
+            <option value="In-N-Out Burger">
+            <option value="Jack in the Box">
+            <option value="Jamba Juice">
+            <option value="KFC">
+            <option value="Little Caesars Pizza">
+            <option value="Long John Silver's">
+            <option value="McDonald's">
+            <option value="Marco's Pizza">
+            <option value="Mellow Mushroom">
+            <option value="Moe's Southwest Grill">
+            <option value="O'Charley's">
+            <option value="Panera Bread">
+            <option value="Papa John's Pizza">
+            <option value="Pizza Hut">
+            <option value="Popeyes Louisiana Kitchen">
+            <option value="Quiznos">
+            <option value="Red Robin Gourmet Burgers and Brews">
+            <option value="Rubio's Coastal Grill">
+            <option value="Ruby Tuesday">
+              <option value="Sbarro">
+                <option value="Sonic Drive-In">
+                <option value="Subway">
+                <option value="Taco Bell">
+                <option value="Ted's Montana Grill">
+                <option value="TGI Fridays">
+                <option value="Wendy's">
+                <option value="White Castle">
+                <option value="Waffle House">
+                <option value="Wingstop">
+                <option value="Applebee's">
+                <option value="Bistro 1885">
+                <option value="Bonefish Grill">
+                <option value="Buca di Beppo">
+                <option value="California Pizza Kitchen">
+                <option value="Carrabba's Italian Grill">
+                <option value="Cheesecake Factory">
+                <option value="Chili's Grill & Bar">
+                <option value="Chipotle Mexican Grill">
+                <option value="Cracker Barrel Old Country Store">
+                <option value="Denny's">
+                <option value="Duffy's Sports Grill">
+                <option value="Fogo de Chão">
+                <option value="Golden Corral">
+                <option value="Houlihan's">
+                <option value="IHOP">
+                <option value="Joe's Crab Shack">
+                <option value="LongHorn Steakhouse">
+                <option value="O'Charley's">
+                <option value="On the Border">
+                <option value="Outback Steakhouse">
+                <option value="P.F. Chang's China Bistro">
+                <option value="Red Lobster">
+                <option value="Red Robin Gourmet Burgers and Brews">
+                <option value="Rubio's Coastal Grill">
+                <option value="Ruby Tuesday">
+                <option value="TGI Fridays">
+                <option value="Texas Roadhouse">
+                  <option value="Waffle House">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    
+                    </datalist>   
+                 </div>   
+             
+
+         <div class="input-group text-center  ">
+        <span class="input-group-text font-weight-bold   mx-auto text-start">Breakfast - 2</span>
+        <input type="text" class="form-control text-center" placeholder="Breakfast name">  
+         </div>    
+             
+        </div>
+
+             <div class="form-container2 mx-auto  text-center form-check  checkbox-primary  border" >
+              <h6 class="text-center text-white botfont mb-1">Lunch places</h6>         
+              
+             
+              <div class="input-group text-start mb-1 ">
+                <span class="input-group-text font-weight-bold   mx-auto text-start">Restaurant - 1</span>
+                <input type="text" name="Restaurant3" class="form-control text-center" placeholder="Restaurant name" list="fastfoods">  
+                <datalist id="fastfoods">   
+          <option value="Arby's">
+            <option value="Baja Fresh Mexican Grill">
+            <option value="Bojangles' Famous Chicken & Biscuits">
+            <option value="Burger King">
+            <option value="California Pizza Kitchen">
+            <option value="Carl's Jr.">
+            <option value="Checkers">
+            <option value="Chick-fil-A">
+            <option value="Chipotle Mexican Grill">
+            <option value="Cici's Pizza">
+            <option value="Culver's">
+            <option value="Denny's">
+            <option value="Domino's Pizza">
+            <option value="Dunkin' Donuts">
+            <option value="Einstein Bros. Bagels">
+            <option value="El Pollo Loco">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Freddy's Frozen Custard & Steakburgers">
+            <option value="Hardee's">
+            <option value="Hooters">
+            <option value="In-N-Out Burger">
+            <option value="Jack in the Box">
+            <option value="Jamba Juice">
+            <option value="KFC">
+            <option value="Little Caesars Pizza">
+            <option value="Long John Silver's">
+            <option value="McDonald's">
+            <option value="Marco's Pizza">
+            <option value="Mellow Mushroom">
+            <option value="Moe's Southwest Grill">
+            <option value="O'Charley's">
+            <option value="Panera Bread">
+            <option value="Papa John's Pizza">
+            <option value="Pizza Hut">
+            <option value="Popeyes Louisiana Kitchen">
+            <option value="Quiznos">
+            <option value="Red Robin Gourmet Burgers and Brews">
+            <option value="Rubio's Coastal Grill">
+            <option value="Ruby Tuesday">
+              <option value="Sbarro">
+                <option value="Sonic Drive-In">
+                <option value="Subway">
+                <option value="Taco Bell">
+                <option value="Ted's Montana Grill">
+                <option value="TGI Fridays">
+                <option value="Wendy's">
+                <option value="White Castle">
+                <option value="Waffle House">
+                <option value="Wingstop">
+                <option value="Applebee's">
+                <option value="Bistro 1885">
+                <option value="Bonefish Grill">
+                <option value="Buca di Beppo">
+                <option value="California Pizza Kitchen">
+                <option value="Carrabba's Italian Grill">
+                <option value="Cheesecake Factory">
+                <option value="Chili's Grill & Bar">
+                <option value="Chipotle Mexican Grill">
+                <option value="Cracker Barrel Old Country Store">
+                <option value="Denny's">
+                <option value="Duffy's Sports Grill">
+                <option value="Fogo de Chão">
+                <option value="Golden Corral">
+                <option value="Houlihan's">
+                <option value="IHOP">
+                <option value="Joe's Crab Shack">
+                <option value="LongHorn Steakhouse">
+                <option value="O'Charley's">
+                <option value="On the Border">
+                <option value="Outback Steakhouse">
+                <option value="P.F. Chang's China Bistro">
+                <option value="Red Lobster">
+                <option value="Red Robin Gourmet Burgers and Brews">
+                <option value="Rubio's Coastal Grill">
+                <option value="Ruby Tuesday">
+                <option value="TGI Fridays">
+                <option value="Texas Roadhouse">
+                  <option value="Waffle House">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    
+                    </datalist>    
+                 </div> 
+
+          <div class="input-group text-center mb-2">
+        <span class="input-group-text font-weight-bold mx-auto   mx-auto text-start">Lunch - 1</span>
+        <input type="text" class="form-control text-center" placeholder="Lunch name">  
+         </div>    
+             
+        
+             
+                  
+             <div class="input-group text-start mb-1 ">
+                <span class="input-group-text font-weight-bold   mx-auto text-start">Restaurant - 2</span>
+                <input type="text" name="Restaurant3" class="form-control text-center" placeholder="Restaurant name" list="fastfoods">  
+                <datalist id="fastfoods">   
+          <option value="Arby's">
+            <option value="Baja Fresh Mexican Grill">
+            <option value="Bojangles' Famous Chicken & Biscuits">
+            <option value="Burger King">
+            <option value="California Pizza Kitchen">
+            <option value="Carl's Jr.">
+            <option value="Checkers">
+            <option value="Chick-fil-A">
+            <option value="Chipotle Mexican Grill">
+            <option value="Cici's Pizza">
+            <option value="Culver's">
+            <option value="Denny's">
+            <option value="Domino's Pizza">
+            <option value="Dunkin' Donuts">
+            <option value="Einstein Bros. Bagels">
+            <option value="El Pollo Loco">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Freddy's Frozen Custard & Steakburgers">
+            <option value="Hardee's">
+            <option value="Hooters">
+            <option value="In-N-Out Burger">
+            <option value="Jack in the Box">
+            <option value="Jamba Juice">
+            <option value="KFC">
+            <option value="Little Caesars Pizza">
+            <option value="Long John Silver's">
+            <option value="McDonald's">
+            <option value="Marco's Pizza">
+            <option value="Mellow Mushroom">
+            <option value="Moe's Southwest Grill">
+            <option value="O'Charley's">
+            <option value="Panera Bread">
+            <option value="Papa John's Pizza">
+            <option value="Pizza Hut">
+            <option value="Popeyes Louisiana Kitchen">
+            <option value="Quiznos">
+            <option value="Red Robin Gourmet Burgers and Brews">
+            <option value="Rubio's Coastal Grill">
+            <option value="Ruby Tuesday">
+              <option value="Sbarro">
+                <option value="Sonic Drive-In">
+                <option value="Subway">
+                <option value="Taco Bell">
+                <option value="Ted's Montana Grill">
+                <option value="TGI Fridays">
+                <option value="Wendy's">
+                <option value="White Castle">
+                <option value="Waffle House">
+                <option value="Wingstop">
+                <option value="Applebee's">
+                <option value="Bistro 1885">
+                <option value="Bonefish Grill">
+                <option value="Buca di Beppo">
+                <option value="California Pizza Kitchen">
+                <option value="Carrabba's Italian Grill">
+                <option value="Cheesecake Factory">
+                <option value="Chili's Grill & Bar">
+                <option value="Chipotle Mexican Grill">
+                <option value="Cracker Barrel Old Country Store">
+                <option value="Denny's">
+                <option value="Duffy's Sports Grill">
+                <option value="Fogo de Chão">
+                <option value="Golden Corral">
+                <option value="Houlihan's">
+                <option value="IHOP">
+                <option value="Joe's Crab Shack">
+                <option value="LongHorn Steakhouse">
+                <option value="O'Charley's">
+                <option value="On the Border">
+                <option value="Outback Steakhouse">
+                <option value="P.F. Chang's China Bistro">
+                <option value="Red Lobster">
+                <option value="Red Robin Gourmet Burgers and Brews">
+                <option value="Rubio's Coastal Grill">
+                <option value="Ruby Tuesday">
+                <option value="TGI Fridays">
+                <option value="Texas Roadhouse">
+                  <option value="Waffle House">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    
+                    </datalist>    
+                 </div>     
+
+         <div class="input-group text-center">
+        <span class="input-group-text font-weight-bold  mx-auto text-start">Lunch - 2</span>
+        <input type="text" class="form-control text-center" placeholder="Lunch name">  
+         </div>   
+             </div>
+       
+             
+           
+           <div class="form-container3 mx-auto  text-center form-check  checkbox-primary  border" >
+
+            <h6 class="text-center botfont text-white mb-1">Dinner places</h6>
+            
+           <div class="input-group text-start mb-1 ">
+            <span class="input-group-text font-weight-bold   mx-auto text-start">Restaurant - 1</span>
+            <input type="text" name="Restaurant4" class="form-control text-center" placeholder="Restaurant name" list="fastfoods">  
+            <datalist id="fastfoods">   
+      <option value="Arby's">
+        <option value="Baja Fresh Mexican Grill">
+        <option value="Bojangles' Famous Chicken & Biscuits">
+        <option value="Burger King">
+        <option value="California Pizza Kitchen">
+        <option value="Carl's Jr.">
+        <option value="Checkers">
+        <option value="Chick-fil-A">
+        <option value="Chipotle Mexican Grill">
+        <option value="Cici's Pizza">
+        <option value="Culver's">
+        <option value="Denny's">
+        <option value="Domino's Pizza">
+        <option value="Dunkin' Donuts">
+        <option value="Einstein Bros. Bagels">
+        <option value="El Pollo Loco">
+        <option value="Five Guys Burgers and Fries">
+        <option value="Freddy's Frozen Custard & Steakburgers">
+        <option value="Hardee's">
+        <option value="Hooters">
+        <option value="In-N-Out Burger">
+        <option value="Jack in the Box">
+        <option value="Jamba Juice">
+        <option value="KFC">
+        <option value="Little Caesars Pizza">
+        <option value="Long John Silver's">
+        <option value="McDonald's">
+        <option value="Marco's Pizza">
+        <option value="Mellow Mushroom">
+        <option value="Moe's Southwest Grill">
+        <option value="O'Charley's">
+        <option value="Panera Bread">
+        <option value="Papa John's Pizza">
+        <option value="Pizza Hut">
+        <option value="Popeyes Louisiana Kitchen">
+        <option value="Quiznos">
+        <option value="Red Robin Gourmet Burgers and Brews">
+        <option value="Rubio's Coastal Grill">
+        <option value="Ruby Tuesday">
+          <option value="Sbarro">
+            <option value="Sonic Drive-In">
+            <option value="Subway">
+            <option value="Taco Bell">
+            <option value="Ted's Montana Grill">
+            <option value="TGI Fridays">
+            <option value="Wendy's">
+            <option value="White Castle">
+            <option value="Waffle House">
+            <option value="Wingstop">
+            <option value="Applebee's">
+            <option value="Bistro 1885">
+            <option value="Bonefish Grill">
+            <option value="Buca di Beppo">
+            <option value="California Pizza Kitchen">
+            <option value="Carrabba's Italian Grill">
+            <option value="Cheesecake Factory">
+            <option value="Chili's Grill & Bar">
+            <option value="Chipotle Mexican Grill">
+            <option value="Cracker Barrel Old Country Store">
+            <option value="Denny's">
+            <option value="Duffy's Sports Grill">
+            <option value="Fogo de Chão">
+            <option value="Golden Corral">
+            <option value="Houlihan's">
+            <option value="IHOP">
+            <option value="Joe's Crab Shack">
+            <option value="LongHorn Steakhouse">
+            <option value="O'Charley's">
+            <option value="On the Border">
+            <option value="Outback Steakhouse">
+            <option value="P.F. Chang's China Bistro">
+            <option value="Red Lobster">
+            <option value="Red Robin Gourmet Burgers and Brews">
+            <option value="Rubio's Coastal Grill">
+            <option value="Ruby Tuesday">
+            <option value="TGI Fridays">
+            <option value="Texas Roadhouse">
+              <option value="Waffle House">
+                <option value="Chipotle Mexican Grill">
+                <option value="Panera Bread">
+                <option value="Chipotle Mexican Grill">
+                <option value="Panera Bread">
+                <option value="Five Guys Burgers and Fries">
+                <option value="Cava Grill">
+                <option value="Noodles & Company">
+                <option value="Chipotle Mexican Grill">
+                <option value="Panera Bread">
+                <option value="Five Guys Burgers and Fries">
+                <option value="Cava Grill">
+                <option value="Noodles & Company">
+                <option value="Chipotle Mexican Grill">
+                <option value="Panera Bread">
+                <option value="Five Guys Burgers and Fries">
+                <option value="Cava Grill">
+                <option value="Noodles & Company">
+                <option value="Chipotle Mexican Grill">
+                <option value="Panera Bread">
+                <option value="Five Guys Burgers and Fries">
+                <option value="Cava Grill">
+                <option value="Noodles & Company">
+                <option value="Chipotle Mexican Grill">
+                <option value="Panera Bread">
+                <option value="Five Guys Burgers and Fries">
+                <option value="Cava Grill">
+                <option value="Noodles & Company">
+                <option value="Chipotle Mexican Grill">
+                <option value="Panera Bread">
+                <option value="Five Guys Burgers and Fries">
+                <option value="Cava Grill">
+                <option value="Noodles & Company">
+                
+                </datalist>    
+             </div> 
+
+          <div class="input-group text-center mb-2">
+        <span class="input-group-text font-weight-bold mx-auto text-start">Dinner - 1</span>
+        <input type="text" class="form-control text-center" placeholder="Dinner name" >
+         </div> 
+             
+      
+             
+             
+
+              <div class="input-group text-start mb-1 ">
+                <span class="input-group-text font-weight-bold   mx-auto text-start">Restaurant - 2</span>
+                <input type="text" name="Restaurant5" class="form-control text-center" placeholder="Restaurant name" list="fastfoods">  
+                <datalist id="fastfoods">   
+          <option value="Arby's">
+            <option value="Baja Fresh Mexican Grill">
+            <option value="Bojangles' Famous Chicken & Biscuits">
+            <option value="Burger King">
+            <option value="California Pizza Kitchen">
+            <option value="Carl's Jr.">
+            <option value="Checkers">
+            <option value="Chick-fil-A">
+            <option value="Chipotle Mexican Grill">
+            <option value="Cici's Pizza">
+            <option value="Culver's">
+            <option value="Denny's">
+            <option value="Domino's Pizza">
+            <option value="Dunkin' Donuts">
+            <option value="Einstein Bros. Bagels">
+            <option value="El Pollo Loco">
+            <option value="Five Guys Burgers and Fries">
+            <option value="Freddy's Frozen Custard & Steakburgers">
+            <option value="Hardee's">
+            <option value="Hooters">
+            <option value="In-N-Out Burger">
+            <option value="Jack in the Box">
+            <option value="Jamba Juice">
+            <option value="KFC">
+            <option value="Little Caesars Pizza">
+            <option value="Long John Silver's">
+            <option value="McDonald's">
+            <option value="Marco's Pizza">
+            <option value="Mellow Mushroom">
+            <option value="Moe's Southwest Grill">
+            <option value="O'Charley's">
+            <option value="Panera Bread">
+            <option value="Papa John's Pizza">
+            <option value="Pizza Hut">
+            <option value="Popeyes Louisiana Kitchen">
+            <option value="Quiznos">
+            <option value="Red Robin Gourmet Burgers and Brews">
+            <option value="Rubio's Coastal Grill">
+            <option value="Ruby Tuesday">
+              <option value="Sbarro">
+                <option value="Sonic Drive-In">
+                <option value="Subway">
+                <option value="Taco Bell">
+                <option value="Ted's Montana Grill">
+                <option value="TGI Fridays">
+                <option value="Wendy's">
+                <option value="White Castle">
+                <option value="Waffle House">
+                <option value="Wingstop">
+                <option value="Applebee's">
+                <option value="Bistro 1885">
+                <option value="Bonefish Grill">
+                <option value="Buca di Beppo">
+                <option value="California Pizza Kitchen">
+                <option value="Carrabba's Italian Grill">
+                <option value="Cheesecake Factory">
+                <option value="Chili's Grill & Bar">
+                <option value="Chipotle Mexican Grill">
+                <option value="Cracker Barrel Old Country Store">
+                <option value="Denny's">
+                <option value="Duffy's Sports Grill">
+                <option value="Fogo de Chão">
+                <option value="Golden Corral">
+                <option value="Houlihan's">
+                <option value="IHOP">
+                <option value="Joe's Crab Shack">
+                <option value="LongHorn Steakhouse">
+                <option value="O'Charley's">
+                <option value="On the Border">
+                <option value="Outback Steakhouse">
+                <option value="P.F. Chang's China Bistro">
+                <option value="Red Lobster">
+                <option value="Red Robin Gourmet Burgers and Brews">
+                <option value="Rubio's Coastal Grill">
+                <option value="Ruby Tuesday">
+                <option value="TGI Fridays">
+                <option value="Texas Roadhouse">
+                  <option value="Waffle House">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    <option value="Chipotle Mexican Grill">
+                    <option value="Panera Bread">
+                    <option value="Five Guys Burgers and Fries">
+                    <option value="Cava Grill">
+                    <option value="Noodles & Company">
+                    
+                    </datalist>   
+                 </div>       
+             
+         <div class="input-group text-center ">
+        <span class="input-group-text font-weight-bold   mx-auto text-start">Dinner - 2</span>
+        <input type="text" class="form-control text-center" placeholder="Dinner name">  
+         </div>  
+             </div>
+       
+     <!-- <h6 class=" text-center mt-2">(More sets can be input under SETTINGS Menu)</h6>   -->
+
+<div class="button-group nowrap text-center mx-auto">
+<div class=" gap-2 ">
+  <a href="/landing"><button class="btn btn-warning btn-sm nowrap" type="button">Home</button></a>
+</div>   
+       
+<div class=" gap-2 ">
+  <a href="/myexpenses"></a><button class="btn btn-sm btn-success no-wrap" type="submit" 
+  
+   >Save & Continue</button></a>
+</div>
+
+<div class=" gap-2 mb-1">
+  
+  <a href="/myexpenses"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+  </div> 
+</div>
+       
+
+
+        </form>
+    
+
+
+        {% endblock content %}

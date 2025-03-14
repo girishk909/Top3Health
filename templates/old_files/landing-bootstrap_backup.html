@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+   
+{% load static %}
+{% block content %}
+
+   
+<style>
+    
+    @media (max-width: 1200px) { 
+  .container {width:100%; margin-left: 0px; margin-right: 20px; overflow-x: hidden;}
+  .col-space >[class*='col-'] {
+    margin-bottom: 10px;
+  }
+  
+      .block {
+    display: flex;
+  }
+}
+
+.btn {font-size:16px; margin-right:0px; white-space: nowrap;}
+.button-group { 
+  display:inline-flex;   
+  justify-content: space-around; margin-top:0px; position:relative; white-space: nowrap;
+}
+/* .container-fluid { margin-right:20px;} */
+    
+*/.logout{text-align: right; margin-top:-70px; margin-right:5px; margin-left: 20px; margin-bottom: 0px;}   */
+.logout{text-align: right;  margin-right:5px;  margin-bottom: 0px;}   
+    
+*/logo {align-content: left; margin-left:5px; margin-top: -95px; margin-bottom: 30px;} */
+.logo {align-content: left; margin-left:5px; margin-bottom: 0px;} 
+/* .logout{text-align: right; margin-top:-70px; margin-right:20px;}    */
+
+.container-fluid {
+
+    width: 100%;
+    height:100%;
+    position: relative;
+    /* padding-left:20px;
+    padding-right: 20px; */
+
+}    
+/* .row{margin-left: 0px;} */
+    
+.footer { clear: both; }  
+*/.container3 {margin-top:380px; }     */
+page-end {margin-top: 15px; margin-left: 150px;}
+    
+    .col-md-auto {padding:2px;}   
+
+.topbar {background: #a19ae0;
+height:2.0rem; padding:10px;margin-bottom:10px;color:white;}
+
+
+
+</style> 
+<form method="POST">
+  {% csrf_token %}
+  <br>
+  <div class="topbar fixed-top ">
+  <p class="text-center fixed-top mt-1 mb-2 fs-7"> Welcome {{user.first_name }} !</p>
+</div>
+<div class="logout text-end mr-1 mt-3">
+  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}"  alt="Veggies"></button></a>
+ 
+  </div> 
+
+
+
+    
+
+      
+  <div class="container-fluid  text-center mx-auto  no-border">
+ 
+   
+ 
+    
+    <div class="topnav navbar mb-3 mt-3 bg-light font-weight-bold btn-group nowrap navbar-expand-lg" >
+        <div class="container">
+        
+          <div class="logo mt-1 mb-3 ml-2">
+            <i class="fa fa-circle" style="font-size:28px;color:red"></i>
+            <i class="fa fa-circle" style="font-size:28px;color:forestgreen"></i>
+            <i class="fa fa-circle" style="font-size:28px;color:#0080ff"></i>
+                    <h5> top3health</h5>
+            </div>
+        
+        
+        
+       
+        <a href="{% url 'goals' %}"><button type="button" class="btn btn-outline-primary ">Goals</button></a>
+        <a href="{% url 'settings' %}"><button type="button" class="btn btn-outline-success ">Settings</button></a>
+        <a href="{% url 'Dailylog' %}"><button type="button" class="btn btn-outline-danger  ">Daily-Log</button></a>
+        <a href="Schedule"><button type="button" class="btn btn-outline-dark">Schedule</button></a>
+        <!-- <a href="Reports"><button type="button" class="btn btn-dark btn-sm">Reports</button></a>     -->
+           
+  </div>
+</div>
+  <hr>
+            
+
+            <!-- <div style="background-image: url('{% static 'css/restaurant.png' %}');
+            background-repeat:no-repeat;
+            background-size:cover;
+            height:100vh;
+            width:100%;
+             /* margin-left:4px;
+             margin-right:25px; */
+            margin-bottom:10px;"> -->
+           
+
+    <div class="row col-space text-center mx-auto space-around nowrap">
+        
+       <div class="col col-margin">
+        
+          <img src="{% static 'css/graphxx.png' %}" alt="My image"/> 
+           
+        </div>
+    
+     <div class="col col-margin">
+        
+      <img src="{% static 'css/fitreport.png' %}" alt="My image"/>
+          </div>
+   </div>
+   
+   <div class="row col-space text-center mx-auto nowrap space-around">
+        
+    <div class="col col-margin">
+        
+       <img src="{% static 'css/symptoms.png' %}" alt="My image"/>
+     
+       </div>
+    <div class="col col-margin mb-5">
+        
+      <img src="{% static 'css/fb.png' %}" alt="My image"/>
+      
+        </div>
+        </div> 
+                
+</div>
+
+
+<hr>
+     <div class="topnav navbar ml-2 mr-2 text-center btn-group nowrap"   >
+        
+        <a href="About"><button type="button" class="btn btn-outline-primary btn-sm">About</button></a>
+        <a href="Contact"><button type="button" class="btn btn-outline-success btn-sm">Contact</button></a>
+        <a href="Resources"><button type="button" class="btn btn-outline-danger btn-sm">Resources</button></a>
+           <a href="Shopping"><button type="button" class="btn btn-outline-dark btn-sm">Shopping </button></a>    
+        
+    </div>
+
+
+<br>
+      <p class="text-center">Copyright - Top3health.com</p>
+    </div>
+</form>
+        {% endblock content%}

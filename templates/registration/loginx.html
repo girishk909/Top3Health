@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Log In{% endblock title %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<style>
+@media only screen and (min-width : 400px) {
+.container {  max-width: 400px; padding:0px; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}    
+.checkbox { font-size:14px; padding-right:8px;}
+.container-fluid { width:350px; padding:0;}
+.form-container { display:block; margin-top:10px; margin-bottom:-10px; width: 270px; padding:19px; border-radius:20px; background-color: rgb(226, 228, 231);}
+.btn {font-size:12px;  margin-right:0px;}
+.button-group { 
+  display:inline-flex;   
+  justify-content: center; margin-top:10px;  margin-right:10px; position:relative; white-space: nowrap;
+}
+</style>
+<div class="container-fluid  mx-auto text-center no-border h7 text-dark"> 
+        <br>
+        <div class="logo">
+                <i class="fa fa-circle" style="font-size:25px;color:red"></i>
+                <i class="fa fa-circle" style="font-size:25px;color:forestgreen"></i>
+                <i class="fa fa-circle" style="font-size:25px;color:#0080ff"></i>
+                        <h5>top3health</h5>
+                     
+                    <div class = "text-center font-weight-bold">                   
+                      <img class ="img-thumbnail border border-0" src="{% static 'css/user(2).png' %}" alt="Hi!" />
+                      <br>
+                        <h5>Login</h5>
+                        
+                        </div>
+                    
+              </div>
+              
+<form method="post">       
+        {% csrf_token %}
+        <div class="form-container mx-auto text-start border"> 
+        {{ form|crispy }}
+            
+            <div class="checkbox text-start">
+                <br>
+                <label><input type="checkbox"> Remember me</label>
+<br>
+               
+              </div>
+              <br>
+            <div class="text-center">
+        
+        <a href="landing"><button type="submit" class="btn btn-primary btn-sm">Log-In</button></a>
+</div>
+
+ <div >
+      
+        <button type="submit" class="btn btn-danger text-start   btn-sm">Cancel</button>
+</div>
+            
+              
+
+        </div> 
+</form>
+   <br>
+   
+
+        
+        <a href="{% url 'signup' %}" class="btn btn-success text-end  btn-sm">Sign up</a>
+        <span class="psw fs-6 text-start">&nbsp;&nbsp;&nbsp;Forgot <a href="#">password?</a>
+</div>
+
+{% endblock content %}

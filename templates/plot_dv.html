@@ -1,0 +1,712 @@
+{% extends 'base.html' %}
+
+{% block title %}Goals{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+  .form-check-label {
+    font-size: 12px;
+    margin-bottom: 7px;
+    margin-left:20px;
+    text-align: center;
+  }
+
+  .form-container {
+    width: auto;
+   
+    /* height:45vh; */
+    
+    border-radius: 1px;
+    background-color: white;
+    overflow-x: hidden;
+  }
+
+  .form-container2 {  width:550px; padding:4px;  background-color: rgb(191, 233, 200);}
+  .form-container3 {  width:550px; padding:4px;  background-color: rgb(191, 195, 233);}
+  .form-container4 {  width:550px; padding:4px;  background-color: rgb(233, 204, 191);}
+  .form-container5 {  width:550px; padding:4px;  background-color: rgb(209, 191, 233);}
+  .form-container6 {  width:550px; padding:4px;  background-color: rgb(131, 141, 228);}
+
+  .checkbox-xl .form-check-input {
+    top: 1rem;
+    scale: 0.8;
+    margin-bottom: 0;
+    margin-left:9px;
+  }
+
+  .checkbox-xl .form-check-label {
+    padding-top: 2px;
+    font-size: 10px;
+    width: 460px;
+  }
+
+  .container-fluid {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .btn {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+}
+/* .input-group-text {font-size:10px !important; width:75px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif; } */
+.input-group-text { font-size: 10px; width:98px; text-align:center; background-color: rgb(144, 166, 233);} 
+    
+.form-control{font-size:9px; text-align: end;}
+
+.form-container { width: 230px; padding:10px; border-radius:15px;  background-color: rgb(230, 232, 236);} 
+.form-container2 { width: 450px; padding:0px; border-color:blue; border-radius:15px; border-width:20px; background-color: rgb(251, 252, 253);}
+
+.form-control {width:50px;font-size: 8px; text-align: center; }
+.form-control2 {width:128px; font-size: 10px; text-align: left; color:black;}
+.form-control3 {width:358px; text-align:left; font-size:  10px;  }
+
+.colcustom1 {background-color: #434b75; font-size:12px;  border-width:0px; padding-right:12px;border-radius: 10px; padding-bottom:4px;padding-top:5px;padding-left:10px;}
+
+.btn {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .button-group {
+    display:inline-flex; 
+    justify-content: center;
+    margin-top: 0;
+  }
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+   color:darkgreen;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+      color:darkgreen;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+      color:darkgreen;
+}
+
+.calendar.popup {
+  max-width: 15%;
+}
+div#cid_4 {
+  width: calc(37% - 14px);
+}
+.calendar-new-month {
+  padding-right: 8%;
+}
+.calendar-new-year {
+  padding-right: 8%;
+}
+ 
+.name {margin-left:10px;}
+li[data-type="control_datetime"] .icon-liteMode {
+    width: 20px;
+    } 
+.marg {margin-top:-50px;  color:rebeccapurple;}
+
+.marg2 { color:rebeccapurple;}
+
+
+body {
+      font-family: Playfair;
+      
+    }
+    h1 {
+      text-align: center;
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+    }
+    ul {
+      list-style-type: none;
+    }
+    li {
+      padding: 10px;
+    }
+.cursive {
+    font-family: Great Vibes;
+    font-size: 12px;
+    color: crimson;
+    
+}
+
+.cursive2 {
+font-family: Great Vibes;
+font-size: 30px;
+color: darkorange;
+background-color: lightred;}
+
+
+.centered {
+  position: absolute;
+  top:5%;
+  left: 50%;
+  transform: translate(-50%, -50%);}
+
+/* .placeholder {font-size:8px;}  */
+
+::-webkit-input-placeholder {
+   font-size: 8px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 8px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 8px!important;
+}
+
+</style>
+
+
+<body>
+<form method="POST">
+  {% csrf_token %}
+
+  <!-- "{{allergy1}}"" -->
+    <br>
+    <h6 class="text-center mb-3">Weekly food designer</h6>
+    
+   
+
+    <!-- <div class="container-fluid text-center no-border mx-auto">
+
+      <div class="form-container  mx-auto  text-center   no-border" >
+
+     <img src="data:image/png;base64,{{ plot_data_url }}" alt="Seaborn Bar Plot"> -->
+
+  
+
+  <table style="font-size:10px; " class="table ">
+    <tbody>
+      <!-- <tr>
+        <th>Row</th>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr> -->
+      <tr>
+        <th>Allergies</th>
+        <td>{{allergy1}}</td>
+        <td>Shellfish</td>
+        <td>Milk</td>
+      </tr>
+      <tr>
+        <th>USDA levels</th>
+        <td>Greens 1 cup</td>
+        <td>Red/Orange 2 cups</td>
+        <td>Dairy 2 cups</td>
+      </tr>
+      <tr>
+        <th>Fitness</th>
+        <td>Rigirous 15 minutes </td>
+        <td>Muscle build - 10 minutes</td>
+        <td>Balance - Yoga - 20 minutes</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6 class="text-center mb-3">USDA level comparison</h6>
+
+  
+
+  <div class="container-fluid no-border mx-auto text-center background-color:forestgreen">
+
+                 <div class="form-container2 mx-auto  text-center form-check border border-lg border-dark" >
+                  <span style=" color: crimson; font-size:13px;"class=" text-start">Smoothie with fruit, nuts, milk</span>
+                  <input type="text" style="border: none;" class=" col-4 no-border border-white text-center mb-2 " name="Breakfast" value="2 times" ><br>
+                   <!-- <input type="text" style="border: none; font-style:italic; font-size:16px; " class="text-center mb-1 "  name="Fitness_1" placeholder="Smoothie with fruit, nuts and milk" >  -->
+                  
+                  
+           <div class="row ">
+                    
+                    <div class="row  justify-content-center mb-1  ">
+                    <input type="text" style="border: none;" class="form-control2  no-border border-white text-center  " name="Breakfast" value="Spinach - 1/2 cup" >
+                    <input type="text" style="border: none;" class="form-control2  no-border border-white text-center  " name="Breakfast" value="Peaches - 1/2 cup" >
+                    <input type="text" style="border: none;" class="form-control2  no-border border-white text-center " name="Breakfast" value="Milk - 1 cup" >
+                   
+                   </div>
+            </div>
+            
+              <div class="row">
+                <div class="row  justify-content-center mb-1  ">
+                <input type="text" style="border: none;" class="form-control2  no-border border-white text-center " name="Breakfast" value="Mango - 1/2 cup" >
+                <input type="text" style="border: none;" class="form-control2 no-border border-white text-center " name="Breakfast" value="Cashew - 1/25 cup" >
+                <input type="text" style="border: none;" class="form-control2  no-border border-white text-center " name="Breakfast" value="Avocado - 1/2" >
+          </div>
+        </div>
+      </div>            
+          <br> 
+    
+    
+                 <div class="form-container2 mx-auto  text-center form-check  border border border-lg border-dark" >
+                  <span style=" color: rgb(20, 67, 220); font-size:13px;" class="text-start"   >Veggie & Cheese Omelette</span>
+                  <input type="text" style="border: none;" class=" col-4 no-border border-white text-center mb-2 " name="Breakfast" value="2 times" ><br>
+                  <!-- <input type="text" style="border: none; font-style:italic; font-size:16px; " class=" text-center mb-1 "  name="Fitness_1" placeholder="Veggie & Cheese Omelette" > -->
+                 
+                  
+                  <div class="row ">
+                    
+                    <div class="row  justify-content-center mb-1  ">
+                    <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Eggs 2 medium" placeholder="Herbs/spices-1">
+                    <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Spinach 1 cup" placeholder="Herbs/spices-1">
+                    <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Cheese 1/2 oz" placeholder="Herbs/spices-1">
+                   
+              </div>
+            </div>
+            
+            
+              <div class="row  ">
+                <div class="row  justify-content-center mb-1  ">
+                <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Red bell pepper 1/2 cup" placeholder="Herbs/spices-1">
+                <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Avocado 1/2 medium" placeholder="Herbs/spices-1">
+                <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Broccoli 1/2 cup" placeholder="Herbs/spices-1">
+          </div>
+        </div>
+      </div>
+                              
+          <br> 
+          <div class="form-container2 mx-auto  text-center form-check  border border border-lg border-dark" >
+            <span style=" color: rgb(41, 155, 56); font-size:13px;"class=" text-start">Burrito with black beans, lettuce, tomato & onions</span>
+            <input type="text" style="border: none;" class=" col-4 no-border border-white text-center mb-2 " name="Breakfast" value="1 time" ><br>
+          <!-- <input type="text" style="border: none; font-style:italic; font-size:16px; " class=" text-center mb-1 "  name="Fitness_1" placeholder=" Burrito with black beans, lettuce, tomato & onions" > -->
+         
+          
+    
+            <div class="row  justify-content-center mb-1  ">
+            <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Tortilla - 2 small" placeholder="Herbs/spices-1">
+            <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Black beans - 1/2 cup" placeholder="Herbs/spices-1">
+            <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Tomato - 1 cup" placeholder="Herbs/spices-1">
+    
+      </div>
+    
+      <div class="row  justify-content-center mb-1">
+        <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Onions 1/2 medium" placeholder="Herbs/spices-1">
+        <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Lettuce - 1/2 cup" placeholder="Herbs/spices-1">
+        <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Sauce" placeholder="Herbs/spices-1">
+    
+    </div>
+    </div><br>
+
+    <div class="form-container2 mx-auto  text-center form-check  border border border-lg border-dark" >
+      <span style=" color: rgb(41, 87, 155); font-size:13px;"class=" text-start">Salad with veggies and beans</span>
+      <input type="text" style="border: none;" class=" col-4 no-border border-white text-center mb-2 " name="Breakfast" value="1 time" ><br>
+    <!-- <input type="text" style="border: none; font-style:italic; font-size:16px; " class=" text-center mb-1 "  name="Fitness_1" placeholder=" Burrito with black beans, lettuce, tomato & onions" > -->
+   
+    
+
+      <div class="row  justify-content-center mb-1  ">
+      <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Spinach 1 cup" placeholder="Herbs/spices-1">
+      <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center  " name="Breakfast" value="Garbanzo beans 1/2 cup" placeholder="Herbs/spices-1">
+      <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Onions" placeholder="Herbs/spices-1">
+
+</div>
+
+<div class="row  justify-content-center mb-1">
+  <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Tomatoes - 1/2 cup" placeholder="Herbs/spices-1">
+  <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Lettuce - 1/2 cup" placeholder="Herbs/spices-1">
+  <input type="text" style="border: none;" class="form-control2 col-4 no-border border-white text-center " name="Breakfast" value="Boiled egg - 1" placeholder="Herbs/spices-1">
+
+</div>
+</div>
+
+
+    <br>
+    
+    
+    
+    
+                     
+          <h5 class="text-center mb-2">My weekly fitness choices </h5> 
+    
+          <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+    
+            <div class="input-group mb-1">
+                <span class="input-group-text font-weight-bold">Moderate intensity</span>
+    
+       
+                  <br>
+                
+                <input type="text" class="form-control text-center" name="Fitness_1" placeholder="Your activity 1" list="fit1">
+                <datalist id="fit1">
+            <option value="Walking">
+            <option value="Jogging">
+            <option value="Elliptic">
+            <option value="Weights">
+            <option value="Biking">
+            <option value="Zumba"> 
+            <option value="Swimming">
+            <option value="Martial_arts">
+            <option value="Bootcamp">
+            <option value="Games">
+            <option value="Pilates">
+            <option value="Yoga">
+            <option value="Breathing">
+            <option value="Mindfulness">
+            
+                 </datalist> 
+                 </div> 
+    
+     <h5 class="text-center mb-2">OR</h5> 
+          <div class="input-group mb-1 ">
+            <span class="input-group-text text-center font-weight-bold">Rigorous intensity</span>
+       
+            <input type="text3" class="form-control text-center" name="Fitness_1" placeholder="Your activity 2"  list="fit1">
+                <datalist id="fit1">
+            <option value="Walking">
+            <option value="Jogging">
+            <option value="Elliptic">
+            <option value="Weights">
+            <option value="Biking">
+            <option value="Zumba"> 
+            <option value="Swimming">
+            <option value="Martial_arts">
+            <option value="Bootcamp">
+            <option value="Games">
+            <option value="Pilates">
+            <option value="Yoga">
+            <option value="Breathing">
+            <option value="Mindfulness">
+            
+                 </datalist> 
+                
+                </div>   
+                
+    
+    <div class="input-group mb-1 ">
+      <span class="input-group-text text-center font-weight-bold">Muscle building</span>
+    
+      <input type="text3" class="form-control text-center" name="Fitness_1" placeholder="Your activity 2"  list="fit1">
+          <datalist id="fit1">
+      <option value="Squats">
+      <option value="Pushups">
+      <option value="Lunges">
+      <option value="Weights">
+     
+      
+           </datalist> 
+          
+          </div>   
+          <div class="input-group mb-1 ">
+            <span class="input-group-text text-center font-weight-bold">Balance</span>
+          
+            <input type="text3" class="form-control text-center" name="Fitness_1" placeholder="Your activity 2"  list="fit1">
+                <datalist id="fit1">
+            
+            <option value="Tai-chi">
+            <option value="Pilates">
+            <option value="Yoga">
+     
+            
+                 </datalist> 
+                
+                </div> 
+    
+        </div>
+          
+
+  <!-- <div class="container-fluid  no-border mx-auto text-center background-color:forestgreen">
+    <br><br>
+    <h6 class=" text-center">My weekly meals & ingredients </h6>
+    
+     <h6 class=" text-center">(Your typical meals either home made or eaten out)</h6> -->
+    
+    <!-- <div class="form-container2 mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+      <h6 style="font-size:12px;" class=" mt-3 text-center">My breakfast & ingredients</h6>
+    <div class="input-group text-end mx-auto">
+      <span  class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control  ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Breakfast name</span>
+         <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cuisine</span>
+        <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frequency</span>
+        </div>
+        <div class="input-group  text-center mb-2 input-group-sm">
+        <input type="text" name="breakfast1" class="form-control text-center" placeholder="{{breakfast1}}" > 
+      <input type="text" name = "bcuisine1"  class="form-control text-center" placeholder="{{bcuisine1}}"  >  
+      <input type="text" name = "b1freq"  class="form-control text-center" placeholder="{{b1freq}}" list="freq1" >  
+      <datalist id="freq1">
+        <option value="Daily">
+          <option value="2-3 times a week">                  
+                </datalist>
+      
+   </div>
+   
+      <div class="input-group ">
+       
+        <input type="text" class="form-control text-center" name="ingredientb11" placeholder="{{ingredientb11}}"  > 
+        
+        <input type="text" class="form-control text-center" name="ingredientb12" placeholder="{{ingredientb12}}">
+
+        <input type="text" class="form-control text-center" name="ingredientb13" placeholder="{{ingredientb13}}"  > 
+        
+        <input type="text" class="form-control text-center" name="ingredientb14" placeholder="{{ingredientb14}}">
+         </div> 
+
+         <div class="input-group ">
+       
+          <input type="text" class="form-control text-center" name="ingredientb15" placeholder="{{ingredientb15}}"  > 
+          
+          <input type="text" class="form-control text-center" name="ingredientb16" placeholder="{{ingredientb16}}">
+  
+          <input type="text" class="form-control text-center" name="ingredientb17" placeholder="{{ingredientb17}}"  > 
+          
+          <input type="text" class="form-control text-center" name="ingredientb18" placeholder="{{ingredientb18}}">
+           </div>    
+           <h6 style="font-size:12px;" class=" mt-3 text-center">My breakfast drink & ingredients</h6>
+           <div class="input-group text-end mx-auto">
+            <span  class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control  ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Breakfast drink name</span>
+              
+              <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frequency</span>
+              </div>
+              <div class="input-group text-end mx-auto">
+              <input type="text" name="breakfast1" class="form-control text-center" placeholder="{{breakfast1}}" > 
+              <input type="text" name = "bcuisine1"  class="form-control text-center" placeholder="{{bcuisine1}}"  >  
+            </div>
+           <div class="input-group ">
+       
+             <input type="text" class="form-control text-center" name="ingredientbdr11" placeholder="{{ingredientbdr11}}"  > 
+            
+            <input type="text" class="form-control text-center" name="ingredientbdr12" placeholder="{{ingredientbdr12}}">
+    
+            <input type="text" class="form-control text-center" name="ingredientbdr13" placeholder="{{ingredientbdr13}}"  > 
+            
+            <input type="text" class="form-control text-center" name="ingredientbdr14" placeholder="{{ingredientbdr14}}"> -->
+             <!-- </div>
+
+  </div><br>
+
+  <div class="form-container3 mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+    <h6 style="font-size:12px;" class=" mt-3 text-center">My lunch & ingredients</h6>
+    <div class="input-group text-end mx-auto">
+      <span  class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control  ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lunch name</span>
+         <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cuisine</span>
+        <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frequency</span>
+        </div>
+       
+    <div class="input-group  text-center mb-2 input-group-sm">
+       <span style="width:68px;" class="input-group-text font-weight-bold   text-center">Lunch - 1</span> -->
+      <!-- <input type="text" name="lunch1" class="form-control text-center" placeholder="{{lunch1}}" > 
+      <input type="text" name = "lcuisine1"  class="form-control text-center" placeholder="{{lcuisine1}}"  > 
+  
+       <span class="input-group-text font-weight-bold  text-center">Frequency</span> -->
+      <!-- <input type="text" name = "l1freq"  class="form-control text-center" placeholder="{{l1freq}}" list="freq1" >  
+      <datalist id="freq1">
+        <option value="Daily">
+          <option value="2-3 times a week">                  
+                </datalist>
+      
+   </div>
+
+      <div class="input-group ">
+       
+        <input type="text" class="form-control text-center" name="ingredientb11" placeholder="{{ingredientl11}}"  > 
+        
+        <input type="text" class="form-control text-center" name="ingredientb12" placeholder="{{ingredientl12}}">
+
+        <input type="text" class="form-control text-center" name="ingredientb13" placeholder="{{ingredientl13}}"  > 
+        
+        <input type="text" class="form-control text-center" name="ingredientb14" placeholder="{{ingredientl14}}">
+         </div> 
+
+         <div class="input-group ">
+       
+          <input type="text" class="form-control text-center" name="ingredientb15" placeholder="{{ingredientl15}}"  > 
+          
+          <input type="text" class="form-control text-center" name="ingredientb16" placeholder="{{ingredientl16}}">
+  
+          <input type="text" class="form-control text-center" name="ingredientb17" placeholder="{{ingredientl17}}"  > 
+          
+          <input type="text" class="form-control text-center" name="ingredientb18" placeholder="{{ingredientl18}}">
+           </div>    
+
+           <h6 style="font-size:12px;" class=" mt-3 text-center">My lunch drink</h6>
+
+           <div class="input-group text-end mx-auto">
+            <span  class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control  ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lunch drink name</span>
+              
+              <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frequency</span>
+              </div>
+           
+              <div class="input-group text-end mx-auto">
+                <input type="text" name="breakfast1" class="form-control text-center" placeholder="{{breakfast1}}" > 
+                <input type="text" name = "bcuisine1"  class="form-control text-center" placeholder="{{bcuisine1}}"  >  
+              </div>
+              < <div class="input-group ">
+       
+            <input type="text" class="form-control text-center" name="ingredientldr11" placeholder="{{ingredientldr11}}"  > 
+            
+            <input type="text" class="form-control text-center" name="ingredientldr12" placeholder="{{ingredientldr12}}">
+    
+            <input type="text" class="form-control text-center" name="ingredientldr13" placeholder="{{ingredientldr13}}"  > 
+            
+            <input type="text" class="form-control text-center" name="ingredientldr14" placeholder="{{ingredientldr14}}">
+             </div> -->
+
+
+
+  <br>
+
+  <!-- <div class="form-container4 mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+
+    <h6 style="font-size:12px;" class=" mt-3 text-center">My dinner & ingredients</h6>
+
+    <div class="input-group text-end mx-auto">
+      <span  class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control  ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dinner name</span>
+         <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cuisine</span>
+        <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frequency</span>
+        </div>
+    <div class="input-group  text-center mb-2 input-group-sm">
+      < <span style="width:68px;" class="input-group-text font-weight-bold   text-center">Dinner - 1</span> -->
+      <!-- <input type="text" name="dinner1" class="form-control text-center" placeholder="{{dinner1}}" > 
+      <input type="text" name = "dcuisine1"  class="form-control text-center" placeholder="{{dcuisine1}}"  >  -->
+      
+  
+      <!-- <span class="input-group-text font-weight-bold  text-center">Frequency</span> -->
+      <!-- <input type="text" name = "d1freq"  class="form-control text-center" placeholder="{{d1freq}}" list="freq1" >  
+      <datalist id="freq1">
+        <option value="Daily">
+          <option value="2-3 times a week">                  
+                </datalist>
+
+   </div> 
+
+      <div class="input-group ">
+       
+        <input type="text" class="form-control text-center" name="ingredientb11" placeholder="{{ingredientd11}}"  > 
+        
+        <input type="text" class="form-control text-center" name="ingredientb12" placeholder="{{ingredientd12}}">
+
+        <input type="text" class="form-control text-center" name="ingredientb13" placeholder="{{ingredientd13}}"  > 
+        
+        <input type="text" class="form-control text-center" name="ingredientb14" placeholder="{{ingredientd14}}">
+         </div>  -->
+
+         <!-- <div class="input-group ">
+       
+          <input type="text" class="form-control text-center" name="ingredientb15" placeholder="{{ingredientd15}}"  > 
+          
+          <input type="text" class="form-control text-center" name="ingredientb16" placeholder="{{ingredientd16}}">
+  
+          <input type="text" class="form-control text-center" name="ingredientb17" placeholder="{{ingredientd17}}"  > 
+          
+          <input type="text" class="form-control text-center" name="ingredientb18" placeholder="{{ingredientd18}}">
+           </div>  
+        
+           <h6 style="font-size:12px;" class=" mt-3 text-center">My dinner drink</h6>
+           <div class="input-group text-end mx-auto">
+            <span  class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control  ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dinner drink name</span>
+              
+              <span class="input-group-text font-weight-bold text-center mx-auto ml-4 form-control ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frequency</span>
+              </div>
+              <div class="input-group text-end mx-auto">
+                <input type="text" name="breakfast1" class="form-control text-center" placeholder="{{breakfast1}}" > 
+                <input type="text" name = "bcuisine1"  class="form-control text-center" placeholder="{{bcuisine1}}"  >  
+              </div>   -->
+           <!-- <div class="input-group ">
+            
+            <input type="text" class="form-control text-center" name="ingredientddr11" placeholder="{{ingredientddr11}}"  > 
+            
+            <input type="text" class="form-control text-center" name="ingredientddr12" placeholder="{{ingredientddr12}}">
+    
+            <input type="text" class="form-control text-center" name="ingredientddr13" placeholder="{{ingredientddr13}}"  > 
+            
+            <input type="text" class="form-control text-center" name="ingredientddr14" placeholder="{{ingredientddr14}}">
+             </div> -->
+
+  <!-- </div>
+  
+  <br>
+
+  <div class="form-container5 mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+    <h6 style="font-size:12px;" class="  text-center">My snack & ingredients</h6>
+
+    <div class="input-group ">
+       
+      <input type="text" class="form-control text-center" name="ingredientb15" placeholder="{{ingredientd15}}"  > 
+      
+      <input type="text" class="form-control text-center" name="ingredientb16" placeholder="{{ingredientd16}}">
+
+  </div>
+
+  </div>
+  <br>
+  <div class="form-container6 mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+    <h6 style="font-size:12px;" class="  text-center">My daily water intake</h6>
+
+    <div class="input-group ">
+       
+      <input type="text" class="form-control text-center" name="water_intake" placeholder="{{water_intake}}"  > 
+    
+
+  </div>
+
+  </div>   -->
+     
+   
+
+        <div class="button-group space-around text-center mt-4  mx-auto">
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/landing">
+              <button class="btn btn-warning btn-sm" type="button">Home</button>
+            </a>
+          </div>
+    
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/myprofile">
+              <button class="btn btn-success btn-sm" type="submit">Save & Continue</button>
+            </a>
+          </div>
+
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/myprofile">
+              <button class="btn btn-primary btn-sm" type="button">Next</button>
+            </a>
+          </div>
+
+          <div class="text-center  mb-1 ">
+            <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
+            </div>
+        
+        </div>
+      
+      </body>
+    </div>
+    </form>
+    
+    {% endblock content %}

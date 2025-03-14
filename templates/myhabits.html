@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% block title %}Minor Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+  @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0px;
+      padding:0px;
+      overflow-x: hidden;
+    }
+  }
+
+.container-fluid { height:100%;width:auto; padding:0px; overflow:hidden; margin-bottom:0px;}
+.form-container { width: 320px; padding:10px; border-radius:15px;  background-color: rgb(197, 216, 210);}
+.form-container2 { width: 320px; padding:10px; border-radius:15px; background-color: rgb(218, 220, 240);}
+
+.checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.5;
+ /* margin-top:8px;   */
+ margin-right: 15px;
+ margin-left: -5px; 
+ 
+margin-bottom:-10px;
+
+ align-content: start;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 0px;
+    font-size:11px;
+    margin-left: 0px;
+    margin-bottom:-10px;
+    margin-right:0px; 
+   
+    width:290px;
+    align-content: left;
+ } 
+
+ .form-control {width:200px; font-size: 10px;}
+ .form-check{font-size: 12px;}
+
+.btn {font-size:13px;  margin-right: 10px; margin-left:10px;}
+.button-group { 
+  display:inline-flex; align-items:center; margin-left:0px; padding:0px; 
+  justify-content: center; margin-top:0px;  white-space: nowrap;
+}
+
+.d-inline {margin-left: 10px; margin-right:10px;}
+.input-group-text {font-size: 10px; width:150px;}
+
+    
+.logo {align-content: left; margin-left:-5px; margin-top:-35px;}  
+    
+.logout{align-content: right; text-align: right; margin-top:-40px; margin-right:5px; }    
+
+.p {font-size:12px; margin-left:5px;}
+.placeholder{font-size: 12px;}
+.display-7{font-size:12px;  }
+.headingb {font-size:15px;}
+.form-check-label{font-size:10px;}
+.h5 { position: relative; font-family: "Dancing Script", cursive; font-size:28px;  
+font-variant: normal; font-weight: 10px; line-height: normal; color: rgb(15, 15, 15); transform: scaleY(1.0); 
+text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 20px; }
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+             
+                
+      <div class="container-fluid   mx-auto text-center  no-border">
+        
+        <nav aria-label="Page navigation example">
+          <ul style="font-size:10px; " class="pagination justify-content-center mt-2 ">
+            <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/minorsym">Symptoms</a></li>
+            <li style="font-size:10px;" class="page-item disabled" ><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myfitness">Fitness</a></li>
+            <li style="font-size:10px;" class="page-item disabled" ><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px; padding-top:5px; padding-bottom:5px;" href="/myfoodgroups">Foodgroups</a></li>
+            <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/mybreakfastdesign">Meals</a></li>
+            <li class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/supplements">Supplements</a></li>
+            <li class="page-item active"><a class="page-link " style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myhabits">Habits</a></li>
+            <li class="page-item disabled"><a class="page-link " style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myexpenses">Expenses</a></li>
+            
+          </ul>
+        </nav>
+ 
+       
+        <h5 class="text-center mb-2">My habit tracker</h5> 
+        <h6 class="text-center headingb mt-2 mb-2">Select habits to create or strengthen, reduce/avoid</h6>
+        <h6 class ="headingb "> (Updates for habits can be made through settings menu)</h6>
+<br>
+
+    <div class="form-container  mx-auto  text-center mb-4  border" >
+    <!-- {{ form|crispy }} -->
+             
+
+<div class="mx-auto text-center ">   
+
+  <div style="width:280px;" class="input-group mb-1 mt-1 text-center mx-auto ">
+   
+    <input type="text" name="Stretches"  class="form-control text-center" placeholder="Daily stretches" list="habit1">
+          <datalist id="habit1">
+            <option value="Do daily Stretches">
+             
+              </datalist>
+    
+    </div>   
+
+<div style="width:280px;" class="input-group mb-1 text-center mx-auto ">
+
+<input type="text" name="Reduce_processed"  class="form-control  text-center" placeholder="Healthier food choices" list="habit2">
+      <datalist id="habit2">
+        <option value="Reduce processed foods">
+          
+          </datalist>
+
+</div>   
+
+<div style="width:280px;" class="input-group mb-1 text-center mx-auto ">
+  
+  <input type="text" name="Prepare_meals"  class="form-control  text-center" placeholder="Prepare simple meals" list="habit3">
+        <datalist id="habit3">
+          <option value="Prepare meals more often">
+            
+            </datalist>
+  
+  </div>  
+  
+<div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+
+<input type="text" name="Wake_time" class="form-control text-center" placeholder="Sleep regulation" list="habit4">
+<datalist id="habit4">
+  <option value="Wake at the same time each day">
+    
+    </datalist>
+</div>      
+
+<div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+  
+  <input type="text" name="Clear_kitchen" class="form-control text-center" placeholder="Ktchen Organization" list="habit5">
+  <datalist id="habit5">
+    <option value="Clear Kitchen sink and cleanup">
+      
+      </datalist>
+  </div>
+
+  <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+    
+    <input type="text" name="Brush_Floss" class="form-control text-center" placeholder="Dental care" list="habit6">
+    <datalist id="habit6">
+      <option value="Brush twice and floss at least once">
+        </datalist>
+    </div>
+
+    <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+      
+      <input type="text" name="Groceries_shop" class="form-control text-center" placeholder="Groceries on weekends" list="habit7">
+      <datalist id="habit7">
+        <option value="Shop Groceries on weekends">
+          </datalist>
+      </div>
+
+      <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+        
+        <input type="text" name="food_cost_savings" class="form-control text-center" placeholder="Save from not eating out" list="habit8">
+        <datalist id="habit8">
+          <option value="Savings from not eating out">
+            </datalist>
+        </div>
+
+        <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+          
+          <input type="text" name="daily_mindfulness" class="form-control text-center" placeholder="Practice daily mindfulness" list="habit9">
+          <datalist id="habit9">
+            <option value="Daily mindfulness">
+              </datalist>
+          </div>
+
+          <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+           
+            <input type="text" name="food_suggestions" class="form-control text-center" placeholder="Follow food/fitness app suggestions" list="habit10">
+            <datalist id="habit10">
+              <option value="Follow food/fitness app suggestions">
+                </datalist>
+            </div>  
+
+            <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+           
+              <input type="text" name="reduce_alcohol" class="form-control text-center" placeholder="Reduce or quit alcohol" list="habit11">
+              <datalist id="habit11">
+                <option value="Reduce or quit alcohol">
+                  </datalist>
+              </div>  
+  
+              <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+           
+                <input type="text" name="reduce_smoking" class="form-control text-center" placeholder="Reduce or quit smoking/vaping" list="habit12">
+                <datalist id="habit12">
+                  <option value="Reduce or quit smoking/vaping">
+                    </datalist>
+                </div> 
+</div>
+</div> 
+
+
+
+<h6 class="text-center headingb mt-2 mb-3">Input your custom habits to create, strengthen or reduce/avoid</h6>
+
+<div class="form-container  mx-auto  text-center   border" >
+
+  <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+           
+    <input type="text" name="custom_habit1" class="form-control text-center" placeholder="Your custom habit 1" >
+    
+    </div> 
+
+  
+
+
+
+    <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+             
+      <input type="text" name="custom_habit2" class="form-control text-center" placeholder="Your custom habit 2" >
+      
+      </div> 
+  
+    
+
+
+
+      <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+               
+        <input type="text" name="custom_habit3" class="form-control text-center" placeholder="Your custom habit 3">
+        
+        </div> 
+    
+      
+    </div>
+    
+  <br>
+
+
+
+<div class="button-group ml-5  mt-2 mb-3 fixed-bottom mx-auto  text-center">
+<!-- <div class="d-inline  d-md-block span">
+  
+<a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+</div>  -->
+       
+<div class="d-inline  d-md-block">
+  <a href="/myexpenses"></a><button class="btn btn-sm btn-success" type="submit" >Save & Continue</button></a>
+  
+</div>
+
+
+<!-- <div class="text-center   ">
+  <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
+  </div>
+
+</div>  -->
+  
+ 
+</div>
+        </form>
+
+{% endblock content %}

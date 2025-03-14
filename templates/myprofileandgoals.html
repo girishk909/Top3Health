@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+   
+{% load static %}
+{% block content %}
+
+   
+<style>
+    
+    @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+.form-container { display:inline-flex; width:105px; height:115px; font-size:1px;margin-bottom:10px;  padding-top:10px; border-radius:25px; background-color: rgb(240, 241, 247);}
+.btn {font-size:15px; margin-left:30px; margin-right:30px;}
+.button-group { 
+     
+  justify-content: space-around; padding-right: 10px;margin-top:30px; position:relative; white-space: nowrap;
+}
+/* .container-fluid { margin-right:20px;} */
+
+.logout{text-align: right; margin-top:-55px; margin-right:0px; }   
+    
+.logo {align-content: left; margin-left:0px; margin-top: -55px; } 
+/* .logout{text-align: right; margin-top:-70px; margin-right:20px;}    */
+
+.box:hover{
+  background: rgb(215, 233, 215);
+  cursor: pointer;
+}
+
+.btn-lg:hover {
+    color: lightgrey;
+}
+
+.container-fluid {
+
+    width: 80%;
+    height:100%;
+    position: relative;
+    /* padding-left:20px;
+    padding-right: 80px; */
+    /* margin-top:30px; */
+
+}    
+/* .row{margin-left: 0px;} */
+/* .myprofile-inline {display:inline-flex; justify-content: end;} */
+
+/* .myprofile-inline2{display:block; } */
+    
+.footer { clear: both; }  
+
+.page-end {margin-top: 10px; margin-left: 150px;}
+    
+    /* .col-md-auto {padding:2px;}   */
+
+    /* .form-group {
+        margin-bottom: 45px; 
+        
+} */
+  
+</style> 
+<form method="POST">
+  
+  {% csrf_token %}
+  <p class="fs-6 text-center"> {{user.first_name }}</p>
+  
+  <br>
+  <div class="logo text-start">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6>
+    </div>
+    
+   <div class="logout text-end">
+    
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+      
+    
+    </div>  
+    
+    <h6 class="text-center">My Goals & Profile</h6>
+    <br>
+    
+    
+<div class="container-fluid text-center mx-auto no-order">
+
+    <div class="row col-space text-center mx-auto space-around ">  
+      <div class="col col-margin">
+        <div class="form-container  box border " > 
+        <a href="{% url 'updategoals' %}" style="text-decoration:none;" class="text-danger mx-auto text-center "><img src="{% static 'css/goal.png' %}" alt="Veggies">
+         <br> <br>
+          <h6 style="font-size:13px;"><br>&nbsp;My health <br>Goals&nbsp;</h6>
+        </a> 
+        </div>
+      </div>
+
+<div class="col col-margin">
+  <div class="form-container box border" > 
+  <a href="{% url 'updateprofile' %}" style="text-decoration:none;" class="text-danger mx-auto text-center"><img src="{% static 'css/login-yellow.png' %}" alt="Veggies">
+    <br> <br>
+    <h6 style="font-size:13px;"><br>My basic<br>Profile</h6>
+  </a> 
+  </div>
+</div>
+</div>  
+
+<div class=" row col-space text-center mx-auto space-around nowrap ">
+  <div class="col col-margin ">
+  <div class="form-container box border" >
+  <a href="{% url 'minorsymupdate' %}" style="text-decoration:none;" class="text-danger mx-auto text-center"><img src="{% static 'css/spinal.png' %}" alt="Veggies">
+    <br> <br>
+    <h6 style="font-size:13px;">Minor<br>Symptoms</h6>
+  </a> 
+  </div>
+  </div>
+
+  <div class="col col-margin">
+    <div class="form-container box border" > 
+    <a href="{% url 'majorsymupdate' %}" style="text-decoration:none;" class="text-danger mx-auto text-center"><img src="{% static 'css/sphygmomanometer.png' %}" alt="Veggies">
+      <br><br>
+      <h6 style="font-size:13px;">Major<br>Symptoms</h6>
+    </a> 
+    </div>
+  </div>
+  </div> 
+  
+  <div class=" row col-space text-center mx-auto space-around nowrap ">
+    <div class="col col-margin ">
+    <div class="form-container box border" >
+    <a href="{% url 'minorsymupdate' %}" style="text-decoration:none;" class="text-danger mx-auto text-center"><img src="{% static 'css/spinal.png' %}" alt="Veggies">
+      <br> <br>
+      <h6 style="font-size:13px;">My<br>Habits</h6>
+    </a> 
+    </div>
+    </div>
+  
+  
+  <div class="col col-margin ">
+      <div class="form-container box border" >
+      <a href="{% url 'myfitnessupdate' %}" style="text-decoration:none;" class="text-danger mx-auto text-center"><img src="{% static 'css/barbell.png' %}" alt="Veggies">
+        <br> <br>
+        <h6 style="font-size:13px;">My<br>Fitness</h6>
+      </a> 
+      </div>
+      </div>
+</div>
+ 
+            <div class=" row col-space text-center mx-auto space-around nowrap ">
+
+    <div class="col col-margin  ">
+        <div class="form-container  box border" >
+        <a href="{% url 'myfastfoodsupdate' %}" style="text-decoration:none;" class="text-danger mx-auto text-center"><img src="{% static 'css/meal.png' %}" alt="Veggies">
+          
+          <br><br>
+          <h6 style="font-size:13px;">&nbsp&nbsp;&nbsp&nbsp;My Fast&nbsp&nbsp;&nbsp&nbsp;<br>foods</h6>
+        </a> 
+        </div>
+        </div>
+
+
+    <div class="col col-margin">
+        <div class="form-container  box border " >
+        <a href="{% url 'myfoodgroupsupdate' %}" style="text-decoration:none;" class="text-danger box mx-auto text-center"><img src="{% static 'css/diet.png' %}" alt="Veggies">
+          <br> <br>
+          <h6 style="font-size:13px;">&nbsp;My Food&nbsp;&nbsp;<br>&nbsp;Groups&nbsp;</h6>
+        </a> 
+        </div>
+      </div>
+
+</div>
+
+        <div class=" row col-space text-center mx-auto space-around nowrap  ">
+          <div class="col col-margin ">
+          <div class="form-container box border" >
+          <a href="{% url 'myallergicfoodsupdate' %}" style="text-decoration:none;" class="text-danger mx-auto text-center"><img src="{% static 'css/glutenimage.jpg' %}" alt="Veggies">
+           
+            <br> <br>
+            <h6 style="font-size:13px;">My Allegic<br>Foods</h6>
+          </a> 
+          </div>
+          </div>
+
+
+
+      
+          <div class="col col-margin ">
+              <div class="form-container box border" >
+              <a href="{% url 'myeatoutmeals' %}" style="text-decoration:none;" class="text-danger mx-auto text-center"><img src="{% static 'css/cutlery.png' %}" alt="Veggies">
+                <br> <br>
+                <h6 style="font-size:13px;">My eat-out<br>Choices</h6>
+              </a> 
+              </div>
+              </div>
+              </div>
+
+        <br>
+        
+     <div class=" navbar mx-auto  nowrap text-center btn-group" >
+        
+        <a href="/landing"><button type="button" class="btn btn-primary btn-sm nowrap">Home</button></a>
+        <a href="Resources"><button type="button" class="btn btn-danger btn-sm nowrap">Resources</button></a>
+           
+        
+    </div>
+  
+  </div>
+  
+  <hr>
+
+      <p style="font-size:12px;" class="text-center mt-2 align-bottom">Copyright - Tophealth.com</p>
+</form>
+        {% endblock content%}

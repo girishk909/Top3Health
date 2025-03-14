@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width : 900px) {
+    .container { max-width: 400px; }
+}    
+
+.form-container {margin-left:30px;  margin-top:20px; height:69vh; width: 590px; padding:30px; align-content:center; border-radius:30px; background-color: rgb(182, 199, 192);}
+
+::placeholder {
+  color: green;
+}
+
+/* .inputfield {
+  
+  height: 70px;
+  font-size: 25px;
+} */
+
+/* .input-group {font-size: 28px;} */
+    
+ .top-buffer{
+  margin-top: 40px;
+}
+    
+.ml-4 {margin-top:30px; }    
+              
+.btn {font-size:20px; margin-right:0px;}
+.button-group { 
+  display:inline-flex; align-items:left; margin-left:20px; padding:20px; 
+  justify-content: space-around; margin-top:30px; position:relative; white-space: nowrap;
+}
+
+/* .form-check-label{color:rgb(10, 56, 141)}
+.form-check{color:darkgreen; scale:2rem; font-size:25px;}
+.form-check-label{scale:3rem; font-size:28px; font-weight: bold; margin-bottom: 30px; margin-left: 20px; padding-top:-25px; font-size:30px; } */
+.placeholder-label {font-size:28px;}
+
+.d-inline {margin-left: 30px; margin-right:65px;}
+    
+.logo {align-content: left; margin-left:-30px; margin-top:-30px;}  
+    
+.logout{text-align: right; margin-top:-70px; margin-right:-30px;}    
+.input-group-text {font-size: 22px;}
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+ 
+
+    
+    <div class="container-fluid p-5 my-4 border">
+       
+    <div class=logo>
+    <i class="fa fa-circle" style="font-size:28px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:28px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:28px;color:#0080ff"></i>
+            <h3> top3health</h3>
+    
+     </div>   
+   <div class=logout>
+    <a href="/logout"> <img src="{% static 'css/red-logout.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+    <p class="fs-3 text-center"> {{user.first_name }}</p>
+   </div>      
+        <br>
+        <h4 class="display-6 text-center">My Profile</h4>
+<br>
+
+   <div class="ml-4 d-inline-block text-center ">
+    <div class="form-container  text_center border" >
+       
+    <!-- {{ form|crispy}} -->
+    
+    <div class="row justify-content-center">
+    <div class="col-4">
+      <div class="input-group mb-3 text-center input-group-default">
+      <span class="input-group-text font-weight-bold">Walking(ft, in)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <input type="text" name = "Walking" id = "ch1" class="form-control"placeholder="Walking duration in minutes" >
+       </div>
+    </div>
+    <div class="col-4">
+      <div class="input-group mb-3 input-group-default">
+      <span class="input-group-text font-weight-bold">Walks per week&nbsp;&nbsp;(Pounds)</span>
+      <input type="text" name = "Walks_per_week" class="form-control"  placeholder="Walking frequency">
+       </div>  
+    </div>
+  </div>
+
+
+    
+       
+         
+             
+         
+<br> <br>
+<div class="button-group nowrap">
+  <div class="d-inline gap-2 d-md-block">
+    <a href="/landing"><button class="btn btn-warning btn-large" type="button">Home</button></a>
+  </div>   
+         
+  <div class="d-inline gap-2 d-md-block">
+    <a href="/minorsymptoms"></a><button class="btn btn-success btn-large" type="submit" >Save & Continue</button></a>
+    
+  </div>
+  
+  
+    <div class="d-inline gap-2 d-md-block">
+      <a href="/minorsymptoms"><button class="btn btn-primary btn-large" type="button">Next</button></a>
+    </div>
+         
+  </div> 
+    </div>  
+  
+
+        </form>
+
+{% endblock content %}

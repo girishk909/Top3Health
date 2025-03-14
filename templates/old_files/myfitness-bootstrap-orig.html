@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+ 
+@media only screen and (min-width : 900px) {
+    .container { max-width: 500px; }
+}    
+
+    
+/*.logout {align-content: right; margin-left: 850px; margin-top: -40px;}*/
+.form-container { padding:30px; border-radius: 30px; background-color: rgb(191, 222, 233);}
+    
+.form-check {margin-left:1px; margin-bottom: 9px; font-size:20px;}  
+    /* .flexRadioDefault1 {font-size: 90px;} */
+    
+/* .checkbox-lg .form-check-input{
+ top: .4rem;
+ scale: 1.2;
+ margin-top:0px;
+ margin-right: 0.7rem;
+ }
+
+.checkbox-lg .form-check-label {
+ padding-top: 13px;
+ }
+
+.checkbox-xl .form-check-input {
+ top: 1.4rem;
+ scale: 2.2;
+ margin-top:26px;    
+ margin-right: 0.9rem;
+ margin-left: 6.9rem;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 19px;
+    font-size:22px;
+ } */
+    
+.input-group {margin-left:130px; width:90%; margin-bottom: 20px; color:#2468ad; font-size:25px; display: inline;}
+    
+.input-group-text {font-size:23px;font-style: bold;}    
+.ml-4 {margin-top:20px;margin-left:-40px; }    
+              
+.btn {font-size:20px; margin-right:30px;}
+.button-group { 
+  display:inline-flex; align-items:left; margin-left:15px; padding-left:20px; 
+  justify-content: space-around; margin-top:40px; position:relative;
+}
+
+.d-inline {margin-left: 20px; margin-right:65px;}
+    
+.logo {align-content: left; margin-left:-20px; margin-top:-25px;}  
+    
+.logout{text-align: right; margin-top:-60px; margin-right:-20px;}    
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+
+ 
+    <div class="container-fluid p-5 my-4 no-border">
+       
+    <div class=logo>
+    <i class="fa fa-circle" style="font-size:28px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:28px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:28px;color:#0080ff"></i>
+            <h2> top3health</h4>
+            
+     </div>   
+    <div class=logout>
+      <a href="/logout"> <img src="{% static 'css/red-logout.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+      
+      <br><h3 class="fs-3 text-center"> {{user.first_name }}</h3>
+      </div>  
+        <br>
+        <br>
+        <br>
+       <h4 class="display-5 text-primary text-center">My Fitness activities</h4>
+
+        <div class="input-group input-group-lg  mb-3"> 
+          <div class="form-container form-check checkbox-xl checkbox-primary  border" >
+            
+      {{ form|crispy }}
+     
+    </div>
+</div>
+<div class="button-group">
+<div class="d-inline gap-2 d-md-block">
+  <a href="/landing"><button class="btn btn-warning btn-large" type="button">Home</button></a>
+</div>   
+       
+<div class="d-inline gap-2 d-md-block">
+  <a href="/myfoodgroups"></a><button class="btn btn-success" type="submit" >Save & Continue</button></a>
+</div>
+       
+     </div>  
+</div>
+
+        </form>
+        {% endblock content %}

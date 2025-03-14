@@ -1,0 +1,464 @@
+{% extends 'base.html' %}
+{% block title %}Fruit and Berries{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+@media only screen and (min-width : 500px) {
+    .container { max-width: 500px; padding:0px; margin-left: 0px; margin-right: 0px;}
+}     
+
+    
+/*.logout {align-content: right; margin-left: 850px; margin-top: -40px;}*/   
+
+.checkbox-xl .form-check-input {
+ top: 1.4rem;
+ margin-top:26px;    
+ margin-right: 0.9rem;
+ margin-left:100px;    
+ margin-bottom: 2.5rem;
+    font-size:32px;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 9px;
+    font-size:38px;
+ }
+    
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.6); /* IE */
+  -moz-transform: scale(1.6); /* FF */
+  -webkit-transform: scale(1.8); /* Safari and Chrome */
+  -o-transform: scale(1.6); /* Opera */
+  padding: 5.0px;
+    align-content: center;
+    font-size: 10px;
+}  
+.form-control {font-size:15px; color:black; width:90px;}    
+    
+.form-check-input {font-size:10px; color: black; }    
+    
+.input-group {margin-left:-20px; width:390px; }    
+.input-group-text1 {font-size:10px; width:90px; }   
+.input-group-text2 {font-size:10px; width:60px; }  
+    
+/* .ml-4 {margin-top:20px;margin-left:-120px; }    */
+              
+.btn {font-size:15px; margin-right:6px;}
+.button-group { 
+  display:inline-flex; align-items:center; margin-left:50px; padding-left:10px; 
+  justify-content: space-around; margin-top:40px; position:relative;
+}
+
+.d-inline {margin-left: 20px; margin-right:65px;}
+    
+.logo {align-content: left; margin-left:10px; margin-top:5px;}  
+    
+.logout{text-align: right; margin-top:-50px; margin-right:-30px;}   
+    
+.container-fluid  {width:480px; padding:0;} 
+.form-container { width:auto; padding:10px; border-radius:30px;  background-color: #a6c4e4;}
+.placeholder {font-size:10px; width:290px;}
+/* .form-control {font-size:14px;} */
+
+</style>
+<form method="POST">
+  {% csrf_token %}
+
+  <div class="logo ">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h5>top3health</h5>
+    
+     </div>
+     <div class="logout text-center mr-0">
+        <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+        <p class="fs-5 text-center"> {{user.first_name }}</p>
+     </div>
+
+     <div class="container-fluid  mx-auto text-center  no-border">
+    
+      <br>
+      <h5 class=" text-center ">Detailed Food choices - Fruit & Berries</h5>
+      <br>
+    <div class="form-container mx-auto text-center border" >
+       
+          <!-- {{ form|crispy}} -->
+          <div class="ml-4 d-inline-block" text-center>
+            
+            <br>
+            
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Apples</span>
+       <input type="text" name="Apples" class="form-control" placeholder="Daily, Weekly, Monthly" list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+       <option value="Avoid">
+       </datalist>
+        </div>      
+            
+        <div class="input-group mb-3">
+           <div class="input-group-text">
+             <input class="form-check-input" name="Include_Apples" value="something" id="check1" type="checkbox"  checked>
+           </div>
+         <input type="text" class="form-control" readonly="readonly" placeholder="Include apple varieties in meal suggestions" />
+        </div>  
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Apricot</span>
+       <input type="text" class="form-control" name="Apricot" placeholder="Daily, Weekly, Monthly" list="veg"> 
+        <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist> 
+        </div>
+            
+        <div class="input-group mb-3">
+           <div class="input-group-text">
+             <input class="form-check-input" type="checkbox" name="Include_Apricots" value="something4" id="check2" checked>
+         </div>
+        <input type="text" class="form-control" readonly="readonly" placeholder="Include Apricots in meal suggestions" />
+        </div>  
+
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Banana</span>
+       <input type="text" class="form-control" name="Banana" placeholder="Daily, Weekly, Monthly" list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>  
+        </div> 
+            
+        <div class="input-group mb-3">
+         <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Bananas" value="something2" id="check3" checked>
+         </div>
+         <input type="text" readonly="readonly" class="form-control" placeholder="Include Bananas in meal suggestions" />
+             </div>  
+                  
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Cantaloupe</span>
+       <input type="text" class="form-control" name="Cantaloupe" placeholder="Daily, Weekly, Monthly" list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>  
+        </div>  
+            
+         <div class="input-group mb-3">
+         <div class="input-group-text">
+         <input class="form-check-input" name="Include_Cantaloupe" type="checkbox" value="something1" id="check4" checked>
+         </div>
+         <input type="text"  class="form-control" readonly="readonly" placeholder="Include Cantaloupe in meal suggestions" checked/>
+         </div>  
+                   
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Dates</span>
+       <input type="text" class="form-control" name="Dates" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>    
+            
+        <div class="input-group mb-3">
+         <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Dates" value="vcd" checked>
+         </div>
+         <input type="text" class="form-control" readonly="readonly" placeholder="Include Dates in meal suggestions" list="veg" >  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist> 
+         </div>  
+                         
+      
+       <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Grapes</span>
+       <input type="text" class="form-control" name="Grapes" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>
+            
+        <div class="input-group mb-3">
+         <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Grapes" value="sa" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly  placeholder="Include Grapes in meal suggestions" />
+         </div>  
+                   
+       
+           <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Guava</span>
+       <input type="text" class="form-control" name="Guava" placeholder="Daily, Weekly, Monthly" list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>
+            
+        <div class="input-group mb-3">
+         <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Guava" value="cvqw" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Guavas in meal suggestions" />
+         </div>  
+               
+            
+       <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Kiwi Fruit</span>
+       <input type="text" class="form-control" name="Kiwi" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>    
+            
+        <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Kiwi" value="uy" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Kiwi in meal suggestions" />
+         </div>  
+                       
+            
+       <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Mango</span>
+       <input type="text" class="form-control" name="Mango" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>
+            
+            
+        <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Mango" value="po" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Mangoes in meal suggestions" />
+         </div>  
+                       
+            
+       <div class="input-group mb-1">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Papaya</span>
+       <input type="text" class="form-control" name="Papaya" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>  
+            
+        <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Papaya" value="wqa" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Papaya in meal suggestions" />
+         </div>  
+                      
+            
+       <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Pineapple</span>
+       <input type="text" class="form-control" name="Pineapple" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>       
+        
+          <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Pineapple" value="we" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Pineapple in meal suggestions" />
+         </div>  
+                  
+            
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Plum</span>
+       <input type="text" class="form-control" name="Plum" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>       
+        
+          <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Plum" value="as" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Plums in meal suggestions" />
+         </div>  
+                     
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Peach</span>
+       <input type="text" class="form-control" name="Peach" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>       
+        
+          <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Peach" value="er" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Peaches in meal suggestions" />
+         </div>  
+                           
+            
+      <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Blueberries</span>
+       <input type="text" class="form-control" name="Blueberries" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div> 
+            
+        <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox"  name="Include_Blueberries" value="uy" checked>
+         </div>
+         <input type="text" class="form-control"  readonly=readonly placeholder="Include Blueberries in meal suggestions" />
+         </div>  
+             
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Blackberries</span>
+       <input type="text" class="form-control" name="Blackberries" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>      
+            
+        <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Blackberries" value="jh" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly  placeholder="Include Blackberries in meal suggestions" />
+         </div>  
+              
+            
+       <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Cranberries</span>
+       <input type="text" class="form-control" name="Cranberries" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>       
+        
+          <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Cranberries" value="cvn" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Cranberries in meal suggestions" />
+         </div>  
+            
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold"  style="width: 125px;">Cherries</span>
+       <input type="text" class="form-control" name="Cherries" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>         
+        
+          <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Cherries" value="ytr" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Cherries in meal suggestions" />
+         </div>  
+              
+        
+        <div class="input-group mb-1 ">
+       <span class="input-group-text font-weight-bold" style="width: 125px;">Strawberries</span>
+       <input type="text" class="form-control" name="Strawberries" placeholder="Daily, Weekly, Monthly"  list="veg">  <datalist id="veg">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+           <option value="Avoid">
+               </datalist>    
+        </div>       
+            
+          <div class="input-group mb-3">
+       <div class="input-group-text">
+         <input class="form-check-input" type="checkbox" name="Include_Strawberries" value="iuy" checked>
+         </div>
+         <input type="text" class="form-control" readonly=readonly placeholder="Include Strawberries in meal suggestions" />
+         </div>  
+             
+         
+            
+      
+         </div>  
+
+        </div>
+<div class="button-group">
+<div class="d-inline gap-2 d-md-block">
+  <a href="landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+</div>   
+       
+<div class="d-inline gap-2 d-md-block">
+  <a href="landing"></a><button class="btn btn-success btn-sm text-nowrap" type="submit" >Save & Continue</button></a>
+       
+  </div>     
+  </div>
+</div>
+<br>
+</form>
+
+{% endblock content %}

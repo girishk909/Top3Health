@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+
+{% block title %}Goals{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+  .form-check-label {
+    font-size: 1rem;
+    margin-bottom: 7px;
+    margin-left:20px;
+  }
+
+  .form-container {
+    width: 360px;
+   
+    /* height:45vh; */
+    padding: 14px;
+    border-radius: 10px;
+    background-color: #dbe2e6;
+  }
+
+  .checkbox-xl .form-check-input {
+    top: 1rem;
+    scale: 1.2;
+    margin-bottom: 0;
+    margin-left:9px;
+  }
+
+  .checkbox-xl .form-check-label {
+    padding-top: 2px;
+    font-size: 13px;
+    width: 260px;
+  }
+
+  .container-fluid {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .btn {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .logo {
+    margin-left: 0px;
+    margin-top: -60px;
+  }
+
+  .logo i {
+    font-size: 18px;
+  }
+
+  .logout {
+    text-align: right;
+    margin-top: -48px;
+    margin-right: 0px;
+  }
+</style>
+
+<form method="POST">
+  {% csrf_token %}
+
+  <p class="fs-6 text-start">{{ user.first_name }}</p>
+  <br>
+
+  <!-- <div class="logo">
+    <i class="fa fa-circle" style="color: red;"></i>
+    <i class="fa fa-circle" style="color: forestgreen;"></i>
+    <i class="fa fa-circle" style="color: #0080ff;"></i>
+    <h6>top3health</h6>
+  </div> -->
+
+  <!-- <div class="logout">
+    <a href="/logout">
+      <img src="{% static 'css/red-logout-land.png' %}" alt="Logout" class="text-end" />
+    </a>
+  </div> -->
+
+  <div class="container-fluid text-center mx-auto no-border">
+    
+    <h6 class="text-center mb-4">My Goals</h6>
+
+    <!-- "{{request.user.Regular_or_Study_Mode}}" -->
+
+    {% if request.user.mode.Regular_mode == True %}
+       <h6>Study Mode</h6>
+    {% endif %}
+<!-- "{{request.user.CustomUser.Regular_or_Study_Mode}}" -->
+<!-- "{{Goals.Become_Healthier }}" -->
+
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container text-center mx-auto mt-2  form-check checkbox-xl checkbox-primary  border" >
+    <!-- {{ form|crispy }} -->
+             
+    <div class="form-check  checkbox-xl text-start">
+      <input type="checkbox" class="form-check-input ml-2" id="check1" name="Become_Healthier" value="something" >
+      <label class="form-check-label text-left" for="check1">Become healthier</label>
+      </div>
+
+
+    <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check2" name="Lose_Weight" value="something">
+        <label class="form-check-label text-left" for="checkbox-2">Lose weight</label>
+        </div>
+        
+<!-- 
+    <div class="form-check checkbox-xl  text-start">
+          <input type="checkbox" class="form-check-input ml-2" id="check2" name="Maintain_Weight" value="something">
+          <label class="form-check-label text-left" for="checkbox-2">Maintain weight</label>
+          </div>
+          
+    <div class="form-check checkbox-xl  text-start">
+            <input type="checkbox" class="form-check-input ml-2" id="check2" name="Gain_Weight" value="something">
+            <label class="form-check-label text-left" for="checkbox-2">Gain weight</label>
+            </div> -->
+    <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check3" name="Improve_Productivity" value="something">
+        <label class="form-check-label text-left">Improve productivity</label>
+        </div>
+           
+    <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check4" name="Increase_Fitness" value="something" >
+        <label class="form-check-label text-left" for="check1">Increase fitness</label>
+        </div>
+          
+    <!-- <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check5" name="Increase_Endurance" value="something">
+        <label class="form-check-label text-left" for="check2">Increase endurance</label>
+        </div> -->
+        
+        <!-- <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check6" name="Explore_Cuisines" value="something">
+        <label class="form-check-label text-left">Cook more often</label>
+        </div>    -->
+           
+        <!-- <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check1" name="Organize_Kitchen" value="something" >
+        <label class="form-check-label text-left" for="check1">Organize kitchen</label>
+        </div> -->
+          
+        <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check2" name="Reduce_Stress" value="something">
+        <label class="form-check-label text-left" for="checkbox-2">Reduce stress</label>
+        </div>
+        
+        <!-- <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check2" name="Improve_Sleep" value="something">
+        <label class="form-check-label text-left">Improve sleep</label>
+        </div>    -->
+
+        <div class="form-check checkbox-xl  text-start">
+          <input type="checkbox" class="form-check-input ml-2" id="check2" name="Reduce_fast_foods" value="something">
+          <label class="form-check-label text-left" for="checkbox-2">Reduce processed foods</label>
+          </div>
+
+          <div class="form-check checkbox-xl  text-start">
+            <input type="checkbox" class="form-check-input ml-2" id="check2" name="Reduce_Symptoms" value="something">
+            <label class="form-check-label text-left" for="checkbox-2">Reduce major/minor health symptoms</label>
+            </div>
+
+            <div class="form-check checkbox-xl  text-start">
+              <input type="checkbox" class="form-check-input ml-2" id="check2" name="Use_Habits" value="something">
+              <label class="form-check-label text-left" for="checkbox-2">Create/drop Habits</label>
+              </div>  
+
+
+           
+        <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check1" name="Quit_Substances" value="something" >
+        <label class="form-check-label text-left" for="check1">Reduce/Quit Substances (Alcohol/Smoking...)</label>
+        </div>
+
+        <div class="form-check checkbox-xl  text-start">
+          <input type="checkbox" class="form-check-input ml-1" id="check2" name="Reduce_Expenses" value="something">
+          <label class="form-check-label text-left" for="checkbox-2">Reduce food/health expenses</label>
+          </div>
+          
+        <!-- <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check2" name="Quit_Alcohol" value="something">
+        <label class="form-check-label text-left" for="checkbox-2">Reduce/Quit alcohol</label>
+        </div> -->
+        
+        <!-- <div class="form-check checkbox-xl  text-start">
+        <input type="checkbox" class="form-check-input ml-2" id="check2" name="Include_Yoga" value="something">
+        <label class="form-check-label text-left">Explore Yoga</label>
+        </div>    -->
+      </div>
+      <br><br> <br><br><br> <br>
+        <div class="button-group space-around text-center mt-4  mx-auto">
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/landing">
+              <button class="btn btn-warning btn-sm" type="button">Home</button>
+            </a>
+          </div>
+    
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/myprofile">
+              <button class="btn btn-success btn-sm" type="submit">Save & Continue</button>
+            </a>
+          </div>
+
+          <div class="d-inline gap-2 d-md-block">
+            <a href="/myprofile">
+              <button class="btn btn-primary btn-sm" type="button">Next</button>
+            </a>
+          </div>
+
+          <div class="text-center  mb-1 ">
+            <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
+            </div>
+        
+        
+      
+    </form>
+    
+    {% endblock content %}

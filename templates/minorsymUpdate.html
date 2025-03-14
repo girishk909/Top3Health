@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% block title %}Minor Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+    @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+
+
+/* .container-fluid { height:75vh;width:auto;}
+.form-container { width: 335px; padding-bottom:15px; padding-top:10px;border-radius:30px;   border-radius:10px; background-color: rgb(211, 218, 224);} */
+
+.container-fluid { width:450px;}
+.form-container {    padding:25px;border-radius:30px;   background-color: rgb(214, 224, 211);}
+/* .checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ /* scale: 1.2;
+ margin-top:8px;  
+ margin-right: 10px;
+ margin-left: 5px;
+ margin-bottom: 0px;
+ padding-top:10px;
+ } */
+
+/* .checkbox-xl .form-check-label {
+ padding-top: 0px;
+    font-size:15px;
+    margin-left: 10px;
+    margin-top:7px;
+    margin-right:10px;
+    width:220px;
+    align-content: center;
+ }  */ */
+
+
+ .checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.2;
+ margin-top:22px;  
+ margin-right: 10px;
+ margin-left: 5px;
+ margin-bottom: 0px;
+ padding-top:19px;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 0px;
+    font-size:18px;
+    margin-left: 10px;
+    margin-top:-4px;
+    margin-right:10px;
+    width:230px;
+    align-content: center;
+ } 
+
+ .form-control {width:200px;}
+
+.btn {font-size:15px; margin-right:50px;}
+.button-group { 
+  display:inline-flex; align-items:center; margin-left:10px; padding:0px; 
+  justify-content: center; margin-top:0px; position:relative; white-space: nowrap;
+}
+
+.d-inline {margin-left: 10px; margin-right:10px;}
+.input-group-text {font-size: 15px; width:145px;}
+    
+.logo {align-content: left; margin-left:10px; margin-top:5px;}  
+    
+.logout{align-content: right; text-align: right; margin-top:-50px; margin-right:5px; }    
+
+
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+      <p class="fs-5 text-center"> {{user.first_name }}</p>
+     
+      <div class=logo>
+        <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+                <h6> top3health</h6>
+               
+                </div>
+
+                <div class="logout text-end">
+                  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+                 
+                 </div>
+             
+                
+      <div class="container-fluid   mx-auto text-center  no-border">
+ 
+  
+        <h5 class="text-center ">Minor Symptoms - Update</h5>
+        <br>
+       
+        
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container  mx-auto  text-center  border" >
+    <!-- {{ form|crispy }} -->
+             
+    <div class="form-check checkbox-xl mb-3 ">
+      <input type="checkbox" class="form-check-input ml-4 " id="check1" name="Fatigue" value="{{ minorsym.Fatigue}}" {% if minorsym.Fatigue %} checked {% endif %} >
+      <label class="form-check-label text-start" for="check1">Fatigue</label>
+      </div>
+
+
+      <div class="form-check checkbox-xl mb-3 ">
+        <input type="checkbox" class="form-check-input ml-4 space-around" id="check2" name="Insomnia" value="{{ minorsym.Insomnia}}">
+        <label class="form-check-label text-left" for="check1">Insomnia</label>
+        </div>
+        
+        <div class="form-check checkbox-xl mb-3 ">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="check3" name="Low_motivation" value="something">
+        <label class="form-check-label text-left">Low motivation</label>
+        </div>
+           
+        <div class="form-check checkbox-xl  mb-3">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="check4" name="Migraine" value="something" >
+        <label class="form-check-label text-left" for="check1">Migraine</label>
+        </div>
+          
+        <div class="form-check checkbox-xl mb-3 ">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="check5" name="Constipation" value="something">
+        <label class="form-check-label text-left" for="checkbox-2">Constipation</label>
+        </div>
+        
+        <div class="form-check checkbox-xl mb-3 ">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="check6" name="Lack_of_Focus" value="something">
+        <label class="form-check-label text-left">Lack of Focus</label>
+        </div>   
+           
+        <div class="form-check checkbox-xl mb-3">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="check1" name="Frequent sickness" value="something" >
+        <label class="form-check-label text-left" for="check1">Frequent sickness</label>
+        </div>
+          
+        <div class="form-check checkbox-xl mb-3">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="check2" name="ADD_ADHD" value="something">
+        <label class="form-check-label text-left" for="checkbox-2">ADD_ADHD</label>
+        </div>
+        
+        <div class="form-check checkbox-xl mb-3 ">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="check2" name="Minor_skin_issues" value="something">
+        <label class="form-check-label  text-left">Minor skin issues</label>
+        </div>   
+           
+        <div class="form-check checkbox-xl mb-3">
+        <input type="checkbox" class="form-check-input ml-4  space-around" id="check1" name="Body_pain" value="something" >
+        <label class="form-check-label text-left" for="check1">Body pain</label>
+        </div>
+          
+       
+<br>
+
+<h6 class="font-weight-bold mx-auto text-center mb-3">Minor Symptoms-not covered above</h6>
+       
+
+
+<div class="ml-4  mx-auto text-center ">   
+
+<div class="input-group  mb-2    input-group-sm">
+<span class="input-group-text font-weight-bold">Minor Symptom 1</span>
+<input type="text" class="form-control mr-5 text-center" placeholder="Symptom 1">
+</div>   
+  
+<div class="input-group  input-group-sm">
+<span class="input-group-text font-weight-bold">Minor Symptom 2</span>
+<input type="text" class="form-control mr-5 text-center" placeholder="Symptom 2">
+</div>        
+</div>
+
+
+
+
+</div>
+<br>
+<div class="button-group ml-4 text-center mx-auto">
+    <a href="/landing"><button class="btn btn-warning btn-sm mr-5" type="button">Home</button></a>
+    </div> 
+
+    <div class="d-inline gap-2 d-md-block">
+        <a href="/settings"><button class="btn btn-warning btn-sm mr-5" type="submit">Update</button></a>
+      <!-- <button class="btn btn-success btn-sm" type="submit" >Update</button> -->
+      </div>
+      
+      <div class="d-inline gap-2 d-md-block span">
+        <a href="/settings"><button class="btn btn-warning btn-sm" type="button">Back</button></a>
+        </div>
+  
+  </div> 
+
+
+  </div>
+    
+        </form>
+        <br>
+{% endblock content %}

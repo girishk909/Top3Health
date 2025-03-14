@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+{% block title %}Minor Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+/* @media only screen and (min-width : 600px) {
+    .container { max-width: 600px;  padding:10px; margin-left: 0px; margin-right: 0px; overflow-x: hidden; background-color: #0080ff;}
+} */
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+
+.container-fluid { height:100%;width:100%;}
+.form-container { width: 330px; padding:6px; border-radius:12px; background-color: rgb(180, 211, 240);}
+.form-container2 { width: 330px; padding:6px; border-radius:12px; background-color: rgb(160, 204, 197);}
+
+
+.checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.0;
+ /* margin-top:8px;   */
+ /* margin-right: 10px; */
+ margin-left: 25px; 
+ margin-bottom: 0px;
+
+
+ align-content: start;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 0px;
+    font-size:13px;
+    /* margin-left: 10px;
+    margin-top:7px;
+    margin-right:10px; */
+    margin-right:1px;
+    width:130px;
+    align-content: center;
+ } 
+ ::-webkit-input-placeholder {
+   font-size: 10px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+}
+ .form-control {width:130px; font-size: 12px;}
+ .form-check{font-size: 14px;}
+
+.btn {font-size:11px; margin-left:10px;margin-right:10px;}
+.button-group { 
+  display:inline-flex; align-items:center;  padding:0px; 
+  justify-content: center;  position:relative; white-space: nowrap;
+}
+
+.d-inline {margin-left: 10px; margin-right:10px;}
+/* .input-group-text {font-size: 12px; width:145px;} */
+    
+.logo {align-content: left;  margin-top:-38px;}  
+    
+.logout{align-content: right; text-align: right; margin-top:5px; margin-right:5px; }    
+
+.placeholder{font-size: 12px;}
+.ital2{font-size:14px;  margin-left:15px;}  
+
+.input-group-text {font-size:10px !important; width:128px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
+.name {margin-left:15px;}
+
+.pagination .page-link {
+  padding: 0.25rem 0.35rem; /* Adjust padding as needed */
+}
+.centered-text {
+        text-align: center;
+        font-size: 12px; /* Adjust font size as needed */
+    }
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+      <!-- <p class="fs-6  name"> {{user.first_name }}</p> -->
+
+                </div>
+
+                <!-- <div class="logout text-end">
+                  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+                  
+                 </div> -->
+                 {% if user.is_authenticated %}
+                 <div class="centered-text ">Welcome, {{ user.first_name }}!</div>
+                 <div class="centered-text mb-1">The next pages will ask about your diet, fitness & health</div>
+               {% else %}
+                 <div class="centered-text">You are not logged in.</div>
+               {% endif %}
+                 
+        
+      <div class="container-fluid mt-1  mx-auto text-center  no-border">
+        
+        <nav aria-label="Page navigation example">
+          <ul style="font-size:10px; " class="pagination justify-content-center mt-2 ">
+            <li style="font-size:10px;"class="page-item active"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/minorsym">Symptoms</a></li>
+            <li style="font-size:10px;" class="page-item disabled" ><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myfitness">Fitness</a></li>
+            <li style="font-size:10px;" class="page-item  disabled" ><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px; padding-top:5px; padding-bottom:5px;" href="/myfoodgroups">Foodgroups</a></li>
+            <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/mybreakfastdesign">Meals</a></li>
+            <li class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/supplements">Supplements</a></li>
+            <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myhabits">Habits</a></li>
+            <li style="font-size:10px;"class="page-item disabled"><a class="page-link" style="font-size: 10px;padding-left:10px;padding-right:10px;padding-top:5px; padding-bottom:5px;" href="/myexpenses">Expenses</a></li>
+            
+            
+          </ul>
+        </nav>
+        <!-- <h6 class="text-center ">My health symptoms</h6> -->
+        <!-- <h6 style="font-size:10px;"><b>Note:</b> Lifestyle changes & timely doctor visits will help reduce symptoms 
+        </h6>-->
+      
+       
+       <h6 style="font-size:12px;" class="text-center"><b>My Minor Symptoms</b></h6> 
+        <!-- <h6 style="font-size:10px; font-style:italic;"class="mb-1 ml-2">(Examples: Fatigue, Low productivity, ADD/ADHD) </h6>   -->
+        
+        
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container  mx-auto  text-center  border" >
+    <!-- {{ form|crispy }} -->
+
+    <div class="input-group mb-2 input-group-default">
+      <span class="input-group-text font-weight-bold">Minor Symptom 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+     
+      
+      <input type="text" name = "Minor1" id = "ch1" class="form-control text-center" placeholder="My minor symptom 1" list="minor" >  <datalist id="minor">
+        <option value="Fatigue">
+          <option value="Insomnia">
+        <option value="Low motivation">
+        <option value="Constipation">
+          <option value="ADD_ADHD">
+        <option value="Skin issues">
+            <option value="Body pain">
+                </datalist>
+       </div>
+          
+       
+       <div class="input-group mb-2 input-group-default">
+        <span class="input-group-text font-weight-bold">Minor Symptom 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        
+        <input type="text" name = "Minor2" id = "ch1" class="form-control text-center" placeholder="My minor symptom 2" list="minor" >  <datalist id="minor">
+          <option value="Fatigue">
+            <option value="Insomnia">
+          <option value="Low motivation">
+          <option value="Constipation">
+            <option value="ADD_ADHD">
+          <option value="Skin issues">
+              <option value="Body pain">
+                  </datalist>
+         </div>
+
+
+         <div class="input-group mb-2 input-group-default">
+          <span class="input-group-text font-weight-bold">Minor Symptom 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          
+          <input type="text" name = "Minor3" id = "ch1" class="form-control text-center" placeholder="My minor symptom 3" list="minor" >  <datalist id="minor">
+            <option value="Fatigue">
+              <option value="Insomnia">
+            <option value="Low motivation">
+            <option value="Constipation">
+              <option value="ADD_ADHD">
+            <option value="Skin issues">
+                <option value="Body pain">
+                    </datalist>
+           </div>
+
+
+<h6 style="font-size:12px;" class="font-weight-bold mx-auto text-center  mt-1 mb-1">Minor Symptoms (not covered above)</h6>
+       
+
+<div class="  mx-auto text-center ">   
+
+<div class="input-group  mb-2    input-group-sm">
+<span class="input-group-text font-weight-bold">Minor illness 1</span>
+<input type="text" class="form-control  text-center" name="Minor4" placeholder="Symptom 1">
+</div>   
+  
+<div class="input-group   input-group-sm">
+<span class="input-group-text font-weight-bold">Minor illness 2</span>
+<input type="text" class="form-control  text-center" name="Minor5" placeholder="Symptom 2">
+</div>        
+</div>
+
+
+</div>
+
+<h6 style="font-size:12px;" class="text-center mt-2"><b>My Major Illnesses</b></h6>
+<!-- <h6 style="font-size:10px; font-style:italic;"class="mb-1 ml-2">(Examples: Type-2 Diabetes, Cardiovascular, Alzheimers') </h6>  -->
+
+<div class="form-container2  mt-1 mb-1 mx-auto  text-center  border" >
+  <!-- {{ form|crispy }} -->
+           
+  <div class="input-group mb-2 input-group-default">
+    <span class="input-group-text font-weight-bold">Major Illness 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    
+    <input type="text" name = "Major1" id = "ch1" class="form-control text-center" placeholder="My major illness 1" list="major" >  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis">   
+                  <option value="Muliple Sclerosis(MS)">  
+                 
+              </datalist>
+     </div>
+
+     <div class="input-group mb-2 input-group-default">
+      <span class="input-group-text font-weight-bold">Major Illness 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+ 
+     <input type="text" name = "Major2" id = "ch1" class="form-control text-center" placeholder="My major illness 2" list="major" >  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis">  
+                  <option value="Muliple Sclerosis(MS)">  
+                  
+              </datalist>
+    
+            </div>
+
+      <div class="input-group mb-1 input-group-default">
+                <span class="input-group-text font-weight-bold">Major Illness 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+     <input type="text" name = "Major3" id = "ch1" class="form-control text-center" placeholder="My major illness 3" list="major" >  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis"> 
+                  <option value="Muliple Sclerosis(MS)">   
+                  
+              </datalist>
+            </div>
+    
+
+<h6 style="font-size:12px;" class="font-weight-bold mt-2 mb-1">Major Illnesses (not covered above)</h6>
+     
+
+<div class="mx-auto text-center ">   
+
+<div class="input-group mb-2    input-group-sm">
+<span class="input-group-text font-weight-bold">Major Illness 1</span>
+<input type="text" class="form-control  text-center" name="Major4" placeholder="Illness 1">
+</div>   
+
+<div class="input-group  input-group-sm">
+<span class="input-group-text font-weight-bold">Major Illness 2</span>
+<input type="text" class="form-control text-center" name="Major5" placeholder="Illness 2">
+</div>        
+</div>
+</div>
+
+<!-- <h5 class = "ital2 ml-5 mb-2 text-start">
+    <strong>FOOD & drug related symptoms:</strong><br><br>
+  &#8226;  Kidney stones risk<br>
+  &#8226;  Using blood thinners  <br>  
+  &#8226;  Celiac disease <br>
+  &#8226;  Inflammatory bowel<br>
+  &#8226;  Auto immune condition<br>  
+  &#8226;  GERD<br> 
+  
+  </h5> -->
+
+<div class="button-group  text-center mx-auto">
+  <!-- <div class="  d-md-block ">
+    
+  <a href="/landing"><button class="btn btn-warning" type="button">Home</button></a>
+  </div>  -->
+         
+  <div class="  d-md-block">
+    <a href="/myfitness"></a><button class="btn btn-success" type="submit" >Save & Continue</button></a>
+    
+  </div>
+  <!-- <div class="   d-md-block">
+  <a href="/mybreakfastdesign"><button class="btn btn-primary" type="button">Next</button></a>
+</div> -->
+
+<!-- <div class="text-center   ">
+  <a href="/logout" class="btn  btn-dark">Logout</a>
+  </div> -->
+
+  
+  </div> 
+  
+
+  </div>
+    
+        </form>
+        
+{% endblock content %}

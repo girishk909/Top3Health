@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width : 450px) {
+    .container { max-width: 600px; padding:0px; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+    
+}    
+.container-fluid {  width:98%;  padding:0px;  margin-left: 20px; margin-right: 0px;  overflow-x: hidden;  max-width:none;}
+.form-container { display:block;margin-top:10px; margin-left: 0px; width: 350px; padding:10px;  border-radius:20px; background-color: rgb(182, 199, 195);}
+.form-container2 { display:block;  margin-top:30px;  width: 350px; padding:5px;  border-radius:20px; background-color: rgb(182, 199, 195);}
+::placeholder {
+  color: green;
+}
+
+
+.fixed {width:280px;}
+.fixed2 {width:280px; align-content: center;}
+    
+ .top-buffer{
+  margin-top: 40px;
+}
+    
+/* .ml-4 {margin-top:30px; }     */
+              
+.btn {font-size:15px; margin-left: 10px; margin-right: 10px;}
+.button-group { 
+  display:inline-flex;  margin-left:10px; padding-top:10px; 
+  justify-content: space-around; margin-top:0px; position:relative; white-space: nowrap;
+}
+
+.form-check-label{color:rgb(8, 8, 8)}
+.form-check{color:darkgreen; scale:2.5rem; font-size:18px; margin-left:20px;}
+.form-check-label{scale:2.8rem; margin-bottom: 2px; margin-left: -1px; margin-right:0px; width:200px;padding-top:18px; padding-bottom:0px;font-size:15px; }
+.placeholder-label {font-stretch: condensed; font-size:0.5px;}
+
+.form-control {width:5px; font-size:12px; height:8px;}
+
+.checkbox-xl .form-check-input {
+   top: 1.3rem;
+   margin-top:0px;    
+   margin-right: 0.5rem;
+   margin-left:0px;    
+   margin-bottom: 0.5rem;
+      font-size:32px;
+      height: 8px;
+   }
+
+.checkbox-xl .form-check-label {
+   padding-top: 0px;
+      font-size:5px;
+   }
+.form-check-input {
+ top: 1.4rem;
+ scale: 0.9;
+ margin-top:5px;  
+ margin-right: 45px;
+ margin-left: 0px;
+ margin-bottom: 0px;
+ width:16px; 
+ padding-left:3px;
+ padding-right:3px;
+ height: 15px;
+ }
+
+.d-inline {margin-left: 20px; margin-right:65px;}
+    
+.logo {align-content: left; margin-left:5px; margin-top:-2px;}  
+    
+.logout{text-align: right; margin-top:-45px; margin-right:8px;}     
+.input-group-text {font-size: 14px; padding:3px; text-align: center;}
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+ 
+  <div class=logo>
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6>
+    
+     </div>   
+   <div class="logout">
+    <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+    
+   </div>  
+   <p class="fs-6 text-center"> {{user.first_name }}</p>
+    
+    <div class="container-fluid   no-border text-center mx-auto">
+       
+<h6 class="text-center">My fitness activities - Update</h6>
+
+   <!-- <div class="ml-4 d-inline-block mx-auto "> -->
+    <div class="form-container  mx-auto ml-6 text-center no-border" >
+       
+      
+      <div class="row gx-2 ml-0 mr-0 text-center">
+        <div class="col-4 text-center">
+      <div class="input-group mb-1 text-center input-group-default">
+      <span class="input-group-text fixed text-center font-weight-bold">Walking</span>
+      <input type="text" name = "Walking" id = "ch1"  class="form-control"placeholder="minutes" value="{{myfit.Walking}}" >
+       </div>
+    </div>
+    <div class="col-8 ">
+      <div class="input-group input-group-default text-center">
+      <span class="input-group-text fixed2 text-center font-weight-bold">Walks sessions per week</span>
+      
+      <input type="text" name = "Walks_per_week" class="form-control"  placeholder="Walk frequency  " value="{{myfit.Walks_per_week}}">
+       </div>  
+       
+    </div>
+
+  <div class="input-group mb-2">
+    <div class="input-group-text">
+    <input class="form-check-input  text-center mx-auto checkbox-xl" {% if myfit.Include_Walks %} checked {% endif %}type="checkbox" name = "Include_Walks" >
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold"    placeholder="Suggest walking for my fitness" />
+
+        </div>
+      </div>
+
+  <div class="row gx-2 ml-0 mr-0 text-center">
+    <div class="col-4 text-center">
+  <div class="input-group mb-1 text-center input-group-default">
+  <span class="input-group-text fixed font-weight-bold">Jogging</span>
+  <input type="text" name = "Jogging" id = "ch1" class="form-control" placeholder="minutes" value="{{myfit.Jogging}}">
+   </div>
+  </div>
+  <div class="col-8">
+  <div class="input-group mb-1 input-group-default">
+  <span class="input-group-text fixed2 font-weight-bold">Jog sessions per week</span>
+  <input type="text" name = "Jogs_per_week" class="form-control"  placeholder="Jog frequency" value="{{myfit.Jogs_per_week}}">
+   </div>  
+  </div>
+  
+
+  <div class="input-group mb-3">
+    <div class="input-group-text">
+    <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl" {% if myfit.Include_Jogging %} checked {% endif %} type="checkbox" name = "Include_Jogging" >
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Suggest Jogging for my fitness" />
+        </div>
+      </div>
+
+<div class="row gx-2 mr-0 ml-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-1 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Elliptic</span>
+<input type="text" name = "Elliptic_Machine" id = "ch1" class="form-control" placeholder="minutes" value="{{myfit.Elliptic_Machine}}">
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-1 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Elliptic sessions per week</span>
+<input type="text" name = "Elliptic_per_week" class="form-control"  placeholder="Elliptic frequency" value="{{myfit.Elliptic_per_week}}">
+ </div>  
+</div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-text">
+  <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl" {% if myfit.Include_Elliptic %} checked {% endif %} type="checkbox" name = "Include_Elliptic" >
+  </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Suggest Elliptic for my fitness" />
+      </div>
+    </div>
+
+<div class="row gx-2 ml-0 mt-1 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-1 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Weights</span>
+<input type="text" name = "Weight_lifting" id = "ch1" class="form-control" placeholder="minutes" value="{{myfit.Weight_lifting}}" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-1 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Weights sessions per week</span>
+<input type="text" name = "Weights_lifting_per_week" class="form-control"  placeholder="Weights frequency" value="{{myfit.Weights_lifting_per_week}}">
+ </div>  
+</div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-text">
+  <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl" {% if myfit.Include_Weights %} checked {% endif %} type="checkbox" name = "Include_Weights" >
+  </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Suggest weights for my fitness" />
+      </div>
+    </div>
+
+<div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-1 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Biking</span>
+<input type="text" name = "Biking" id = "ch1" class="form-control"placeholder="minutes" value="{{myfit.Biking}}" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-1 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Bike rides per week</span>
+<input type="text" name = "Biking_per_week" class="form-control"  placeholder="Biking frequency" value="{{myfit.Bike_rides_per_week}}">
+ </div>  
+</div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-text">
+  <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl" type="checkbox" {% if myfit.Include_Biking %} checked {% endif %} name = "Include_Biking" >
+  </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Suggest Biking for my fitness" />
+      </div>
+    </div>
+
+<div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-1 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Zumba</span>
+<input type="text" name = "Zumba" id = "ch1" class="form-control"placeholder="minutes"  value="{{myfit.Zumba}}" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-1 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Zumba workouts per week</span>
+<input type="text" name = "Zumba_workouts_per_week" class="form-control"  placeholder="Zumba frequency" value="{{myfit.Zumba_workouts_per_week}}">
+ </div>  
+</div>
+   
+
+<div class="input-group mb-3">
+  <div class="input-group-text">
+  <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl" type="checkbox" {% if myfit.Include_Zumba %} checked {% endif %} name = "Include_Zumba" >
+  </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Suggest Zumba for my fitness" />
+      </div>
+    </div>
+       
+<div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-1 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Swimming</span>
+<input type="text" name = "Swimming" id = "ch1" class="form-control"placeholder="minutes"  value="{{myfit.Swimming}}">
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-1 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Swim sessions per week</span>
+<input type="text" name = "Swimming_sessions_per_week" class="form-control"  placeholder="Swim frequency" value="{{myfit.Swimming_sessions_per_week}}">
+ </div>  
+</div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-text">
+  <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl" type="checkbox" {% if myfit.Include_Swimming %} checked {% endif %} name = "Include_Swimming" >
+  </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Suggest Swimming for my fitness" />
+      </div>
+    </div>
+
+<div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-1 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Martial-arts</span>
+<input type="text" name = "Martial-arts" id = "ch1" class="form-control" placeholder="minutes"  value="{{myfit.Martial_arts}}">
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-1 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Martial-arts per week</span>
+<input type="text" name = "Martial_arts_practices_per_week" class="form-control"  placeholder="Martial-arts frequency" value="{{myfit.Martial_arts_practices_per_week}}">
+ </div>  
+</div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-text">
+  <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl" type="checkbox" name = "Include_Martialarts"  {% if myfit.Include_Martialarts %} checked {% endif %}>
+  </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Suggest Martial-arts for my fitness" />
+      </div>
+    </div>
+
+<!-- <div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-3 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Bootcamp</span>
+<input type="text" name = "Bootcamp" id = "ch1" class="form-control"placeholder="minutes" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-3 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Bootcamp / week</span>
+<input type="text" name = "Bootcamp_sessions_per_week" class="form-control"  placeholder="Bootcamp frequency  ">
+ </div>  
+</div>
+</div> -->
+
+<!-- <div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-3 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Tai-chi</span>
+<input type="text" name = "Tai-chi" id = "ch1" class="form-control"placeholder="minutes" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-3 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Tai-chi / week</span>
+<input type="text" name = "Taichi_sessions_per_week" class="form-control"  placeholder="Taichi frequency  ">
+ </div>  
+</div>
+</div> -->
+
+<!-- <div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-3 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Sports</span>
+<input type="text" name = "Sports" id = "ch1" class="form-control"placeholder="minutes" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-3 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Sports / week</span>
+<input type="text" name = "Sports_sessions_per_week" class="form-control"  placeholder="Sports frequency  ">
+ </div>  
+</div>
+</div> -->
+
+<!-- <div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-3 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Pilates</span>
+<input type="text" name = "Pilates" id = "ch1" class="form-control"placeholder="minutes" >
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group mb-3 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Pilates / week</span>
+<input type="text" name = "Pilates_sessions_per_week" class="form-control"  placeholder="Pilates frequency  ">
+ </div>  
+</div>
+</div> -->
+
+<div class="row gx-2 ml-0 mr-0 text-center">
+  <div class="col-4">
+<div class="input-group mb-0 text-center input-group-default">
+<span class="input-group-text fixed font-weight-bold">Yoga</span>
+<input type="text" name = "Yoga" id = "ch1" class="form-control"placeholder="minutes" value="{{myfit.Yoga}}">
+ </div>
+</div>
+<div class="col-8">
+<div class="input-group  mb-1 input-group-default">
+<span class="input-group-text fixed2 font-weight-bold">Yoga practices / week</span>
+<input type="text" name = "Yoga_practices_per_week" class="form-control"  placeholder="Yoga frequency" value="{{myfit.Yoga_practices_per_week}}">
+ </div>  
+</div>
+      
+
+<div class="input-group mb-1">
+  <div class="input-group-text">
+  <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl" type="checkbox" name = "Include_Yoga"  {% if myfit.Include_Yoga%} checked {% endif %}>
+  </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Suggest Yoga for my fitness" />
+      </div>
+    </div>
+         
+
+
+    </div>  
+    <div class="button-group nowrap mx-auto mr-3  text-center">
+      <!-- <div class=" d-md-block"> -->
+        <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+      <!-- </div>    -->
+             
+      <!-- <div class="d-inline gap-2 d-md-block"> -->
+        <a href="/landing"></a><button class="btn btn-sm btn-success" type="submit" >Update</button></a>
+      <!-- </div> -->
+
+      <!-- <div class="d-inline gap-2 d-md-block span"> -->
+
+        <!-- </div>  -->
+             
+      </div> 
+    
+  
+</div>
+        </form>
+
+{% endblock content %}

@@ -1,0 +1,317 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<style>
+/* General Container Styles */
+.container {
+    max-width: 100%; /* Occupy full width */
+    padding: 0; /* Remove default padding */
+    background-color: white;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.container-fluid {
+    width: 100%;
+    height: 100%;
+    padding: 0; /* Remove default padding */
+    overflow-x: hidden;
+}
+
+/* Typography */
+h5 {
+    font-family: "Dancing Script", cursive;
+    font-size: 20px;
+    color: rgb(15, 15, 15);
+    text-align: left;
+    margin: 0 0 0 20px; /* Simplified margin */
+}
+
+/* Input Groups */
+.input-group {
+    width: 100%; /* Use full width for responsiveness */
+    font-size: 8px; /* Base font size */
+}
+
+.input-group-text {
+    font-size: 10px; /* Label font size */
+    text-align: center;
+    /* Remove fixed width, use Bootstrap grid */
+}
+
+.form-control {
+    font-size: 12px;
+    margin: 0; /* Remove unnecessary margins */
+}
+
+/* Other Form Styles */
+.form-container {
+    width: 100%;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: rgb(215, 223, 240);
+}
+
+/* Buttons */
+.btn {
+    font-size: 12px;
+    margin-right: 15px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
+/* Placeholders */
+::-webkit-input-placeholder {
+    font-size: 10px !important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    font-size: 10px !important;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    font-size: 10px !important;
+}
+
+/* Calendar Styles */
+.calendar.popup {
+    max-width: 15%;
+}
+
+div#cid_4 {
+    width: calc(37% - 14px); /* Adjust as needed */
+}
+
+.calendar-new-month, .calendar-new-year {
+    padding-right: 8%;
+}
+
+/* Table Styles */
+table, th, td {
+    border-color: solid rgb(245, 240, 240);
+    font-size: 10px;
+    border-collapse: collapse;
+    border-radius: 10px;
+    border: 1px solid rgb(248, 245, 245);
+    padding: 2px; /* Add some padding to table cells */
+}
+
+.table-condensed {
+    font-size: 12px;
+    border: 1px solid rgb(241, 238, 238);
+}
+
+
+/* Input Font */
+.input-font {
+    font-size: 14px;
+    width: 92%;
+    border: none;
+}
+
+/* Logo and Logout */
+.logo {
+    margin: 0 0 0 5px; /* Simplified margin */
+}
+
+.logout {
+    text-align: right;
+    margin-top: -35px;
+    margin-right: 5px;
+}
+
+/* Column Spacing */
+.col {
+    margin: 0 10px; /* Consistent margin for columns */
+}
+
+.heading {
+    color: black;
+    font-size: 10px;
+}
+
+</style>
+<form method="POST">
+  {% csrf_token %}
+  <!-- "{{user.lose_weight.is_active}}" -->
+
+<h6 style="font-size:15px" class="mx-auto text-center mt-2">Dietician: {{allowed_user}}</h6>
+ <!-- <p class="fs-6  name"> {{allowed_user }}</p> -->
+ <br>
+  <!-- <h6 style="font-size:15px" class="mx-auto text-center">Users</h6> -->
+  
+  
+  <div class="container-fluid  ml-5 text-center text-dark  mx-auto  no-border ">
+
+ 
+    <table style="width:100%" id="userTable" class="table heading">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">First Name</th>
+                <th scope="col">More Info</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+          {% for user in users %}
+          <!-- latest_healthsym = user.healthsym_set.order_by('-id').first() -->
+          
+            <tr>
+             
+             
+              <td>{{ user.username }}</td>
+              <td>{{ user.first_name }}</td>
+              <td>
+                <button style="font-size:8px;" class="btn btn-primary " type="button"  
+                data-bs-toggle="collapse" data-bs-target="#user-details-{{ user.userid }}">+</button>
+              </td>
+              <td>
+                <input style="font-size:20px; color:green" type="checkbox" id="toggle-details-{{ user.userid }}" class="form-check-input">
+              </td>
+            </tr>
+          
+            <tr id="user-details-{{ user.userid }}" class="collapse">
+              <td colspan="3">
+               
+                <h6>Incoming Profile</h6>
+                  <div class="form-container mb-2 mx-auto text-center border" >
+                  <div style="font-style: italic; font-weight: 200;" class="  text-center mx-auto input-group-xl d-flex flex-wrap">
+                    <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center ">Minor Symptom 1</span>
+                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center  mx-auto">Minor Symptom 2</span>
+                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 3</span>
+                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 4</span>
+                    <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 5</span>
+                    </div>
+                    <div class="input-group  text-center input-group-xl d-flex flex-wrap">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor1 }}" value="{{ user.minor1 }}">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor2 }}" value="{{ user.minor2 }}">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor3 }}" value="{{ user.minor3 }}">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor4 }}" value="{{ user.minor4 }}">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor5 }}" value="{{ user.minor5 }}">
+                </div>
+                </div>
+                  
+
+                  <div style= "background-color: rgb(198, 223, 223)" class="form-container mx-auto text-center border mb-2 " >
+                  <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
+                    <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Major Symptom 1</span>
+                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Major Symptom 2</span>
+                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 3</span>
+                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 4</span>
+                    <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 5</span>
+                    </div>
+                    <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major1 }}" value="{{ user.major1 }}">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major2 }}" value="{{ user.major2 }}">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major3 }}" value="{{ user.major3 }}">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major4 }}" value="{{ user.major4 }}">
+                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major5 }}" value="{{ user.major5 }}">
+                </div>
+              </div>
+
+
+
+<div style= "background-color: rgb(223, 206, 198)" class="form-container mx-auto text-center border mb-2" >
+  <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
+    <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Daily Veggies<br>cups total</span>
+    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Beans & Lentils<br>cups Weekly</span>
+    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Fruit & Berries <br> cups Daily</span>
+    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Dairy <br> cups Daily</span>
+    <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center text-dark">Grains <br> cups Daily</span>
+    </div>
+    <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.veggies }}" value="{{ user.veggies }}">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.beans_lentils }}" value="{{ user.beans_lentils }}">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{user.fruits_berries}}" value="{{user.fruits_berries}}">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.dairy }}" value="{{ user.dairy }}">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.grains }}" value="{{ user.grains }}">
+</div>
+</div>       
+
+<div style= "background-color: rgb(206, 198, 223)" class="form-container mx-auto text-center border mb-2" >
+  <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
+    <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Moderate activity<br>minutes per week</span>
+    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Vigorous activity<br>minutes per week</span>
+    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Muscle Building<br> days per week</span>
+    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Balanc activity<br> minutes per week</span>
+    
+    </div>
+    <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.moderate_intensity }}" value="{{ user.moderate_intensity  }}">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.vigorous_intensity }}" value="{{ user.vigorous_intensity}}">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{user.muscle_build}}" value="{{user.muscle_build}}">
+    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.balance }}" value="{{user.balance }}">
+    
+</div>
+</div> 
+
+
+                  
+                  <h6 style="font-size:12px" style="font-size:15px" class="mx-auto text-center mt-3">Dietician Notes</h6>
+                  
+                    <div class="input-group mx-auto  input-group-default">
+                      <span class="input-group-text text-center ">1&nbsp;&nbsp;&nbsp;</span>
+                      <input type="text" name = "note1" class="form-control" >
+                       </div>
+
+                       <div class="input-group mx-auto  input-group-default">
+                        <span class="input-group-text text-center">2&nbsp;&nbsp;&nbsp;</span>
+                        <input type="text" name = "note2" class="form-control " >
+                         </div>
+
+                         <div class="input-group mx-auto  input-group-default">
+                          <span class="input-group-text text-center">3&nbsp;&nbsp;&nbsp;</span>
+                          <input type="text" name = "note3" class="form-control" >
+                           </div>
+
+                           <div class="input-group mx-auto  input-group-default">
+                            <span class="input-group-text text-center">4&nbsp;&nbsp;&nbsp;</span>
+                            <input type="text" name = "note4" class="form-control">
+                             </div>
+
+                             <div class="input-group mx-auto  input-group-default">
+                              <span class="input-group-text text-center ">5&nbsp;&nbsp;&nbsp;</span>
+                              <input type="text" name = "note5" class="form-control" >
+                               </div>
+        
+                               <div class="input-group mx-auto  input-group-default">
+                                <span class="input-group-text text-center">6&nbsp;&nbsp;&nbsp;</span>
+                                <input type="text" name = "note6" class="form-control " >
+                                 </div>
+ 
+          {% endfor %}
+        </tbody>
+    </table>
+
+  
+
+ 
+<br><br>
+<div class="button-group mb-4 mt-4 text-center mx-auto fixed-bottom nowrap">
+<div class=" text-center ">
+  <a href="/landing"><button class="btn btn-warning btn-xs" name="home" type="button">Home</button></a>
+</div>    
+<div >
+  <a href="/landing"><button name="savecontinue" class=" btn btn-success text-center btn-xs nowrap" type="submit">Save & Continue</button></a>
+</div>
+
+<div class="text-center   ">
+  <a href="/logout" class="btn btn-dark">Logout</a>
+  </div>
+</div>
+</div>
+
+
+        </form>
+
+
+        {% endblock content %} 

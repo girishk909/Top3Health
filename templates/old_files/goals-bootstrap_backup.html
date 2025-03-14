@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% block title %}Goals{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+@media only screen and (min-width : 400px) {
+    .container { max-width: 500px; background-color: #0080ff; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+
+
+/* .form-check-label{font-size:28px;  color:rgb(10, 56, 141)} */
+/* .form-check{color:darkgreen; scale:2rem;} */
+.form-check-label{font-size:10px; scale:1.0rem;  margin-bottom: 0px; margin-left: 0px; margin-right:0px;  }
+
+
+/* .form-container {margin-left:10px; width: 600px; padding:10px; border-radius:30px;  background-color: rgb(255, 255, 255);} */
+.form-container { width: 290px; padding:14px;border-radius:10px;   background-color: rgb(218, 227, 230);}
+
+
+.checkbox-xl .form-check-input {
+ top: 1.0rem;
+ scale: 1.2;
+ /* margin-top:10px;   */
+ /* margin-right: 0px;
+ margin-left: 0px; */
+ /* margin-left: 1px; */
+ margin-bottom: 0px;
+ align-content: right;
+  
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 2px;
+    font-size:13px;
+    /* margin-left: 0px;
+    margin-top:-12px; */
+    width:150px;
+    align-content: center;
+ } 
+
+.container-fluid { height:100%; margin-right:0px; margin-left:0px; overflow-x: hidden;}
+.btn {font-size:12px;  margin-right:15px;}
+.button-group { 
+  display:inline-flex;   
+  justify-content: center; margin-top:0px;  margin-right:10px; position:relative; white-space: nowrap;
+}
+
+/* .d-inline {margin-left: 15px; margin-right:20px; } */
+    
+.logo {align-content: left; margin-left:5px; margin-top:-60px;}  
+  
+    
+.logout{text-align: right; margin-top:-50px; margin-right:10px;}   
+
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+      
+      <p class="fs-6 text-center "> {{user.first_name }}</p>
+      <br>
+      <div class=logo>
+        <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+                <h6> top3health</h6>
+                
+                </div>
+                <div class=logout>
+                  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="text-end" alt="Veggies"></button></a>
+                 
+                  </div>
+               
+    <div class="container-fluid    text-center mx-auto   no-border">
+      <br>
+  
+        <h6 class="text-center ">My Goals</h6>
+        <br>
+        
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container text-center mx-auto   form-check checkbox-xl checkbox-primary  border" >
+    <!-- {{ form|crispy }} -->
+             
+    <div class="form-check text-center checkbox-xl text-start">
+      <input type="checkbox" class="form-check-input text-center " id="check1" name="Become_Healthier" value="something" >
+      <label class="form-check-label text-left" for="check1">Become healthier</label>
+      </div>
+
+
+      <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input " id="check2" name="Reduce_Weight" value="something">
+        <label class="form-check-label text-left" for="checkbox-2">Reduce weight</label>
+        </div>
+        
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check3" name="Improve_Productivity" value="something">
+        <label class="form-check-label text-left">Improve productivity</label>
+        </div>
+           
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check4" name="Increase_Strength" value="something" >
+        <label class="form-check-label text-left" for="check1">Increase strength</label>
+        </div>
+          
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check5" name="Increase_Endurance" value="something">
+        <label class="form-check-label text-left" for="check2">Increase endurance</label>
+        </div>
+        
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check6" name="Explore_Cuisines" value="something">
+        <label class="form-check-label text-left">Cook more often</label>
+        </div>   
+           
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check1" name="Organize_Kitchen" value="something" >
+        <label class="form-check-label text-left" for="check1">Organize kitchen</label>
+        </div>
+          
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check2" name="Reduce_Stress" value="something">
+        <label class="form-check-label text-left" for="checkbox-2">Reduce stress</label>
+        </div>
+        
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check2" name="Improve_Sleep" value="something">
+        <label class="form-check-label text-left">Improve sleep</label>
+        </div>   
+           
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check1" name="Quit_Smoking" value="something" >
+        <label class="form-check-label text-left" for="check1">Reduce/Quit smoking</label>
+        </div>
+          
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check2" name="Quit_Alcohol" value="something">
+        <label class="form-check-label text-left" for="checkbox-2">Reduce/Quit alcohol</label>
+        </div>
+        
+        <div class="form-check checkbox-xl text-start">
+        <input type="checkbox" class="form-check-input" id="check2" name="Include_Yoga" value="something">
+        <label class="form-check-label text-left">Explore Yoga</label>
+        </div>   
+
+        <!-- <div class="form-check checkbox-xl">
+          <input type="checkbox" class="form-check-input" id="check2" name="Explore_Mindful" value="something">
+          <label class="form-check-label text-left">Explore Mindfulness</label>
+          </div> -->
+ 
+</div> 
+
+<br>
+<div class="button-group space-around text-center mx-auto">
+<div class="d-inline gap-2 d-md-block span">
+  
+<a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+</div> 
+       
+<div class="d-inline gap-2 d-md-block">
+  <a href="/myprofile"><button class="btn btn-success btn-sm" type="submit" >Save & Continue</button></a>
+  
+</div>
+<div class="d-inline gap-2 d-md-block span">
+  
+  <a href="/myprofile"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+  </div> 
+
+</div> 
+</div>    
+   
+   
+        </form>
+
+{% endblock content %}

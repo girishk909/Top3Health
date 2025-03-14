@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Signup{% endblock title %}
+{% block content %}
+{% load static %}
+<!-- <h2>Sign Up</h2> -->
+<style>
+
+@media only screen and (min-width : 500px) {
+    .container {  max-width: 600px; padding:0px; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+
+.placeholder-label {font-size:8px;}
+.text {font-size:20px;}
+.form-text {margin-left:0px; font-size: small; margin-bottom:10px; }
+
+
+
+/* .input-group-text {font-size: 20px;  width:155px;} */
+.input-group-text {font-size: 15px; width:135px;}
+.container-fluid { width:400px; padding:0;}
+
+.form-container { width:380px; display:block; margin-top:10px; margin-bottom:-10px; padding:19px; border-radius:20px; background-color: rgb(227, 231, 226);}
+
+</style>
+<form method="post">
+  {% csrf_token %}
+
+<div class="container-fluid no-border mx-auto text-dark text-center  "> 
+    <div class="logo">
+            <i class="fa fa-circle" style="font-size:25px;color:red"></i>
+            <i class="fa fa-circle" style="font-size:25px;color:forestgreen"></i>
+            <i class="fa fa-circle" style="font-size:25px;color:#0080ff"></i>
+                    <h4>&nbsp;top3health</h4>
+                    <br>
+                 
+                <div class = "text-center ">                   
+                  <img class ="img-thumbnail border border-0" src="{% static 'css/user(2).png' %}" alt="Hi!" />
+                  
+                 
+                    
+                    </div>
+                  
+                
+          </div>
+          <h4 class="text-center">Staff sign-Up</h4>
+         
+
+ <div class="form-container  mx-auto text-start border"> 
+{{form|crispy}}
+
+ 
+<div class="text-center">
+  <br>
+<!-- <button class="btn btn-success btn-sm ml-2" type="submit">Sign-Up</button> -->
+<a href="signup"><button type="submit" class="btn btn-primary btn-sm">Sign-Up</button></a>
+</div>
+</div>
+</div>
+<br>
+</form>
+
+
+{% endblock content %}

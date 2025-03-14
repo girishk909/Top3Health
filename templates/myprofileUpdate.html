@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }    
+
+  .form-container { display:block; margin-top:10px; margin-bottom:10px;height:100%; width: 320px; padding:8px;  border-radius:10px; background-color: rgb(182, 199, 192);}
+
+::placeholder {
+  color: green;
+}
+
+   
+ /* .top-buffer{
+  margin-top: 40px;
+} */
+    
+.ml-4 {margin-top:30px; }    
+              
+.btn {font-size:15px; margin-left:20px; margin-right:20px;} 
+.button-group { 
+  display:inline-flex;   margin-bottom: 0px; 
+  justify-content: space-around; margin-top:0px;  white-space: nowrap;
+} 
+.text {font-size:10px ;}
+.placeholder-label {font-size:8px;}
+
+/* .d-inline {margin-left: 30px; margin-right:65px; } */
+    
+.logo {align-content: left; margin-left:0px; margin-top:-45px;}  
+    
+.logout{text-align: right; margin-top:-50px; margin-right:-20px;}    
+.input-group-text {font-size: 13px; width:130px;}
+.container-fluid { height:100%; width:100%}
+.form-control {font-size:12px; margin-left:-5px;}
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+  <p class="fs-6 text-center"> {{user.first_name }}</p>
+  
+  <div class="logo ">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6>
+         
+     </div>  
+   <div class="container-fluid  no-border text-center mx-auto">
+   
+   
+      
+     <div class="logout ">
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+      
+     </div>   
+    
+        <br>
+        <br>
+        <h5 class="text-center">My Profile - Update</h5>
+<form method="POST">
+    <div class="form-container mx-auto  text-center no-border" >
+       
+    <!-- {{ form|crispy}} -->
+   
+   
+    <div class="input-group  mb-1 input-group-default">
+      <span class="input-group-text font-weight-bold">Height(ft, in)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      
+      <input type="text" name = "Height_ft" id = "ch1" class="form-control text-center"placeholder="Feet" >
+      <input type="text" name = "Height_in" id = "ch1" class="form-control text-center"placeholder="Inches" >
+       </div>
+       
+       <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Weight (Pounds)</span>
+        <input type="text" name = "Weight_in_pounds" class="form-control"  placeholder="Your weight in Pounds" value="{{ myprofile.Weight_in_pounds }}"
+        
+        >
+         </div>       
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Gender&nbsp;&nbsp;(M, F, X)&nbsp;</span>
+        <input type="text" name = "Gender" class="form-control" placeholder="Male, Female, Non-binary" list="gender" value="{{ myprofile.Gender }}">  <datalist id="gender" >
+        <option value="Male">
+        <option value="Female">
+        <option value="Non-binary">
+                </datalist>
+         </div>  
+             
+          <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Calories-intake&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Calories_intake" class="form-control" placeholder="Daily calories (if known)" value="{{ myprofile.Calories_intake}}">
+         </div>        
+             
+         <div class="input-group mb-1 input-group-default">
+          <span class="input-group-text font-weight-bold">Calories-burned&nbsp;</span>
+          <input type="text" name = "Calories_burned" class="form-control" placeholder="Daily calories (if known)" value="{{myprofile.Calories_burned}}">
+           </div>   
+           
+           <div class="input-group mb-1 input-group-default">
+            <span class="input-group-text font-weight-bold">Protein-intake&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <input type="text" name = "Protein_intake" class="form-control" placeholder="Daily Protein (if known)" value="{{myprofile.Protein_intake}}">
+             </div>
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Carbs-intake&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name= "Carbs_intake" class="form-control"  placeholder="Daily Carbs (if known)" value="{{myprofile.Carbs_intake}}">
+         </div>       
+       
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Water-intake&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name="Water_intake" class="form-control" placeholder="Daily Water intake" value="{{myprofile.Water_intake}}">
+         </div>  
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Race-Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Race" class="form-control" placeholder="Race type" list="race" value="{{myprofile.Race}}"><datalist id="race">
+        <option value="White">
+        <option value="Black or African American">
+        <option value="American Indian and Alaska native">
+      <option value="Asian">
+        <option value="Native Hawaiian/Pacific Islander">
+        <option value="2 or more races">
+                </datalist>
+         </div>  
+             
+         <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Ethnicity-Type&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Ethnicity" class="form-control" placeholder="Ethnicity" list="ethnicity" value="{{myprofile.Ethnicity}}">     
+         <datalist id="ethnicity">
+            <option value="Arab">
+            <option value="Jewish">
+            <option value="Irish">
+            <option value="Chinese">
+            <option value="French">
+            <option value="Italian">
+            <option value="Russian">
+            <option value="Dutch">
+            <option value="Carribean">
+            <option value="African">
+            <option value="Indian">
+            <option value="Vietnamese">
+            <option value="Mixed">      
+          </datalist>        
+             
+         </div>         
+             
+        <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Stress Level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Stress_level" class="form-control" placeholder="High, Medium, Low" list=stress value="{{myprofile.Stress_level}}">    
+         <datalist id="stress">
+            <option value="High">
+            <option value="Medium">
+            <option value="Low">
+          </datalist>    
+         </div>    
+
+         <div class="input-group mb-1 input-group-default">
+          <span class="input-group-text font-weight-bold">Sleep Quality&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <input type="text" name = "Sleep_quality" class="form-control" placeholder="Poor, Moderate, Good" list=sleep value="{{myprofile.Sleep_quality}}">    
+           <datalist id="sleep">
+              <option value="Poor">
+              <option value="Moderate">
+              <option value="Good">
+            </datalist>    
+           </div>  
+             
+          <div class="input-group mb-1 input-group-default">
+        <span class="input-group-text font-weight-bold">Blood-Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Blood_type" class="form-control" placeholder="A+, A-, B+, B-, AB, O+, O-" list=blood-type value="{{myprofile.Blood_type}}">
+           <datalist id="blood-type">
+            <option value="A+">
+            <option value="A-">
+            <option value="B+">
+            <option value="AB+">
+            <option value="AB-">      
+            <option value="O+">
+            <option value="O-">      
+          </datalist>        
+              
+         </div>        
+</div>
+</form>
+ 
+
+  <!-- <div class="btn-group  mx-auto ml-5  nowrap" >
+  
+  <a href="/landing"><button class="btn btn-warning   ml-4 btn-sm" type="button">Home</button></a>
+    <a href="/minorsymptoms"></a><button class="btn btn-success ml-4   btn-sm" type="submit" >Save & Continue</button></a>
+          
+  </div>   -->
+
+  <div class="button-group space-around text-center mx-auto">
+    <div class="d-inline gap-3 d-md-block span">
+      
+    <a href="landing"><button class="btn btn-warning btn-sm mr-5" type="button">Home</button></a>
+    </div> 
+
+    <div class="d-inline gap-2 d-md-block">
+        <a href="landing"><button class="btn btn-warning btn-sm mr-5" type="submit">Update</button></a>
+      <!-- <button class="btn btn-success btn-sm" type="submit" >Update</button> -->
+      </div>
+      
+      <div class="d-inline gap-2 d-md-block span">
+        <a href="/settings"><button class="btn btn-warning btn-sm" type="button">Back</button></a>
+        </div>
+           
+    <!-- <div class="d-inline gap-3 d-md-block">
+      <a href="/minorsymptoms"></a><button class="btn btn-success btn-sm" type="submit" >Save & Continue</button></a> -->
+      
+    <!-- </div> -->
+    
+    <!-- <a href="/profile"><button class="btn btn-primary btn-l" type="button">Next</button></a> -->
+    </div> 
+<br>
+</div>
+        </form>
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, touch-action=none ">
+    <meta name="HandheldFriendly" content="true">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/top3_url.css'%}">
+    
+           <title>
+         tophealth.com
+       </title>
+    </head>
+        <div id = "circle_text">
+           <div id="circle1"></div>
+           <div id="circle2"></div>
+           <div id="circle3"></div>
+           <h3> Top3Health</h3> 
+            
+        </div>
+    
+     <body>
+         
+        <div class="abc">
+
+        <a href="{% url 'login' %}"><img src="{% static 'css/login-128-v2.png' %}" alt="My image"/>
+        <p></a>            
+            <h5>Login</h5>
+            
+ </div>
+         
+   
+        
+<ul> 
+         <li> HOME </li>
+         <li> About&nbsp;Us </li>
+         <li> &nbsp;&nbsp;&nbsp;&nbsp;Contact </li>
+        </ul>
+    </body>
+    
+</html>

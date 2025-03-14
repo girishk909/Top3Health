@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Signup{% endblock title %}
+
+{% load static %}
+
+{% block content %}
+<style>
+
+    @media only screen and (min-width : 500px) {
+        .container {  max-width: 600px; padding:0px; margin-left: 0px; margin-right: 0px;}
+    }
+    
+    .placeholder-label {font-size:8px;}
+    .text {font-size:20px;}
+    .form-text {margin-left:0px; font-size: small; margin-bottom:10px; }
+    
+    
+    
+    /* .input-group-text {font-size: 20px;  width:155px;} */
+    .input-group-text {font-size: 15px; width:135px;}
+    .container-fluid { width:500px; padding:0;}
+    
+    .form-container { width:100%; display:block; margin-top:10px; margin-bottom:-10px; width: 400px; padding:19px; border-radius:20px; background-color: rgb(227, 231, 226);}
+    
+    </style>
+    <br>
+     <h4 class="text-center">Update Account information</h4>
+
+<form method="POST" class="border-0 form-control justify-content-center mx-auto align-items-center text-center">
+    {% csrf_token %}
+    <div class="form-container  mx-auto text-start border">
+    <!-- {{form|crispy}} -->
+   <table >
+    <tr><td> <label class="form-label">Username&nbsp;&nbsp;</label> </td><td><input class="form-control" name="username" value={{userData.username}}></td></tr>
+    <tr><td><label class="form-label">Address 1</label></td><td><input  class="form-control" name="address_1" value="{{userData.address_1}}"></td></tr>
+    <tr><td><label class="form-label">Address 2</label></td><td><input  class="form-control" name="address_2" value="{{userData.address_2}}"></td></tr>
+    <tr><td><label class="form-label">Zipcode</label></td><td><input  class="form-control" name="zipcode" value="{{userData.zipcode}}"></td></tr>
+    <tr><td><label class="form-label">City</label></td><td><input  class="form-control" name="city" value="{{userData.city}}"></td></tr>
+    <tr><td><label class="form-label">State</label></td><td><input  class="form-control" name="state" value="{{userData.state}}"></td></tr>
+    <tr><td><label class="form-label">Phone</label></td><td><input  class="form-control" value="{{userData.phone_number}}"></td></tr> 
+    <tr><td><label class="form-label">Email</label></td><td><input type="email"  class="form-control"  name="email"value="{{userData.email}}"></td></tr> 
+  
+ </table> 
+ </div> 
+ <br>
+<a href="/landing"><button type="button" class="btn btn-primary btn-sm nowrap">Home</button></a>
+<!-- <button class="btn btn-outline-success m-2 btn-group" type="submit">Go Back</button>  -->
+<button class="btn btn-success btn-sm m-2 btn-group" type="submit">Submit</button>
+
+</form>
+{% endblock content %}

@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+
+<style>
+    
+    @media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      
+     
+      overflow-x: hidden;
+    }
+  }
+
+body {
+  /* background: url('{% static "css/shayna-douglas-cN7ryJvoy7U-unsplash.jpg" %}' ) no-repeat;  */
+
+  /* background: url('{% static "css/2205.q805.004.S.m004.c10.Lagom life flat composition.jpg" %}' ) no-repeat; */
+  
+  /* background-size:100%;
+  background-position: center;
+  padding:30px;
+ 
+ 
+  background-color: rgb(252, 249, 249);
+  
+  
+  height:100vh;
+  width:100vw;
+  z-index: 0; */
+  
+ 
+  /* width: 100%;
+  height: 100%;  */
+  /* overflow: auto; */
+  margin: 0;
+    background: white;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+}
+
+.btn {font-size:10px; margin-top:80px; margin-left:10px; z-index: auto;}
+.button-group { 
+  display:inline-flex;   padding-left:0px; 
+  justify-content: space-around;  position:relative; 
+}
+.container-fluid {
+
+position: relative;
+
+overflow-x: hidden;
+
+} 
+.topnav {
+    
+    /* background-color: rgb(72, 64, 170); */
+       width: 100%;
+       white-space: nowrap;
+       /* margin-left:5px; */
+       display: inline-block;
+       margin-left: 10px;
+       
+     
+   
+      /* margin-top: -30px; */
+      
+  }
+  
+  /* Navbar links */
+   .topnav a {
+    
+    color: white;
+    text-align: left;
+  
+    padding-right: 5px;
+      padding-left: 0px;
+  
+      margin-left:0px;
+     
+    text-decoration: none;
+      margin-bottom: 3px;
+      width:100%;
+      position: relative;
+    
+     
+  }
+  /* .topnav a:hover {
+    background-color: white;
+    color: black;
+  }    */
+  a:link {
+  text-decoration: none;
+}
+.login{text-align: right;  color:darkgreen; margin-right: -10px; margin-top:-15px; }   
+  
+.logo {align-content: left; margin-left:-10px;  margin-top: -1px;} 
+  
+.row{margin-left: 0px;}
+  
+.footer { clear: both; }  
+.botfont {font-size:12px;}
+
+.page-end {margin-top: 25px; margin-left: 150px;}
+  
+.col-md-auto {padding:2px;}  
+
+.full-size-img {
+    background: url('{% static "css/2205.q805.004.S.m004.c10.Lagom life flat composition.jpg" %}' ) no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    margin-top:30px;
+}
+
+</style > 
+    
+  {% csrf_token %}
+  
+  <div class="container-fluid  no-border  text-center mx-auto"> 
+
+    <div class="logo mt-2">
+      <i class="fa fa-circle" style="font-size:28px;color:red"></i>
+      <i class="fa fa-circle" style="font-size:28px;color:forestgreen"></i>
+      <i class="fa fa-circle" style="font-size:28px;color:#0080ff"></i>
+              <h5>top3health</h5>
+           
+          <div class = "text-center mt-3">                   
+            <a href="{% url 'login' %}"> <img src= "{% static 'css/enter_1828445.png' %}" alt="login"></a>
+            <div class="full-size-img"></div>
+            
+              <!-- <h5>Login</h5> -->
+              
+              </div>
+          
+    </div>
+
+
+   
+    <!-- <div class="logo  text-center no-wrap">
+
+     
+      <h5>top3health</h5>
+     </div>
+
+     
+      <div class="login text-end ">
+        <a href="{% url 'login' %}"> <img src= "{% static 'css/user9.png' %}" alt="login"></a>
+       
+      </div> -->
+     
+
+      
+
+
+</div>
+
+<div class="topnav navbar ml-4 fixed-bottom mx-auto mb-5 btn-group text-center pb-3">
+  
+ 
+  <a href="about"><button type="button" class="btn btn-primary btn-sm">About Us</button></a>
+  <a href="contact"><button type="button" class="btn btn-success btn-sm">Contact Us</button></a>
+  <a href="resources"><button type="button" class="btn btn-danger btn-sm">Useful Links</button></a>
+  <a href="privacy"><button type="button" class="btn btn-dark btn-sm">Privacy Policy</button></a>
+ 
+</div>
+<br>
+<h6 class="text-center botfont font-weight-bold position-absolute bottom-0">&nbsp;&nbsp;&copy; 2022 Copyright - Top3health.com</h6>
+
+
+{% endblock content%}

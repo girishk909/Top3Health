@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% block title %}Minor Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+/* @media only screen and (min-width : 600px) {
+    .container { max-width: 600px;  padding:10px; margin-left: 0px; margin-right: 0px; overflow-x: hidden; background-color: #0080ff;}
+} */
+@media only screen and (min-width: 400px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  }
+
+
+.container-fluid { height:100%;width:100%;}
+.form-container { width: 330px; padding:20px; border-radius:30px; background-color: rgb(180, 211, 240);}
+.form-container2 { width: 330px; padding:20px; border-radius:30px; background-color: rgb(160, 204, 197);}
+
+
+.checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.0;
+ /* margin-top:8px;   */
+ /* margin-right: 10px; */
+ margin-left: 25px; 
+ margin-bottom: 0px;
+
+
+ align-content: start;
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 0px;
+    font-size:13px;
+    /* margin-left: 10px;
+    margin-top:7px;
+    margin-right:10px; */
+    margin-right:1px;
+    width:130px;
+    align-content: center;
+ } 
+
+ .form-control {width:130px; font-size: 12px;}
+ .form-check{font-size: 14px;}
+
+.btn {font-size:13px; margin-left:10px;margin-right:10px;}
+.button-group { 
+  display:inline-flex; align-items:center;  padding:0px; 
+  justify-content: center;  position:relative; white-space: nowrap;
+}
+
+.d-inline {margin-left: 10px; margin-right:10px;}
+/* .input-group-text {font-size: 12px; width:145px;} */
+    
+.logo {align-content: left;  margin-top:-38px;}  
+    
+.logout{align-content: right; text-align: right; margin-top:5px; margin-right:5px; }    
+
+.placeholder{font-size: 12px;}
+.ital2{font-size:14px;  margin-left:15px;}  
+
+.input-group-text {font-size:12px !important; width:128px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
+.name {margin-left:15px;}
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+      <!-- <p class="fs-6  name"> {{user.first_name }}</p> -->
+
+                </div>
+
+                <!-- <div class="logout text-end">
+                  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+                  
+                 </div> -->
+             
+                 
+        
+      <div class="container-fluid   mx-auto text-center  no-border">
+ 
+  
+        <h6 class="text-center mt-2 mb-3">My Health Symptoms - Update</h6>
+        
+        
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container  mx-auto  text-center  border" >
+    <!-- {{ form|crispy }} -->
+
+    <div class="input-group mb-2 input-group-default">
+      <span class="input-group-text font-weight-bold">Minor Symptom 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      
+      <input type="text" name = "Minor1" id = "ch1" class="form-control text-center" placeholder="{{minorsym.Minor1}}" list="minor" datalist id="minor" value="{{minorsym.Minor1}}">
+        <option value="Fatigue">
+          <option value="Insomnia">
+        <option value="Low motivation">
+        <option value="Constipation">
+          <option value="ADD_ADHD">
+        <option value="Skin issues">
+            <option value="Body pain">
+                </datalist>
+       </div>
+          
+       
+       <div class="input-group mb-2 input-group-default">
+        <span class="input-group-text font-weight-bold">Minor Symptom 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        
+        <input type="text" name = "Minor2" id = "ch1" class="form-control text-center" placeholder="{{minorsym.Minor2}}" list="minor"   datalist id="minor" value="{{minorsym.Minor2}}">
+          <option value="Fatigue">
+            <option value="Insomnia">
+          <option value="Low motivation">
+          <option value="Constipation">
+            <option value="ADD_ADHD">
+          <option value="Skin issues">
+              <option value="Body pain">
+                  </datalist>
+         </div>
+
+
+         <div class="input-group mb-2 input-group-default">
+          <span class="input-group-text font-weight-bold">Minor Symptom 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          
+          <input type="text" name = "Minor3" id = "ch1" class="form-control text-center" placeholder="{{minorsym.Minor3}}" list="minor" datalist id="minor" value="{{minorsym.Minor3}}">
+            <option value="Fatigue">
+              <option value="Insomnia">
+            <option value="Low motivation">
+            <option value="Constipation">
+              <option value="ADD_ADHD">
+            <option value="Skin issues">
+                <option value="Body pain">
+                    </datalist>
+           </div>
+
+           <!-- <div class="input-group input-group-default">
+            <span class="input-group-text font-weight-bold">Minor Symptom 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            
+            <input type="text" name = "Minor4" id = "ch1" class="form-control text-center" placeholder="My minor symptom 4" list="minor" >  <datalist id="minor">
+              <option value="Fatigue">
+                <option value="Insomnia">
+              <option value="Low motivation">
+              <option value="Constipation">
+                <option value="ADD_ADHD">
+              <option value="Skin issues">
+                  <option value="Body pain">
+                      </datalist>
+             </div> -->
+
+            
+
+<!-- <h6 class="font-weight-bold mx-auto text-center mb-3">Food & Drug related symptoms</h6>
+          
+             <div class="input-group mb-2 input-group-default">
+              <span class="input-group-text font-weight-bold">Minor Symptom 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              
+              <input type="text" name = "Minor5" id = "ch1" class="form-control text-center" placeholder="My minor symptom 4" list="fd" >  <datalist id="fd">
+                <option value="Kidney stone risk">
+                  <option value="On blood thinners">
+                <option value="Celiac disease">
+                <option value="IBS - Inflammatory bowel disease">
+                  <option value="Auto immune condition">
+                <option value="GERD">
+                        </datalist>
+               </div>
+               <div class="input-group mb-2 input-group-default">
+                <span class="input-group-text  font-weight-bold">Minor Symptom 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                
+                <input type="text" name = "Minor6" id = "ch1" class="form-control text-center" placeholder="My minor symptom 4" list="fd" >  <datalist id="fd">
+                  <option value="Kidney stone risk">
+                    <option value="On blood thinners">
+                  <option value="Celiac disease">
+                  <option value="IBS - Inflammatory bowel disease">
+                    <option value="Auto immune condition">
+                  <option value="GERD">
+                          </datalist>
+                 </div> -->
+
+
+<h6 class="font-weight-bold mx-auto text-center  mt-3 mb-3">Minor Symptoms (not covered above)</h6>
+       
+
+<div class="  mx-auto text-center ">   
+
+<div class="input-group  mb-2    input-group-sm">
+<span class="input-group-text font-weight-bold">Symptom 1</span>
+<input type="text" class="form-control  text-center" name="Minor4" placeholder="Symptom 1" value="{{minorsym.Minor4}}">
+</div>   
+  
+<div class="input-group  mb-1 input-group-sm">
+<span class="input-group-text font-weight-bold">Symptom 2</span>
+<input type="text" class="form-control  text-center" name="Minor5" placeholder="Symptom 2" value="{{minorsym.Minor5}}">
+</div>        
+</div>
+
+
+</div>
+<br>
+<h6 class="text-center mb-3">My Major Illnesses</h6>
+
+<div class="form-container2  mb-3 mx-auto  text-center  border" >
+  <!-- {{ form|crispy }} -->
+           
+  <div class="input-group mb-2 input-group-default">
+    <span class="input-group-text font-weight-bold">Major Illness 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    
+    <input type="text" name = "Major1" id = "ch1" class="form-control text-center" placeholder="My major illness 1" list="major" value="{{minorsym.Major1}}">  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis">   
+                  <option value="Muliple Sclerosis(MS)">  
+                 
+              </datalist>
+     </div>
+
+     <div class="input-group mb-2 input-group-default">
+      <span class="input-group-text font-weight-bold">Major Illness 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+ 
+     <input type="text" name = "Major2" id = "ch1" class="form-control text-center" placeholder="My major illness 2" list="major" value="{{minorsym.Major2}}">  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis">  
+                  <option value="Muliple Sclerosis(MS)">  
+                  
+              </datalist>
+    
+            </div>
+
+      <div class="input-group mb-1 input-group-default">
+                <span class="input-group-text font-weight-bold">Major Illness 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+     <input type="text" name = "Major3" id = "ch1" class="form-control text-center" placeholder="My major illness 3" list="major" value="{{minorsym.Major2}}">  <datalist id="major">
+      <option value="Cardiovascular_CVD">
+        <option value="Obesity">
+      <option value="Hypothyroid">
+      <option value="Hyperthyroid">
+        <option value="Arthritis">
+      <option value="Pre-Diabetes">
+          <option value="Diabetes">
+            <option value="Elevated BP">
+              <option value="Cancer">
+            <option value="Alzheimers">
+                <option value="Osteoporosis"> 
+                  <option value="Muliple Sclerosis(MS)">   
+                  
+              </datalist>
+            </div>
+    
+
+<h6 class="   font-weight-bold mt-3 mb-3">Major Illnesses (not covered above)</h6>
+     
+
+<div class="mx-auto text-center ">   
+
+<div class="input-group mb-2    input-group-sm">
+<span class="input-group-text font-weight-bold">Major Illness 1</span>
+<input type="text" class="form-control  text-center" name="Major4" placeholder="Illness 1" value="{{minorsym.Major4}}">
+</div>   
+
+<div class="input-group mb-1 input-group-sm">
+<span class="input-group-text font-weight-bold">Major Illness 2</span>
+<input type="text" class="form-control text-center" name="Major5" placeholder="Illness 2" value="{{minorsym.Major5}}">
+</div>        
+</div>
+</div>
+
+<!-- <h5 class = "ital2 ml-5 mb-2 text-start">
+    <strong>FOOD & drug related symptoms:</strong><br><br>
+  &#8226;  Kidney stones risk<br>
+  &#8226;  Using blood thinners  <br>  
+  &#8226;  Celiac disease <br>
+  &#8226;  Inflammatory bowel<br>
+  &#8226;  Auto immune condition<br>  
+  &#8226;  GERD<br> 
+  
+  </h5> -->
+
+<div class="button-group  fixed-bottom mb-2 text-center mx-auto">
+  <div class="  d-md-block ">
+    
+  <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+  </div> 
+         
+  <div class="  d-md-block">
+    <a href="/myfitness"></a><button class="btn btn-success btn-sm" type="submit" >Save & Continue</button></a>
+    
+  </div>
+  <!-- <div class="   d-md-block">
+  <a href="/myfitness"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+</div> -->
+
+<div class="text-center  mb-1 ">
+  <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
+  </div>
+
+  
+  </div> 
+  
+
+  </div>
+    
+        </form>
+        
+{% endblock content %}

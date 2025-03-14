@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% block title %}Myfitness{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+ 
+
+@media only screen and (min-width : 600px) {
+    .container { max-width: 680px; padding:0px; background-color: #0080ff; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+
+
+.form-container {  width:600px; padding:10px;  background-color: rgb(191, 233, 200);}
+
+.container-fluid {width:100%; height:100%; padding-left:0px; padding-right:0px; max-width:none;   overflow-x: hidden;}
+    
+
+.input-group { width:350px; font-size: 20px; }
+.input-group-text { font-size: 28px; width:120px; text-align:center;}    
+    
+/* .ml-4 {margin-top:20px;margin-left:-60px; } */
+.form-control {font-size: 16px;}
+              
+.btn {font-size:15px;  margin-right: 10px; margin-left:7px; white-space: nowrap; padding:5px;}
+.button-group { 
+  display:inline-flex;  
+  justify-content: space-around; margin-top:20px; margin-right:15px; position:relative; white-space: no-wrap;
+}
+/* .col {width:270px; margin-left:45px;text-align:center; margin-left:5px; margin-right:5px;} */
+.d-inline {margin-left: 0px; margin-right:5px;}
+    
+.logo {align-content: left; margin-left:10px; margin-top:-35px;}  
+    
+.logout{text-align: right; margin-top:-65px; margin-right:6px;}   
+.form-container { width: 430px; padding:25px; border-radius:20px;  background-color: rgb(215, 223, 240);} 
+
+.form-control {margin-bottom: 0px; }
+/* select {
+   font-size: 10px;
+} */
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+  <p class="fs-5 text-center"> {{user.first_name }}</p>
+
+ 
+       
+    <div class=logo>
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h5> top3health</h5>
+    
+     </div>   
+        
+     <div class=logout>
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+     </div>
+
+   
+      <!-- {{ form|crispy }} -->
+
+      <div class="container-fluid  no-border mx-auto text-center background-color:forestgreen">
+        <br><br>
+        <h6 class=" text-center">My daily typical meals (homemade, delivered or picked up)</h6>
+        
+        <!-- <h6 class=" text-center">(Your typical meals either home made or eaten out)</h6> -->
+        
+     
+
+        <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+      
+        <div class="input-group  text-center mb-2 input-group-sm">
+        <span class="input-group-text font-weight-bold   text-center">Breakfast - 1</span>
+        <input type="text" name="Breakfast1" class="form-control text-center" placeholder="{{mytypicalmeals.Breakfast1}}" > 
+        
+     </div>
+     <div class="input-group   text-center mb-2 input-group-sm">
+      <span class="input-group-text font-weight-bold  text-center">Frequency</span>
+      <input type="text" name = "B1_freq"  class="form-control text-center" placeholder="{{mytypicalmeals.B1_freq}}" list="freq1" >  
+      <datalist id="freq1">
+        <option value="Daily">
+          <option value="2-3 times a week">                  
+                </datalist>
+              </div>
+             
+        <div class="row">
+         
+            
+          <input type="text" name="IngredientB11" class="form-control" placeholder="{{mytypicalmeals.IngredientB11}}"  list="breakfast1"
+            src="ingredients.txt">
+           
+          <datalist id="breakfast1">
+     
+          </div>
+          
+          <div class="row">
+            
+            <input type="text" name="IngredientB12" class="form-control" placeholder="{{mytypicalmeals.IngredientB12}}" list="breakfast2" src="ingredients.txt">
+          <datalist id="breakfast2">
+      
+         
+        </div>    
+             
+        <div class="row">
+          
+           
+            <input type="text" class="form-control" placeholder="{{mytypicalmeals.IngredientB13}}" name="IngredientB13" list="breakfast3" src="ingredients.txt">
+          <datalist id="breakfast3">
+     
+        </div>
+        
+          <div class="row">
+           
+            <input type="text" class="form-control mb-2" placeholder="{{mytypicalmeals.IngredientB14}}" name="IngredientB14" list="breakfast4" src="ingredients.txt">
+          <datalist id="breakfast4">
+     
+          <!-- </div> -->
+        </div>    
+                          
+          <div class="input-group text-center mb-2 input-group-sm">
+        <span class="input-group-text font-weight-bold mx-auto text-center">Lunch - 1</span>
+        <input type="text" class="form-control text-center" name="Lunch1" placeholder="{{mytypicalmeals.Lunch1}}">  
+        
+         </div>    
+
+         <div class="input-group   text-center mb-2 input-group-sm">
+          <span class="input-group-text font-weight-bold  text-center">Frequency</span>
+          <input type="text" name = "L1_freq" id = "ch1" class="form-control text-center" placeholder="{{mytypicalmeals.L1_freq}}" list="freq" >  
+          <datalist id="freq">
+            <option value="Daily">
+              <option value="2-3 times a week">                  
+                    </datalist>
+                  </div>
+             
+        <div class="row">
+          
+            <label for="exampleEmail"></label>
+            <input type="text" class="form-control" placeholder="{{mytypicalmeals.IngredientL11}}" name="IngredientL11" list="lunch1" src="ingredients.txt">
+          <datalist id="lunch1">
+     
+          </div>
+          
+          <div class="row">
+           
+            <input type="text" class="form-control" placeholder="{{mytypicalmeals.IngredientL12}}" name="IngredientL12" list="lunch2" src="ingredients.txt">
+          <datalist id="lunch2">
+     
+          
+        </div>    
+        
+             
+        <div class="row">
+         
+            
+            <input type="text" class="form-control" placeholder="{{mytypicalmeals.IngredientL13}}" name="IngredientL13" list="lunch3" src="ingredients.txt">
+          <datalist id="lunch3">
+     
+          </div>
+          
+          <div class="row">
+            <label for="examplePassword"></label>
+            <input type="text" class="form-control mb-2" placeholder="{{mytypicalmeals.IngredientL14}}" name="IngredientL14" list="lunch4" src="ingredients.txt">
+          <datalist id="lunch4">
+     
+          
+        </div>    
+                        
+             
+          <div class="input-group text-center mb-2 input-group-sm">
+        <span class="input-group-text font-weight-bold text-center">Dinner - 1</span>
+        <input type="text" class="form-control text-center" name="Dinner1" placeholder="{{mytypicalmeals.Dinner1}}" >
+         </div> 
+
+         <div class="input-group   text-center mb-2 input-group-sm">
+          <span class="input-group-text font-weight-bold  text-center">Frequency</span>
+          <input type="text" name = "D1_freq" id = "ch1" class="form-control text-center" placeholder="{{mytypicalmeals.D1_freq}}" list="freq" >  
+          <datalist id="freq">
+            <option value="Daily">
+              <option value="2-3 times a week">                 
+                    </datalist>
+                  </div>
+             
+        <div class="row">
+            <input type="text" class="form-control"  placeholder="{{mytypicalmeals.IngredientD11}}" name="IngredientD11" list="dinner1" src="ingredients.txt">
+          <datalist id="dinner1">
+     
+          </div>
+          
+          <div class="row">
+           
+            <input type="text" class="form-control" placeholder="{{mytypicalmeals.IngredientD12}}" name="IngredientD12" list="dinner2" src="ingredients.txt">
+          <datalist id="dinner2">
+    
+         
+        </div>    
+             
+        <div class="row">
+          
+            
+            <input type="text" class="form-control" placeholder="{{mytypicalmeals.IngredientD13}}" name="IngredientD13" list="dinner3" src="ingredients.txt">
+          <datalist id="dinner3">
+     
+          </div>
+          
+          <div class="row">
+           
+            <input type="text" class="form-control" placeholder="{{mytypicalmeals.IngredientD14}}" name="IngredientD14" list="dinner4" src="ingredients.txt">
+          <datalist id="dinner4">
+      
+          </div>
+            
+      </div>
+                 
+      <h6 class=" text-center mt-2">(More sets can be input under SETTINGS Menu)</h6>  
+      <div class="button-group mx-auto mt-5 mb-3 text-center">
+        <div class="d-inline  ">
+          <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+        </div>   
+               
+        <div class="d-inline  ">
+          <a href="/landing"></a><button class="btn btn-success btn-sm nowrap" type="submit" >Update</button></a>
+               
+          </div>  
+        </div>
+      </div>
+</div>
+       
+     <!-- </div>  <br> -->
+<!-- </div> -->
+
+        </form>
+    <!-- </div> -->
+<!-- </div> -->
+
+        {% endblock content %}

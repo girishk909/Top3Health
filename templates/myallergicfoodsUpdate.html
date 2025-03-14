@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% block title %}Allergic-foods{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+@media only screen and (min-width : 400px) {
+    .container { max-width: 500px; padding:0px; background-color: #0080ff;  height:100%; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+}
+
+.container-fluid { height:100%;width:100%; padding-left:0px; padding-right:0px; max-width:none;   overflow-x: hidden;
+   }
+/* .form-check-label{font-size:28px;  color:rgb(10, 56, 141)} */
+/* .form-check{color:darkgreen; scale:2rem;} */
+.form-check-label{font-size:26px; scale:3rem;  margin-bottom: 1px; margin-left: 28px; margin-right:0px;  }
+
+.input-group {width:100%; margin-left: 0px;}
+
+.form-container { width: 300px; padding:8px; border-radius:30px;  background-color: rgb(166, 184, 161);}
+.form-container2 { width: 300px; padding:8px; border-radius:30px;  background-color: rgb(185, 202, 240);}
+.form-container3 { width: 300px; padding:10px;  border-radius:20px;  background-color: rgb(233, 178, 178);}
+
+  .checkbox-xl .form-check-input {
+ /* top: 1.6rem; */
+ scale: 1.0;
+ margin-top:12px;  
+ margin-right: 60px;
+ margin-left: -100px;
+ margin-bottom: 0px;
+ border-width: 0.5px;
+ align-content: left;
+  
+ }
+
+.checkbox-xl .form-check-label {
+ padding-top: 12px;
+    font-size:15px;
+    margin-left: -80px;
+    align-content:left;
+    width:170px;
+    
+ } 
+
+.btn {font-size:15px; margin-right:20px;}
+.button-group { 
+  display:inline-flex; align-items:center; margin-left:15px; padding-left:0px; 
+  justify-content: center; margin-top:20px; position:relative; white-space: nowrap;
+}
+
+.d-inline {margin-left: 5px; margin-right:2px;}
+    
+.logo {align-content: left; margin-left:8px; margin-top:-40px;}  
+  
+.logout{text-align: right; margin-top:-45px; margin-right:8px;}   
+
+.input-group-text {font-size:12px !important; width:50px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
+
+
+</style>
+
+    <form method="POST">
+      {% csrf_token %}
+      <p class="fs-6 text-center "> {{user.first_name }}</p>
+     
+      <div class=logo>
+        <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+        <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+                <h6> top3health</h6>
+                
+                </div>
+                <div class=logout>
+                  <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="text-end" alt="Veggies"></button></a>
+                 
+                  </div>     
+               
+    <div class="container-fluid  text-center no-border mx-auto ">
+   
+      <br>
+   
+        <h6  class="text-center ">My Allergic foods - Update</h6>
+      
+        
+   <!-- <div class="ml-4 d-inline-block space-around" > -->
+    <div class="form-container mx-auto  text-end checkbox-xl checkbox-primary  border" >
+    <!-- {{ form|crispy }} -->
+             
+    <div class="form-check text-center checkbox-xl ">
+      <input type="checkbox" class="form-check-input  ml-1 " id="check1" name="Regular_Milk"  {% if myallergies.Regular_Milk%} checked {% endif %} value="myallergies.Regular_Milk" >
+      <label class="form-check-label text-left " for="check1">Milk</label>
+      </div>
+
+
+      <div class="form-check text-center checkbox-xl ">
+        <input type="checkbox" class="form-check-input ml-1" id="check2" name="Regular_Yogurt" {% if myallergies.Regular_Yogurt%} checked {% endif %} value="myallergies.Regular_Yogurt" >
+        <label class="form-check-label text-left" for="checkbox-2">Yogurt</label>
+        </div>
+        
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input ml-1" id="check3" name="Peanuts" {% if myallergies.Peanuts%} checked {% endif %} value="myallergies.Peanuts">
+        <label class="form-check-label text-left">Peanuts</label>
+        </div>
+           
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input ml-1" id="check4" name="Walnuts" {% if myallergies.Walnuts%} checked {% endif %} value="myallergies.Walnuts" >
+        <label class="form-check-label text-left" for="check1">Walnuts</label>
+        </div>
+          
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input ml-1" id="check5" name="Pecans" {% if myallergies.Pecans%} checked {% endif %} value="myallergies.Pecans">
+        <label class="form-check-label text-left" for="checkbox-2">Pecans</label>
+        </div>
+           
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input ml-1" id="check1" name="Shell_fish" {% if myallergies.Shell_fish%} checked {% endif %} value="myallergies.Shell_fish">
+        <label class="form-check-label text-left" for="check1">Shell fish</label>
+        </div>
+          
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input ml-1" id="check2" name="Soy" {% if myallergies.Soy%} checked {% endif %} value="myallergies.Soy">
+        <label class="form-check-label text-left" for="checkbox-2">Soy</label>
+        </div>
+        
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input ml-1" id="check2" name="Eggs" {% if myallergies.Eggs%} checked {% endif %} value="myallergies.Eggs">
+        <label class="form-check-label text-left">Eggs</label>
+        </div>   
+           
+          
+        <div class="form-check text-center checkbox-xl">
+        <input type="checkbox" class="form-check-input ml-1" id="check2" name="Wheat" {% if myallergies.Wheat%} checked {% endif %} value="myallergies.Wheat">
+        <label class="form-check-label text-left" for="checkbox-2">Wheat</label>
+        </div>
+        
+</div>
+
+<!-- <br>  -->
+
+<h6 class="text-center mt-3">My food substitutes</h6>
+{{myallergies.Lactose_free_Milk}}
+
+<div class="form-container2 mx-auto form-check text-center checkbox-xl checkbox-primary  border" >
+
+<div class="form-check checkbox-xl">
+  <input type="checkbox" class="form-check-input  ml-1" id="check2" name="Lactose_free_Milk" {% if myallergies.Lactose_free_Milk%} checked {% endif %} value="myallergies.Lactose_free_Milk">
+  <label class="form-check-label text-left" for="checkbox-2">Almond,&nbsp;Oat&nbsp;Milk&nbsp;or&nbsp;other</label>
+  </div>
+     
+  <div class="form-check checkbox-xl">
+  <input type="checkbox" class="form-check-input  ml-1" id="check1" name="Greek_Yogurt" {% if myallergies.Greek_Yogurt%} checked {% endif %} value="myallergies.Greek_Yogurt" >
+  <label class="form-check-label text-left" for="check1">Greek&nbsp;Yogurt&nbsp;or&nbsp;other</label>
+  </div>
+    
+  <div class="form-check checkbox-xl">
+  <input type="checkbox" class="form-check-input  ml-1 mb-3" id="check2" name="Gluten_free_foods" {% if myallergies.Gluten_free_foods%} checked {% endif %} value="myallergies.Gluten_free_foods">
+  <label class="form-check-label text-left" for="checkbox-2">Gluten free foods</label>
+  </div>
+
+        </div>
+
+       
+        <h6 class="text-center mt-3" >Custom food substitutes  </h6>
+
+        {{myallergies.Main_Food_1}}
+
+        <div class="form-container3 mx-auto form-check   text-center border" >
+       
+        <!-- <br>  -->
+ <div class="input-group mb-2  input-group-sm">
+ <span class="input-group-text font-weight-bold">Sub-1&nbsp;&nbsp;&nbsp;</span>
+ <input type="text" class="form-control text-center" name="Main_Food_1" value="{{myallergies.Main_Food_1}}" placeholder="{{myallergies.Main_Food_1}}">
+ <input type="text" class="form-control text-center" name="Food-substitute-1" value="{{myallergies.Food_substitute_1}}" placeholder="myallergies.Food_substitute_1">
+  </div>    
+       
+  <div class="input-group mb-2 input-group-sm">
+ <span class="input-group-text font-weight-bold">Sub-2&nbsp;&nbsp;&nbsp;</span>
+ <input type="text" class="form-control text-center" name="Main_Food_2" value="{{myallergies.Main_Food_2}}" placeholder="{{myallergies.Main_Food_2}}">
+ <input type="text" class="form-control text-center" name="Food-substitute-2" value="{{myallergies.Food_substitute_2}}" placeholder="myallergies.Food_substitute_2">
+  </div> 
+       
+   <div class="input-group mb-2 input-group-sm">
+ <span class="input-group-text font-weight-bold">Sub-3&nbsp;&nbsp;&nbsp;</span>
+ <input type="text" class="form-control text-center" name="Main_Food_3" value="{{myallergies.Main_Food_3}}" placeholder="{{myallergies.Main_Food_3}}">
+ <input type="text" class="form-control text-center" name="Food-substitute-3" value="{{myallergies.Food_substitute_3}}" placeholder="myallergies.Food_substitute_3">
+  </div> 
+ 
+</div>
+<div class="button-group mx-auto mb-4 text-center">
+    <div class="d-inline gap-2 d-md-block">
+      <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+    </div>   
+           
+    <div class="d-inline gap-2 d-md-block">
+      <a href="/landing"></a><button class="btn btn-success btn-sm nowrap" type="submit" >Update</button></a>
+           
+      </div>    
+      
+      </div>  
+  </div>
+  <br> 
+        
+</form>
+
+{% endblock content %}

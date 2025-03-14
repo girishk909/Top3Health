@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+   
+{% load static %}
+{% block content %}
+
+   
+<style>
+    
+    /* @media (max-width: 600px) { 
+  .container {width:500px; margin-right:10px;}
+  
+      .block {
+    display: flex;
+  }
+} */
+
+
+  @media only screen and (min-width: 300px) {
+    .container {
+      max-width: 100%;
+      max-height:100%;
+      background-color: white;
+     
+      overflow-x: hidden;
+      padding:0px;
+    }
+  }  
+
+.btn-label {
+	position: relative;
+	/* left: -42px; */
+	display: inline-block;
+	/* padding: 6px 12px; */
+	background: rgba(236, 238, 238, 0.15);
+	border-radius: 30px 0 0 30px;
+  font-size: 20px;
+  
+}
+
+.btn-labeled {
+	/* padding-top: -50px;
+	padding-bottom: 80px;
+  padding-right: 0px;
+  margin-bottom:15px; */
+  width:410px;
+  /* padding-bottom:40px;
+  padding-top:-20px; */
+}
+
+/* .row {margin-top:20px; align-content: center;} */
+.btn-lg:hover{
+  background: grey;
+  color: rgb(247, 245, 245);
+  cursor: pointer;
+}
+.btn {
+	 border-radius: 10px; 
+}
+/* .form-container {align-content:center; width:450px;text-align:center; display:inline-flex;  padding:0px;border-radius:30px; background-color: rgb(243, 239, 239);} */
+/* .btn {font-size:15px; margin-left:0px;white-space: nowrap; margin-left:10px;margin-top:30px;margin-right:20px;} */
+.btn-dark {background-color: rgb(43, 65, 126); border-color: rgb(163, 222, 135);}
+.btn-diff {background-color: rgb(88, 100, 42); }
+
+.btn-lg {font-size: 40px;  font-style:normal; border-radius:20px; margin-bottom:-20px; }
+.button-group { 
+  display:inline-block;  margin-left:20px; margin-right: 20px; padding:0px; 
+  justify-content: space-around; margin-top:0px; position:relative; white-space: nowrap;
+}
+/* .container-fluid { margin-right:20px;} */
+
+a {
+    cursor: default;
+}
+    
+.logout{text-align: right; margin-top:-35px; margin-right:5px;  }   
+    
+.logo {align-content: left; margin-left:-8px; margin-top:-42px; } 
+/* .logout{text-align: right; margin-top:-70px; margin-right:20px;}    */
+
+.container-fluid {
+
+    width: 435px; 
+    /* height:100%; */
+    /* position: relative; */
+
+     overflow-x: hidden;
+
+}    
+/* .row{margin-left: 0px;} */
+/* .myprofile-inline {display:inline-flex; justify-content: end;} */
+
+/* .myprofile-inline2{display:block; } */
+    
+.footer { clear: both; }  
+/* .abc {margin-bottom:0px;} */
+
+.page-end {margin-top: 10px; margin-left: 150px;}
+    
+
+
+</style> 
+<form method="POST">
+ 
+  {% csrf_token %}
+  
+  <!-- <p class="fs-6 text-center"> {{user.first_name }}</p>  -->
+  <!-- <div class="logo text-start">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6> top3health</h6>
+    </div> -->
+    
+   <!-- <div class="logout text-end">
+
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+
+    </div>  -->
+   
+    <br>  
+    <div class="container-fluid  text-center text-dark  mx-auto  no-border ">
+    
+      <h5> My Settings</h5>
+      
+             
+
+      <div class=" text-center mx-auto  no-wrap ">  
+
+   
+<a href="/UserUpdateView/" style="text-decoration:none; color: #f8fafa;">
+     <div class="mx-auto text-center no-wrap">
+      <button type="button" onclick=wind style="scale: 0.4"  class="btn-lg pd-3 btn-labeled btn-success ">
+      
+        <img class="btnimg"  > Account update&nbsp;  
+    </div> 
+  </a>
+
+  <!-- <a href="{% url 'minorsymupdate' %}" style="text-decoration:none; color: #0c0c0c;">
+    <div class="mx-auto text-center">
+      <button type="button" style="scale: 0.4"  class="btn-lg btn-warning text-dark btn-labeled">
+      
+      <img class="btnimg"  >Health Symptoms&nbsp;  
+    </div> 
+  </a> -->
+
+
+    <!-- <a href="/supplementsupdate"style="text-decoration:none; color: #f8f5f5;">
+    <div class="mx-auto text-center">
+      <button type="button" style="scale: 0.4"  class="btn-lg  btn-labeled btn-primary">
+      
+      <img class="btnimg"  >Vitamins/Supplements 
+    </div> 
+  </a> -->
+
+    <a href="/myhealthscreening"style="text-decoration:none; color: #f8f5f5;">
+    <div class="mx-auto text-center">
+      <button type="button" style="scale: 0.4"  class="btn-lg  btn-labeled ">
+      
+      <img class="btnimg"  >Health checkup  
+    </div> 
+  </a>
+
+
+    <a href="/minorsymupdate"style="text-decoration:none; color: #f8f5f5;">
+      <div class="mx-auto text-center">
+        <button type="button" style="scale: 0.4"  class="btn-lg  btn-labeled btn-success">
+        
+        <img class="btnimg"  >My Symptoms 
+      </div> 
+    </a>
+
+    <a href="/myhabitsupdate"style="text-decoration:none; color: #f8f5f5;">
+      <div class="mx-auto text-center">
+        <button type="button" style="scale: 0.4"  class="btn-lg  btn-labeled btn-success">
+        
+        <img class="btnimg"  > My Habits 
+      </div> 
+    </a>
+ 
+     
+     <br><br>
+        
+        <a href="/landing"><button type="button" class="btn btn-primary btn-sm">Home</button></a>
+        <!-- <a href="Contact"><button type="button" class="btn btn-success btn-sm">Contact</button></a>
+        
+        <a href="Shopping"><button type="button" class="btn btn-warning btn-sm">Shopping</button></a>     -->
+        
+    <!-- </div> -->
+  </div>
+ 
+</div>
+<hr>
+      <p class="text-center  align-bottom">Copyright - Tophealth.com</p>
+</form>
+        {% endblock content%}

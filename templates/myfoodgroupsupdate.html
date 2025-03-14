@@ -1,0 +1,454 @@
+{% extends 'base.html' %}
+{% block title %}Symptoms{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<style>
+  @media only screen and (min-width : 500px) {
+      .container { max-width: 450px; padding:0px; margin-left: 0px; margin-right: 0px; overflow-x: hidden;}
+  }     
+  
+      
+  /*.logout {align-content: right; margin-left: 850px; margin-top: -40px;}*/   
+  
+  .checkbox-xl .form-check-input {
+   top: 1.4rem;
+   margin-top:26px;    
+   margin-right: 0.4rem;
+   margin-left:100px;    
+   margin-bottom: 18px;
+      font-size:32px;
+   }
+  
+  .checkbox-xl .form-check-label {
+   padding-top: 9px;
+      font-size:38px;
+   }
+      
+  input[type=checkbox]
+  {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.4); /* IE */
+    -moz-transform: scale(1.4); /* FF */
+    -webkit-transform: scale(1.4); /* Safari and Chrome */
+    -o-transform: scale(1.4); /* Opera */
+    padding: 6.0px;
+      align-content: center;
+      font-size: 12px;
+  }  
+  .form-control {font-size:12px; color:black; width:300px;}    
+      
+  .form-check-input {font-size:18px; color: black; }    
+      
+  .input-group { width:100%; font-size:18px;}    
+  .input-group-text { font-size:12px;}
+
+                
+  .btn {font-size:15px; margin-right:0px;}
+  .button-group { 
+    display:inline-flex; align-items:center; margin-left:2px; padding-left:5px; 
+    justify-content: space-around; margin-top:20px; position:relative;
+  }
+  
+  .d-inline {margin-left: 10px; margin-right:25px;}
+      
+  .logo {align-content: left; margin-left:5px; margin-top:-2px;}  
+      
+  .logout{ margin-top:-45px;}   
+      
+  .container-fluid  {width:99%; padding:0px;  overflow-x: hidden;  max-width:none;} 
+  .form-container { width:380px; padding:18px; border-radius:10px;  background-color: #6d80a5;}
+  .placeholder {font-size:31px; width:300px;}
+  /* .form-control {font-size:14px;} */
+  
+  </style>
+<form method="POST">
+  {% csrf_token %}
+
+  <div class="logo ">
+    <i class="fa fa-circle" style="font-size:18px;color:red"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:forestgreen"></i>
+    <i class="fa fa-circle" style="font-size:18px;color:#0080ff"></i>
+            <h6>top3health</h6>
+    
+     </div>
+     <div class="logout ">
+      <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="float-right" alt="Veggies"></button></a>
+     
+   </div>
+   <p class="fs-6 text-center"> {{user.first_name }}</p>
+     <div class="container-fluid  mx-auto text-center  no-border">
+     
+      
+      <h6 class=" text-center ">My Food Groups - Update</h6>
+    <div class="form-container mx-auto text-center border" >
+       
+          <!-- {{ form|crispy}} -->
+
+    <div class="input-group mb-1  text-center">
+    <span class="input-group-text  text-center  font-weight-bold text-dark" style="width: 100px;" >Raw<br>Vegetables</span>
+    <input type="text" class="form-control " name = "Raw_Vegetables" placeholder="{{myfoods.Raw_Vegetables}}" list="veg"> <datalist id="veg" value="{{myfoods.Raw_Vegetables}}">
+        <option value="Daily">
+        <option value="Weekly">
+        <option value="Monthly">
+        <option value="Rarely">
+        <option value="Avoid">                    
+       </datalist>
+    </div>      
+                   
+    <div class="input-group mb-3 text-center">
+      <div class="input-group-text text-center">
+    <input class="form-check-input custom-checkbox-xl mx-auto checkbox-xl" type="checkbox" name = "Include_Raw_Vegetables" {% if myfoods.Raw_Vegetables%} checked {% endif %}/>
+      </div>
+    <input type="text" readonly=readonly class="form-control  font-weight-bold  text-center btn-lg"  placeholder="Suggest Cooked veggies" />
+    </div>
+
+
+  
+    <div class="input-group mb-1  text-center">
+    <span class="input-group-text  text-center  font-weight-bold text-dark" style="width: 100px;" >Cooked<br>Vegetables</span>
+    <input type="text" class="form-control " name = "Cooked_Vegetables" placeholder="{{myfoods.Cooked_Vegetables}}" list="veg"> <datalist id="veg" value="{{myfoods.Cooked_Vegetables}}">
+       <option value="Daily">
+       <option value="Weekly">
+       <option value="Monthly">
+       <option value="Rarely">
+       <option value="Avoid">
+    </datalist>
+    </div>      
+                   
+    <div class="input-group mb-3 text-center">
+       <div class="input-group-text text-center">
+    <input class="form-check-input custom-checkbox-xl mx-auto checkbox-xl" type="checkbox" name = "Include_Cooked_or_Sauteed_Vegetables" {% if myfoods.Cooked_Vegetables%} checked {% endif %}/>
+       </div>
+    <input type="text" readonly=readonly class="form-control  font-weight-bold  text-center btn-lg"  placeholder="Suggest Cooked veggies" />
+    </div>
+
+
+                    
+    <div class="input-group mb-1  text-center ">
+    <span class="input-group-text  text-center   font-weight-bold text-dark"  style="width: 100px; text-align:right">Fruits</span>
+    <input type="text" class="form-control " name = "Fruits" placeholder="{{myfoods.Fruits}}" list="veg">  <datalist id="veg" value="{{myfoods.Fruits}}">
+      <option value="Daily">
+      <option value="Weekly">
+      <option value="Monthly">
+      <option value="Rarely">
+      <option value="Avoid">
+    </datalist>
+    </div>
+           
+    <div class="input-group mb-3">
+      <div class="input-group-text">
+    <input class="form-check-input custom-checkbox-xl text-center mx-auto checkbox-xl btn-lg" type="checkbox" name = "Include_Fruits" {% if myfoods.Fruits%} checked {% endif %}/>
+      </div>
+        <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest Fruits" />
+    </div>
+
+    {% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}
+ 
+<div class="input-group mb-1 input-group-xl">{% if myfoods.Beef%} checked {% endif %}
+  <span class="input-group-text input-group-xl font-weight-bold text-dark" style="width: 100px;" >Berries</span>
+  <input type="text" class="form-control" name = "Berries" placeholder="{{myfoods.Berries}}" list="veg">  <datalist id="veg" value="{{myfoods.Berries}}">
+    <option value="Daily">
+    <option value="Weekly">
+    <option value="Monthly">
+    <option value="Rarely">
+    <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+  <input class="form-check-input mx-auto checkbox-xl" type="checkbox" name = "Include_Berries" {% if myfoods.Berries%} checked {% endif %}/>
+    </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold   btn-lg text-center"   placeholder="Suggest Berries" />
+</div>
+
+
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark" style="width: 100px;" >Nuts</span>
+  <input type="text" class="form-control" name = "Nuts" placeholder="{{myfoods.Nuts}}" list="veg">  <datalist id="veg" value="{{myfoods.Nuts}}">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>{% if myfoods.Beef%} checked {% endif %}
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+  <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name = "Include_Nuts" {% if myfoods.Nuts%} checked {% endif %}>
+    </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"   placeholder="Suggest preferred Nuts" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Seeds</span>
+  <input type="text" class="form-control" name = "Seeds" placeholder="{{myfoods.Seeds}}" list="veg"{% if myfoods.Beef%} checked {% endif %}>  <datalist id="veg" value="{{myfoods.Seeds}}">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+  <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name = "Include_Seeds" {% if myfoods.Seeds%} checked {% endif %}>
+    </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"   placeholder="Suggest preferred Seeds" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Milk</span>
+  <input type="text" class="form-control" name = "Milk" placeholder="{{myfoods.Milk}}" list="veg">  <datalist id="veg" value="{{myfoods.Milk}}">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+  <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name = "Include_Milk_or_Milk_substitutes" {% if myfoods.Milk%} checked {% endif %}>
+    </div>
+  <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest Milk / Substitutes" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Yogurt</span>{% if myfoods.Beef%} checked {% endif %}
+  <input type="text" class="form-control" name = "Yogurt" placeholder="{{myfoods.Yogurt}}" list="veg">  <datalist id="veg" value="{{myfoods.Yogurt}}">
+  <option value="Daily">
+  <option value="Weekly">{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% en{% if myfoods.Beef%} checked {% endif %}dif %}
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {%{%{%{%{%{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %} endif %}
+  </datalist>
+</div>{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{%{%
+{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{% if myfoods.B{% if myfoods.Beef%} checked {% endif %}eef%} checked {% endif %}
+<div class="input-group mb-3">
+    <div class="input-group-text">{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} {% if myfoods.Beef%} checked {% endif %}checked {% endif %}
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox" name = "Include_Yog{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}urt_or_Yogurt_substitutes" {% if myfoods.Yogurt%} checked {% endif %}>
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest Yogurt / substitutes" />
+</div>{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{% if myf{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}oods.Beef%} checked {% endif %}
+{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}
+<div class="input-group mb-1 input-group-xl">{% if myfoods.Beef%} checked {% endif %}{% if {% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}ods.Beef%} checked {% endif %}
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Eggs</span>{{% if myfoods.Beef%} checked {% endif %}% if myfoods.Beef%} checked {% endif %}
+  <input type="text" class="form-control" name = "Eggs" placeholder="{{myfoods.Eggs}}" list="ve{% if myfoods.Beef%} checked {% endif %}g{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{{% if myfoods.Beef%} checked {% endif %}
+  <option value="Weekly">{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}
+  <option value="Monthly">{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}% endif %}
+  <option value="Avoid">{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% {% if myfoods.Beef%} checked {% endif %}endif %}
+  </datalist>{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}
+</div>{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}
+{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}
+<div class="input-group mb-3">{% if myfoods.Beef%} checked {% endif %}
+    <div class="input-group-text">{% if myfoods.Beef%} checked {% endif %}
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name = "Include_Egg{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}
+    {% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %}
+<div class="input-group mb-1 input-group-xl">{% if myfoods.Beef%} checked {% endif %}{% if myfoo{% if myfoods.Beef%} checked {% endif %}ds.Beef%} checked {% endif %}
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Beef</span>{% if myfoods.Beef%} checked {% endif %}
+  <input type="text" class="form-control" name = "Beef" placeholder="{{myfoods.Beef}}" list="veg">  <datalist id="veg" value="{{myfoods.Beef}}">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+    </div>
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name="Include_Beef" {% if myfoods.Beef%} checked {% endif %}>
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest Beef" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Poultr{% if myfoods.Beef%} checked {% endif %}
+  <option value="Weekly">{% if myfoods.Beef%} checked {% endif %}
+  <option value="Monthly">{% if myfoods.Beef%} checked {% endif %}{% if myfoods.Beef%} checked {% endif %{% if myfoods.Beef%} checked {% endif %}}
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name="Include_Seafood" {% if myfoods.Seafood%} checked {% endif %}>
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest preferred Seafood" />
+</div>{% if myfoods.Poultry%} checked {% endif %{% if myfoods.Poultry%} checked {% endif %{% if myfoods.Poultry%} checked {% endif %{% if myfoods.Poultry%} checked {% endif %{% if myfoods.Poultry%} checked {% endif %{% if myfoods.Poultry%} checked {% endif %
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Breads</span>
+  <input type="text" class="form-control" name = "Breads" placeholder="White, Wheat, Pita, Roti.." list="veg">  <datalist id="veg">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name="Include_White_Wheat_Pita_breads">
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest preferred Breads" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Pasta</span>
+  <input type="text" class="form-control" name = "Pasta" placeholder="Regular, wheat, gluten-free.." list="veg">  <datalist id="veg">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox"   name="Include_Pasta_types">
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest Pastas" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Rice</span>
+  <input type="text" class="form-control" name = "Rice" placeholder="Enriched, wild, brown.." list="veg">  <datalist id="veg">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name="Include_White_Brown_Rice">
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest preferred Rice types" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Wheat</span>
+  <input type="text" class="form-control" name = "Wheat" placeholder="Regular, Bulgar, broken.." list="veg">  <datalist id="veg">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name="Include_Wheat_or_substitutes">
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest preferred Wheat types" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Grains</span>
+  <input type="text" class="form-control" name = "Grains" placeholder="Quinoa, Barley, Oats, Millet.." list="veg">  <datalist id="veg">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group mb-3">
+    <div class="input-group-text">
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox"  name="Include_Barley_Milett_Quinoa_Oats">
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest preferred Grains" />
+</div>
+
+
+<div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Beans &<br>Legumes</span>
+  <input type="text" class="form-control" name = "Grains" placeholder="Chickpeas, Beans, Lentils.." list="veg">  <datalist id="veg">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group">
+    <div class="input-group-text">
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox" name="Include_Chickpeas_Black_beans_Lima_etc">
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold  text-center btn-lg"  placeholder="Suggest preferred Beans/Legumes" />
+</div>
+
+
+<!-- <div class="input-group mb-1 input-group-xl">
+  <span class="input-group-text font-weight-bold text-dark " style="width: 100px;">Spices</span>
+  <input type="text" class="form-control" name = "Grains" placeholder="Cinnamon, Turmeric, Pepper, Coriander.." list="veg">  <datalist id="veg">
+  <option value="Daily">
+  <option value="Weekly">
+  <option value="Monthly">
+  <option value="Rarely">
+  <option value="Avoid">
+  </datalist>
+</div>
+                   
+<div class="input-group ">
+    <div class="input-group-text">
+        <input class="form-check-input mx-auto checkbox-xl" type="checkbox" checked  name="Include_Cinnamon_Turmeric_Ginger_etc">
+    </div>
+    <input type="text" readonly=readonly class="form-control font-weight-bold"  placeholder="Include spices in meal suggestions" />
+</div> -->
+
+        </div>
+
+        <div class="button-group ml-3 mt-2 text-center mx-auto">
+          <div class="d-inline  d-md-block ">
+            
+          <a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
+          </div> 
+                 
+          <div class="d-inline  d-md-block">
+            <a href="/landing"></a><button class="btn btn-success btn-sm" type="submit" >Update</button></a>
+            
+          </div>
+          <!-- <div class="d-inline gap-2 d-md-block span">
+          
+            <a href="/myfitness"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+            </div>  -->
+          
+          </div> 
+    
+  </div>
+
+</div>
+<br>
+</form>
+
+{% endblock content %}

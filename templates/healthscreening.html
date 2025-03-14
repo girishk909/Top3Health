@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+
+@media only screen and (min-width: 300px) {
+    .container {
+      max-width: 100%;
+      max-height:100vh;
+      background-color: white;
+      margin: 0px;
+      padding:0px;
+      overflow-y: hidden;
+    }
+  }     
+
+  .container-fluid {
+
+width: 100%;
+height: auto;
+min-height:100vh;
+/* position: relative; */
+margin-bottom:0px;
+margin-top:0px;
+padding:0px;
+overflow-y: hidden;
+color:Black;
+}  
+  ::-webkit-calendar-picker-indicator {
+filter: invert(1);
+width: 25px;
+height: 26px;
+margin-left:-20px;
+}  
+
+
+/* .container_dent { display:block; margin-top:10px; margin-bottom:10px; margin-left: -5px;height:100%; width: 380px; padding:5px;  border-radius:10px; color:rgb(255, 255, 255);} */
+.form-container { display:block; margin-top:0px; margin-bottom:10px; margin-left: -5px;height:100%; width: 380px; padding:3px;  border-radius:10px; background-color: rgb(175, 192, 247);}
+
+.form-container2 { display:inline; margin-top:10px; margin-bottom:0px; margin-left: -5px;height:100%; width: 380px; padding:3px;  border-radius:10px; background-color:white;}
+
+
+
+
+/* .container_vis { display:block; margin-top:10px; margin-bottom:10px; margin-left: -5px;height:100%; width: 380px; padding:5px;  border-radius:10px; background-color:rgb(255, 255, 255);} */
+
+.colcustom1 {background-color: #5268e6; font-size:14px;  border-width:0px; padding-right:12px;border-radius: 10px; padding-bottom:4px;padding-top:5px;padding-left:10px;}
+
+
+::-webkit-input-placeholder {
+   font-size: 10px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+      font-size: 10px!important;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+      font-size: 10px!important;
+}
+
+.calendar.popup {
+  max-width: 15%;
+}
+div#cid_4 {
+  width: calc(37% - 14px);
+}
+.calendar-new-month {
+  padding-right: 8%;
+}
+.calendar-new-year {
+  padding-right: 8%;
+}
+ 
+li[data-type="control_datetime"] .icon-liteMode {
+    width: 20px;
+    }     
+
+.ml-4 {margin-top:30px; }    
+              
+.btn {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+.button-group { 
+  display:inline-flex;   margin-bottom: 0px; 
+  justify-content: space-around; margin-top:0px;  white-space: nowrap;
+} 
+.text {font-size:10px ;}
+.placeholder-label {font-size:8px;}
+
+/* .d-inline {margin-left: 30px; margin-right:65px; } */
+    
+/* .logo {align-content: left; margin-left:0px; margin-top:-38px;}   */
+    
+.logout{text-align: right; margin-top:-20px; margin-right:5px;}    
+.input-group-text {font-size: 12px; width:160px;}
+.input-group-text2 {font-size: 12px; width:150px;}
+/* .container-fluid { height:100%; width:100%; padding:0px; overflow: hidden;} */
+.form-control {font-size:12px; margin-left:0px;}
+html, body {
+    height: 100%
+}
+    
+</style>
+<form method="POST">
+  {% csrf_token %}
+
+         
+     </div>  
+   <div class="container-fluid  border text-center mx-auto">
+   
+        <h6 class="text-center mt-1">My initial/base Health screening</h6>
+        <!-- <div class="logout text-end">
+          <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
+          
+         </div>  -->
+        
+        <!-- <h6 style="font-size:12px; margin-bottom:10px; text-align: center;"><b>Note: </b>A health screening is recommended at least once a year</h6> -->
+        
+
+    <div class="form-container mx-auto  text-center no-border" >
+       
+    <!-- {{ form|crispy}} -->
+
+    <div class="input-group   input-group-default">
+      <span class="input-group-text font-weight-bold">Blood glucose(Fasting) &nbsp;&nbsp;&nbsp;&nbsp;</span>
+      
+      <input type="text" name = "Blood_glucose" id = "ch1" class="form-control"placeholder="Normal: 70mg/dL - 100mg/dL" >
+       </div>
+       
+       <div class="input-group  input-group-default">
+        <span class="input-group-text font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspA1C level</span>
+        <input type="text" name = "A1C" class="form-control"  placeholder="Normal: Below 5.7">
+         </div>   
+         
+         <div class="input-group  input-group-default">
+            <span class="input-group-text font-weight-bold">B P (Systolic)</span>
+            <input type="text" name = "BP_systolic" class="form-control" placeholder="Systolic (Normal: below 120)">
+             </div> 
+
+             <div class="input-group  input-group-default">
+                <span class="input-group-text font-weight-bold">B P (Diastolic)</span>
+                <input type="text" name = "BP_diastolic" class="form-control" placeholder="Diastolic (Normal: below 80)">
+                 </div> 
+                     
+             
+         <div class="input-group input-group-default">
+        <span class="input-group-text font-weight-bold">Total Cholesterol&nbsp;&nbsp;</span>
+        <input type="text" name = "Total_Cholesterol" class="form-control" placeholder="Cholesterol(Normal 200 mg/dL)" >
+         </div>  
+             
+                
+         <div class="input-group  input-group-default">
+          <span class="input-group-text font-weight-bold">HDL Level</span>
+          <input type="text" name = "HDL" class="form-control" placeholder="HDL (Normal above 40mg/dl)">
+           </div>   
+
+
+           <div class="input-group input-group-default">
+            <span class="input-group-text font-weight-bold">LDL Level</span>
+            <input type="text" name = "LDL" class="form-control" placeholder="HDL (Normal above 40mg/dl)">
+             </div>  
+           
+             
+         <div class="input-group input-group-default">
+        <span class="input-group-text font-weight-bold">Triglycerides</span>
+        <input type="text" name= "Triglycerides" class="form-control"  placeholder="Adults (Normal below 150 mg/dL)">
+         </div>       
+       
+         <!-- <div class="input-group  input-group-default">
+        <span class="input-group-text font-weight-bold">Smoker&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name="Smoker" class="form-control" placeholder="Smoker/non-smoker" list=smoker>    
+        <datalist id="smoker">
+            <option value="Yes">
+           <option value="No">
+           
+         </datalist>    
+         </div>   -->
+             
+             
+          <!-- <div class="input-group input-group-default">
+        <span class="input-group-text font-weight-bold">Blood-Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" name = "Blood_type" class="form-control" placeholder="A+, A-, B+, AB+, AB-, O+, O-" list=blood-type>
+           <datalist id="blood-type">
+            <option value="A+">
+            <option value="A-">
+            <option value="B+">
+            <option value="AB+">
+            <option value="AB-">      
+            <option value="O+">
+            <option value="O-">      
+          </datalist>        
+              
+         </div>         -->
+</div>
+<h6 class="text-center">My Dental status</h6>
+<div class="form-container mx-auto  text-center border" >
+       
+  <div class="input-group  input-group-default">
+    <span class="input-group-text font-weight-bold">Regular Dental check-ups&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" name="Dental_checkups" class="form-control text-center" placeholder="Dental checkups" list=dental_check>    
+    <datalist id="dental_check">
+        <option value="Yes">
+       <option value="No">
+       
+     </datalist>    
+     </div> 
+
+     <div class="input-group  input-group-default">
+      <span class="input-group-text font-weight-bold">Regular cleanings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <input type="text" name="Dental_cleanings" class="form-control text-center" placeholder="Dental cleanings" list=dental_clean>    
+      <datalist id="dental_clean">
+          <option value="Yes">
+         <option value="No">
+         
+       </datalist>    
+       </div>                          
+</div>
+
+<h6 class="text-center">My Vision status</h6>
+<div class="form-container mx-auto  text-center border" >
+       
+  <div class="input-group input-group-default">
+    <span class="input-group-text font-weight-bold">Regular Vision check-ups&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" name="Vision_checkups" class="form-control text-center" placeholder="Vision checkups" list=vision_check>    
+    <datalist id="vision_check">
+        <option value="Yes">
+       <option value="No">
+       
+     </datalist>    
+     </div> 
+
+
+</div>
+<br>
+
+<div class="no-wrap input-group form-container2  mx-auto text-center input-group-default" style="display:block;">
+<h6 style="font-size:13px; text-align: center;">My screening lab results will be available <br>by the date chosen, can be input under SETTINGS:</h6>
+
+<h6 style="font-size:13px; text-align:center; margin-left:20px; "> <input placeholder="Date" name="Screen_date" class="text-white colcustom1 mb-1" type="date"  /></h6>
+</div>
+<br>
+
+  <div class="button-group space-around no-wrap ml-2   text-center mx-auto">
+    <div class="d-inline gap-3  span">
+      
+    <a href="/landing"><button class="btn btn-warning btn-sm mr-5" type="button">Home</button></a>
+    </div> 
+           
+    <div class="d-inline gap-3 ">
+      <a href="/minorsym"></a><button class="btn btn-success mr-5 btn-sm" type="submit" >Save & Continue</button></a>
+      
+    </div>
+    <div class="d-inline gap-2  span">
+  
+      <a href="/minorsym"><button class="btn btn-primary btn-sm" type="button">Next</button></a>
+      </div> 
+    
+      <div class="text-center  mb-1 ">
+        <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
+        </div>
+    
+   
+    </div> 
+  </div>
+
+        </form>
+
+{% endblock content %}

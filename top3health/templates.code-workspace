@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../templates"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../fastsets/DASH/old_files"
+		},
+		{
+			"path": "../../REST-API"
+		}
+	],
+	"settings": {}
+}

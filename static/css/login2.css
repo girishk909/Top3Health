@@ -1,0 +1,162 @@
+#main    {
+  background-color: white;
+  width: 950px;
+  height: 765px;
+  margin: 0px auto;
+  margin-top: 0px;
+ position: relative;}  
+
+
+h3 { font-family: "Playfair Display", Georgia, serif; font-size:25px; font-style: normal; font-variant: normal; font-weight: 50; line-height: normal; color: rgb(15, 15, 15); transform: scaleY(1.1); text-align: center; padding: 0px; margin-top: 2px; margin-right: 300px; margin-bottom: 0px; display: inline-block}
+
+h4 {text-align: center; padding-left: 200px; margin-right: 0px; margin-bottom: 0px; margin-top: 0px; margin-left: 500px; }
+
+h5 { font-family: "Playfair Display", Georgia, serif; font-size:25px; font-style: normal; font-variant: normal; font-weight: 90; line-height: normal; color: rgb(15, 15, 15); transform: scaleY(1.1); text-align: center; padding: 10px; margin-top: 50px; margin-right: 0px; margin-bottom: 0px;}
+
+label {font-family: "Playfair Display", Georgia, serif; font-size:20px; font-style: normal; font-variant: normal; font-weight: 50px; margin-right: 0px;align-content: center; margin-left: 12px;}
+
+p {text-align: right; padding-left: 10px; margin-right: 0px; margin-bottom: 0px; margin-top: -35px; margin-left: 0px; }
+
+.zoom {
+zoom: 1.2;
+-moz-transform: scale(1.2);
+-moz-transform-origin: 0 0;
+-o-transform: scale(2);
+-o-transform-origin: 0 0;
+-webkit-transform: scale(2);
+-webkit-transform-origin: 0 0;
+transform: scale(2); /* Standard Property */
+transform-origin: 0 0; /* Standard Property */
+}
+
+circle_text {display: inline-block; padding-left: 10px;}
+
+#circle1 {
+    width: 22px;
+    height: 22px;
+    background: red;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 20px;
+    border-radius: 200px;
+    border:1px solid red;
+        display: inline-block;
+        padding: 0px;
+        font-family: "Playfair Display": }
+
+#singleline {display: inline-block;}
+
+#circle2 {
+    width: 22px;
+    height: 22px;
+    background: #328314;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 200px;
+    border:1px solid #328314;
+    display: inline-block;
+            padding: 0px;}
+            
+#circle3 {
+    width: 22px;
+    height: 22px;
+    background: #0089ff;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 200px;
+    border:1px solid #0089ff;
+    display: inline-block;
+        padding: 0px;
+}
+
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+form {border: 1px solid #f1f1f1;}
+
+
+button {
+  background-color: #4CAF50;
+  color: white;
+    align-content: right;
+    margin-left: 220px;
+  padding-left: 4px;
+  margin: 8px 0;
+  border: 2px;
+  cursor: pointer;
+  width: 130px;
+    font-size: 22px;
+    justify-content: right;
+    position: relative;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#submit {
+    width:90px;
+    margin-top: 60px;
+    margin-right: 20px;;
+    margin-bottom: 40px;
+    background-color: #328314;
+    padding-right: 30px;
+ 
+ -moz-border-radius: 5px;
+ -webkit-border-radius: 5px;
+ border-radius: 6px;
+ color: #fff;
+ font-family: 'Playfair Display';
+ font-size: 30px;
+ text-decoration: none;
+ border: none;
+ margin-left: 200px;
+}
+#submit:hover {
+ border: none;
+ background: #328314;
+ box-shadow: 0px 0px 1px #504e4e;
+}
+.cancelbtn {
+  width: auto;
+  padding: 5px;
+  background-color: #882720;
+  border-radius: 6px; 
+  margin-left:15px;
+  margin-top: 40px;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 0px;
+    width: 500px;
+    height:250px;
+    align-content: left;
+    
+}
+
+*/
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
