@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*','localhost', '127.0.0.1','*', 'https://cfa6-65-36-96-235.ng
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
     'corsheaders',
     # 'django-admin-tools',
     'django.contrib.admin',

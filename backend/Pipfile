@@ -22,6 +22,8 @@ matplotlib = "*"
 seaborn = "*"
 "mysql.connector" = "*"
 mysql-connector-python = "*"
+pipfile = "*"
+adrf = "*"
 
 [dev-packages]
 
