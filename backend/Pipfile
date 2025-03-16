@@ -4,12 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+djando = "*"
 django-cors-headers = "*"
 django-crispy-forms = "*"
 crispy-bootstrap4 = "*"
 django-mysql = "*"
-mysqlclient = "*"
 dash = "*"
 plotly = "*"
 djangorestframework = "*"
@@ -20,12 +19,10 @@ pandas = "*"
 jason = "*"
 matplotlib = "*"
 seaborn = "*"
-"mysql.connector" = "*"
 mysql-connector-python = "*"
-pipfile = "*"
-adrf = "*"
+mysqlclient = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.12.3"
+python_version = "3.11"

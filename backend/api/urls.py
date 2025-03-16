@@ -1,8 +1,6 @@
-from .views import *
-from django.contrib import admin
-from django.urls import path, include
-from django.contrib.auth import logout
-from django.urls import reverse
+from django.urls import path
+from .views import User
+
 urlpatterns = [
-    path('users/<int:user_id>',user.as_view()),
+    path('users/<int:user_id>/', User.as_view(), name='user-detail'),
 ]
