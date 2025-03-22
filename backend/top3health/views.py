@@ -342,7 +342,13 @@ class LandingView(TemplateView):
 def DailylogView(request):
     if request.user.is_authenticated:
         myhabits_record = request.user.myhabits.last() 
+         
         # print(myhabits_record.__dict__)
+
+        # try:
+        #     myexpenses_record = request.user.myexpenses
+        # except Myexpenses.DoesNotExist:
+        #     myexpenses_record = None 
         
         if myhabits_record:
             Stretches = myhabits_record.Stretches
@@ -363,12 +369,12 @@ def DailylogView(request):
             custom_habit_1 = myhabits_record.custom_habit_1
             custom_habit_2 = myhabits_record.custom_habit_2
             custom_habit_3 = myhabits_record.custom_habit_3 
+            
         else:
             Stretches = None
 
             print("Myhabits record does not exist.")
             
-
         form = MydailylogForm(request.POST or None)
         if form.is_valid():
             obj = form.save(commit=False)
@@ -379,7 +385,8 @@ def DailylogView(request):
             print(form.errors)
         context = {
             'form': form,
-            'myhabits': myhabits_record #pass the myhabits_record
+            'myhabits': myhabits_record, #pass the myhabits_record
+            # 'myexpenses_record': myexpenses_record,
         }
         return render(request, 'food_log2.html', context)        
 

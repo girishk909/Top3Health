@@ -37,8 +37,8 @@ margin-left:-20px;
     
 .logout{text-align: right; margin-top:-35px; margin-right:0px;}   
 .form-container2 { width: 430px; padding:10px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
-.form-container3 { width: 325px; padding:15px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
-.form-container { width: 400px; padding:15px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
+.form-container3 { width: 355px; padding:20px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
+.form-container { width: 350px; padding:10px; border-radius:15px;  background-color: rgb(215, 223, 240);} 
 
 .form-control {margin-bottom: 0px; width:100px;font-size: 12px;}
 
@@ -109,16 +109,16 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
          <br> 
          <div class="container-fluid  no-border mx-auto text-center background-color:forestgreen">
       
-<h6 style="font-size:13px;">Date:&nbsp;&nbsp;&nbsp;&nbsp; <input name="Meal_date2" class="text-white colcustom1 mb-1" type="date"  /></h6>
+<h6 style="font-size:20px;">My daily log&nbsp;&nbsp;&nbsp;&nbsp; <input name="Meal_date2" class="text-white colcustom1 mb-1" type="date"  /></h6>
 
 
 
 {% if request.user.mode == 'study_mode' %}
 
 
-<h5 
-  class="text-center mb-3"> 
-  </h5>
+<!-- <h5 
+  class="text-center mb-1"> 
+  </h5> -->
 
         <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
 
@@ -176,9 +176,9 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
              {% endif %}
             </div>
              
-             <h5 class="text-center mb-2">My daily food log</h5>
-             <h6  style= "font-size:16px;"class=" text-center mb-2 ">USDA Major food groups </h6>
-             <div class="form-container2 mx-auto text-center form-check checkbox-xl checkbox-primary  border" >
+             <!-- <h5 class="text-center mb-2">My daily food log</h5>
+             <h6  style= "font-size:16px;"class=" text-center mb-2 ">USDA Major food groups </h6> -->
+             <div class="form-container2 mx-auto text-center form-check checkbox-xl mb-3 checkbox-primary  border" >
 
              <div class="input-group text-center mb-2 ">
               <!-- <span style="width:110px;" class="input-group-text font-weight-bold mx-auto  text-center">Breakfast name</span> -->
@@ -187,21 +187,23 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
                </div>
 
                <div class="input-group text-center mb-2 ">
-                <span style="width:110px;" class="input-group-text font-weight-bold mx-auto  text-center">Lunch name</span>
+                <input type="text" style="width:110px;" class="form-control text-center" name="Breakfast_name"  placeholder="Lunch name ">
+                <!-- <span style="width:110px;" class="input-group-text font-weight-bold mx-auto  text-center">Lunch name</span> -->
                 <input type="text" style="width:280px;" class="form-control text-center" name="veggies"  placeholder="Breakfast description ">  
                  </div>
 
                  <div class="input-group text-center mb-2 ">
-                  <span style="width:110px;" class="input-group-text font-weight-bold mx-auto  text-center">Dinner name</span>
+                  <input type="text" style="width:110px;" class="form-control text-center" name="Breakfast_name"  placeholder="Dinner name ">
+                  <!-- <span style="width:110px;" class="input-group-text font-weight-bold mx-auto  text-center">Dinner name</span> -->
                   <input type="text" style="width:280px;" class="form-control text-center" name="veggies"  placeholder="Breakfast description ">  
                    </div>
 
 
                </div>
 
-        <div class="form-container2 mx-auto text-center form-check checkbox-xl checkbox-primary  border" >
+        <div class="form-container2 mx-auto text-center form-check checkbox-xl checkbox-primary mb-3  border" >
 
-          
+          <h6 class="text-center mt-2 mb-3">My daily foods log - USDA reference</h6> 
 
           <div class="input-group text-center mb-2 ">
             <span style="width:250px;" class="input-group-text font-weight-bold mx-auto  text-center">Veggies - green, red/orange, others</span>
@@ -239,14 +241,15 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
                      </div>    
       
   
-  
+  </div>
        
       
                  
-      <h5 class="text-center mt-4 mb-2">My daily fitness log</h5> 
-      <h6  style= "font-size:16px;"class=" text-center mb-2 ">HHS Fitness suggestions </h6>
+      
+      <!-- <h6  style= "font-size:16px;"class=" text-center mb-2 ">HHS Fitness suggestions </h6> -->
 
-      <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+      <div class="form-container2 mx-auto  text-center form-check checkbox-xl checkbox-primary mb-3 border" >
+        <h6 class="text-center mt-1 mb-2">My daily fitness log - HHS fitness reference</h6> 
 
         <div class="input-group mb-1">
             <span class="input-group-text font-weight-bold">Moderate Intensity<br>(at least 20 minutes/day)</span>
@@ -273,7 +276,7 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
 
              <h6 class="text-center">OR</h6>
 
-      <div class="input-group mb-1 ">
+      <div class="input-group mb-3 ">
         <span class="input-group-text text-center font-weight-bold">Vigorous intensity<br>(at least 10 minutes/day) </span>
    
         <input type="text3" class="form-control text-center" name="vigorous_intensity_type" placeholder="Activity type"  list="fit1">
@@ -329,25 +332,25 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
 
   {% if  myhabits.Stretches or myhabits.Reduce_processed or myhabits.Prepare_meals or myhabits.Wake_time or myhabits.food_cost_savings or myhabits.Clear_kitchen or myhabits.Brush_floss or myhabits.Groceries_shop or myhabits.daily_mindfulness or myhabits.food_suggestions or myhabits.reduce_alcohol or myhabits.reduce_smoking %}
 
-  <h5 class="text-center mb-2">My habit tracker</h5>
+  <h6 class="text-center mb-2">My daily habit tracker</h6>
 
   {% endif %}
 
        {% if  myhabits.Stretches %}
     
         <div class="input-group mb-1">
-            <input type="text" style="width:150px; margin-right:25px;" class="form-control text-center " name="{{ myhabits.Stretches }}" value="{{ myhabits.Stretches }}" placeholder="Your habit 1" readonly>
+            <input type="text" style="width:120px; margin-right:25px;" class="form-control text-center " name="{{ myhabits.Stretches }}" value="{{ myhabits.Stretches }}" placeholder="Your habit 1" readonly>
             <input type="checkbox" class="checkbox-xl form-check-input" id="check1" name="Stretch_check" value="something">
         </div>
     
 {% endif %}
 
-{% if myhabits %}
+{% if myhabits.Reduced_processed %}
     
 
 <div class="input-group mb-1 ">
 
-  <input type="text" style = "width:150px; margin-right:25px;" class="form-control text-center" name="{{myhabits.Reduce_processed}}" value="{{myhabits.Reduce_processed}}" placeholder="Your habit 2" readonly  >
+  <input type="text" style = "width:120px; margin-right:25px;" class="form-control text-center" name="{{myhabits.Reduce_processed}}" value="{{myhabits.Reduce_processed}}" placeholder="Your habit 2" readonly  >
   <input type="checkbox" class="checkbox-xl form-check-input " id="check1" name="processed_check" value="something" >
       </div>  
 
@@ -453,13 +456,41 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
 
                        
 
-</div>
-<br>
+
+
 {% if not myhabits.Stretches and not myhabits.Reduce_processed and not myhabits.Prepare_meals and not myhabits.Wake_time and not myhabits.food_cost_savings and not myhabits.Clear_kitchen and not myhabits.Brush_floss and not myhabits.Groceries_shop and not myhabits.daily_mindfulness and not myhabits.food_suggestions and not myhabits.reduce_alcohol and not myhabits.reduce_smoking %}
     <h6 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" class=" text-center  ">Please visit HABITS under settings to input/update your habits</h6>
 {% endif %}
                         
 <br>
+
+
+<div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border">
+
+  <!-- {% if  myhabits.Stretches or myhabits.Reduce_processed or myhabits.Prepare_meals or myhabits.Wake_time or myhabits.food_cost_savings or myhabits.Clear_kitchen or myhabits.Brush_floss or myhabits.Groceries_shop or myhabits.daily_mindfulness or myhabits.food_suggestions or myhabits.reduce_alcohol or myhabits.reduce_smoking %} -->
+
+  <h6 class="text-center">My daily expense tracker</h6>
+
+  <!-- {% endif %} -->
+
+       <!-- {% if  myhabits.Stretches %} -->
+    
+        <div class="input-group mb-1">
+            <input type="text" style="width:50px; margin-right:5px;" class="form-control text-center " name="{{ myexpenses.weekly_eatout_cost }}" value="{{ myexpenses.weekly_eatout_cost }}" placeholder="Total daily eatout cost " readonly>
+            <!-- <input type="checkbox" class="checkbox-xl form-check-input" id="check1" name="Stretch_check" value="something"> -->
+        </div>
+    
+<!-- {% endif %} -->
+
+</div>
+
+
+
+
+<br>
+
+
+
 <div class="button-group text-center mx-auto nowrap">
 <div class=" text-center ">
   <a href="/landing"><button class="btn btn-warning btn-xs" name="home" type="button">Home</button></a>
