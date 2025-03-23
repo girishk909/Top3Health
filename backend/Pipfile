@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-djando = "*"
+django = "*"
 django-cors-headers = "*"
 django-crispy-forms = "*"
 crispy-bootstrap4 = "*"
@@ -21,6 +21,7 @@ matplotlib = "*"
 seaborn = "*"
 mysql-connector-python = "*"
 mysqlclient = "*"
+tk = "*"
 
 [dev-packages]
 

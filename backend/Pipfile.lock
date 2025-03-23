@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5919f5ace437e64df6854c1de001c02e617443ab720b24147d95f6ec9cf9662f"
+            "sha256": "578073a5605f58860524023b2ac49ea6555f5ed24653f5dabd5326771f2a245b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -247,18 +247,12 @@
             "markers": "python_version >= '3.8'",
             "version": "==3.0.0"
         },
-        "djando": {
-            "hashes": [
-                "sha256:4d34cdc12c56e5cc420ac397fcbfe8aa92beb4833a46edb2c2bbc654611babfd"
-            ],
-            "index": "pypi",
-            "version": "==0.2"
-        },
         "django": {
             "hashes": [
                 "sha256:1323617cb624add820cb9611cdcc788312d250824f92ca6048fda8625514af2b",
                 "sha256:30de4ee43a98e5d3da36a9002f287ff400b43ca51791920bfb35f6917bfe041c"
             ],
+            "index": "pypi",
             "markers": "python_version >= '3.10'",
             "version": "==5.1.7"
         },
@@ -1059,11 +1053,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:34750dcb17d046929f545dec9b8349fe42bf4ba13ddffee78428aec422dbfb73",
-                "sha256:4959b9ad482ada2ba2320c8f1a8d8481d4d8d668908a7a1b84d987375cd7f5bd"
+                "sha256:583b361c8da8de57403743e756609670de6fb2345920e36dc5c2d914c319c945",
+                "sha256:67122e78221da5cf550ddd04cf8742c8fe12094483749a792d56cd669d6cf58c"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==76.1.0"
+            "version": "==77.0.3"
         },
         "six": {
             "hashes": [
@@ -1086,6 +1080,14 @@
                 "sha256:48a06980661908efe8d9d34eab2b6c13aefa2163b3ced26972902e3bdfd87008"
             ],
             "version": "==1.2.0"
+        },
+        "tk": {
+            "hashes": [
+                "sha256:60bc8923d5d35f67f5c6bd93d4f0c49d2048114ec077768f959aef36d4ed97f8",
+                "sha256:703a69ff0d5ba2bd2f7440582ad10160e4a6561595d33457dc6caa79b9bf4930"
+            ],
+            "index": "pypi",
+            "version": "==0.1.0"
         },
         "typing-extensions": {
             "hashes": [
