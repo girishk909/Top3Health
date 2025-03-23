@@ -357,6 +357,7 @@ class Mytypmeals1(models.Model):
 class Myexpenses(models.Model):
 
         customuser = models.OneToOneField(CustomUser, null=False, primary_key=True, on_delete= models.CASCADE)
+        created_at = models.DateTimeField(default=timezone.now,null=True, blank=True )
         family_eatout_count  = models.IntegerField(null=True, blank=True)
         weekly_eatout_cost  = models.IntegerField(null=True, blank=True)
         family_grocery_count  = models.IntegerField(null=True, blank=True)
@@ -376,6 +377,24 @@ class Myexpenses(models.Model):
 
         def __int__(self):
           return self.customuser
+
+class Mymonthlyexpenses(models.Model):
+
+        customuser = models.ForeignKey(CustomUser, on_delete= models.CASCADE)
+        created_at = models.DateTimeField(default=timezone.now,null=True, blank=True )
+        family_premium_count  = models.IntegerField(null=True, blank=True)
+        insurance_premium  = models.IntegerField(null=True, blank=True)
+        members_for_office_visit  = models.IntegerField(null=True, blank=True)
+        office_visit_cost  = models.IntegerField(null=True, blank=True)
+        members_for_prescriptions  = models.IntegerField(null=True, blank=True)
+        prescription_cost  = models.IntegerField(null=True, blank=True)
+        members_for_oop  = models.IntegerField(null=True, blank=True)
+        oop_cost  = models.IntegerField(null=True, blank=True)
+        members_for_gym  = models.IntegerField(null=True, blank=True)
+        gym_cost  = models.IntegerField(null=True, blank=True)
+
+        def __int__(self):
+          return self.customuser          
 
 class Supplements(models.Model):
           

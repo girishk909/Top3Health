@@ -93,12 +93,12 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
         </nav>
  
        
-        <h5 class="text-center mb-2">My habit tracker</h5> 
-        <h6 class="text-center headingb mt-2 mb-2">Select habits to create or strengthen, reduce/avoid</h6>
-        <h6 class ="headingb "> (Updates for habits can be made through settings menu)</h6>
-<br>
+        <!-- <h6 class="text-center mb-2">My habit tracker</h6>  -->
+        <h6 style = "font-size:12px;"class="text-center headingb mt-2 mb-2">Select habits to create or strengthen, reduce/avoid</h6>
+        <h6 style = "font-size:12px;" class ="headingb "> (Updates for habits can be made through settings menu)</h6>
 
-    <div class="form-container  mx-auto  text-center mb-4  border" >
+
+    <div class="form-container  mx-auto  text-center mb-2  border" >
     <!-- {{ form|crispy }} -->
              
 
@@ -212,9 +212,9 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
 
 
 
-<h6 class="text-center headingb mt-2 mb-3">Input your custom habits to create, strengthen or reduce/avoid</h6>
+<h6 style = "font-size:12px;" class="text-center headingb  ">Input your custom habits to create, strengthen or reduce/avoid</h6>
 
-<div class="form-container  mx-auto  text-center   border" >
+<div class="form-container  mx-auto  text-center mb-3  border" >
 
   <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
            
@@ -236,37 +236,30 @@ text-align: left; padding: 0px; margin-top: 0px; margin-right: 0px; margin-botto
 
 
 
-      <div style="width:280px;" class="input-group mb-1 text-center mx-auto">
+      <div style="width:280px;" class="input-group  text-center mx-auto">
                
         <input type="text" name="custom_habit3" class="form-control text-center" placeholder="Your custom habit 3">
         
         </div> 
     
-      
-    </div>
-    
-  <br>
-
-
-
-<div class="button-group ml-5  mt-2 mb-3 fixed-bottom mx-auto  text-center">
-<!-- <div class="d-inline  d-md-block span">
+      </div>
   
-<a href="/landing"><button class="btn btn-warning btn-sm" type="button">Home</button></a>
-</div>  -->
+
+<div class="button-group ml-5   mb-1  mx-auto  text-center">
+
        
 <div class="d-inline  d-md-block">
   <a href="/myexpenses"></a><button class="btn btn-sm btn-success" type="submit" >Save & Continue</button></a>
   
 </div>
 
+<div class="   d-md-block">
+  <a href="/myexpenses"><button class="btn btn-primary" type="button">Next</button></a>
+</div>
 
-<!-- <div class="text-center   ">
-  <a href="/logout" class="btn btn-sm btn-dark">Logout</a>
-  </div>
 
-</div>  -->
-  
+
+</div>
  
 </div>
         </form>

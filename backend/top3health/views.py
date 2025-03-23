@@ -891,6 +891,31 @@ def testauthview(request):
     # else:
     return HttpResponse("User is not authenticated")  
 
+
+@login_required
+def ExpensesUpdateView(request):
+    current_user = request.user
+    myexpenses = None  # Initialize minorsym
+
+    if request.method == 'POST':
+        form = MyexpensesForm(request.POST)
+        if form.is_valid():
+            myexpenses = form.save(commit=False)
+            myexpenses.customuser = current_user
+            myexpenses.created_at = timezone.now()
+            myexpenses.save()
+            return redirect('/landing')
+    else:
+        print("error in minor form?")
+        myexpenses = Myexpenses.objects.filter(customuser=current_user).order_by('-created_at').first()
+        form = MyexpensesForm(instance=minorsym) #correct instance variable
+
+    context = {
+        'form': form,
+        'myexpenses': myexpenses,
+    }
+    return render(request, 'myexpensesupdate.html', context)    
+
 def MyexpensesView(request):
   form=MyexpensesForm(request.POST or None)  
   if form.is_valid():
@@ -906,68 +931,68 @@ def MyexpensesView(request):
   return render(request, 'myexpenses.html', context=context)
   print(request.user)
   
-def ExpensesUpdateView(request):
-    current_user = CustomUser.objects.get(pk=request.user.id)
-    form = MyexpensesForm(request.POST or None, instance=current_user)
-    form_ver = MyexpensesverForm(request.POST or None, instance=current_user)
-    myexpenses = Myexpenses.objects.all().get(customuser=request.user.id)
+# def ExpensesUpdateView(request):
+#     current_user = CustomUser.objects.get(pk=request.user.id)
+#     form = MyexpensesForm(request.POST or None, instance=current_user)
+#     form_ver = MyexpensesverForm(request.POST or None, instance=current_user)
+#     myexpenses = Myexpenses.objects.all().get(customuser=request.user.id)
 
-    if form_ver.is_valid():
-        print(request.user) 
-        obj=form_ver.save(commit=False)
-        obj=form_ver.cleaned_data
-        New_expenses=Myexpenses_ver(customuser=request.user,
-        family_eatout_count=myexpenses.family_eatout_count,
-        weekly_eatout_cost=myexpenses.weekly_eatout_cost,
-        family_grocery_count=myexpenses.family_grocery_count,
-        weekly_grocery_cost=myexpenses.weekly_grocery_cost,
-        Misc_expense_member=myexpenses.Misc_expense_member,
-        Misc_expenses=myexpenses.Misc_expenses,
-        family_premium_count=myexpenses.family_premium_count,
-        insurance_premium=myexpenses.insurance_premium,
-        members_for_office_visit=myexpenses.members_for_office_visit,
-        office_visit_cost=myexpenses.office_visit_cost,
-        members_for_prescriptions=myexpenses.members_for_prescriptions,
-        prescription_cost=myexpenses.prescription_cost,
-        members_for_oop=myexpenses.members_for_oop,
-        oop_cost=myexpenses.oop_cost,
-        members_for_gym=myexpenses.members_for_gym,
-        gym_cost=myexpenses.gym_cost)
+#     if form_ver.is_valid():
+#         print(request.user) 
+#         obj=form_ver.save(commit=False)
+#         obj=form_ver.cleaned_data
+#         New_expenses=Myexpenses_ver(customuser=request.user,
+#         family_eatout_count=myexpenses.family_eatout_count,
+#         weekly_eatout_cost=myexpenses.weekly_eatout_cost,
+#         family_grocery_count=myexpenses.family_grocery_count,
+#         weekly_grocery_cost=myexpenses.weekly_grocery_cost,
+#         Misc_expense_member=myexpenses.Misc_expense_member,
+#         Misc_expenses=myexpenses.Misc_expenses,
+#         family_premium_count=myexpenses.family_premium_count,
+#         insurance_premium=myexpenses.insurance_premium,
+#         members_for_office_visit=myexpenses.members_for_office_visit,
+#         office_visit_cost=myexpenses.office_visit_cost,
+#         members_for_prescriptions=myexpenses.members_for_prescriptions,
+#         prescription_cost=myexpenses.prescription_cost,
+#         members_for_oop=myexpenses.members_for_oop,
+#         oop_cost=myexpenses.oop_cost,
+#         members_for_gym=myexpenses.members_for_gym,
+#         gym_cost=myexpenses.gym_cost)
 
-        New_expenses.save()
-    else:
-      print(form.errors)    
-    if form.is_valid():
-      obj=form.save(commit=False)
-      obj=form.cleaned_data
-      myexpenses.family_eatout_count=obj['family_eatout_count']
-      myexpenses.weekly_eatout_cost=obj['weekly_eatout_cost']
-      myexpenses.family_grocery_count=obj['family_grocery_count']
-      myexpenses.weekly_grocery_cost=obj['weekly_grocery_cost']
-      myexpenses.Misc_expense_member=obj['Misc_expense_member']
-      myexpenses.Misc_expenses=obj['Misc_expenses']
-      myexpenses.family_premium_count=obj['family_premium_count']
-      myexpenses.insurance_premium=obj['insurance_premium']
-      myexpenses.members_for_office_visit=obj['members_for_office_visit']
-      myexpenses.office_visit_cost=obj['office_visit_cost']
-      myexpenses.members_for_prescriptions=obj['members_for_prescriptions']
-      myexpenses.prescription_cost=obj['prescription_cost']
-      myexpenses.members_for_oop=obj['members_for_oop']
-      myexpenses.oop_cost=obj['oop_cost']
-      myexpenses.members_for_gym=obj['members_for_gym']
-      myexpenses.gym_cost=obj['gym_cost']
+#         New_expenses.save()
+#     else:
+#       print(form.errors)    
+#     if form.is_valid():
+#       obj=form.save(commit=False)
+#       obj=form.cleaned_data
+#       myexpenses.family_eatout_count=obj['family_eatout_count']
+#       myexpenses.weekly_eatout_cost=obj['weekly_eatout_cost']
+#       myexpenses.family_grocery_count=obj['family_grocery_count']
+#       myexpenses.weekly_grocery_cost=obj['weekly_grocery_cost']
+#       myexpenses.Misc_expense_member=obj['Misc_expense_member']
+#       myexpenses.Misc_expenses=obj['Misc_expenses']
+#       myexpenses.family_premium_count=obj['family_premium_count']
+#       myexpenses.insurance_premium=obj['insurance_premium']
+#       myexpenses.members_for_office_visit=obj['members_for_office_visit']
+#       myexpenses.office_visit_cost=obj['office_visit_cost']
+#       myexpenses.members_for_prescriptions=obj['members_for_prescriptions']
+#       myexpenses.prescription_cost=obj['prescription_cost']
+#       myexpenses.members_for_oop=obj['members_for_oop']
+#       myexpenses.oop_cost=obj['oop_cost']
+#       myexpenses.members_for_gym=obj['members_for_gym']
+#       myexpenses.gym_cost=obj['gym_cost']
 
-      myexpenses.save()
+#       myexpenses.save()
             
-      return redirect('landing')
+#       return redirect('landing')
 
-    context={
-          'form':form,
-          'myexpenses_ver':Myexpenses_ver,
-          'myexpenses':myexpenses,
-        }  
+#     context={
+#           'form':form,
+#           'myexpenses_ver':Myexpenses_ver,
+#           'myexpenses':myexpenses,
+#         }  
         
-    return render(request, 'myexpensesupdate.html', context=context) 
+#     return render(request, 'myexpensesupdate.html', context=context) 
 
 
 @login_required

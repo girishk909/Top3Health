@@ -26,8 +26,6 @@ margin-left:-20px;
 border:none;
 }
 
-
-
 /* .form-container {  width:330px; padding:10px;  background-color: rgb(191, 233, 200);} */
 
 .container-fluid {height:100%; padding-left:0px; padding-right:0px;  overflow-x: hidden;}
@@ -124,13 +122,25 @@ li[data-type="control_datetime"] .icon-liteMode {
 <div class="text-center mx-auto">
 <h5 style="font-size:12px;"class=" text-center mb-2 "><strong>Our customized weekly suggestions <u>starts</u> with:</strong><br><br>
 
- USDA suggestions from all food groups<br>  
- HHS suggestions for fitness<br>  
- Habits creation & guidance<br>
- Expense monitoring<br>
+ - USDA suggestions from all food groups<br>  
+ - HHS suggestions for fitness<br>  
+ - Habits creation & guidance<br>
+ - Expense monitoring<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    and more...<br>
 </h5>
 </div>
+
+<div class="text-center mx-auto">
+  <h5 style="font-size:12px;"class=" text-center mb-2 "><br><br>
+  
+   - Daily log entries are in the evenings after 8pm<br> <br> 
+   - Each week will end on late Sunday, after 8pm<br>  <br>
+   - Weekly feedback is input Sunday, after 9pm
+
+   <br>
+  </h5>
+  </div>
+
    <br>
 <!-- <h6 class="text-center mb-2 ">Note: Allow atleast 1 weekend for shopping</h6> -->
 <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
@@ -143,12 +153,12 @@ li[data-type="control_datetime"] .icon-liteMode {
 
 
 
-<div class="form-container mt-3 mx-auto  mb-3 text-center form-check checkbox-xl checkbox-primary  border" >
+<!-- <div class="form-container mt-3 mx-auto  mb-3 text-center form-check checkbox-xl checkbox-primary  border" >
   <h6 style = "font-size:12px" class="text-center mb-3">A good time for Daily log entries</h6>
 <h6 style="font-size:12px;">Time:&nbsp;&nbsp;&nbsp;&nbsp; <input type="time"::-webkit-calendar-picker-indicator name="daily_log_time" id="timepicker" class="text-center tp mx-auto no-wrap" value="{{ begindate.time1|time:'h:i:s' }}"/> </h6>
 
 
-</div>
+</div> -->
 
 <!-- <div class="form-container mx-auto  text-center mb-3 form-check checkbox-xl checkbox-primary  border" >
   <h6 style = "font-size:14px" class="text-center mb-3">A good time for Weekly log entries <br> (preferably end of the week) </h6>
@@ -157,16 +167,12 @@ li[data-type="control_datetime"] .icon-liteMode {
 
  </div> -->
 
- <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
+ <!-- <div class="form-container mx-auto  text-center form-check checkbox-xl checkbox-primary  border" >
   <h6 style = "font-size:12px" class="text-center mb-3">A good time to get Weekly Suggestions <br><br> (preferably on thursdays or fridays, before shopping) </h6>
        
   <h6 style="font-size:12px;">Time:&nbsp;&nbsp;&nbsp;&nbsp; <input type="time"::-webkit-calendar-picker-indicator name="weekly_suggestion_time" id="timepicker" class="text-center tp mx-auto no-wrap" value="{{ begindate.time1|time:'h:i:s' }}"/> </h6>
 
- </div>
-
-
-
-
+ </div> -->
 
 <div class="button-group text-center mx-auto mt-2 mb-1 fixed-bottom nowrap">
 <div class=" text-center ">
