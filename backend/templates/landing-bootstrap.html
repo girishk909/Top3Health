@@ -208,10 +208,6 @@ img.dashboard-image {
         flex-direction: column; /* Stack vertically by default */
         align-items: center; /* Center horizontally */
     }
-
-
-
-       
     
 </style> 
 
@@ -283,6 +279,7 @@ img.dashboard-image {
   <div class="dashboard-container">
     <div>  <h6 style="font-size:13px;"class="text-center mt-3">My health status : Building Bronze level</h6> 
       <a href="{% url 'Dailylog' %}"><button type="button" class="btn btn-outline-dark">Daily-Log</button></a> 
+      <a href="{% url 'healthinfo' %}"><button type="button" class="btn btn-outline-dark">Health Info & links</button></a> 
 
         <div> <button type="button" style="font-size:16px; font-family:Arial, Helvetica, sans-serif; width:80px; color:black; margin-right:30px;" class="btn btn-outline-light disabled ">28.8</button>
             <button type="button" style="font-size:16px; font-family:Arial, Helvetica, sans-serif; width:80px; color:black; margin-right:30px;" class="btn btn-outline-light disabled ">1700</button>

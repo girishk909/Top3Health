@@ -49,6 +49,7 @@ from .models import Dietician_note
 
 from .models import Myfoodsuggestions
 from .models import Myexpenses
+from .models import Mymonthlyexpenses
 # from .models import Myexpenses_ver
 from .models import Myhabits
 from crispy_forms.helper import FormHelper
@@ -198,8 +199,7 @@ class MydailylogForm(forms.ModelForm):
         'Wake_time', 'Wake_time_check', 'food_cost_savings', 'food_savings_check', 'Clear_kitchen', 'Clear_kitchen_check', 'Brush_Floss', 'Brush_Floss_check', 
         'Groceries_shop', 'Groceries_shop_check', 'daily_mindfulness', 'daily_mindfulness_check', 'food_suggestions', 'food_suggestions_check', 'reduce_alcohol',
         'reduce_alcohol_check', 'reduce_smoking', 'reduce_smoking_check',  'custom_habit_1', 'custom_habit_1_check', 'custom_habit_2', 'custom_habit_2_check',
-        'custom_habit_3', 'custom_habit_3_check', 'family_premium_count', 'insurance_premium', 'members_for_office_visit', 'office_visit_cost', 'members_for_prescriptions',
-        'prescription_cost', 'members_for_oop', 'oop_cost', 'members_for_gym', 'gym_cost', ]         
+        'custom_habit_3', 'custom_habit_3_check',  ]         
 
 
 class BeginpageForm(forms.ModelForm):
@@ -223,6 +223,14 @@ class MyexpensesForm(forms.ModelForm):
     'members_for_oop', 'oop_cost', 'members_for_gym', 'gym_cost']
     def __int__(self, *args, **kwargs):
         super(MyexpensesForm, self).__int__(*args, **kwargs)
+
+class MymonthlyexpensesForm(forms.ModelForm):
+     class Meta:
+      model = Mymonthlyexpenses   
+      fields = [
+        'family_premium_count', 'insurance_premium', 'members_for_office_visit', 'office_visit_cost',
+        'members_for_prescriptions', 'prescription_cost', 'members_for_oop', 'oop_cost', 'members_for_gym', 'gym_cost'
+      ]  
 
 # class MyexpensesverForm(forms.ModelForm):
 #     class Meta:

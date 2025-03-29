@@ -15,7 +15,7 @@
 
 .container-fluid { height:85vh;width:auto; }
 .form-container { width: 605px; padding:20px;border-radius:30px; background-color: rgb(211, 218, 224);}
-.form-container2 { width: 605px; padding:20px;border-radius:30px; background-color: rgb(212, 224, 211);}
+.form-container2 { width: 525px; padding:20px;border-radius:30px; background-color: rgb(212, 224, 211);}
 
 
 .checkbox-xl .form-check-input {
@@ -53,7 +53,7 @@
     
 .logout{align-content: right; text-align: right; margin-top:-50px; margin-right:5px; }    
 
-.placeholder {font-size:8px;}
+.placeholder {font-size:6px;}
 
 
 
@@ -70,111 +70,63 @@
                
                 </div>
 
-                <div class="logout text-end">
+                <!-- <div class="logout text-end">
                   <a href="/logout"> <img src="{% static 'css/red-logout-land.png' %}" class="rounded float-right" alt="Veggies"></button></a>
                   <p class="fs-5 text-center"> {{user.first_name }}</p>
-                 </div>
+                 </div> -->
              
                 
       <div class="container-fluid   mx-auto text-center  no-border">
  
   
-        <h4 class="text-center ">My Expenses - Update</h4>
+        <h6 class="text-center ">My Monthly Expenses - Update</h6>
         <br>
         
-        <h6 class="font-weight-bold mx-auto text-center mb-3">Weekly food and misc expenses</h6>
-
        
-   <!-- <div class="ml-4 d-inline-block space-around" > -->
-    <div class="form-container  mx-auto  text-center  border" >
-    <!-- {{ form|crispy }} -->
-                    
-
-<!-- <div class="form-container3 mx-auto form-check   text-center border" > -->
-
-  <div class="input-group mb-1     input-group-sm">
- 
-    <span class="input-group-text font-weight-bold text-sm">Weekly expenses</span>
-    <!-- <input type="text" class="form-control text-center"  name="family_eatout_count"  > -->
-    <input type="text" class="form-control font-weight-bold text-center" readonly=readonly  placeholder="Number of family members">  
-    <!-- <input type="text" class="form-control text-center" name="weekly_eatout_cost"> -->
-   <input type="text" class="form-control font-weight-bold text-center" readonly=readonly placeholder="Total Weekly cost" > 
+                
       
-    </div> 
 
-<div class="input-group mb-3     input-group-sm">
-    <span class="input-group-text font-weight-bold text-sm">Eat out expense<br> - Lunch & Dinner</span>
-    <input type="text" class="form-control text-center" name="family_eatout_count" placeholder="Members in household family Members" value="{{myexpenses.family_eatout_count}} " >
-    <input type="text" class="form-control text-center" name="weekly_eatout_cost" placeholder="Total weekly cost" value="{{myexpenses.weekly_eatout_cost}}"  >
-     </div>    
-          
-     <div class="input-group mb-3 input-group-sm">
-    <span class="input-group-text font-weight-bold">Food related <br>  Groceries&nbsp;&nbsp;</span>
-    <input type="text" class="form-control text-center" name="family_grocery_count" placeholder="Members in household family Members" value="{{myexpenses.family_grocery_count}} ">
-    <input type="text" class="form-control text-center" name="weekly_grocery_cost" placeholder="Weekly grocery cost per week" value="{{myexpenses.weekly_grocery_cost}}">
-     </div> 
-          
-      <div class="input-group mb-1 input-group-sm">
-    <span class="input-group-text font-weight-bold">Misc expenses&nbsp;&nbsp;&nbsp;</span>
-    <input type="text" class="form-control text-center" name="Misc_expense_member" placeholder="Tobacco, vape, etc" value="{{myexpenses.Misc_expense_member}} ">
-    <input type="text" class="form-control text-center" name="Misc_expenses" placeholder="Total weekly cost" value="{{myexpenses.Misc_expenses}}">
-   
-     </div> 
-          
-     <!-- <div class="input-group mb-3 input-group-sm">
-    <span class="input-group-text font-weight-bold">Sub-4&nbsp;&nbsp;&nbsp;</span>
-    <input type="text" class="form-control text-center" name="Main_Food_4" placeholder="Wheat, Soy, etc">
-    <input type="text" class="form-control text-center" name="Food-substitute-4" placeholder="Your substitute">
-     </div>       -->
-    
-   </div>
-<br>
-
-<h6 class="font-weight-bold mx-auto text-center mb-3">Monthly medical & gym expenses</h6>
 <div class="form-container2 mx-auto form-check   text-center border" >
 
-  <div class="input-group mb-1     input-group-sm">
- 
-    <span class="input-group-text font-weight-bold text-sm">Weekly expenses</span>
-    <!-- <input type="text" class="form-control text-center"  name="family_eatout_count"  > -->
-    <input type="text" class="form-control font-weight-bold text-center" readonly=readonly  placeholder="Number of family members">  
-    <!-- <input type="text" class="form-control text-center" name="weekly_eatout_cost"> -->
-   <input type="text" class="form-control font-weight-bold text-center" readonly=readonly placeholder="Total Monthly Cost" > 
-      
-    </div>  
+  <div class="input-group mb-1 input-group-sm">
+    <span style="font-size:12px;" class="input-group-text fw-bold" readonly="readonly">Monthly cost types</span>
+    <input type="text" style="font-size:12px;" class="form-control text-center fw-bold" readonly="readonly" placeholder="Family members count" >
+    <input type="text" style="font-size:12px;" class="form-control text-center fw-bold" readonly="readonly" placeholder="Total premium cost" >
+    
+     </div>
 
-    <div class="input-group mb-3 input-group-sm">
+    <div class="input-group mb-2 input-group-sm">
         <span class="input-group-text font-weight-bold">Health Insurance<br>Premium cost</span>
-        <input type="text" class="form-control text-center" name="family_premium_count" placeholder="Number of family members" value="{{myexpenses.family_premium_count}}">
-        <input type="text" class="form-control text-center" name="insurance_premium" placeholder="Total health premium cost" value="{{myexpenses.insurance_premium}}">
+        <input type="text" style="font-size:10px;" class="form-control text-center" name="family_premium_count" placeholder="Number of family members" value="{{myexpenses.family_premium_count}}">
+        <input type="text" style="font-size:10px;" class="form-control text-center" name="insurance_premium" placeholder="Total premium cost" value="{{myexpenses.insurance_premium}}">
         
          </div>    
               
-         <div class="input-group mb-3 input-group-sm">
+         <div class="input-group mb-2 input-group-sm">
         <span class="input-group-text font-weight-bold">Doctor's office<br>visit cost&nbsp;&nbsp;&nbsp;</span>
-        <input type="text" class="form-control text-center" name="members_for_office_visit" placeholder="Number of family members" value="{{myexpenses.members_for_office_visit}}">
-        <input type="text" class="form-control text-center" name="office_visit_cost" placeholder="Total office visit cost" value=" {{myexpenses.office_visit_cost}}">
+        <input type="text" style="font-size:10px;" class="form-control text-center" name="members_for_office_visit" placeholder="Number of family members" value="{{myexpenses.members_for_office_visit}}">
+        <input type="text" style="font-size:10px;" class="form-control text-center" name="office_visit_cost" placeholder="Total office visit cost" value="{{myexpenses.office_visit_cost}}">
         
          </div> 
               
-          <div class="input-group mb-3 input-group-sm">
+          <div class="input-group mb-2 input-group-sm">
         <span class="input-group-text text-left font-weight-bold">Prescriptions & <br>Supplements&nbsp;&nbsp;&nbsp;</span>
-        <input type="text" class="form-control text-center" name="members_for_prescriptions" placeholder="Number of family members" value="{{myexpenses.members_for_prescriptions}}">
-        <input type="text" class="form-control text-center" name="prescription_cost" placeholder="Total Prescriptions cost" value=" {{myexpenses.prescription_cost}}">
+        <input type="text" style="font-size:10px;" class="form-control text-center" name="members_for_prescriptions" placeholder="Number of family members" value="{{myexpenses.members_for_prescriptions}}">
+        <input type="text" style="font-size:10px;" class="form-control text-center" name="prescription_cost" placeholder="Total Prescriptions cost" value="{{myexpenses.prescription_cost}}">
         
          </div> 
 
-         <div class="input-group mb-3 input-group-sm">
+         <div class="input-group mb-2 input-group-sm">
           <span class="input-group-text text-left font-weight-bold">Out of pocket<br>medical expenses</span>
-          <input type="text" class="form-control text-center" name="members_for_oop" placeholder="Number of family members" value="{{myexpenses.members_for_oop}}">
-          <input type="text" class="form-control text-center" name="oop_cost" placeholder="Total OOP cost" value=" {{myexpenses.oop_cost}}">
+          <input type="text" style="font-size:10px;" class="form-control text-center" name="members_for_oop" placeholder="Number of family members" value="{{myexpenses.members_for_oop}}">
+          <input type="text" style="font-size:10px;" class="form-control text-center" name="oop_cost" placeholder="Total OOP cost" value="{{myexpenses.oop_cost}}">
           
            </div> 
 
            <div class="input-group mb-1 input-group-sm">
-            <span class="input-group-text text-left font-weight-bold">Gym cost&nbsp;&nbsp;&nbsp;</span>
-            <input type="text" class="form-control text-center" name="members_for_gym" placeholder="Number of family members" value="{{myexpenses.members_for_gym}}">
-            <input type="text" class="form-control text-center" name="gym_cost" placeholder="Total gym cost" value=" {{myexpenses.gym_cost}}">
+            <span class="input-group-text text-left font-weight-bold">Gym & fitness cost&nbsp;&nbsp;&nbsp;</span>
+            <input type="text" style="font-size:10px;" class="form-control text-center" name="members_for_gym" placeholder="Number of family members" value="{{myexpenses.members_for_gym}}">
+            <input type="text" style="font-size:10px;" class="form-control text-center" name="gym_cost" placeholder="Total gym cost" value="{{myexpenses.gym_cost}}">
             
              </div> 
                       
@@ -190,7 +142,7 @@
            
       </div>  
     </div>
-  </div>
+  
     
         </form>
         

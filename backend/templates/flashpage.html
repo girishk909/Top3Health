@@ -52,7 +52,7 @@
       border-radius: 10px;
       border-width: 20px;
       border-color: white;
-      background-color: #4f2e9e;
+      background-color: #9b5c43;
       margin-bottom: 20px;
       text-align:left;
       
@@ -87,6 +87,17 @@
   font-weight: 100;
   font-style: normal;
 }
+
+.btn {
+    font-size: 14px;
+    margin-right: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
   </style>
 </head>
 <body>
@@ -94,7 +105,7 @@
     <div class="container-fluid">
 
       <h3 style= "font-family: barlow-condensed-thin; "> Welcome to Top3health, a comprehensive program for your best health outcome !!</h3>
-      <br> <br>
+      
       <h3>Our program features:</h3>
 
         <div style="color:white; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 15px;" class="form-container text-start form-check checkbox-xl checkbox-primary  border" >
@@ -103,27 +114,43 @@
                 - Track regular doctor's visits, Vision and Dental <br><br>
                 - Easy and gentle program start<br> <br>
                 - 4 levels of engagement - Bronze, Silver, Gold and Platinum<br><br> 
-                - USDA Daily Value (DV) for Macros, Vitamins & Minerals are tracked<br><br>
+                - USDA Daily Value (DV) for Macros, Vitamins & Minerals tracked<br><br>
                 - Fitness recommendation from HHS (Health and human services)<br><br>
                 - Reduced minor symptoms & improved productivity<br><br>
                 - Habits & Expenses tracked for long term benefit 
             </div>
         </div>
 
-        <div class="form-container2 text-center mx-auto mt-2  form-check checkbox-xl checkbox-primary  border" >
-            <div style="font-style: italic" class="modal-body cursive2 mx-auto mt-4">
-                The next few pages will gather your user profile for health, <br>fitness and diet preferences.
-                <br><br> 
-            </div>
-        </div>
+        <!-- <div class="form-container2 text-center mx-auto mt-2  form-check checkbox-xl checkbox-primary  border" > -->
+            <div style="font-style: italic" class="cursive2 mx-auto mt-4">
+                The next few pages will gather your user profile for health,<br>fitness and diet preferences.<br><br>
+                It will help to establish important health changes from a baseline result of a Lipid panel check, such as:<br>
+              </div>
+                <div >
+                <ul class="list-group text-start"  >
+                  <li style="text-align:left" class="list-group-item">Fasting blood glucose</li>
+                  <li style="text-align:left" class="list-group-item">3 month A1c level</li>
+                  <li style="text-align:left" class="list-group-item">BP (Systolic / Diastolic)</li>
+                  <li style="text-align:left" class="list-group-item">Total Cholesterol</li>
+                  <li style="text-align:left" class="list-group-item">HDL level</li>
+                  <li style="text-align:left" class="list-group-item">LDL level</li>
+                  <li style="text-align:left" class="list-group-item">Triglycerides</li>
+              </ul>
+                
+                </div>
+            
+       
 
-        <h3>Please click close to begin...</h3>
-<br> <br>
-        <div class="modal fade text-center mx-auto" id="firstLoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <h4>If the above results are available, Please click READY, <br>(otherwise please log back in, once the results are available)</h4>
+<br> 
+        <div class="modal fade text-center mx-auto mr-4" id="firstLoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="btn-close text-center mx-auto" data-bs-dismiss="modal" onclick="window.location.href = '/minorsym'" aria-label="Close">Close</button>
+                        <button type="button" style="margin-right:20px" class="btn btn-danger text-center mx-auto" data-bs-dismiss="modal" onclick="window.location.href = '/minorsym'" aria-label="Close">READY</button>
+                        
+                          <a href="/logout" class="btn btn-danger ">Logout</a>
+                          
                     </div>
                 </div>
             </div>

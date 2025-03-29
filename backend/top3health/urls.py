@@ -39,7 +39,7 @@ from .views import MinorsymUpdateView
 from .views import DailylogView
 
 from .views import MyexpensesView
-from .views import ExpensesUpdateView
+from .views import MymonthlyexpensesView
 from .views import MyhabitsView
 
 from .views import MyHealthscreeningView
@@ -50,6 +50,7 @@ from .views import MyfoodsuggestionsView
 from .views import MysuggestionsView
 from .views import testauthview
 from .views import dietician_dashboard
+from .views import HealthlinksView
 
 
 urlpatterns = [    
@@ -65,6 +66,7 @@ urlpatterns = [
     # path('landing/', LandingView.as_view(), name='landing'),
     path('begindate/', BeginpageView, name='begindate'),
     path('weekly_suggestions/', MysuggestionsView, name='weekly_suggestions'),
+    path('healthinfo/', HealthlinksView.as_view(), name='healthinfo'),
     path('myfoodsuggestions/', MyfoodsuggestionsView, name='myfoodsuggestions'),
     path('Dailylog/', DailylogView, name='Dailylog'),
     path('myhealthscreening/', MyHealthscreeningView, name='myhealthscreening'),
@@ -74,7 +76,7 @@ urlpatterns = [
     path('myfitness/', MyfitnessView, name='myfitness'),
     path('settings/', MysettingsView, name='settings'),
     path('myexpenses/', MyexpensesView, name='myexpenses'),    
-    path('myexpensesupdate/',ExpensesUpdateView, name='myexpensesupdate'),    
+    path('myexpensesupdate/',MymonthlyexpensesView, name='myexpensesupdate'),    
     path('myhabits/', MyhabitsView, name='myhabits'),
     path('myhabitsupdate/', MyhabitsupdateView, name='myhabitsupdate'),
     path('mybreakfastdesign', MybreakfastdesignView, name='mybreakfastdesign'),

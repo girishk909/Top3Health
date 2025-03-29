@@ -23,6 +23,7 @@ from .models import Healthsym
 from .models import Myfoodsuggestions
 from .models import Study
 from .models import Myexpenses
+from .models import Mymonthlyexpenses
 from .models import Myhabits
 from .models import CustomUser
 from .models import Supplements
@@ -50,6 +51,7 @@ from django.http import HttpResponseRedirect
 
 from .forms import HealthsymForm
 from .forms import MyexpensesForm
+from .forms import MymonthlyexpensesForm
 from .forms import MyhealthscreeningForm
 # from .forms import MyhealthscreeningverForm
 from .forms import MyhabitsForm
@@ -172,7 +174,50 @@ class MyLoginView(LoginView):
 
         return redirect('landing')
 
+@login_required
+def MymonthlyexpensesView(request):
+    if request.user.is_authenticated:
+         try:
+             mymonthlyexp_record = request.user.myexpenses
+         except Myexpenses.DoesNotExist:
+             mymonthlyexp_record = None 
 
+         form = MymonthlyexpensesForm(request.POST or None)     
+        
+         if mymonthlyexp_record:
+            
+            family_premium_count = mymonthlyexp_record.family_premium_count
+            
+            insurance_premium = mymonthlyexp_record.insurance_premium
+            print(insurance_premium)
+            members_for_office_visit = mymonthlyexp_record.members_for_office_visit
+            office_visit_cost = mymonthlyexp_record.office_visit_cost
+            members_for_prescriptions = mymonthlyexp_record.members_for_prescriptions
+            prescription_cost = mymonthlyexp_record.prescription_cost
+            members_for_oop = mymonthlyexp_record.members_for_oop
+            oop_cost = mymonthlyexp_record.oop_cost
+            members_for_gym = mymonthlyexp_record.members_for_gym
+            gym_cost = mymonthlyexp_record.gym_cost
+            
+         else:
+
+            print("Mymonthlyexp record does not exist.")
+            
+            form = MymonthlyexpensesForm(request.POST or None)
+         if form.is_valid():
+            obj = form.save(commit=False)
+            obj.customuser = request.user
+            obj.save()
+            return redirect('landing')
+         else: 
+            print(form.errors)
+         context = {
+            'user':request.user,
+            'form': form,
+            'myexpenses': mymonthlyexp_record, #pass the myhabits_record
+            # 'myexpenses_record': myexpenses_record,
+        }
+         return render(request, 'myexpensesupdate.html', context)
 # class MyLoginView(LoginView):
 #     template_name = 'registration/login.html'
 
@@ -265,6 +310,8 @@ def SignUpView(request):
 class HomePageView(TemplateView):
  template_name = 'top3health-bootstrap.html'
 
+class HealthlinksView(TemplateView):
+  template_name = 'Healthinfo.html'
 
 
 # def staff_register(request):
@@ -343,12 +390,7 @@ def DailylogView(request):
     if request.user.is_authenticated:
         myhabits_record = request.user.myhabits.last() 
          
-        # print(myhabits_record.__dict__)
 
-        # try:
-        #     myexpenses_record = request.user.myexpenses
-        # except Myexpenses.DoesNotExist:
-        #     myexpenses_record = None 
         
         if myhabits_record:
             Stretches = myhabits_record.Stretches
@@ -386,7 +428,7 @@ def DailylogView(request):
         context = {
             'form': form,
             'myhabits': myhabits_record, #pass the myhabits_record
-            # 'myexpenses_record': myexpenses_record,
+            
         }
         return render(request, 'food_log2.html', context)        
 
@@ -525,6 +567,8 @@ def MyhabitsupdateView(request):
         'myhabits': myhabits,
     }
     return render(request, 'myhabitsupdate.html', context)  
+
+
 
 
 def MyfitnessView(request):
@@ -892,29 +936,29 @@ def testauthview(request):
     return HttpResponse("User is not authenticated")  
 
 
-@login_required
-def ExpensesUpdateView(request):
-    current_user = request.user
-    myexpenses = None  # Initialize minorsym
+# @login_required
+# def ExpensesUpdateView(request):
+#     current_user = request.user
+#     myexpenses = None  # Initialize minorsym
 
-    if request.method == 'POST':
-        form = MyexpensesForm(request.POST)
-        if form.is_valid():
-            myexpenses = form.save(commit=False)
-            myexpenses.customuser = current_user
-            myexpenses.created_at = timezone.now()
-            myexpenses.save()
-            return redirect('/landing')
-    else:
-        print("error in minor form?")
-        myexpenses = Myexpenses.objects.filter(customuser=current_user).order_by('-created_at').first()
-        form = MyexpensesForm(instance=minorsym) #correct instance variable
+#     if request.method == 'POST':
+#         form = MyexpensesForm(request.POST)
+#         if form.is_valid():
+#             myexpenses = form.save(commit=False)
+#             myexpenses.customuser = current_user
+#             myexpenses.created_at = timezone.now()
+#             myexpenses.save()
+#             return redirect('/landing')
+#     else:
+#         print("error in minor form?")
+#         myexpenses = Myexpenses.objects.filter(customuser=current_user).order_by('-created_at').first()
+#         form = MyexpensesForm(instance=minorsym) #correct instance variable
 
-    context = {
-        'form': form,
-        'myexpenses': myexpenses,
-    }
-    return render(request, 'myexpensesupdate.html', context)    
+#     context = {
+#         'form': form,
+#         'myexpenses': myexpenses,
+#     }
+#     return render(request, 'myexpensesupdate.html', context)    
 
 def MyexpensesView(request):
   form=MyexpensesForm(request.POST or None)  
@@ -1252,7 +1296,7 @@ def MyfoodgroupsverView(request):
           'myfoods':myfoods}
           #'new_myfoods':new_myfoods,}
         
-    # template_name = 'myexpensesupdate.html'
+ 
     return render(request, 'myfoodgroupsupdate.html', context=context)  
 
 
