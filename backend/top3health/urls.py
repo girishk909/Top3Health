@@ -83,6 +83,9 @@ urlpatterns = [
     # path('myfoodsuggestions/', MyfoodsuggestionsView, name='myfoodsuggestions'),
     path('supplements/', MysupplementsView, name='supplements'),
     path('landing/', views.health_dashboard, name='landing'),
+    path('reports/', views.incoming_dashboard, name='reports'),
+   
+
     # path('admin/', admin.site.urls),
     ]
 

@@ -199,7 +199,7 @@ class MydailylogForm(forms.ModelForm):
         'Wake_time', 'Wake_time_check', 'food_cost_savings', 'food_savings_check', 'Clear_kitchen', 'Clear_kitchen_check', 'Brush_Floss', 'Brush_Floss_check', 
         'Groceries_shop', 'Groceries_shop_check', 'daily_mindfulness', 'daily_mindfulness_check', 'food_suggestions', 'food_suggestions_check', 'reduce_alcohol',
         'reduce_alcohol_check', 'reduce_smoking', 'reduce_smoking_check',  'custom_habit_1', 'custom_habit_1_check', 'custom_habit_2', 'custom_habit_2_check',
-        'custom_habit_3', 'custom_habit_3_check',  ]         
+        'custom_habit_3', 'custom_habit_3_check', 'daily_eatout_cost', 'daily_misc_cost', 'daily_grocery_cost', 'date', ]         
 
 
 class BeginpageForm(forms.ModelForm):
@@ -287,7 +287,7 @@ class HealthsymForm(forms.ModelForm):
 
   class Meta:
     model = Healthsym
-    fields = ['created_at','Minor1','Minor2', 'Minor3', 'Minor4', 'Minor5', 'Major1','Major2', 'Major3','Major4', 'Major5'
+    fields = ['created_at','Minor1','Minor2', 'Minor3', 'Minor4', 'Minor5', 'Major1','Major2', 'Major3','Major4', 'Major5', 'physical_health', 'mental_health', 'social_relations', 'access_health_food',
     ]
   def __int__(self, *args, **kwargs):
         super(HealthsymForm, self).__int__(*args, **kwargs)

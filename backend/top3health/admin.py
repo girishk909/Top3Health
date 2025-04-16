@@ -10,6 +10,7 @@ from .models import Myfoodsuggestions
 from .models import Study
 from .models import Dietician
 from .models import Supplements
+from .models import Mydailylog
 from django.forms import TextInput, Textarea
 from django.contrib.admin import AdminSite
 from django.shortcuts import redirect
@@ -150,6 +151,7 @@ admin.site.register(Myfitness)
 admin.site.register(Myfoodsuggestions)
 admin.site.register(Supplements)
 admin.site.register(Dietician)
+admin.site.register(Mydailylog)
 
 
 # class HealthsymInline(admin.StackedInline):

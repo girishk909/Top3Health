@@ -137,181 +137,171 @@ table, th, td {
     font-size: 10px;
 }
 
+.graph-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+.graph-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 </style>
 <form method="POST">
   {% csrf_token %}
-  <!-- "{{user.lose_weight.is_active}}" -->
 
-<h6 style="font-size:15px" class="mx-auto text-center mt-2">Dietician: {{allowed_user}}</h6>
- <!-- <p class="fs-6  name"> {{allowed_user }}</p> -->
- <br>
-  <!-- <h6 style="font-size:15px" class="mx-auto text-center">Users</h6> -->
-  
-  
+  <h6 style="font-size:15px" class="mx-auto text-center mt-2">Dietician: {{allowed_user}}</h6>
+  <br>
+
   <div class="container-fluid  ml-5 text-center text-dark  mx-auto  no-border ">
-
- 
     <table style="width:100%" id="userTable" class="table heading">
-        <thead>
-            <tr>
-                <th scope="col">Username</th>
-                <th scope="col">First Name</th>
-                <th scope="col">More Info</th>
-                <th scope="col">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-        
-          {% for user in users %}
-          <!-- latest_healthsym = user.healthsym_set.order_by('-id').first() -->
-          
-            <tr>
-             
-             
-              <td>{{ user.username }}</td>
-              <td>{{ user.first_name }}</td>
-              <td>
-                <button style="font-size:8px;" class="btn btn-primary " type="button"  
-                data-bs-toggle="collapse" data-bs-target="#user-details-{{ user.userid }}">+</button>
-              </td>
-              <td>
-                <input style="font-size:20px; color:green" type="checkbox" id="toggle-details-{{ user.userid }}" class="form-check-input">
-              </td>
-            </tr>
-          
-            <tr id="user-details-{{ user.userid }}" class="collapse">
-              <td colspan="3">
-               
-                <h6>Incoming Profile</h6>
-                  <div class="form-container mb-2 mx-auto text-center border" >
-                  <div style="font-style: italic; font-weight: 200;" class="  text-center mx-auto input-group-xl d-flex flex-wrap">
-                    <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center ">Minor Symptom 1</span>
-                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center  mx-auto">Minor Symptom 2</span>
-                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 3</span>
-                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 4</span>
-                    <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 5</span>
-                    </div>
-                    <div class="input-group  text-center input-group-xl d-flex flex-wrap">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor1 }}" value="{{ user.minor1 }}">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor2 }}" value="{{ user.minor2 }}">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor3 }}" value="{{ user.minor3 }}">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor4 }}" value="{{ user.minor4 }}">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor5 }}" value="{{ user.minor5 }}">
-                </div>
-                </div>
-                  
-
-                  <div style= "background-color: rgb(198, 223, 223)" class="form-container mx-auto text-center border mb-2 " >
-                  <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
-                    <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Major Symptom 1</span>
-                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Major Symptom 2</span>
-                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 3</span>
-                    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 4</span>
-                    <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 5</span>
-                    </div>
-                    <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major1 }}" value="{{ user.major1 }}">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major2 }}" value="{{ user.major2 }}">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major3 }}" value="{{ user.major3 }}">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major4 }}" value="{{ user.major4 }}">
-                    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major5 }}" value="{{ user.major5 }}">
-                </div>
+      <thead>
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">First Name</th>
+          <th scope="col">More Info</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr >
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name }}</td>
+          <td>
+            <button style="font-size:8px;" class="btn btn-primary " type="button"  
+            data-bs-toggle="collapse" data-bs-target="#user-details-{{ user.userid }}">+</button>
+          </td>
+          <td>
+            <input style="font-size:20px; color:green" type="checkbox" id="toggle-details-{{ user.userid }}" class="form-check-input">
+          </td>
+        </tr>
+        <tr id="user-details-{{ user.userid }}" class="collapse">
+          <td colspan="3"> <br>
+            <h6 style="font-size:15px">Incoming Profile</h6>
+            <div class="form-container mb-2 mx-auto text-center border" >
+              <div style="font-style: italic; font-weight: 200;" class="  text-center mx-auto input-group-xl d-flex flex-wrap">
+                <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center ">Minor Symptom 1</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center  mx-auto">Minor Symptom 2</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 3</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 4</span>
+                <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center ">Minor Symptom 5</span>
               </div>
+              <div class="input-group  text-center input-group-xl d-flex flex-wrap">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor1 }}" value="{{ user.minor1 }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor2 }}" value="{{ user.minor2 }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor3 }}" value="{{ user.minor3 }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor4 }}" value="{{ user.minor4 }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.minor5 }}" value="{{ user.minor5 }}">
+              </div>
+            </div>
 
+            <div style= "background-color: rgb(198, 223, 223)" class="form-container mx-auto text-center border mb-2 " >
+              <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
+                <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Major Symptom 1</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Major Symptom 2</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 3</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 4</span>
+                <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center text-dark">Major Symptom 5</span>
+              </div>
+              <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major1 }}" value="{{ user.major1 }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major2 }}" value="{{ user.major2 }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major3 }}" value="{{ user.major3 }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major4 }}" value="{{ user.major4 }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.major5 }}" value="{{ user.major5 }}">
+              </div>
+            </div>
 
+            <div style= "background-color: rgb(223, 206, 198)" class="form-container mx-auto text-center border mb-2" >
+              <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
+                <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Daily Veggies<br>cups total</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Beans & Lentils<br>cups Weekly</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Fruit & Berries <br> cups Daily</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Dairy <br> cups Daily</span>
+                <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center text-dark">Grains <br> cups Daily</span>
+              </div>
+              <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.veggies }}" value="{{ user.veggies }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.beans_lentils }}" value="{{ user.beans_lentils }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{user.fruits_berries}}" value="{{user.fruits_berries}}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.dairy }}" value="{{ user.dairy }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.grains }}" value="{{ user.grains }}">
+              </div>
+            </div>
 
-<div style= "background-color: rgb(223, 206, 198)" class="form-container mx-auto text-center border mb-2" >
-  <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
-    <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Daily Veggies<br>cups total</span>
-    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Beans & Lentils<br>cups Weekly</span>
-    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Fruit & Berries <br> cups Daily</span>
-    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Dairy <br> cups Daily</span>
-    <span style="width:50px;"class="input-group-text fw-bold flex-grow-1 text-center text-dark">Grains <br> cups Daily</span>
-    </div>
-    <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.veggies }}" value="{{ user.veggies }}">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.beans_lentils }}" value="{{ user.beans_lentils }}">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{user.fruits_berries}}" value="{{user.fruits_berries}}">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.dairy }}" value="{{ user.dairy }}">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.grains }}" value="{{ user.grains }}">
-</div>
-</div>       
+            <div style= "background-color: rgb(206, 198, 223)" class="form-container mx-auto text-center border mb-3" >
+              <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
+                <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Moderate activity<br>minutes per week</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Vigorous activity<br>minutes per week</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Muscle Building<br> days per week</span>
+                <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Balanc activity<br> minutes per week</span>
+              </div>
+              <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.moderate_intensity }}" value="{{ user.moderate_intensity  }}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.vigorous_intensity }}" value="{{ user.vigorous_intensity}}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{user.muscle_build}}" value="{{user.muscle_build}}">
+                <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.balance }}" value="{{user.balance }}">
+              </div>
+            </div>
+            <h6 style="font-size:15px">Food intake and Fitness history</h6>
+            <div class="graph-container">
+            <img src="data:image/png;base64,{{ user.image_data.food_plot }}" alt="Food Plot">
+          
 
-<div style= "background-color: rgb(206, 198, 223)" class="form-container mx-auto text-center border mb-2" >
-  <div style="font-style: italic; font-weight: 300;" class=" fw-bold text-center mx-auto input-group-xl d-flex flex-wrap">
-    <span style="width:50px; text-align: center;" class="fw-bold input-group-text flex-grow-1  mx-auto text-center text-bold">Moderate activity<br>minutes per week</span>
-    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark mx-auto">Vigorous activity<br>minutes per week</span>
-    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Muscle Building<br> days per week</span>
-    <span style="width:50px;" class="input-group-text fw-bold flex-grow-1 text-center text-dark">Balanc activity<br> minutes per week</span>
-    
-    </div>
-    <div  class="input-group  text-center input-group-xl d-flex flex-wrap">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.moderate_intensity }}" value="{{ user.moderate_intensity  }}">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.vigorous_intensity }}" value="{{ user.vigorous_intensity}}">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{user.muscle_build}}" value="{{user.muscle_build}}">
-    <input type="text" class="form-control flex-grow-1 text-center" name="{{ user.balance }}" value="{{user.balance }}">
-    
-</div>
-</div> 
+            <img src="data:image/png;base64,{{ user.image_data.fitness_plot }}" alt="Fitness Plot">
+          </div>
 
+            <h6 style="font-size:15px" class="mx-auto text-center mt-3">Dietician Notes</h6>
 
-                  
-                  <h6 style="font-size:12px" style="font-size:15px" class="mx-auto text-center mt-3">Dietician Notes</h6>
-                  
-                    <div class="input-group mx-auto  input-group-default">
-                      <span class="input-group-text text-center ">1&nbsp;&nbsp;&nbsp;</span>
-                      <input type="text" name = "note1" class="form-control" >
-                       </div>
+            <div class="input-group mx-auto  input-group-default">
+              <span class="input-group-text text-center ">1&nbsp;&nbsp;&nbsp;</span>
+              <input type="text" name = "note1" class="form-control" >
+            </div>
 
-                       <div class="input-group mx-auto  input-group-default">
-                        <span class="input-group-text text-center">2&nbsp;&nbsp;&nbsp;</span>
-                        <input type="text" name = "note2" class="form-control " >
-                         </div>
+            <div class="input-group mx-auto  input-group-default">
+              <span class="input-group-text text-center">2&nbsp;&nbsp;&nbsp;</span>
+              <input type="text" name = "note2" class="form-control " >
+            </div>
 
-                         <div class="input-group mx-auto  input-group-default">
-                          <span class="input-group-text text-center">3&nbsp;&nbsp;&nbsp;</span>
-                          <input type="text" name = "note3" class="form-control" >
-                           </div>
+            <div class="input-group mx-auto  input-group-default">
+              <span class="input-group-text text-center">3&nbsp;&nbsp;&nbsp;</span>
+              <input type="text" name = "note3" class="form-control" >
+            </div>
 
-                           <div class="input-group mx-auto  input-group-default">
-                            <span class="input-group-text text-center">4&nbsp;&nbsp;&nbsp;</span>
-                            <input type="text" name = "note4" class="form-control">
-                             </div>
+            <div class="input-group mx-auto  input-group-default">
+              <span class="input-group-text text-center">4&nbsp;&nbsp;&nbsp;</span>
+              <input type="text" name = "note4" class="form-control">
+            </div>
 
-                             <div class="input-group mx-auto  input-group-default">
-                              <span class="input-group-text text-center ">5&nbsp;&nbsp;&nbsp;</span>
-                              <input type="text" name = "note5" class="form-control" >
-                               </div>
-        
-                               <div class="input-group mx-auto  input-group-default">
-                                <span class="input-group-text text-center">6&nbsp;&nbsp;&nbsp;</span>
-                                <input type="text" name = "note6" class="form-control " >
-                                 </div>
- 
-          {% endfor %}
-        </tbody>
+            <div class="input-group mx-auto  input-group-default">
+              <span class="input-group-text text-center ">5&nbsp;&nbsp;&nbsp;</span>
+              <input type="text" name = "note5" class="form-control" >
+            </div>
+
+            <div class="input-group mx-auto  input-group-default">
+              <span class="input-group-text text-center">6&nbsp;&nbsp;&nbsp;</span>
+              <input type="text" name = "note6" class="form-control " >
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
 
-  
-
- 
-<br><br>
-<div class="button-group mb-4 mt-4 text-center mx-auto fixed-bottom nowrap">
-<div class=" text-center ">
-  <a href="/landing"><button class="btn btn-warning btn-xs" name="home" type="button">Home</button></a>
-</div>    
-<div >
-  <a href="/landing"><button name="savecontinue" class=" btn btn-success text-center btn-xs nowrap" type="submit">Save & Continue</button></a>
-</div>
-
-<div class="text-center   ">
-  <a href="/logout" class="btn btn-dark">Logout</a>
+    
+    <div class="button-group mb-4  text-center mx-auto  nowrap">
+      <div >
+        <a href="/landing"><button name="savecontinue" class=" btn btn-success text-center btn-xs nowrap" type="submit">Save & Continue</button></a>
+      </div>
+      <div class="text-center   ">
+        <a href="/logout" class="btn btn-dark">Logout</a>
+      </div>
+    </div>
   </div>
-</div>
-</div>
+</form>
 
-
-        </form>
-
-
-        {% endblock content %} 
+{% endblock content %}

@@ -225,60 +225,17 @@ img.dashboard-image {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div> -->
     
+    
+    <!-- <h6 style = "font-family: 'Playfair Display'; font-size:10px;" class="text-center mt-5 mb-3">My weekly health status</h6> -->
   
 
-        <div class="top-bar overflow-hidden text-center mx-auto no-border fixed-top">
-          
-          <div class="row text-center overflow-hidden">
-           
-            <div class="col-2 no-border">
-              <div class="logo text-start xyz">
-                
-                  <i class="fa fa-circle" style="font-size:20px;color:red"></i>
-                  <i class="fa fa-circle" style="font-size:20px;color:forestgreen"></i>
-                  <i class="fa fa-circle" style="font-size:20px;color:#0080ff"></i>
-                  <h6 style="font-size:14px;"class="text-center pqr mr-3" >top3health</h6>
-              </div>
-              <div>
-                
-              </div>
-          </div>
-              <div class="col-9 no-border overflow-hidden text-center mx-auto">
-                  <div class="navbar navbar-light no-border text-end navbar-expand-lg bg-light" >
-                      <hr style="height:5px;color:#b47474;background-color:#e78c8c;">
-                      <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">  
-        
-                          <p class="p"> {{user.first_name }}</p>
-                          <span class="navbar-toggler-icon "></span>
-                      </button>  
-
-                      
-                      <div class="collapse overflow-hidden navbar-collapse mb-4" id="navbarResponsive">
-                        
-                        <ul class="navbar-nav mx-auto text-center">  
-                              
-                              <li class="nav-item"><a href="{% url 'settings' %}" class="nav-link">Settings</a></li>
-                              <!-- <li class="nav-item"><a href="{% url 'Dailylog' %}" class="nav-link">Daily-Log</a></li> -->
-                              <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-         
-          </div> 
-        
-        
-        </div>
- 
-       
-      <br><br><br>
+      
       
 
   <div class="dashboard-container">
-    <div>  <h6 style="font-size:13px;"class="text-center mt-3">My health status : Building Bronze level</h6> 
-      <a href="{% url 'Dailylog' %}"><button type="button" class="btn btn-outline-dark">Daily-Log</button></a> 
-      <a href="{% url 'reports' %}"><button type="button" class="btn btn-outline-dark">Reports</button></a> 
-      <a href="{% url 'healthinfo' %}"><button type="button" class="btn btn-outline-dark">Health Info & links</button></a> 
+    <div>  <h6 style="font-size:13px;"class="text-center mt-3">My incoming health profile</h6> <br>
+    <div>  <h6 style="font-size:13px;"class="text-center mt-3">My status : Building Bronze level</h6> 
+
 
         <div> <button type="button" style="font-size:16px; font-family:Arial, Helvetica, sans-serif; width:80px; color:black; margin-right:30px;" class="btn btn-outline-light disabled ">28.8</button>
             <button type="button" style="font-size:16px; font-family:Arial, Helvetica, sans-serif; width:80px; color:black; margin-right:30px;" class="btn btn-outline-light disabled ">1700</button>
@@ -291,16 +248,9 @@ img.dashboard-image {
             <button type="button" style="font-size:13px; width:80px; color:black; margin-top:-25px;  margin-right:30px;" class="btn btn-outline-light disabled">HEI</button>
         </div>
         <img src="data:image/png;base64,{{ image_data }}" alt="Health Dashboard" class="dashboard-image subplot-container text-center mx-auto">
-    
 
-
-    <br>
-   
-    <h6 style = " font-family: 'Playfair Display'; font-size:12px;" class="text-center mb-3 mt-3">Misc. expenses: Drinks (non-alcoholic or alcoholic), smoking, vape, snacks</h6>
-  </div>
 </div>
-  <p class="footer p mt-4 fixed-bottom" >Copyright - Top3health.com</p>
- <br> 
+    <br>
  
 
 </form>

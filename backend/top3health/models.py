@@ -10,6 +10,7 @@ from django.conf import settings
 from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.contrib.auth.models import Group, Permission
 from django.contrib import admin
+from datetime import date
 # from django.contrib.auth.admin import UserAdmin
 # from .models import CustomUser
 
@@ -93,6 +94,7 @@ class Dietician_note(models.Model):
 class Mydailylog(models.Model):
 
     customuser = models.ForeignKey(CustomUser,   on_delete= models.CASCADE)
+    date = models.DateField(null=False, blank=False) 
     
     Breakfast_name = models.CharField(max_length=50, null=True,blank=True,)
     Breakfast_description = models.CharField(max_length=250, null=True,blank=True,)
@@ -149,7 +151,12 @@ class Mydailylog(models.Model):
     custom_habit_2 = models.CharField(max_length=50, null=True,blank=True,)
     custom_habit_2_check = models.BooleanField(default=False)
     custom_habit_3 = models.CharField(max_length=50, null=True,blank=True,)
-    custom_habit_3_check = models.BooleanField(default=False)   
+    custom_habit_3_check = models.BooleanField(default=False)  
+
+    daily_eatout_cost =  models.IntegerField(null=True, blank=True)
+    daily_misc_cost = models.IntegerField(null=True, blank=True)
+    daily_grocery_cost = models.IntegerField(null=True, blank=True)
+
 
     def __int__(self):
         return self.customuser           
@@ -158,6 +165,7 @@ class Myhealthscreening(models.Model):
     customuser = models.ForeignKey(CustomUser, on_delete= models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now,null=True, blank=True )
     Blood_glucose = models.CharField(max_length=4, null=True, blank=True)
+
     A1C = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)
     BP_systolic = models.IntegerField(null=True, blank=True, default=None)
     BP_diastolic = models.IntegerField(null=True, blank=True, default=None)
@@ -197,6 +205,11 @@ class Healthsym(models.Model):
 
     Major4 = models.CharField(max_length=30,null=True,blank=True)
     Major5 = models.CharField(max_length=30,null=True, blank=True)
+
+    physical_health = models.CharField(max_length=20,null=True,blank=True)
+    mental_health = models.CharField(max_length=20,null=True,blank=True)
+    social_relations = models.CharField(max_length=20,null=True,blank=True)
+    access_health_food = models.CharField(max_length=20,null=True,blank=True)
 
     def __int__(self):
         return self.customuser

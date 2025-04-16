@@ -22,9 +22,9 @@
 
 
 .container-fluid { height:100%;width:100%;}
-.form-container { width: 330px; padding:6px; border-radius:12px; background-color: rgb(180, 211, 240);}
-.form-container2 { width: 330px; padding:6px; border-radius:12px; background-color: rgb(160, 204, 197);}
-.form-container3 { width: 330px; padding:6px; border-radius:12px; background-color: rgb(204, 167, 160);}
+.form-container { width: 350px; padding:6px; border-radius:12px; background-color: rgb(180, 211, 240);}
+.form-container2 { width: 350px; padding:6px; border-radius:12px; background-color: rgb(160, 204, 197);}
+.form-container3 { width: 350px; padding:6px; border-radius:12px; background-color: rgb(204, 167, 160);}
 
 
 .checkbox-xl .form-check-input {
@@ -78,7 +78,7 @@
 .placeholder{font-size: 12px;}
 .ital2{font-size:14px;  margin-left:15px;}  
 
-.input-group-text {font-size:10px !important; width:128px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
+.input-group-text {font-size:10px !important; width:148px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;}
 .name {margin-left:15px;}
 
 .pagination .page-link {
@@ -88,6 +88,19 @@
         text-align: center;
         font-size: 12px; /* Adjust font size as needed */
     }
+
+    .checkbox-xl .form-check-input {
+    top: 1.0rem;
+    scale: 3.1;
+    margin-top: 8px;
+    margin-left:5px;
+  }
+
+  .checkbox-xl .form-check-label {
+    padding-left: 10px;
+    font-size: 18px;
+    width: 60px;
+  }
 
 </style>
 
@@ -129,36 +142,66 @@
         </h6>-->
       
        
-       <h6 style="font-size:12px;" class="text-center"><b>My Minor Symptoms</b></h6> 
+       <h6 style="font-size:12px;" class="text-center"><b>My Quality of life ratings</b></h6> 
         <!-- <h6 style="font-size:10px; font-style:italic;"class="mb-1 ml-2">(Examples: Fatigue, Low productivity, ADD/ADHD) </h6>   -->
         
         <div class="form-container3  mx-auto mb-2 text-center  border" >
           <!-- {{ form|crispy }} -->
-      
-          <div class="input-group mb-2 input-group-default">
-            <span class="input-group-text font-weight-bold">Sick days per month&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-           
-            
-            <input type="text" name = "Minor1" id = "ch1" class="form-control text-center" placeholder="My sick days per month" list="sick" >  <datalist id="sick">
-              <option value="1-3 sick days per month">
-                <option value="3-5 sick days per month">
-                    <option value="more than 5 sick days per month">
-                      </datalist>
-             </div>
                 
              
-             <div class="input-group   input-group-default">
-              <span class="input-group-text font-weight-bold">Rate your productivity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              
-              <input type="text" name = "Minor2" id = "ch1" class="form-control text-center" placeholder="My productivity levels" list="productive" >  <datalist id="productive">
-                <option value="90-100 % productive">
-                  <option value="70-90 % productive">
-                    <option value="50-70 % productive">
-                      <option value="less than 50% productive">
+         
+ 
+               <div class="input-group   input-group-default">
+                <span class="input-group-text font-weight-bold">Physical health&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                
+                <input type="text" name = "physical_health" id = "ch1" class="form-control text-center" placeholder="Energy, body pain" list="productive" >  <datalist id="productive">
+                  <option value="90-100 %">
+                    <option value="70-90 %">
+                      <option value="50-70 %">
+                        <option value="less than 50%">
+  
+                          </datalist>
+                 </div>
 
-                        </datalist>
-               </div>
+                 <div class="input-group   input-group-default">
+                  <span class="input-group-text font-weight-bold">Mental health&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  
+                  <input type="text" name = "mental_health" id = "ch1" class="form-control text-center" placeholder="Purpose in life, Positive emotions" list="productive" >  <datalist id="productive">
+                    <option value="90-100 %">
+                      <option value="70-90 %">
+                        <option value="50-70 %">
+                          <option value="less than 50%">
+    
+                            </datalist>
+                   </div>
+                   <div class="input-group   input-group-default">
+                    <span class="input-group-text font-weight-bold">Social relationships&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    
+                    <input type="text" name = "social_relations" id = "ch1" class="form-control text-center" placeholder="Relationships with family/friends" list="productive" >  <datalist id="productive">
+                      <option value="90-100 %">
+                        <option value="70-90 %">
+                          <option value="50-70 %">
+                            <option value="less than 50%">
+      
+                              </datalist>
+                     </div>
+                     <div class="input-group   input-group-default">
+                      <span class="input-group-text font-weight-bold">Access to food & healthcare&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      
+                      <input type="text" name = "access_health_food" id = "ch1" class="form-control text-center" placeholder="Food, healthcare, living conditions" list="productive" >  <datalist id="productive">
+                        <option value="90-100 %">
+                          <option value="70-90 %">
+                            <option value="50-70 %">
+                              <option value="less than 50%">
+        
+                                </datalist>
+                       </div>
+                 
+
                </div>      
+               <h6 style="font-size:12px;" class="text-center"><b>My Minor Symptoms</b></h6>
+
+               <h6 style="font-size:12px;" class="text-center"><b>Your Symptoms or family history (maternal/paternal) </b></h6>
         
    <!-- <div class="ml-4 d-inline-block space-around" > -->
     <div class="form-container  mx-auto  text-center  border" >
@@ -168,7 +211,7 @@
       <span class="input-group-text font-weight-bold">Minor Symptom 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
      
       
-      <input type="text" name = "Minor1" id = "ch1" class="form-control text-center" placeholder="My minor symptom 1" list="minor" >  <datalist id="minor">
+      <input type="text" style="width:30px;" name = "Minor1" id = "ch1" class="form-control text-center" placeholder="My minor symptom 1" list="minor" >  <datalist id="minor">
         <option value="Fatigue">
           <option value="Insomnia">
         <option value="Low motivation">
@@ -177,8 +220,9 @@
         <option value="Skin issues">
             <option value="Body pain">
                 </datalist>
+               
        </div>
-          
+         
        
        <div class="input-group mb-2 input-group-default">
         <span class="input-group-text font-weight-bold">Minor Symptom 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -230,6 +274,8 @@
 </div>
 
 <h6 style="font-size:12px;" class="text-center mt-2"><b>My Major Illnesses</b></h6>
+
+<h6 style="font-size:12px;" class="text-center"><b>Your Illness or family history (maternal/paternal) </b></h6>
 <!-- <h6 style="font-size:10px; font-style:italic;"class="mb-1 ml-2">(Examples: Type-2 Diabetes, Cardiovascular, Alzheimers') </h6>  -->
 
 <div class="form-container2  mt-1 mb-1 mx-auto  text-center  border" >

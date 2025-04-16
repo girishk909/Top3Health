@@ -16,6 +16,7 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .forms import StudyForm
 from .forms import MydailylogForm
+from .models import Mydailylog
 from .models import Myhealthscreening
 from .models import Myfitness
 from .models import Dietician_note
@@ -116,8 +117,11 @@ class MyLoginView(LoginView):
         if user.is_superuser:
             return redirect('admin:index') 
 
+        # if user.is_staff and user.groups.filter(user='juhik').exists():
+        #     return redirect('dietician_dashboard')    
+
         if user.is_staff and user.groups.filter(name='dietician').exists():
-            return redirect('dietician_dashboard')    
+           return redirect('dietician_dashboard')
 
         response = super().form_valid(form)
 
@@ -384,17 +388,15 @@ class LandingView(TemplateView):
 
 #     else:
 #         return redirect('login') 
-        
+from datetime import date, timedelta        
 @login_required
 def DailylogView(request):
     if request.user.is_authenticated:
         myhabits_record = request.user.myhabits.last() 
          
-
-        
         if myhabits_record:
             Stretches = myhabits_record.Stretches
-            print(Stretches)
+            # print(Stretches)
             Reduce_processed = myhabits_record.Reduce_processed
             # print(Reduce_processed)
             Prepare_meals = myhabits_record.Prepare_meals
@@ -414,13 +416,13 @@ def DailylogView(request):
             
         else:
             Stretches = None
-
             print("Myhabits record does not exist.")
             
         form = MydailylogForm(request.POST or None)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.customuser = request.user
+            obj.date = date.today()
             obj.save()
             return redirect('landing')
         else: 
@@ -493,10 +495,12 @@ def MinorsymView(request):
     obj = form.save(commit=False)
     # obj.customuser_id=(request.user.id)
     obj.customuser = request.user
+    print('in view')
     print(obj)
     obj.save()
     return redirect('myfitness')
-  print(form.errors)
+  else:
+   print(form.errors)
  
   context={'form':form}
   template_name = 'minorsymptoms-bootstrap.html'
@@ -567,8 +571,6 @@ def MyhabitsupdateView(request):
         'myhabits': myhabits,
     }
     return render(request, 'myhabitsupdate.html', context)  
-
-
 
 
 def MyfitnessView(request):
@@ -653,35 +655,255 @@ def DV_data(request):
 # from django.views.decorators.cache import never_cache
 # @never_cache
 
+
+
+# def generate_line_graphs(users):
+#     food_data = []
+#     fitness_data = []
+#     for user in users:
+#         print(f'user:{user}, id: {user.id}')
+#         logs = Mydailylog.objects.filter(customuser=user).order_by('date')
+#         print(f'logs:{logs}')
+#         second_offset = 0
+#         for log in logs:
+#             print(log.date)
+#             second_offset_int = int(second_offset)
+#             try:
+#                 log_date_converted = log.date.date()
+#                 modified_date = datetime.combine(log_date_converted, datetime.time(0, 0, second_offset_int))
+#             except AttributeError:
+#                 try:
+#                     log_date_converted = datetime.date(log.date.year, log.date.month, log.date.day)
+#                     modified_date = datetime.combine(log_date_converted, datetime.time(0, 0, second_offset_int))
+#                 except AttributeError:
+#                     continue
+#                 except TypeError as e:
+#                     continue
+#             except TypeError as e:
+#                 continue
+
+#             food_data.append({
+#                 'username': user.username, #corrected
+#                 'date': modified_date,
+#                 'veggies': log.veggies,
+#                 'beans_lentils': log.beans_lentils,
+#                 'fruits_berries': log.fruits_berries,
+#                 'dairy': log.dairy,
+#                 'grains': log.grains,
+#             })
+#             fitness_data.append({
+#                 'username': user.username, #corrected
+#                 'date': modified_date,
+#                 'moderate_intensity': log.moderate_intensity,
+#                 'vigorous_intensity': log.vigorous_intensity,
+#                 'muscle_build': log.muscle_build,
+#                 'balance': log.balance,
+#             })
+#             second_offset += 1
+
+#     food_df = pd.DataFrame(food_data)
+#     fitness_df = pd.DataFrame(fitness_data)
+
+#     food_df = food_df.fillna(0) #uncommented
+#     fitness_df = fitness_df.fillna(0) #uncommented
+
+#     # Food Scatter Plot
+#     plt.figure(figsize=(10, 6))
+#     melted_food_df = food_df.melt(id_vars=['username', 'date'], var_name='category', value_name='value') #corrected
+#     sns.scatterplot(x='date', y='value', hue='category', data=melted_food_df)
+#     plt.title('Food Intake Over Time')
+#     plt.xticks(rotation=45, fontsize=8)
+#     plt.yticks(fontsize=8)
+#     plt.xlabel('Time (Seconds)', fontsize=8)
+#     plt.ylabel('Value', fontsize=8)
+#     plt.legend(fontsize=8)
+#     plt.tight_layout()
+#     food_plot = io.BytesIO()
+#     plt.savefig(food_plot, format='png')
+#     plt.close()
+
+#     # Fitness Scatter Plot
+#     plt.figure(figsize=(10, 6))
+#     melted_fitness_df = fitness_df.melt(id_vars=['username', 'date'], var_name='category', value_name='value') #corrected
+#     sns.scatterplot(x='date', y='value', hue='category', data=melted_fitness_df)
+#     plt.title('Fitness Duration Over Time')
+#     plt.xticks(rotation=45, fontsize=8)
+#     plt.yticks(fontsize=8)
+#     plt.xlabel('Time (Seconds)', fontsize=8)
+#     plt.ylabel('Value', fontsize=8)
+#     plt.legend(fontsize=8)
+#     plt.tight_layout()
+#     fitness_plot = io.BytesIO()
+#     plt.savefig(fitness_plot, format='png')
+#     plt.close()
+
+#     food_base64 = base64.b64encode(food_plot.getvalue()).decode('utf-8')
+#     fitness_base64 = base64.b64encode(fitness_plot.getvalue()).decode('utf-8')
+
+#     return {'food_plot': food_base64, 'fitness_plot': fitness_base64}
+import io
+import base64
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+
+# def generate_line_graphs(users):
+#     food_data = []
+#     fitness_data = []
+#     for user in users:
+#         logs = Mydailylog.objects.filter(customuser=user).order_by('date')
+#         for log in logs:
+#             food_data.append({
+#                 'username': user.username,
+#                 'date': log.date,
+#                 'veggies': log.veggies,
+#                 'beans_lentils': log.beans_lentils,
+#                 'fruits_berries': log.fruits_berries,
+#                 'dairy': log.dairy,
+#                 'grains': log.grains,
+#             })
+#             fitness_data.append({
+#                 'username': user.username,
+#                 'date': log.date,
+#                 'moderate_intensity': log.moderate_intensity,
+#                 'vigorous_intensity': log.vigorous_intensity,
+#                 'muscle_build': log.muscle_build,
+#                 'balance': log.balance,
+#             })
+
+#     food_df = pd.DataFrame(food_data)
+#     fitness_df = pd.DataFrame(fitness_data)
+#     food_df = food_df.fillna(0)
+#     fitness_df = fitness_df.fillna(0)
+#     print(food_df)
+#     print(fitness_df)
+
+#     # Food Line Graph
+#     plt.figure(figsize=(4, 6))
+#     melted_food_df = food_df.melt(id_vars=['username', 'date'], var_name='category', value_name='value').reset_index() # added reset_index()
+#     sns.lineplot(x='date', y='value', hue='category', data=melted_food_df, errorbar=None)
+#     plt.title('Food Intake Over Time')
+#     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+#     plt.xticks(rotation=45, fontsize=8)
+#     plt.yticks(fontsize=8)
+#     plt.ylabel('Value', fontsize=8)
+#     plt.legend(fontsize=8)
+#     plt.tight_layout()
+#     food_plot = io.BytesIO()
+#     plt.savefig(food_plot, format='png')
+#     plt.close()
+
+#     # Fitness Line Graph
+#     plt.figure(figsize=(4, 6))
+#     melted_fitness_df = fitness_df.melt(id_vars=['username', 'date'], var_name='category', value_name='value').reset_index() # added reset_index()
+#     sns.lineplot(x='date', y='value', hue='category', data=melted_fitness_df, errorbar=None)
+#     plt.title('Fitness Duration Over Time')
+#     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+#     plt.xticks(rotation=45, fontsize=8)
+#     plt.yticks(fontsize=8)
+#     plt.xlabel('Date', fontsize=8)
+#     plt.ylabel('Value', fontsize=8)
+#     plt.legend(fontsize=8)
+#     plt.tight_layout()
+#     fitness_plot = io.BytesIO()
+#     plt.savefig(fitness_plot, format='png')
+#     plt.close()
+
+#     food_base64 = base64.b64encode(food_plot.getvalue()).decode('utf-8')
+#     fitness_base64 = base64.b64encode(fitness_plot.getvalue()).decode('utf-8')
+
+#     return {'food_plot': food_base64, 'fitness_plot': fitness_base64}
+def generate_line_graphs(users):
+    food_data = []
+    fitness_data = []
+    for user in users:
+        logs = Mydailylog.objects.filter(customuser=user).order_by('date')
+        for log in logs:
+            food_data.append({
+                'username': user.username,
+                'date': log.date,
+                'veggies': log.veggies,
+                'beans_lentils': log.beans_lentils,
+                'fruits_berries': log.fruits_berries,
+                'dairy': log.dairy,
+                'grains': log.grains,
+            })
+            fitness_data.append({
+                'username': user.username,
+                'date': log.date,
+                'moderate_intensity': log.moderate_intensity,
+                'vigorous_intensity': log.vigorous_intensity,
+                'muscle_build': log.muscle_build,
+                'balance': log.balance,
+            })
+
+    food_df = pd.DataFrame(food_data)
+    fitness_df = pd.DataFrame(fitness_data)
+    food_df = food_df.fillna(0)
+    fitness_df = fitness_df.fillna(0)
+    print(food_df)
+
+    # Food Line Graph
+    plt.figure(figsize=(11, 5))
+    melted_food_df = food_df.melt(id_vars=['username', 'date'], var_name='category', value_name='Food groups').reset_index()
+    sns.lineplot(x='date', y='Food groups', hue='category', data=melted_food_df, errorbar=None)
+    plt.title('Food Intake')
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+    plt.xticks(rotation=45, fontsize=9)
+    plt.yticks(fontsize=9)
+    plt.xlabel('')
+    plt.ylabel('Value', fontsize=9)
+    plt.legend(fontsize=11)
+    plt.tight_layout()
+    food_plot = io.BytesIO()
+    plt.savefig(food_plot, format='png')
+    plt.close()
+
+    # Fitness Line Graph
+    plt.figure(figsize=(11, 5))
+    melted_fitness_df = fitness_df.melt(id_vars=['username', 'date'], var_name='category', value_name='Fitness types').reset_index()
+    sns.lineplot(x='date', y='Fitness types', hue='category', data=melted_fitness_df, errorbar=None)
+    plt.title('Fitness Durations')
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+    plt.xticks(rotation=45, fontsize=9)
+    plt.yticks(fontsize=9)
+    plt.xlabel('')
+    # plt.xlabel('Date', fontsize=9)
+    plt.ylabel('Value', fontsize=9)
+    plt.legend(fontsize=11)
+    plt.tight_layout()
+    fitness_plot = io.BytesIO()
+    plt.savefig(fitness_plot, format='png')
+    plt.close()
+
+    food_base64 = base64.b64encode(food_plot.getvalue()).decode('utf-8')
+    fitness_base64 = base64.b64encode(fitness_plot.getvalue()).decode('utf-8')
+
+    return {'food_plot': food_base64, 'fitness_plot': fitness_base64}
+
 @login_required
 def list_users(request):
-
-    dietician_username = request.session.get('dietician_username') # Retrieve from the session
+    dietician_username = request.session.get('dietician_username')
     print(f"Dietician username from session: {dietician_username}")
-    print(type(request.user))  # Print the type of request.user
+    print(type(request.user))
 
     User = get_user_model()
-    if isinstance(request.user, User):  # Check if it's your custom user model
-        current_user = request.user
-    else:
-        current_user = User.objects.get(pk=request.user.pk) # Get the CustomUser instance
+    current_user = request.user if isinstance(request.user, User) else User.objects.get(pk=request.user.pk)
 
-    current_user = CustomUser.objects.get(id=request.user.id) 
-    
     if request.user.is_authenticated:
-         
-         print("now printing request.user")
-         print(request.user)
-    
+        # print("now printing request.user")
+        print(request.user)
+
     users = CustomUser.objects.exclude(Q(username='juhik') | Q(is_superuser=True))
     allowed_user = CustomUser.objects.get(username='juhik')
-    print(allowed_user)
+    # print(allowed_user)
 
     user_data = []
     for user in users:
+        image_data = generate_line_graphs([user])  # Generate graphs for each user
         latest_healthsym = user.healthsym_set.order_by('-created_at').first()
 
-        # Initialize variables *outside* the try block
         minor1 = None
         minor2 = None
         minor3 = None
@@ -705,7 +927,7 @@ def list_users(request):
         balance = None
 
         try:
-            myfoodgroups_record = user.myfoodgroups  # Access directly
+            myfoodgroups_record = user.myfoodgroups
             veggies = myfoodgroups_record.All_veggies if myfoodgroups_record else None
             beans_lentils = myfoodgroups_record.Beans_Lentils if myfoodgroups_record else None
             fruits_berries = myfoodgroups_record.Fruits_Berries if myfoodgroups_record else None
@@ -714,22 +936,21 @@ def list_users(request):
             grains = myfoodgroups_record.Grains if myfoodgroups_record else None
 
         except Myfoodgroups.DoesNotExist:
-            pass # All the values are already initialized to None
+            pass
 
         try:
-             myfitness_record = user.myfitness
-             moderate_intensity = myfitness_record.moderate_intensity if myfitness_record else None
-             vigorous_intensity = myfitness_record.vigorous_intensity if myfitness_record else None
-             muscle_build = myfitness_record.muscle_build if myfitness_record else None
-             balance = myfitness_record.balance if myfitness_record else None
+            myfitness_record = user.myfitness
+            moderate_intensity = myfitness_record.moderate_intensity if myfitness_record else None
+            vigorous_intensity = myfitness_record.vigorous_intensity if myfitness_record else None
+            muscle_build = myfitness_record.muscle_build if myfitness_record else None
+            balance = myfitness_record.balance if myfitness_record else None
 
         except Myfitness.DoesNotExist:
-            pass # All the values are already initialized to None
-                 
-        
-        if latest_healthsym: # Check if it exists before accessing attributes
+            pass
+
+        if latest_healthsym:
             minor1 = latest_healthsym.Minor1
-            print(minor1)
+            # print(minor1)
             minor2 = latest_healthsym.Minor2
             minor3 = latest_healthsym.Minor3
             minor4 = latest_healthsym.Minor4
@@ -763,24 +984,23 @@ def list_users(request):
             'vigorous_intensity': vigorous_intensity,
             'muscle_build': muscle_build,
             'balance': balance,
+            'image_data': image_data, #add image_data to the context
         })
 
     form = DieticiannoteForm(request.POST or None)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        # ... any other processing for the form ...
-
     context = {
         'users': user_data,
-        'form': form,  # Include the form in the context
+        'form': form,
         'allowed_user': allowed_user,
     }
     template_name = 'dietician_dashboard.html'
+    return render(request, template_name, context=context) 
 
-    return render(request, template_name, context=context)   
+
+
 
 @login_required
-def health_dashboard(request):
+def incoming_dashboard(request):
     try:
         myfoodgroups = request.user.myfoodgroups
         myfitness = request.user.myfitness
@@ -789,7 +1009,7 @@ def health_dashboard(request):
         # Prepare food data
         food_data = {
             'Categories': ['Veggies', 'Beans', 'Fruits', 'Protein', 'Dairy', 'Grains'],
-            'Your Intake': [myfoodgroups.All_veggies, myfoodgroups.Beans_Lentils, myfoodgroups.Fruits_Berries, 
+            'Your Intake': [myfoodgroups.All_veggies, myfoodgroups.Beans_Lentils, myfoodgroups.Fruits_Berries,
                            myfoodgroups.Protein, myfoodgroups.Dairy, myfoodgroups.Grains],
             'USDA': [2.5, 1.5, 2.0, 5.0, 3.0, 3.0]
         }
@@ -799,7 +1019,7 @@ def health_dashboard(request):
         # Prepare fitness data
         fitness_data = {
             'Categories': ['Moderate', 'Vigorous', 'Muscle', 'Balance'],
-            'Your Duration': [myfitness.moderate_intensity, myfitness.vigorous_intensity, 
+            'Your Duration': [myfitness.moderate_intensity, myfitness.vigorous_intensity,
                              myfitness.muscle_build, myfitness.balance],
             'HHS': [300, 75, 60, 100]
         }
@@ -808,32 +1028,31 @@ def health_dashboard(request):
 
         # Prepare weekly expense data
         weekly_expense_data = {
-            'Category': ['Misc', 'Eat Out', 'Groceries',],
+            'Category': ['Misc', 'Eat Out', 'Groceries', ],
             'Cost': [
-                 myexpenses.Misc_expenses,
-                myexpenses.weekly_eatout_cost, 
-                myexpenses.weekly_grocery_cost, 
-                
+                myexpenses.Misc_expenses,
+                myexpenses.weekly_eatout_cost,
+                myexpenses.weekly_grocery_cost,
             ]
         }
         weekly_expense_df = pd.DataFrame(weekly_expense_data)
 
         # Prepare monthly expense data
         monthly_expense_data = {
-            'Category': ['Gym','OOP','Insurance', 'Office Visit', 'Prescriptions'],
+            'Category': ['Gym', 'OOP', 'Insurance', 'Office Visit', 'Prescriptions'],
             'Cost': [
-                myexpenses.gym_cost, 
-                myexpenses.oop_cost, 
-                myexpenses.insurance_premium, 
-                myexpenses.office_visit_cost, 
-                myexpenses.prescription_cost, 
+                myexpenses.gym_cost,
+                myexpenses.oop_cost,
+                myexpenses.insurance_premium,
+                myexpenses.office_visit_cost,
+                myexpenses.prescription_cost,
             ]
         }
         monthly_expense_df = pd.DataFrame(monthly_expense_data)
 
         # Create Seaborn plots
         sns.set_theme(style="white")  # Set style to 'white' to remove gridlines
-        fig, axes = plt.subplots(2, 2, figsize=(10, 8), gridspec_kw={'hspace': 0.5, 'wspace': 0.05}) 
+        fig, axes = plt.subplots(2, 2, figsize=(10, 8), gridspec_kw={'hspace': 0.5, 'wspace': 0.05})
         plt.subplots_adjust(left=0.1, right=0.95, top=0.92, bottom=0.05)
         # Food Plot
         sns.barplot(x='Categories', y='Intake', hue='Source', data=food_df, palette=["#377eb8", "#e41a1c"], ax=axes[0, 0], width=0.6, edgecolor='white')
@@ -843,7 +1062,7 @@ def health_dashboard(request):
         axes[0, 0].legend(fontsize=13)
         axes[0, 0].set_xlabel('')  # Remove x-axis label
         for spine in axes[0, 0].spines.values():
-            spine.set_linewidth(0.5) 
+            spine.set_linewidth(0.5)
             spine.set_color('white')
 
         # Fitness Plot
@@ -857,60 +1076,55 @@ def health_dashboard(request):
             spine.set_linewidth(0.5)
             spine.set_color('white')
 
-
         # Weekly Expenses Pie Chart
-        labels=weekly_expense_df['Category']
-       
-        axes[0, 1].pie(weekly_expense_df['Cost'], labels=weekly_expense_df['Category'], autopct=lambda p: f'${round(p/100*weekly_expense_df["Cost"].sum())}', 
-        startangle=90, textprops={'fontsize': 12}, radius=1.0)
+        labels = weekly_expense_df['Category']
+        axes[0, 1].pie(weekly_expense_df['Cost'], labels=weekly_expense_df['Category'], autopct=lambda p: f'${round(p/100*weekly_expense_df["Cost"].sum())}',
+                       startangle=90, textprops={'fontsize': 12}, radius=1.0)
         axes[0, 1].set_title('Weekly Expenses', y=0.18)
-        
         for spine in axes[1, 1].spines.values():
             spine.set_linewidth(0.5)
 
         # Monthly Expenses Pie Chart
-        axes[1, 1].pie(monthly_expense_df['Cost'], labels=monthly_expense_df['Category'], autopct=lambda p: f'${round(p/100*monthly_expense_df["Cost"].sum())}', 
-        startangle=90, textprops={'fontsize': 12},radius=1.0)
+        axes[1, 1].pie(monthly_expense_df['Cost'], labels=monthly_expense_df['Category'], autopct=lambda p: f'${round(p/100*monthly_expense_df["Cost"].sum())}',
+                       startangle=90, textprops={'fontsize': 12}, radius=1.0)
         axes[1, 1].set_title('Monthly Expenses', y=0.19)
 
-        axes[0, 1].set_title('Weekly Expenses', fontsize=15 )  # Changed title text
-        axes[1, 1].set_title('Monthly Expenses', fontsize=15) # Changed title text
-
+        axes[0, 1].set_title('Weekly Expenses', fontsize=15)  # Changed title text
+        axes[1, 1].set_title('Monthly Expenses', fontsize=15)  # Changed title text
 
         fitness_data_wide = fitness_df.pivot(index='Categories', columns='Source', values='Duration')
 
         food_data_wide = food_df.pivot(index='Categories', columns='Source', values='Intake')
         for category in food_data_wide.index:
-          your_intake = food_data_wide.loc[category, 'Your Intake']
-          usda_intake = food_data_wide.loc[category, 'USDA']
+            your_intake = food_data_wide.loc[category, 'Your Intake']
+            usda_intake = food_data_wide.loc[category, 'USDA']
 
-          if usda_intake != 0:  # Avoid division by zero
-            percentage_of_usda = (your_intake / usda_intake) * 100  # Calculate as % of USDA
-            axes[0, 0].annotate(f"{percentage_of_usda:.1f}%", 
-                                xy=(category, max(your_intake, usda_intake) + 0.17),  # Adjust vertical offset as needed
-                                ha='center', fontsize=12, color='black')  # Adjust color as needed
-          else:
-            axes[0, 0].annotate("N/A",  # Or some other indicator for zero USDA
-                                xy=(category, max(your_intake, usda_intake) + 0.17),
-                                ha='center', fontsize=12, color='black')
+            if usda_intake != 0:  # Avoid division by zero
+                percentage_of_usda = (your_intake / usda_intake) * 100  # Calculate as % of USDA
+                axes[0, 0].annotate(f"{percentage_of_usda:.1f}%",
+                                    xy=(category, max(your_intake, usda_intake) + 0.17),  # Adjust vertical offset as needed
+                                    ha='center', fontsize=12, color='black')  # Adjust color as needed
+            else:
+                axes[0, 0].annotate("N/A",  # Or some other indicator for zero USDA
+                                    xy=(category, max(your_intake, usda_intake) + 0.17),
+                                    ha='center', fontsize=12, color='black')
 
         for category in fitness_data_wide.index:
-          your_duration = fitness_data_wide.loc[category, 'Your Duration']
-          hhs_duration = fitness_data_wide.loc[category, 'HHS']
+            your_duration = fitness_data_wide.loc[category, 'Your Duration']
+            hhs_duration = fitness_data_wide.loc[category, 'HHS']
 
-          if hhs_duration != 0:  # Avoid division by zero
-            percentage_of_hhs = (your_duration / hhs_duration) * 100  # Calculate as % of HHS
-            axes[1, 0].annotate(f"{percentage_of_hhs:.1f}%", 
-                                xy=(category, max(your_duration, hhs_duration) + 0.27),  # Adjust offset as needed
-                                ha='center', fontsize=12, color='black')  # Adjust color as needed
-          else:
-            axes[1, 0].annotate("N/A",  # Or some other indicator for zero HHS
-                                xy=(category, max(your_duration, hhs_duration) + 0.27),
-                                ha='center', fontsize=12, color='black')                         
+            if hhs_duration != 0:  # Avoid division by zero
+                percentage_of_hhs = (your_duration / hhs_duration) * 100  # Calculate as % of HHS
+                axes[1, 0].annotate(f"{percentage_of_hhs:.1f}%",
+                                    xy=(category, max(your_duration, hhs_duration) + 0.27),  # Adjust offset as needed
+                                    ha='center', fontsize=12, color='black')  # Adjust color as needed
+            else:
+                axes[1, 0].annotate("N/A",  # Or some other indicator for zero HHS
+                                    xy=(category, max(your_duration, hhs_duration) + 0.27),
+                                    ha='center', fontsize=12, color='black')
 
-        # 
         # plt.rcParams['figure.constrained_layout.use'] = True
-        plt.savefig('fig.png',bbox_inches='tight')
+        plt.savefig('fig.png', bbox_inches='tight')
 
         # Convert plot to image
         buf = io.BytesIO()
@@ -918,13 +1132,14 @@ def health_dashboard(request):
         plt.close()
         image_data = base64.b64encode(buf.getvalue()).decode('utf-8')
 
-        return render(request, 'landing-bootstrap.html', {'image_data': image_data})
+        return render(request, 'incoming_profile.html', {'image_data': image_data})
 
     except (Myfoodgroups.DoesNotExist, Myfitness.DoesNotExist, Myexpenses.DoesNotExist):
-        return render(request, 'missing_data.html')      
+        return render(request, 'missing_data.html')
 
-# ------------------------------------------------------------------------
-# ------------------------------------------------------------------------    
+
+# # ------------------------------------------------------------------------
+# # ------------------------------------------------------------------------    
 def testauthview(request):
     if request.user.is_authenticated:
         print(request.user)
@@ -934,6 +1149,185 @@ def testauthview(request):
         # return HttpResponse("User is authenticated")
     # else:
     return HttpResponse("User is not authenticated")  
+
+    
+from datetime import datetime, timedelta
+
+@login_required
+def health_dashboard(request):
+    image_data = None  # Initialize image_data here
+
+    try:
+        myfoodgroups = request.user.myfoodgroups
+        myfitness = request.user.myfitness
+        myexpenses = request.user.myexpenses
+
+        # Check for Mymonthlyexpenses data
+        top3_expenses = Mymonthlyexpenses.objects.filter(customuser=request.user).order_by('-id').first()
+
+        if top3_expenses:
+            # Use data from Mymonthlyexpenses for monthly expenses
+            monthly_expense_data = {
+                'Category': ['Gym', 'OOP', 'Insurance', 'Office Visit', 'Prescriptions'],
+                'Cost': [
+                    top3_expenses.gym_cost,
+                    top3_expenses.oop_cost,
+                    top3_expenses.insurance_premium,
+                    top3_expenses.office_visit_cost,
+                    top3_expenses.prescription_cost,
+                ]
+            }
+        else:
+            # Use data from myexpenses if Mymonthlyexpenses doesn't exist
+            monthly_expense_data = {
+                'Category': ['Gym', 'OOP', 'Insurance', 'Office Visit', 'Prescriptions'],
+                'Cost': [
+                    myexpenses.gym_cost,
+                    myexpenses.oop_cost,
+                    myexpenses.insurance_premium,
+                    myexpenses.office_visit_cost,
+                    myexpenses.prescription_cost,
+                ]
+            }
+
+        # Check for Mydailylog data for weekly expenses
+        monday = datetime.now().date() - timedelta(days=datetime.now().weekday())
+        sunday = monday + timedelta(days=6)
+        daily_logs = Mydailylog.objects.filter(customuser=request.user, date__range=[monday, sunday])
+        # print(daily_logs)
+
+        if daily_logs.exists():
+            # Calculate weekly expenses from Mydailylog
+            # print('dailylog exists')
+            total_eatout = sum(log.daily_eatout_cost for log in daily_logs if log.daily_eatout_cost)
+            total_misc = sum(log.daily_misc_cost for log in daily_logs if log.daily_misc_cost)
+            total_grocery = sum(log.daily_grocery_cost for log in daily_logs if log.daily_grocery_cost)
+
+            # print(total_eatout)
+            # print(total_misc)
+            # print(total_grocery)
+
+            weekly_expense_data = {
+                'Category': ['Misc', 'Eat Out', 'Groceries'],
+                'Cost': [total_misc, total_eatout, total_grocery],
+            }
+        else:
+            # Use data from Myexpenses if no Mydailylog records
+            weekly_expense_data = {
+                'Category': ['Misc', 'Eat Out', 'Groceries'],
+                'Cost': [
+                    myexpenses.Misc_expenses,
+                    myexpenses.weekly_eatout_cost,
+                    myexpenses.weekly_grocery_cost,
+                ]
+            }
+
+        # Create DataFrames
+        weekly_expense_df = pd.DataFrame(weekly_expense_data)
+        monthly_expense_df = pd.DataFrame(monthly_expense_data)
+
+        # Prepare food and fitness data
+        food_data = {
+            'Categories': ['Veggies', 'Beans', 'Fruits', 'Protein', 'Dairy', 'Grains'],
+            'Your Intake': [myfoodgroups.All_veggies, myfoodgroups.Beans_Lentils, myfoodgroups.Fruits_Berries, 
+                           myfoodgroups.Protein, myfoodgroups.Dairy, myfoodgroups.Grains],
+            'USDA': [2.5, 1.5, 2.0, 5.0, 3.0, 3.0]
+        }
+        food_df = pd.DataFrame(food_data)
+        food_df = food_df.melt(id_vars='Categories', var_name='Source', value_name='Intake')
+
+        fitness_data = {
+            'Categories': ['Moderate', 'Vigorous', 'Muscle', 'Balance'],
+            'Your Duration': [myfitness.moderate_intensity, myfitness.vigorous_intensity, 
+                             myfitness.muscle_build, myfitness.balance],
+            'HHS': [300, 75, 60, 100]
+        }
+        fitness_df = pd.DataFrame(fitness_data)
+        fitness_df = fitness_df.melt(id_vars='Categories', var_name='Source', value_name='Duration')
+
+        # Create Seaborn plots
+        sns.set_theme(style="white")
+        fig, axes = plt.subplots(2, 2, figsize=(10, 8), gridspec_kw={'hspace': 0.5, 'wspace': 0.05})
+        plt.subplots_adjust(left=0.1, right=0.95, top=0.92, bottom=0.05)
+
+        # Food Plot
+        sns.barplot(x='Categories', y='Intake', hue='Source', data=food_df, palette=["#377eb8", "#e41a1c"], ax=axes[0, 0], width=0.6, edgecolor='white')
+        axes[0, 0].set_ylabel('Cup Servings', fontsize=15)
+        axes[0, 0].set_title('Food Intake vs. USDA', y=1.07, fontsize=15)
+        axes[0, 0].tick_params(axis='x', labelsize=11)
+        axes[0, 0].legend(fontsize=13)
+        axes[0, 0].set_xlabel('')
+        for spine in axes[0, 0].spines.values():
+            spine.set_linewidth(0.5)
+            spine.set_color('white')
+
+        # Fitness Plot
+        sns.barplot(x='Categories', y='Duration', hue='Source', data=fitness_df, palette=["#1f77b4", "#9467bd"], ax=axes[1, 0], edgecolor='white')
+        axes[1, 0].set_ylabel('Minutes', fontsize=15)
+        axes[1, 0].set_title('Fitness Duration vs. HHS', y=1.07, fontsize=15)
+        axes[1, 0].tick_params(axis='x', labelsize=12)
+        axes[1, 0].legend(fontsize=13)
+        axes[1, 0].set_xlabel('')
+        for spine in axes[1, 0].spines.values():
+            spine.set_linewidth(0.5)
+            spine.set_color('white')
+
+        # Weekly Expenses Pie Chart
+        labels = weekly_expense_df['Category']
+        axes[0, 1].pie(weekly_expense_df['Cost'], labels=labels, autopct=lambda p: f'${round(p/100*weekly_expense_df["Cost"].sum())}', 
+                       startangle=90, textprops={'fontsize': 12}, radius=1.0)
+        axes[0, 1].set_title('Weekly Expenses', fontsize=15)
+
+        # Monthly Expenses Pie Chart
+        axes[1, 1].pie(monthly_expense_df['Cost'], labels=monthly_expense_df['Category'], autopct=lambda p: f'${round(p/100*monthly_expense_df["Cost"].sum())}', 
+                       startangle=90, textprops={'fontsize': 12}, radius=1.0)
+        axes[1, 1].set_title('Monthly Expenses', fontsize=15)
+
+        # Calculate and annotate percentages
+        fitness_data_wide = fitness_df.pivot(index='Categories', columns='Source', values='Duration')
+        food_data_wide = food_df.pivot(index='Categories', columns='Source', values='Intake')
+
+        for category in food_data_wide.index:
+            your_intake = food_data_wide.loc[category, 'Your Intake']
+            usda_intake = food_data_wide.loc[category, 'USDA']
+
+            if usda_intake != 0:
+                percentage_of_usda = (your_intake / usda_intake) * 100
+                axes[0, 0].annotate(f"{percentage_of_usda:.1f}%", 
+                                    xy=(category, max(your_intake, usda_intake) + 0.17),
+                                    ha='center', fontsize=12, color='black')
+            else:
+                axes[0, 0].annotate("N/A",
+                                    xy=(category, max(your_intake, usda_intake) + 0.17),
+                                    ha='center', fontsize=12, color='black')
+
+        for category in fitness_data_wide.index:
+            your_duration = fitness_data_wide.loc[category, 'Your Duration']
+            hhs_duration = fitness_data_wide.loc[category, 'HHS']
+
+            if hhs_duration != 0:
+                percentage_of_hhs = (your_duration / hhs_duration) * 100
+                axes[1, 0].annotate(f"{percentage_of_hhs:.1f}%", 
+                                    xy=(category, max(your_duration, hhs_duration) + 0.27),
+                                    ha='center', fontsize=12, color='black')
+            else:
+                axes[1, 0].annotate("N/A",
+                                    xy=(category, max(your_duration, hhs_duration) + 0.27),
+                                    ha='center', fontsize=12, color='black')
+
+        # Convert plot to image
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', bbox_inches='tight')
+        plt.close()
+        image_data = base64.b64encode(buf.getvalue()).decode('utf-8')
+
+    except (Myfoodgroups.DoesNotExist, Myfitness.DoesNotExist, Myexpenses.DoesNotExist, Mymonthlyexpenses.DoesNotExist):
+        return render(request, 'landing-bootstrap.html', {'image_data': 'Error: Missing data'}) #error message.
+
+    return render(request, 'landing-bootstrap.html', {'image_data': image_data})
+
+
+
 
 
 # @login_required
@@ -975,68 +1369,7 @@ def MyexpensesView(request):
   return render(request, 'myexpenses.html', context=context)
   print(request.user)
   
-# def ExpensesUpdateView(request):
-#     current_user = CustomUser.objects.get(pk=request.user.id)
-#     form = MyexpensesForm(request.POST or None, instance=current_user)
-#     form_ver = MyexpensesverForm(request.POST or None, instance=current_user)
-#     myexpenses = Myexpenses.objects.all().get(customuser=request.user.id)
 
-#     if form_ver.is_valid():
-#         print(request.user) 
-#         obj=form_ver.save(commit=False)
-#         obj=form_ver.cleaned_data
-#         New_expenses=Myexpenses_ver(customuser=request.user,
-#         family_eatout_count=myexpenses.family_eatout_count,
-#         weekly_eatout_cost=myexpenses.weekly_eatout_cost,
-#         family_grocery_count=myexpenses.family_grocery_count,
-#         weekly_grocery_cost=myexpenses.weekly_grocery_cost,
-#         Misc_expense_member=myexpenses.Misc_expense_member,
-#         Misc_expenses=myexpenses.Misc_expenses,
-#         family_premium_count=myexpenses.family_premium_count,
-#         insurance_premium=myexpenses.insurance_premium,
-#         members_for_office_visit=myexpenses.members_for_office_visit,
-#         office_visit_cost=myexpenses.office_visit_cost,
-#         members_for_prescriptions=myexpenses.members_for_prescriptions,
-#         prescription_cost=myexpenses.prescription_cost,
-#         members_for_oop=myexpenses.members_for_oop,
-#         oop_cost=myexpenses.oop_cost,
-#         members_for_gym=myexpenses.members_for_gym,
-#         gym_cost=myexpenses.gym_cost)
-
-#         New_expenses.save()
-#     else:
-#       print(form.errors)    
-#     if form.is_valid():
-#       obj=form.save(commit=False)
-#       obj=form.cleaned_data
-#       myexpenses.family_eatout_count=obj['family_eatout_count']
-#       myexpenses.weekly_eatout_cost=obj['weekly_eatout_cost']
-#       myexpenses.family_grocery_count=obj['family_grocery_count']
-#       myexpenses.weekly_grocery_cost=obj['weekly_grocery_cost']
-#       myexpenses.Misc_expense_member=obj['Misc_expense_member']
-#       myexpenses.Misc_expenses=obj['Misc_expenses']
-#       myexpenses.family_premium_count=obj['family_premium_count']
-#       myexpenses.insurance_premium=obj['insurance_premium']
-#       myexpenses.members_for_office_visit=obj['members_for_office_visit']
-#       myexpenses.office_visit_cost=obj['office_visit_cost']
-#       myexpenses.members_for_prescriptions=obj['members_for_prescriptions']
-#       myexpenses.prescription_cost=obj['prescription_cost']
-#       myexpenses.members_for_oop=obj['members_for_oop']
-#       myexpenses.oop_cost=obj['oop_cost']
-#       myexpenses.members_for_gym=obj['members_for_gym']
-#       myexpenses.gym_cost=obj['gym_cost']
-
-#       myexpenses.save()
-            
-#       return redirect('landing')
-
-#     context={
-#           'form':form,
-#           'myexpenses_ver':Myexpenses_ver,
-#           'myexpenses':myexpenses,
-#         }  
-        
-#     return render(request, 'myexpensesupdate.html', context=context) 
 
 
 @login_required
@@ -2127,3 +2460,184 @@ def sql(request):
 #             return redirect('landing')            
 
 # Clean this up, ensure that more dieticians can be added in the future
+
+# @login_required
+# def health_dashboard(request):
+#     try:
+#         myfoodgroups = request.user.myfoodgroups
+#         myfitness = request.user.myfitness
+#         myexpenses = request.user.myexpenses # use myexpenses for weekly.
+
+#         # Check for Mymonthlyexpenses data
+#         top3_expenses = Mymonthlyexpenses.objects.filter(customuser=request.user).order_by('-id').first()
+
+#         if top3_expenses:
+#             # Use data from Mymonthlyexpenses for monthly expenses
+#             monthly_expense_data = {
+#                 'Category': ['Gym', 'OOP', 'Insurance', 'Office Visit', 'Prescriptions'],
+#                 'Cost': [
+#                     top3_expenses.gym_cost,
+#                     top3_expenses.oop_cost,
+#                     top3_expenses.insurance_premium,
+#                     top3_expenses.office_visit_cost,
+#                     top3_expenses.prescription_cost,
+#                 ]
+#             }
+#         else:
+#             # Use data from myexpenses if Mymonthlyexpenses doesn't exist
+#             monthly_expense_data = {
+#                 'Category': ['Gym', 'OOP', 'Insurance', 'Office Visit', 'Prescriptions'],
+#                 'Cost': [
+#                     myexpenses.gym_cost,
+#                     myexpenses.oop_cost,
+#                     myexpenses.insurance_premium,
+#                     myexpenses.office_visit_cost,
+#                     myexpenses.prescription_cost,
+#                 ]
+#             }
+
+#         # Prepare weekly expense data from Myexpenses
+#         weekly_expense_data = {
+#             'Category': ['Misc', 'Eat Out', 'Groceries'],
+#             'Cost': [
+#                 myexpenses.Misc_expenses,
+#                 myexpenses.weekly_eatout_cost,
+#                 myexpenses.weekly_grocery_cost,
+#             ]
+#         }
+
+#         # Prepare food and fitness data (same as before)
+#         food_data = {
+#             'Categories': ['Veggies', 'Beans', 'Fruits', 'Protein', 'Dairy', 'Grains'],
+#             'Your Intake': [myfoodgroups.All_veggies, myfoodgroups.Beans_Lentils, myfoodgroups.Fruits_Berries, 
+#                            myfoodgroups.Protein, myfoodgroups.Dairy, myfoodgroups.Grains],
+#             'USDA': [2.5, 1.5, 2.0, 5.0, 3.0, 3.0]
+#         }
+#         food_df = pd.DataFrame(food_data)
+#         food_df = food_df.melt(id_vars='Categories', var_name='Source', value_name='Intake')
+
+#         fitness_data = {
+#             'Categories': ['Moderate', 'Vigorous', 'Muscle', 'Balance'],
+#             'Your Duration': [myfitness.moderate_intensity, myfitness.vigorous_intensity, 
+#                              myfitness.muscle_build, myfitness.balance],
+#             'HHS': [300, 75, 60, 100]
+#         }
+#         fitness_df = pd.DataFrame(fitness_data)
+#         fitness_df = fitness_df.melt(id_vars='Categories', var_name='Source', value_name='Duration')
+
+#         # Create Seaborn plots (same as before)
+#         sns.set_theme(style="white")
+#         fig, axes = plt.subplots(2, 2, figsize=(10, 8), gridspec_kw={'hspace': 0.5, 'wspace': 0.05})
+#         plt.subplots_adjust(left=0.1, right=0.95, top=0.92, bottom=0.05)
+
+#         # Food Plot
+#         sns.barplot(x='Categories', y='Intake', hue='Source', data=food_df, palette=["#377eb8", "#e41a1c"], ax=axes[0, 0], width=0.6, edgecolor='white')
+#         axes[0, 0].set_ylabel('Cup Servings', fontsize=15)
+#         axes[0, 0].set_title('Food Intake vs. USDA', y=1.07, fontsize=15)
+#         axes[0, 0].tick_params(axis='x', labelsize=11)
+#         axes[0, 0].legend(fontsize=13)
+#         axes[0, 0].set_xlabel('')
+#         for spine in axes[0, 0].spines.values():
+#             spine.set_linewidth(0.5)
+#             spine.set_color('white')
+
+#         # Fitness Plot
+#         sns.barplot(x='Categories', y='Duration', hue='Source', data=fitness_df, palette=["#1f77b4", "#9467bd"], ax=axes[1, 0], edgecolor='white')
+#         axes[1, 0].set_ylabel('Minutes', fontsize=15)
+#         axes[1, 0].set_title('Fitness Duration vs. HHS', y=1.07, fontsize=15)
+#         axes[1, 0].tick_params(axis='x', labelsize=12)
+#         axes[1, 0].legend(fontsize=13)
+#         axes[1, 0].set_xlabel('')
+#         for spine in axes[1, 0].spines.values():
+#             spine.set_linewidth(0.5)
+#             spine.set_color('white')
+
+#         # Weekly Expenses Pie Chart
+#         labels = weekly_expense_df['Category']
+#         axes[0, 1].pie(weekly_expense_df['Cost'], labels=labels, autopct=lambda p: f'${round(p/100*weekly_expense_df["Cost"].sum())}', 
+#                        startangle=90, textprops={'fontsize': 12}, radius=1.0)
+#         axes[0, 1].set_title('Weekly Expenses', fontsize=15)
+
+#         # Monthly Expenses Pie Chart
+#         axes[1, 1].pie(monthly_expense_data['Cost'], labels=monthly_expense_data['Category'], autopct=lambda p: f'${round(p/100*monthly_expense_data["Cost"].sum())}', 
+#                        startangle=90, textprops={'fontsize': 12}, radius=1.0)
+#         axes[1, 1].set_title('Monthly Expenses', fontsize=15)
+
+#         # Calculate and annotate percentages (same as before)
+#         fitness_data_wide = fitness_df.pivot(index='Categories', columns='Source', values='Duration')
+#         food_data_wide = food_df.pivot(index='Categories', columns='Source', values='Intake')
+#         # ... (rest of the percentage calculation and annotation code)
+
+#         # Convert plot to image (same as before)
+#         buf = io.BytesIO()
+#         plt.savefig(buf, format='png', bbox_inches='tight')
+#         plt.close()
+#         image_data = base64.b64encode(buf.getvalue()).decode('utf-8')
+
+#         return render(request, 'landing-bootstrap.html', {'image_data': image_data})
+
+#     except (Myfoodgroups.DoesNotExist, Myfitness.DoesNotExist, Myexpenses.DoesNotExist, Mymonthlyexpenses.DoesNotExist):
+#         return render(request, 'missing_data.html')
+
+# def ExpensesUpdateView(request):
+#     current_user = CustomUser.objects.get(pk=request.user.id)
+#     form = MyexpensesForm(request.POST or None, instance=current_user)
+#     form_ver = MyexpensesverForm(request.POST or None, instance=current_user)
+#     myexpenses = Myexpenses.objects.all().get(customuser=request.user.id)
+
+#     if form_ver.is_valid():
+#         print(request.user) 
+#         obj=form_ver.save(commit=False)
+#         obj=form_ver.cleaned_data
+#         New_expenses=Myexpenses_ver(customuser=request.user,
+#         family_eatout_count=myexpenses.family_eatout_count,
+#         weekly_eatout_cost=myexpenses.weekly_eatout_cost,
+#         family_grocery_count=myexpenses.family_grocery_count,
+#         weekly_grocery_cost=myexpenses.weekly_grocery_cost,
+#         Misc_expense_member=myexpenses.Misc_expense_member,
+#         Misc_expenses=myexpenses.Misc_expenses,
+#         family_premium_count=myexpenses.family_premium_count,
+#         insurance_premium=myexpenses.insurance_premium,
+#         members_for_office_visit=myexpenses.members_for_office_visit,
+#         office_visit_cost=myexpenses.office_visit_cost,
+#         members_for_prescriptions=myexpenses.members_for_prescriptions,
+#         prescription_cost=myexpenses.prescription_cost,
+#         members_for_oop=myexpenses.members_for_oop,
+#         oop_cost=myexpenses.oop_cost,
+#         members_for_gym=myexpenses.members_for_gym,
+#         gym_cost=myexpenses.gym_cost)
+
+#         New_expenses.save()
+#     else:
+#       print(form.errors)    
+#     if form.is_valid():
+#       obj=form.save(commit=False)
+#       obj=form.cleaned_data
+#       myexpenses.family_eatout_count=obj['family_eatout_count']
+#       myexpenses.weekly_eatout_cost=obj['weekly_eatout_cost']
+#       myexpenses.family_grocery_count=obj['family_grocery_count']
+#       myexpenses.weekly_grocery_cost=obj['weekly_grocery_cost']
+#       myexpenses.Misc_expense_member=obj['Misc_expense_member']
+#       myexpenses.Misc_expenses=obj['Misc_expenses']
+#       myexpenses.family_premium_count=obj['family_premium_count']
+#       myexpenses.insurance_premium=obj['insurance_premium']
+#       myexpenses.members_for_office_visit=obj['members_for_office_visit']
+#       myexpenses.office_visit_cost=obj['office_visit_cost']
+#       myexpenses.members_for_prescriptions=obj['members_for_prescriptions']
+#       myexpenses.prescription_cost=obj['prescription_cost']
+#       myexpenses.members_for_oop=obj['members_for_oop']
+#       myexpenses.oop_cost=obj['oop_cost']
+#       myexpenses.members_for_gym=obj['members_for_gym']
+#       myexpenses.gym_cost=obj['gym_cost']
+
+#       myexpenses.save()
+            
+#       return redirect('landing')
+
+#     context={
+#           'form':form,
+#           'myexpenses_ver':Myexpenses_ver,
+#           'myexpenses':myexpenses,
+#         }  
+        
+#     return render(request, 'myexpensesupdate.html', context=context) 
