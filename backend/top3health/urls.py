@@ -43,7 +43,8 @@ from .views import MymonthlyexpensesView
 from .views import MyhabitsView
 
 from .views import MyHealthscreeningView
-# from .views import HealthscreeningUpdateView
+from .views import MyHealthscreeningUpdateView
+from .views import MyyearlyHealthscreeningUpdateView
 from django.contrib import admin
 from .views import list_users
 from .views import MyfoodsuggestionsView
@@ -70,7 +71,8 @@ urlpatterns = [
     path('myfoodsuggestions/', MyfoodsuggestionsView, name='myfoodsuggestions'),
     path('Dailylog/', DailylogView, name='Dailylog'),
     path('myhealthscreening/', MyHealthscreeningView, name='myhealthscreening'),
-    # path('healthscreeningupdate', HealthscreeningUpdateView, name='healthscreeningupdate'),
+    path('healthscreeningupdate', MyHealthscreeningUpdateView, name='healthscreeningupdate'),
+    path('yearlyhealthscreening',MyyearlyHealthscreeningUpdateView, name='yearlyhealthscreening'),
     path('minorsym/', MinorsymView, name='minorsym'),
     path('minorsymupdate/', MinorsymUpdateView, name='minorsymupdate'),
     path('myfitness/', MyfitnessView, name='myfitness'),

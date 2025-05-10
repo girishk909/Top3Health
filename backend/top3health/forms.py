@@ -272,7 +272,7 @@ class MyhabitsForm(forms.ModelForm):
 class MyhealthscreeningForm(forms.ModelForm):
   class Meta:
     model = Myhealthscreening
-    fields = ['Blood_glucose', 'A1C', 'BP_systolic', 'BP_diastolic', 'Total_Cholesterol', 'HDL', 'LDL', 'Triglycerides', 'Smoker', 'Blood_type','Dental_checkups', 'Dental_cleanings','Vision_checkups', 'Screen_date']  
+    fields = ['Blood_glucose', 'A1C', 'BP_systolic', 'BP_diastolic', 'Total_Cholesterol', 'HDL', 'LDL', 'Triglycerides', 'Smoker', 'Blood_type','dental_date', 'vision_date','Screen_date']  
   def __int__(self, *args, **kwargs):
         super(MyhealthscreeningForm, self).__int__(*args, **kwargs)
   

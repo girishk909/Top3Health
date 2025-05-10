@@ -487,6 +487,35 @@ def MyHealthscreeningView(request):
   template_name = 'healthscreening.html'
   return render(request, 'healthscreening.html', context=context)
 
+def MyHealthscreeningUpdateView(request):
+  form=MyhealthscreeningForm(request.POST or None)
+  if form.is_valid():
+    print(request.user.id)
+    obj = form.save(commit=False)
+    obj.customuser_id=(request.user.id)
+    obj.save()
+    return redirect('/landing')
+  print(form.errors)
+  # form= ProfileForm()
+  context={'form':form}
+  template_name = 'healthscreeningupdate.html'
+  return render(request, 'healthscreeningupdate.html', context=context)
+
+def MyyearlyHealthscreeningUpdateView(request):
+  form=MyhealthscreeningForm(request.POST or None)
+  if form.is_valid():
+    print(request.user.id)
+    obj = form.save(commit=False)
+    obj.customuser_id=(request.user.id)
+    obj.save()
+    return redirect('/landing')
+  print(form.errors)
+  # form= ProfileForm()
+  context={'form':form}
+  template_name = 'yearlyhealthscreeningupdate.html'
+  return render(request, 'yearlyhealthscreeningupdate.html', context=context)
+
+
 @login_required
 def MinorsymView(request):
   form=HealthsymForm(request.POST or None)

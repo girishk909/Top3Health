@@ -176,10 +176,13 @@ class Myhealthscreening(models.Model):
     Smoker = models.CharField(max_length=3, null=True, blank=True, default=None)
     Blood_type = models.CharField(max_length=3, blank=True, null=True, default=None)
 
-    Dental_checkups = models.BooleanField(default=False)
-    Dental_cleanings = models.BooleanField(default=False)
+    # Dental_checkups = models.BooleanField(default=False)
+    # Dental_cleanings = models.BooleanField(default=False)
 
-    Vision_checkups = models.BooleanField(default=False)
+    dental_date = models.DateField(max_length=10,null=True, blank=True,)
+    vision_date = models.DateField(max_length=10,null=True, blank=True,)
+
+    # Vision_checkups = models.BooleanField(default=False)
     Screen_date = models.DateField(max_length=10,null=True, blank=True,)
    
    
