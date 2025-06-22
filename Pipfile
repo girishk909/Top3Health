@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+mysqlclient = "*"
+plotly = "*"
+dash = "*"
+pandas = "*"
+djangorestframework = "*"
+django-crispy-forms = "*"
+crispy-bootstrap4 = "*"
+django-admin-tools = "*"
+seaborn = "*"
+mysql = "*"
+mysql-connector-python = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

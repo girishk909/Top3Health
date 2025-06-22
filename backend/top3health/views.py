@@ -73,7 +73,6 @@ import pandas as pd
 import plotly.graph_objects as go
 
 import pandas as pd
-import tkinter
 
 from pandas import Series, DataFrame
 import csv

@@ -136,13 +136,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'top3db',
         'USER': 'girish',
-        'PASSWORD': 'Mazatlan909.',
+        'PASSWORD': 'Mazatlan909',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
             'read_default_file': '/etc/mysql/my.cnf',
+        },
     }
-}}
+}
 
 
 # Password validation
